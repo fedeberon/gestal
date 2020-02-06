@@ -10,6 +10,7 @@
 <body>
 <div class="flex-container">
     <tiles:insertAttribute name="header" />
+
     <tiles:insertAttribute name="menu" />
     <article class="article">
         <tiles:insertAttribute name="body" />

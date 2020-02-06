@@ -13,6 +13,8 @@
         <put-attribute name="body" value="" />
         <put-attribute name="footer"
                        value="/WEB-INF/views/tiles/templates/footer.jsp" />
+        <put-attribute name="navBar"
+                       value="/WEB-INF/views/tiles/templates/navBar.jsp" />
     </definition>
 
     <definition name="home" extends="template-def">
