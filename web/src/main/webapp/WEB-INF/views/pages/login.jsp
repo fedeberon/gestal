@@ -1,137 +1,139 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta charset="utf-8" />
-    <title>Login | D&middot;Ads - Dynamic Ads made easy.</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="apple-touch-icon" href="pages/ico/60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="pages/ico/76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="pages/ico/120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="pages/ico/152.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta content="Dynamic Ads made Easy!" name="description" />
-    <meta content="Toiluj23" name="author" />`
-    <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrap-select2/select2.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/font-awesome/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/bootstrap-tag/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrap-datepicker/css/datepicker3.css" media="screen" type="text/css" rel="stylesheet" />
-    <link href="assets/plugins/jquery-nouislider/jquery.nouislider.css" media="screen" type="text/css" rel="stylesheet" />
-    <link type="text/css" rel="stylesheet" href="assets/plugins/jquery-datatable/media/css/jquery.dataTables.css">
-    <link type="text/css" rel="stylesheet" href="assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css">
-    <link media="screen" type="text/css" rel="stylesheet" href="assets/plugins/datatables-responsive/css/datatables.responsive.css">
-    <link type="text/css" rel="stylesheet" href="assets/plugins/dropzone/css/dropzone.css">
-    <link href="pages/css/pages-icons.css" rel="stylesheet" type="text/css" />
-    <link href="pages/css/themes/light.css" rel="stylesheet" type="text/css" />
-    <link class="main-stylesheet" href="assets/css/style.css" rel="stylesheet" type="text/css" />
-    <!--[if lte IE 9]>
-    <link href="pages/css/ie9.css" rel="stylesheet" type="text/css" />
-    <![endif]-->
-    <script type="text/javascript">
-        window.onload = function() {
-            // fix for windows 8
-            if (navigator.appVersion.indexOf("Windows NT 6.2") != -1)
-                document.head.innerHTML += '<link rel="stylesheet" type="text/css" href="pages/css/windows.chrome.fix.css" />'
-        }
-    </script>
+    <title>My Awesome Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 </head>
-<body class="fixed-header">
-<!-- START PAGE-CONTAINER -->
-<div class="login-wrapper">
-    <!-- START Login Background Pic Wrapper-->
-    <div class="bg-pic">
-        <!-- START Background Pic-->
-        <!-- <img src="assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg" data-src="assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg" data-src-retina="assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg" alt="" class="lazy"> -->
-        <!-- END Background Pic-->
-        <!-- START Background Caption-->
-        <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
-            <h2 class="semi-bold text-white"><img src="assets/img/iso.svg" alt="logo" data-src="assets/img/iso.svg" data-src-retina="assets/img/iso.svg" height="80"><span class="light">ADS</span></h2>
-            <p class="small">Show contextual ads and get real engagement.</p>
-        </div>
-        <!-- END Background Caption-->
-    </div>
-    <!-- END Login Background Pic Wrapper-->
-    <!-- START Login Right Container-->
-    <div class="login-container bg-white">
-        <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
-            <h4 class="semi-bold"><img src="assets/img/iso.svg" alt="logo" data-src="assets/img/iso.svg" data-src-retina="assets/img/iso.svg" height="40"><span class="light">ADS</span></h4>
-            <p class="p-t-35">Sign in</p>
-            <!-- START Login Form -->
-            <form id="form-login" class="p-t-15" role="form" action="login" method='POST'>
-                <!-- START Form Control-->
-                <div class="form-group form-group-default">
-                    <label>Login</label>
-                    <div class="controls">
-                        <input type="text" name="username"  placeholder="User Name" class="form-control" required>
-                    </div>
+
+
+<style>
+    /* Coded with love by Mutiullah Samim */
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #60a3bc !important;
+    }
+    .user_card {
+        height: 400px;
+        width: 350px;
+        margin-top: auto;
+        margin-bottom: auto;
+        background: #f39c12;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 5px;
+
+    }
+    .brand_logo_container {
+        position: absolute;
+        height: 170px;
+        width: 170px;
+        top: -75px;
+        border-radius: 50%;
+        background: #60a3bc;
+        padding: 10px;
+        text-align: center;
+    }
+    .brand_logo {
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        border: 2px solid white;
+    }
+    .form_container {
+        margin-top: 100px;
+    }
+    .login_btn {
+        width: 100%;
+        background: #c0392b !important;
+        color: white !important;
+    }
+    .login_btn:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+    .login_container {
+        padding: 0 2rem;
+    }
+    .input-group-text {
+        background: #c0392b !important;
+        color: white !important;
+        border: 0 !important;
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
+    .input_user,
+    .input_pass:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+    .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+        background-color: #c0392b !important;
+    }
+</style>
+
+
+<!--Coded with love by Mutiullah Samim-->
+<body>
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="user_card">
+            <div class="d-flex justify-content-center">
+                <div class="brand_logo_container">
+                    <img src="../../../assets/img/logo-login.png" class="brand_logo" alt="Logo">
                 </div>
-                <!-- END Form Control-->
-                <!-- START Form Control-->
-                <div class="form-group form-group-default">
-                    <label>Password</label>
-                    <div class="controls">
-                        <input type="password" class="form-control" name="password" placeholder="Credentials" required>
+            </div>
+            <div class="d-flex justify-content-center form_container">
+                <form class="form-signin" name='f' action="login" style="text-align: center" method='POST'>
+                <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text"  name="username" class="form-control input_user" value="" placeholder="username">
                     </div>
-                </div>
-                <!-- START Form Control-->
-                <div class="row">
-                    <div class="col-md-6 no-padding">
-                        <div class="checkbox ">
-                            <input type="checkbox" value="1" id="checkbox1">
-                            <label for="checkbox1">Keep Me Signed in</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password"name="password" class="form-control input_pass" value="" placeholder="password">
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customControlInline">
+                            <label class="custom-control-label" for="customControlInline">Remember me</label>
                         </div>
                     </div>
-                    <div class="col-md-6 text-right">
-                        <a href="#" class="text-info small">Help? Contact Support</a>
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <button type="submit" name="button" class="btn login_btn">Login</button>
                     </div>
-                </div>
-                <!-- END Form Control-->
-                <button class="btn btn-primary btn-cons m-t-10" type="submit">Sign in</button>
-            </form>
-            <!--END Login Form-->
-            <div class="pull-bottom sm-pull-bottom">
-                <div class="m-b-30 p-r-80 sm-m-t-20 sm-p-r-15 sm-p-b-20 clearfix">
+                </form>
+            </div>
 
+            <div class="mt-4">
+                <div class="d-flex justify-content-center links">
+                    Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+                </div>
+                <div class="d-flex justify-content-center links">
+                    <a href="#">Forgot your password?</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- END Login Right Container-->
 </div>
-<!-- END PAGE CONTAINER -->
-<!-- BEGIN VENDOR JS -->
-<script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
-<script src="assets/plugins/modernizr.custom.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-<script src="assets/plugins/boostrapv3/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery-bez/jquery.bez.min.js"></script>
-<script src="assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery-actual/jquery.actual.min.js"></script>
-<script src="assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap-select2/select2.min.js"></script>
-<script type="text/javascript" src="assets/plugins/classie/classie.js"></script>
-<script src="assets/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
-<script src="assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
-<!-- END VENDOR JS -->
-<!-- BEGIN CORE TEMPLATE JS -->
-<script src="pages/js/pages.min.js"></script>
-<!-- END CORE TEMPLATE JS -->
-<!-- BEGIN PAGE LEVEL JS -->
-<script src="assets/js/scripts.js" type="text/javascript"></script>
-<!-- END PAGE LEVEL JS -->
-<script>
-    $(function()
-    {
-        $('#form-login').validate()
-    })
-</script>
 </body>
 </html>

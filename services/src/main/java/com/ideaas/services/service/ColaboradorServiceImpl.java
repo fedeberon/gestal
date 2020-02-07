@@ -26,4 +26,9 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     public List<Colaborador> findAll(){
         return dao.findAll();
     }
+
+    @Override
+    public Colaborador save(Colaborador colaborador) {
+        return dao.save(colaborador);
+    }
 }

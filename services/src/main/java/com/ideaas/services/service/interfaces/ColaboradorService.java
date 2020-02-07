@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface ColaboradorService {
     List<Colaborador> findAll();
+    Colaborador save(Colaborador colaborador);
 }
