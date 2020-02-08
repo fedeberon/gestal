@@ -17,8 +17,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("colaborador")
 public class ColaboradorController {
 
-    @Autowired
     private ColaboradorService colaboradorService;
+
+    @Autowired
+    public ColaboradorController(ColaboradorService colaboradorService) {
+        this.colaboradorService = colaboradorService;
+    }
 
     @RequestMapping("/list")
     public String list(Model model) {

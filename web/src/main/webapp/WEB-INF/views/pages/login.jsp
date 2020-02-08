@@ -94,7 +94,7 @@
     <div class="d-flex justify-content-center h-100">
         <div class="user_card">
             <div class="d-flex justify-content-center">
-                <div class="brand_logo_container">
+                <div class="brand_logo_container bg-light">
                     <img src="../../../assets/img/logo-login.png" class="brand_logo" alt="Logo">
                 </div>
             </div>

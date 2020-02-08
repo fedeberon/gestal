@@ -22,8 +22,13 @@
 
 
     <definition name="colaborador/list" extends="template-def">
-        <put-attribute name="title" value="Home" />
+        <put-attribute name="title" value="Lista de Colaboradores" />
         <put-attribute name="body" value="/WEB-INF/views/pages/colaborador/list.jsp" />
+    </definition>
+
+    <definition name="usuario/list" extends="template-def">
+        <put-attribute name="title" value="Lista de Usuarios" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/usuario/list.jsp" />
     </definition>
 
 
@@ -31,6 +36,11 @@
         <put-attribute name="title" value="Login" />
         <put-attribute name="header" value="" />
         <put-attribute name="body" value="" />
+    </definition>
+
+    <definition name="colaborador/create" extends="template-def">
+        <put-attribute name="title" value="Crear colaborador" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/colaborador/create.jsp" />
     </definition>
 
 

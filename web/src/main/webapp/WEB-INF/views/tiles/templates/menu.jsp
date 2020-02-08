@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
     <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
@@ -11,21 +12,21 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li class="active   ">
-                    <a href="colaborador/list">
+                    <a href="<c:url value='home'/>">
                         <i class="nc-icon nc-bank"></i>
-                        <p>Usuarios</p>
+                        <p>Inicio</p>
                     </a>
                 </li>
                 <li>
-                    <a href="colaborador/lista">
+                    <a href="<c:url value='colaborador/list'/>">
                         <i class="nc-icon nc-diamond"></i>
                         <p>Colaboradores</p>
                     </a>
                 </li>
                 <li>
-                    <a href="../map">
+                    <a href="<c:url value='usuario/list'/>">
                         <i class="nc-icon nc-pin-3"></i>
-                        <p>Maps</p>
+                        <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
