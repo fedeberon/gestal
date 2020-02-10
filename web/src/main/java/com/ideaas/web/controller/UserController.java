@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -25,12 +26,9 @@ public class UserController {
         this.usuarioService = usuarioService;
     }
 
-    @RequestMapping("list")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-        List<User> usuarios= usuarioService.findAll(size, page,"id");
-        model.addAttribute("usuarios", usuarios);
-        model.addAttribute("page" , page);
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("usuarios", usuarioService.findAll());
 
         return "usuario/list";
     }

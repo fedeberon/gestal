@@ -10,6 +10,7 @@ public interface UsuarioService extends UserDetailsService {
     User get(String username);
 
     User save(User user);
+    List<User> findAll();
 
-    List<User> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
 }
