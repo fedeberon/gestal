@@ -17,7 +17,7 @@ public class Evaluacion {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacion")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacion", cascade = CascadeType.PERSIST)
     private List<Item> items;
 
     @Column(name = "EVA_COMENTARIOS")

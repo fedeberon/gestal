@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
     <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
@@ -18,20 +18,20 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<c:url value='colaborador/list'/>">
+                    <a href="<c:url value='/colaborador/list'/>">
                         <i class="nc-icon nc-diamond"></i>
                         <p>Colaboradores</p>
                     </a>
                 </li>
                 <li>
-                    <a href="<c:url value='usuario/list'/>">
+                    <a href="<c:url value='/usuario/list'/>">
                         <i class="nc-icon nc-single-02"></i>
 
                         <p>Usuarios</p>
                     </a>
                 </li>
                 <li>
-                    <a href="<c:url value='evaluacion/create'/>">
+                    <a href="<c:url value='/evaluacion/list'/>">
                         <i class="nc-icon nc-tile-56"></i>
 
                         <p>Evaluaci&oacute;n</p>

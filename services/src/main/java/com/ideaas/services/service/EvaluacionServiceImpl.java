@@ -8,6 +8,8 @@ import com.ideaas.services.service.interfaces.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by federicoberon on 04/02/2020.
  */
@@ -29,8 +31,18 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
 
     @Override
+    public Evaluacion save(Evaluacion evaluacion){
+        return dao.save(evaluacion);
+    }
+
+    @Override
     public EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador) {
         return evaluacionDelColaboradorDao.save(evaluacionDelColaborador);
+    }
+
+    @Override
+    public List<Evaluacion> findAll() {
+        return dao.findAll();
     }
 
 

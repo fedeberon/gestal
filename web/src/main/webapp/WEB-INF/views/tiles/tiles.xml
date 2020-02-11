@@ -33,6 +33,11 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/colaborador/create.jsp" />
     </definition>
 
+    <definition name="colaborador/update" extends="template-def">
+        <put-attribute name="title" value="Editar colaborador" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/colaborador/update.jsp" />
+    </definition>
+
     <!--Usuario -->
 
     <definition name="usuario/list" extends="template-def">
@@ -40,10 +45,15 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/usuario/list.jsp" />
     </definition>
 
-    <!--Item -->
+    <!--Evaluacion -->
     <definition name="evaluacion/create" extends="template-def">
         <put-attribute name="title" value="Agregar evaluacion" />
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/create.jsp" />
+    </definition>
+
+    <definition name="evaluacion/list" extends="template-def">
+        <put-attribute name="title" value="Lista de Evaluaciones" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/list.jsp" />
     </definition>
 
     <definition name="login" template="/WEB-INF/views/pages/login.jsp">

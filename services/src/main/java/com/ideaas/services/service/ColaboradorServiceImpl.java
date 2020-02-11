@@ -31,4 +31,9 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     public Colaborador save(Colaborador colaborador) {
         return dao.save(colaborador);
     }
+
+    @Override
+    public Colaborador get(Long id) {
+        return dao.findById(id).get();
+    }
 }

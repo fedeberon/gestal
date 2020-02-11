@@ -13,10 +13,14 @@ public class Item {
 
     @Id
     @Column(name = "ITEM_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "ITEM_VALUE")
     private String value;
+
+    @Column(name = "ITEM_SCORE")
+    private Float score;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)

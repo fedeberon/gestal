@@ -37,7 +37,7 @@ public class UserServiceImpl implements UsuarioService {
 
     @Override
     public List<User> findAll(){
-        return (List<User>) dao.findAll();
+        return null;
     }
 
     @Override

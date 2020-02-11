@@ -19,6 +19,7 @@ public class ColaboradorController {
 
     @Autowired
     public ColaboradorController(ColaboradorService colaboradorService) {
+
         this.colaboradorService = colaboradorService;
     }
 
@@ -32,11 +33,21 @@ public class ColaboradorController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Colaborador colaborador) {
         colaboradorService.save(colaborador);
+
         return "redirect:list";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        Colaborador colaborador= colaboradorService.get(id);
+        model.addAttribute("colaborador", colaborador);
+
+        return "colaborador/update";
     }
 
     @RequestMapping("/create")
     public String create(@ModelAttribute("colaborador") Colaborador colaborador) {
+
         return "colaborador/create";
     }
 }

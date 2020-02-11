@@ -13,6 +13,7 @@ public class CreativeController {
 
     @RequestMapping("creative-new")
     public String create(){
+
         return "creative/new";
     }
 
