@@ -31,13 +31,21 @@ public class UserServiceImpl implements UsuarioService {
     }
 
     @Override
+    public User getById(Long id) {
+        return dao.findById(id).get();
+    }
+
+    @Override
     public User save(User user) {
         return dao.save(user);
     }
 
     @Override
-    public List<User> findAll(){
-        return null;
+    public List<User> findAll(Integer pageSize, Integer pageNo, String sortBy) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Page<User> usuarios = dao.findAll(paging);
+
+        return usuarios.getContent();
     }
 
     @Override

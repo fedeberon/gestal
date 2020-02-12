@@ -5,24 +5,25 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Editar a <span class="badge badge-success">${colaborador.name}</span> </h4>
+                    <h4 class="card-title"> Editar al usuario <span class="badge badge-success">${usuario.username}</span> </h4>
                 </div>
                 <div class="card-body m-auto">
-                    <c:url var="actionUrl" value="/colaborador/save" />
-                    <form:form modelAttribute="colaborador" action="${actionUrl}" method="POST">
-                        <form:hidden path="id" value='${colaborador.id}'/>
+                    <c:url var="actionUrl" value="/usuario/save" />
+                    <form:form modelAttribute="usuario" action="${actionUrl}" method="POST">
+                        <form:hidden path="id" value='${usuario.id}'/>
 
                         <div class="form-style-8">
-                            <input type="hidden" name="colaborador.id" value="${colaborador.id}"/>
+                            <input type="hidden" name="usuario.id" value="${usuario.id}"/>
                             <p>
-                                <label>Nombre:</label>
-                                <form:input path="name" required="required"/>
+                                <label>Usuario:</label>
+                                <form:input path="username" required="required"/>
                             </p>
 
                             <p>
-                                <label>Apellido:</label>
-                                <form:input path="lastName" required="required"/>
+                                <label>Mail:</label>
+                                <form:input path="mail" required="required"/>
                             </p>
+
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form:form>

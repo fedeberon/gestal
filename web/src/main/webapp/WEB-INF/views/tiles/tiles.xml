@@ -16,7 +16,7 @@
 
 
     <definition name="home" extends="template-def">
-        <put-attribute name="title" value="Home" />
+        <put-attribute name="title" value="Inicio" />
         <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />
     </definition>
 
@@ -43,6 +43,16 @@
     <definition name="usuario/list" extends="template-def">
         <put-attribute name="title" value="Lista de Usuarios" />
         <put-attribute name="body" value="/WEB-INF/views/pages/usuario/list.jsp" />
+    </definition>
+
+    <definition name="usuario/create" extends="template-def">
+        <put-attribute name="title" value="Agregar usuario" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/usuario/create.jsp" />
+    </definition>
+
+    <definition name="usuario/update" extends="template-def">
+        <put-attribute name="title" value="Editar usuario" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/usuario/update.jsp" />
     </definition>
 
     <!--Evaluacion -->

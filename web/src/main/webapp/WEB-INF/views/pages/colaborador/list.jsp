@@ -41,12 +41,7 @@
     <div class="row mt-5">
         <div class="col-md-12">
             <div class="float-right mt-5 mr-5 my-5">
-                <a class="btn btn-success" href="<c:url value='/colaborador/create'/>">
-                    Nuevo
-                </a>
-
-
-
+                <a class="btn btn-success" href="<c:url value='/colaborador/create'/>">Nuevo</a>
             </div>
         </div>
     </div>
