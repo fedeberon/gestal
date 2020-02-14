@@ -35,6 +35,7 @@ public class EvaluacionRestController {
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public ResponseEntity<EvaluacionDelColaborador> save(@RequestBody EvaluacionDelColaborador evaluacionDelColaborador){
+        evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> itemEvaluado.setEvaluacionDelColaborador(evaluacionDelColaborador));
         EvaluacionDelColaborador evaluacion = evaluacionService.save(evaluacionDelColaborador);
 
         return new ResponseEntity(evaluacion, HttpStatus.OK);

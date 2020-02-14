@@ -17,4 +17,6 @@ public interface EvaluacionService {
 
     List<Evaluacion> findAll();
 
+    EvaluacionDelColaborador get(Long id);
+
 }

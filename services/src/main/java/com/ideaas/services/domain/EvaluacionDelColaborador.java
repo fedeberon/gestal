@@ -1,7 +1,11 @@
 package com.ideaas.services.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -9,7 +13,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "EVALUACIONES_DE_COLABORADORES")
-public class EvaluacionDelColaborador {
+public class EvaluacionDelColaborador implements Serializable{
 
 
     @Id
@@ -18,17 +22,22 @@ public class EvaluacionDelColaborador {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "EDC_USER_ID", nullable = false)
-    private User usuarioEvaluado;
+    @JoinColumn(name = "EDC_COL_ID", nullable = false)
+    private Colaborador colaborador;
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "EDC_ROL_ID", nullable = false)
     private Rol rolEvaluado;
 
+    /**
+     * No es posible usarlo en level 25 de Android
     @Column(name = "EDC_FECHA")
-    private LocalDateTime fecha;
+    private LocalDateTime fecha = LocalDateTime.now();*/
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacionDelColaborador")
+    @Column(name = "EDC_FECHA_DE_CARGA")
+    private Date fechaDeCarga;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacionDelColaborador", cascade = CascadeType.PERSIST)
     private List<ItemEvaluado> itemEvaluados;
 
     public Long getId() {
@@ -39,12 +48,12 @@ public class EvaluacionDelColaborador {
         this.id = id;
     }
 
-    public User getUsuarioEvaluado() {
-        return usuarioEvaluado;
+    public Colaborador getColaborador() {
+        return colaborador;
     }
 
-    public void setUsuarioEvaluado(User usuarioEvaluado) {
-        this.usuarioEvaluado = usuarioEvaluado;
+    public void setColaborador(Colaborador colaborador) {
+        this.colaborador = colaborador;
     }
 
     public Rol getRolEvaluado() {
@@ -55,12 +64,12 @@ public class EvaluacionDelColaborador {
         this.rolEvaluado = rolEvaluado;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public Date getFechaDeCarga() {
+        return fechaDeCarga;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public void setFechaDeCarga(Date fechaDeCarga) {
+        this.fechaDeCarga = fechaDeCarga;
     }
 
     public List<ItemEvaluado> getItemEvaluados() {

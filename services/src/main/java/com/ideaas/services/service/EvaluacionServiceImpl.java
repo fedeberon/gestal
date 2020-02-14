@@ -21,8 +21,9 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     private EvaluacionDelColaboradorDao evaluacionDelColaboradorDao;
 
     @Autowired
-    public EvaluacionServiceImpl(EvaluacionDao dao) {
+    public EvaluacionServiceImpl(EvaluacionDao dao, EvaluacionDelColaboradorDao evaluacionDelColaboradorDao) {
         this.dao = dao;
+        this.evaluacionDelColaboradorDao = evaluacionDelColaboradorDao;
     }
 
     @Override
@@ -38,6 +39,11 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     @Override
     public EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador) {
         return evaluacionDelColaboradorDao.save(evaluacionDelColaborador);
+    }
+
+    @Override
+    public EvaluacionDelColaborador get(Long id) {
+        return evaluacionDelColaboradorDao.findById(id).get();
     }
 
     @Override
