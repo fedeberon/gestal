@@ -15,7 +15,7 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Editar</th>
-
+                                <th>Rol</th>
                             </thead>
                             <tbody>
 
@@ -27,6 +27,8 @@
                                     <td>
                                         <a href="<c:url value='/colaborador/update?id=${bo.id}'/>" class="btn btn-success">Editar</a>
                                     </td>
+                                    <td>${bo.rol.name}</td>
+
 
                                 </tr>
                             </c:forEach>

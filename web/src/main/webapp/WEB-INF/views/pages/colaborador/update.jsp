@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Editar a <span class="badge badge-success">${colaborador.name}</span> </h4>
+                    <h4 class="card-title"> Editar</h4>
                 </div>
                 <div class="card-body m-auto">
                     <c:url var="actionUrl" value="/colaborador/save" />
@@ -23,6 +23,14 @@
                                 <label>Apellido:</label>
                                 <form:input path="lastName" required="required"/>
                             </p>
+
+                            <p>
+                                <form:select  path="rol.id" cssClass="form-control mt-3 w-50">
+                                    <form:option value="Seleccionar rol" required="true"/>
+                                    <form:options items="${roles}" itemValue="id" itemLabel="name"/>
+                                </form:select>
+                            </p>
+
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form:form>
