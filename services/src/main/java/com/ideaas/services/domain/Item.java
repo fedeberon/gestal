@@ -3,13 +3,14 @@ package com.ideaas.services.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by federicoberon on 03/02/2020.
  */
 @Entity
 @Table(name = "ITEMS")
-public class Item {
+public class Item implements Serializable{
 
     @Id
     @Column(name = "ITEM_ID")

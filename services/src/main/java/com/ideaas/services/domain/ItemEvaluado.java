@@ -1,27 +1,31 @@
 package com.ideaas.services.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by federicoberon on 04/02/2020.
  */
 @Entity
 @Table(name = "ITEMS_EVALUADOS")
-public class ItemEvaluado {
+public class ItemEvaluado implements Serializable{
 
     @Id
     @Column(name = "IEV_ID")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "IEV_ITEM_ID", nullable = false)
     private Item item;
 
     @Column(name = "IEV_rating")
     private Float rating;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "IEV_EDC_ID", nullable = false)
     private EvaluacionDelColaborador evaluacionDelColaborador;
 

@@ -19,4 +19,6 @@ public interface EvaluacionService {
 
     Evaluacion getById(Long id);
 
+    EvaluacionDelColaborador get(Long id);
+
 }
