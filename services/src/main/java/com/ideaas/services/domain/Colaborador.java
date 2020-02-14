@@ -21,6 +21,10 @@ public class Colaborador implements Serializable{
     @Column(name = "COL_LAST_NAME")
     private String lastName;
 
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "COL_ROL_ID", nullable = false)
+    private Rol rol;
+
     public Long getId() {
         return id;
     }
@@ -43,5 +47,13 @@ public class Colaborador implements Serializable{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }

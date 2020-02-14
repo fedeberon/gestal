@@ -10,4 +10,6 @@ public interface EvaluacionService {
     Evaluacion getByRol(String rol);
 
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
+
+    EvaluacionDelColaborador get(Long id);
 }

@@ -1,6 +1,7 @@
 package com.ideaas.services.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "ROLES")
-public class Rol {
+public class Rol implements Serializable{
 
 
     @Id
