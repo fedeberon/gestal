@@ -45,5 +45,9 @@ public class EvaluacionServiceImpl implements EvaluacionService {
         return dao.findAll();
     }
 
+    @Override
+    public Evaluacion getById(Long id) {
+        return dao.findById(id).get();
+    }
 
 }

@@ -11,6 +11,5 @@ public interface UsuarioService extends UserDetailsService {
     User getById(Long id);
     User save(User user);
     List<User> findAll(Integer pageSize, Integer pageNo, String sortBy);
-
-
+    void delete(Long id);
 }

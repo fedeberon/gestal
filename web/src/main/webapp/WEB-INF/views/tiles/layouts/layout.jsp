@@ -24,32 +24,42 @@
         <link href="<c:url value='/assets/css/paper-dashboard.css?v=2.0.0' />" rel="stylesheet" />
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="<c:url value='/assets/demo/demo.css' />" rel="stylesheet" />
+        <link href="<c:url value='/assets/css/evaluacion/style.css' />" rel="stylesheet" />
+
     </head>
+    <body>
+        <div class="flex-container">
+            <tiles:insertAttribute name="header" />
 
-<!--   Core JS Files   -->
-<script href="<c:url value='/assets/plugins/jquery/jquery-3.2.1.min.js'/>"></script>
-<script href="<c:url value='/assets/js/core/popper.min.js'/>"></script>
-<script href="<c:url value='/assets/js/core/bootstrap.min.js'/>"></script>
-<script href="<c:url value='/assets/js/plugins/perfect-scrollbar.jquery.min.js'/>"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!-- Chart JS -->
-<script href="<c:url value='/assets/js/plugins/chartjs.min.js'/>"></script>
-<!--  Notifications Plugin    -->
-<script href="<c:url value='/assets/js/plugins/bootstrap-notify.js'/>"></script>
-<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script href="<c:url value='/assets/js/paper-dashboard.min.js?v=2.0.0'/>"></script>
+            <tiles:insertAttribute name="menu" />
+            <div class="main-panel">
+                <tiles:insertAttribute name="body" />
+            </div>
+            <tiles:insertAttribute name="footer" />
+        </div>
 
-</head>
-<body>
-<div class="flex-container">
-    <tiles:insertAttribute name="header" />
+        <!--   Core JS Files   -->
+        <script type="text/javascript" src='<c:url value="/assets/plugins/jquery/jquery-3.2.1.min.js"/>'></script>
 
-    <tiles:insertAttribute name="menu" />
-    <div class="main-panel">
-        <tiles:insertAttribute name="body" />
-    </div>
-    <tiles:insertAttribute name="footer" />
-</div>
-</body>
+        <script type="text/javascript" src='<c:url value="/assets/js/core/popper.min.js"/>'></script>
+
+        <script type="text/javascript" src='<c:url value="/assets/js/core/bootstrap.min.js"/>'></script>
+
+        <script type="text/javascript" src='<c:url value="/assets/js/plugins/perfect-scrollbar.jquery.min.js"/>'></script>
+
+        <!--  Google Maps Plugin    -->
+        <script type="text/javascript" src='<c:url value="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"/>'></script>
+
+        <!-- Chart JS -->
+        <script type="text/javascript" src='<c:url value="/assets/js/plugins/chartjs.min.js"/>'></script>
+
+        <!--  Notifications Plugin    -->
+        <script type="text/javascript" src='<c:url value="/assets/js/plugins/bootstrap-notify.js"/>'></script>
+
+        <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+        <script type="text/javascript" src='<c:url value="/assets/js/paper-dashboard.min.js?v=2.0.0"/>'></script>
+
+        <%--<script type="text/javascript" href="<c:url value='/assets/js/createEvaluacion.js'/>"></script>--%>
+        <script type="text/javascript" src='<c:url value="/assets/js/createEvaluacion.js"/>'></script>
+    </body>
 </html>

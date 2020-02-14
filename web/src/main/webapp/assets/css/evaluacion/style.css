@@ -170,3 +170,16 @@ a.select2-search-choice-close::before{font-family: 'Font Awesome 5 Pro',"Helveti
     .table.table-condensed tbody tr td{padding-bottom:4px;padding-top:4px;}
     .table-striped>tbody>tr:nth-of-type(odd){background-color: #d6d6d6;}
     .table-striped>tbody>tr:nth-of-type(even){background-color: #ffffff;}
+
+ * {
+ . border-radius(0) !important;
+ }
+
+#field {
+  margin-bottom: 20px;
+  width: 800px;
+}
+
+#field1 {
+  width: 40%;
+}

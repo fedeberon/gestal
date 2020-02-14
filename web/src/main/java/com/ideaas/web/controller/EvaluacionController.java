@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -60,9 +62,28 @@ public class EvaluacionController {
     }
 
     @ModelAttribute("evaluacion")
-    public Evaluacion getEvaluacion(){
-
+    public Evaluacion getEvaluacion(Model model){
         return new Evaluacion();
+    }
+
+    @RequestMapping("activar")
+    public String activarEvaluacion(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+        Evaluacion evaluacion= evaluacionService.getById(id);
+        evaluacion.setState(State.ACTIVE);
+        redirectAttributes.addAttribute("id", evaluacion.getId());
+        evaluacionService.save(evaluacion);
+
+        return "redirect:list";
+    }
+
+    @RequestMapping("desactivar")
+    public String desactivarEvaluacion(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+        Evaluacion evaluacion= evaluacionService.getById(id);
+        evaluacion.setState(State.INACTIVE);
+        redirectAttributes.addAttribute("id", evaluacion.getId());
+        evaluacionService.save(evaluacion);
+
+        return "redirect:list";
     }
 
 }
