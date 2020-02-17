@@ -38,13 +38,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="<c:url value='/evaluacionDelColaborador/list'/>">
-                        <i class="nc-icon nc-single-copy-04"></i>
-
-                        <p>Evaluaci&oacute;n del colaborador</p>
-                    </a>
-                </li>
             </ul>
         </div>
     </div>

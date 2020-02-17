@@ -66,12 +66,6 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/list.jsp" />
     </definition>
 
-    <!--Evaluacion del colaborador -->
-    <definition name="evaluacionDelColaborador/list" extends="template-def">
-        <put-attribute name="title" value="Agregar evaluacion" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/evaluacionDelColaborador/list.jsp" />
-    </definition>
-
     <definition name="login" template="/WEB-INF/views/pages/login.jsp">
         <put-attribute name="title" value="Login" />
         <put-attribute name="header" value="" />
