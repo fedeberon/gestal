@@ -9,7 +9,7 @@
                     <h4 class="card-title"> Evaluaciones</h4>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                         <table class="table table-condensed">
                             <thead class=" text-primary">
                                 <th class="text-center">ID</th>
@@ -49,15 +49,14 @@
                                             <!--Fin de modal-->
                                         </td>
                                         <td class="text-center">
-                                                <c:choose>
-                                                        <c:when test="${bo.state =='ACTIVE'}">
-                                                            <span class="badge badge-success">${bo.state}</span>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <span class="badge badge-danger">${bo.state}</span>
-                                                        </c:otherwise>
-                                                </c:choose>
-
+                                            <c:choose>
+                                                <c:when test="${bo.state =='ACTIVE'}">
+                                                    <span class="badge badge-success">${bo.state}</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="badge badge-danger">${bo.state}</span>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </td>
                                         <td class="text-center">
                                             <div class="row">
@@ -77,20 +76,19 @@
                                     </tr>
                                 </c:forEach>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th><jsp:include page="modal/create.jsp"/></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <div class="float-right mt-5 mr-5 my-5">
-                <a class="btn btn-success" href="<c:url value='/evaluacion/create'/>">Nuevo</a>
-                <jsp:include page="modal/create.jsp"/>
-            </div>
-        </div>
-    </div>
-
-
 </div>
