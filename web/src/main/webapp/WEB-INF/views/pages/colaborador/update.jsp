@@ -26,7 +26,6 @@
 
                             <p>
                                 <form:select  path="rol.id" cssClass="form-control mt-3 w-50">
-                                    <form:option value="Seleccionar rol" required="true"/>
                                     <form:options items="${roles}" itemValue="id" itemLabel="name"/>
                                 </form:select>
                             </p>

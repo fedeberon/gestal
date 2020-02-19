@@ -6,13 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="row mt-5">
-                        <div class="col-md-6">
-                            <div class="float-left pl-3">
-                                <h4 class="card-title"> Usuarios</h4>
-                            </div>
-                        </div>
-                    </div>
+                    <h4 class="card-title"> Usuarios</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

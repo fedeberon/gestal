@@ -34,16 +34,19 @@
                             </c:forEach>
 
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>
+                                        <a class="btn btn-success float-right mr-5 mt-5" href="<c:url value='/colaborador/create'/>">Nuevo</a>
+                                    </th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <div class="float-right mt-5 mr-5 my-5">
-                <a class="btn btn-success" href="<c:url value='/colaborador/create'/>">Nuevo</a>
             </div>
         </div>
     </div>

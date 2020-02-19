@@ -1,13 +1,16 @@
 package com.ideaas.web.controller;
 
+import com.google.common.base.Strings;
 import com.ideaas.services.bean.State;
 import com.ideaas.services.domain.Evaluacion;
+import com.ideaas.services.domain.Item;
 import com.ideaas.services.domain.Rol;
 import com.ideaas.services.service.RolService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by Enzo on 10/2/2020.
@@ -46,8 +51,14 @@ public class EvaluacionController {
         return "evaluacion/create";
     }
 
+//    Function<Item, Boolean> checkNotEmptyItem = item -> !item.getValue().isEmpty();
+
     @RequestMapping(method = RequestMethod.POST)
     public String save(@ModelAttribute Evaluacion evaluacion){
+
+//        List<Item> items = evaluacion.getItems().stream().filter(s -> checkNotEmptyItem.apply(s)).collect(Collectors.toList());
+//        evaluacion.setItems(items);
+        evaluacion.getItems().removeIf(item -> item.getValue() == null);
         evaluacion.getItems().forEach(item -> item.setEvaluacion(evaluacion));
         evaluacion.setState(State.ACTIVE);
         evaluacionService.save(evaluacion);
@@ -84,6 +95,14 @@ public class EvaluacionController {
         evaluacionService.save(evaluacion);
 
         return "redirect:list";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        Evaluacion evaluacion= evaluacionService.getById(id);
+        model.addAttribute("colaborador", evaluacion);
+
+        return "evaluacion/evaluacion/update";
     }
 
 }

@@ -10,13 +10,13 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-md">
-                        <table class="table table-condensed">
+                        <table class="table">
                             <thead class=" text-primary">
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Rol</th>
-                                <th class="text-center">Items</th>
-                                <th class="text-center">Estado</th>
-                                <th>Dar de baja/alta</th>
+                                <th width="10%" class="text-center">ID</th>
+                                <th width="20%" class="text-center">Rol</th>
+                                <th width="20%" class="text-center">Items</th>
+                                <th width="10%" class="text-center">Estado</th>
+                                <th width="20%" class="text-center">Dar de baja/alta</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${evaluaciones}" var="bo">
@@ -60,17 +60,13 @@
                                         </td>
                                         <td class="text-center">
                                             <div class="row">
-                                                <div class="col-md-2 mx-2">
-                                                    <a class="text-success" href="<c:url value='/evaluacion/activar?id=${bo.id}'/>" title="Dar de baja">
-                                                        <i class="nc-icon nc-simple-add"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-2 mx-2">
-                                                    <a class="text-danger" href="<c:url value='/evaluacion/desactivar?id=${bo.id}'/>" title="Dar de alta">
-                                                        <i class="nc-icon nc-simple-delete"></i>
-                                                    </a>
+                                                    <div class="col-md-6 col-3">
+                                                        <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon float-right" href="<c:url value='/evaluacion/activar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-add"></i></a>
+                                                    </div>
 
-                                                </div>
+                                                    <div class="col-md-6 col-3">
+                                                        <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/evaluacion/desactivar?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-delete"></i></a>
+                                                    </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -82,7 +78,7 @@
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                    <th><jsp:include page="modal/create.jsp"/></th>
+                                    <th><jsp:include page="create.jsp"/></th>
                                 </tr>
                             </tfoot>
                         </table>

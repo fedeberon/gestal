@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<link rel="stylesheet" href="path/to/font-awesome.min.css">
 <style>
     .checked {
         color: orange;
@@ -19,7 +20,6 @@
                                 <th>Nombre completo</th>
                                 <th>Rol</th>
                                 <th>Items</th>
-                                <th>Rating</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${evaluaciones}" var="bo">
@@ -33,17 +33,63 @@
                                             <div class="modal fade evaluacionDelColaborador-${bo.id}">
                                                 <div class="modal-dialog  modal-lg">
                                                     <div class="modal-content">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <ul class="list-group">
-                                                                    <div class="row">
-                                                                        <div class="col-md-12">
-                                                                            <c:forEach items="${bo.itemEvaluados}" var="item">
-                                                                                <li class="list-group-item">${item.value}</li>
-                                                                            </c:forEach>
+                                                        <div class="content">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="card">
+                                                                        <div class="card-header">
+                                                                            <h4 class="card-title">Evaluaci&oacute;n del colaborador</h4>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="table-responsive-md">
+                                                                                <table class="table">
+                                                                                    <thead class="text-primary">
+                                                                                        <tr>
+                                                                                            <th width="70%">Items</th>
+                                                                                            <th width="30%">Rating</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <c:forEach items="${bo.itemEvaluados}" var="item">
+                                                                                                    <li class="list-group-item">${item.value}</li>
+                                                                                                </c:forEach>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <div class="rating-star">
+                                                                                                    <ul class="list-inline">
+
+                                                                                                        <li class="list-inline-item">
+                                                                                                            <span class="fa fa-star checked" id="one"></span>
+                                                                                                        </li>
+
+                                                                                                        <li class="list-inline-item">
+                                                                                                            <span class="fa fa-star checked" id="two"></span>
+                                                                                                        </li>
+
+                                                                                                        <li class="list-inline-item">
+                                                                                                            <span class="fa fa-star checked" id="three"></span>
+                                                                                                        </li>
+
+                                                                                                        <li class="list-inline-item">
+                                                                                                            <span class="fa fa-star" id="four"></span>
+                                                                                                        </li>
+
+                                                                                                        <li class="list-inline-item">
+                                                                                                            <span class="fa fa-star" id="five"></span>
+                                                                                                        </li>
+
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </ul>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -51,26 +97,21 @@
                                             </div>
                                             <!--Fin de modal-->
                                         </td>
-                                        <td>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star checked"></span>
-                                            <span class="fa fa-star"></span>
-                                            <span class="fa fa-star"></span>
-                                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
+                            <tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    <a class="btn btn-success float-right mr-5 mt-5" href="<c:url value='/colaborador/create'/>">Nuevo</a>
+                                </th>
+                            </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <div class="float-right mt-5 mr-5 my-5">
-                <a class="btn btn-success" href="<c:url value='/colaborador/create'/>">Nuevo</a>
             </div>
         </div>
     </div>
