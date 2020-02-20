@@ -1,6 +1,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-transparent">
+<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
    <div class="container-fluid">
       <div class="navbar-wrapper">
          <div class="navbar-toggle">
