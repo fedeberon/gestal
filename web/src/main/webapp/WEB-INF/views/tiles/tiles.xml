@@ -55,6 +55,11 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/usuario/update.jsp" />
     </definition>
 
+    <definition name="usuario/show" extends="template-def">
+        <put-attribute name="title" value="Usuario" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/usuario/show.jsp" />
+    </definition>
+
     <!--Evaluacion -->
     <definition name="evaluacion/create" extends="template-def">
         <put-attribute name="title" value="Agregar evaluacion" />

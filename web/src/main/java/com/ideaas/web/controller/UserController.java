@@ -46,6 +46,14 @@ public class UserController {
         return "usuario/update";
     }
 
+    @RequestMapping("show")
+    public String show(@RequestParam Long id, Model model) {
+        User usuario= usuarioService.getById(id);
+        model.addAttribute("usuario", usuario);
+
+        return "usuario/show";
+    }
+
     @RequestMapping("/create")
     public String create(@ModelAttribute("usuario") User user) {
 
