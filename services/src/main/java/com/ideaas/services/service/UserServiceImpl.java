@@ -1,7 +1,7 @@
 package com.ideaas.services.service;
 
 import com.ideaas.services.domain.User;
-import com.ideaas.services.dao.UserDao;
+import com.ideaas.services.dao.user.UserDao;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UsuarioService {
     }
 
     @Override
-    public List<User> findAll(Integer pageSize, Integer pageNo, String sortBy) {
+    public List<User> findAllPageable(Integer pageSize, Integer pageNo, String sortBy) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Page<User> usuarios = dao.findAll(paging);
 

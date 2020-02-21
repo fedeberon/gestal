@@ -61,5 +61,8 @@
 
         <%--<script type="text/javascript" href="<c:url value='/assets/js/createEvaluacion.js'/>"></script>--%>
         <script type="text/javascript" src='<c:url value="/assets/js/createEvaluacion.js"/>'></script>
+
+        <script type="text/javascript" src='<c:url value="/assets/js/paginador.js"/>'></script>
+
     </body>
 </html>

@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+
 <link rel="stylesheet" href="path/to/font-awesome.min.css">
 <style>
     .checked {
@@ -102,11 +104,16 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th></th>
-                                <th></th>
                                 <th>
-                                    <a class="btn btn-success float-right mr-5 mt-5" href="<c:url value='/colaborador/create'/>">Nuevo</a>
+                                    <div class="mt-5">
+                                        <form name="evaluacionDelColaborador" action="list" method="get">
+                                            <input type="hidden" name="page" value="${page}"/>
+                                            <tags:paginador page="${page}" formName="search"/>
+                                        </form>
+                                    </div>
                                 </th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             </tfoot>
                         </table>

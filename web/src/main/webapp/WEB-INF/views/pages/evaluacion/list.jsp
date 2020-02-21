@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -88,11 +90,22 @@
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <th>
+                                        <div class="mt-5">
+                                            <form name="evaluacion" action="list" method="get">
+                                                <input type="hidden" name="page" value="${page}"/>
+                                                <tags:paginador page="${page}" formName="search"/>
+                                            </form>
+                                        </div>
+                                    </th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
-                                    <th></th>
-                                    <th><jsp:include page="create.jsp"/></th>
+                                    <th>
+                                        <div class="mt-5">
+                                            <jsp:include page="create.jsp"/>
+                                        </div>
+                                    </th>
                                 </tr>
                             </tfoot>
                         </table>

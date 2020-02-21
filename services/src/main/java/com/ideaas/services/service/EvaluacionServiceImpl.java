@@ -1,14 +1,21 @@
 package com.ideaas.services.service;
 
-import com.ideaas.services.dao.EvaluacionDao;
-import com.ideaas.services.dao.EvaluacionDelColaboradorDao;
+import com.ideaas.services.dao.evaluacion.EvaluacionDao;
+import com.ideaas.services.dao.evaluacion.EvaluacionDaoPagination;
+import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Created by federicoberon on 04/02/2020.
@@ -17,42 +24,60 @@ import java.util.List;
 public class EvaluacionServiceImpl implements EvaluacionService {
 
     private EvaluacionDao dao;
-
+    private EvaluacionDaoPagination daoPageable;
     private EvaluacionDelColaboradorDao evaluacionDelColaboradorDao;
 
     @Autowired
-    public EvaluacionServiceImpl(EvaluacionDao dao, EvaluacionDelColaboradorDao evaluacionDelColaboradorDao) {
+    public EvaluacionServiceImpl(EvaluacionDao dao, EvaluacionDelColaboradorDao evaluacionDelColaboradorDao, EvaluacionDaoPagination evaluacionDaoPagination) {
+        this.daoPageable = evaluacionDaoPagination;
         this.dao = dao;
         this.evaluacionDelColaboradorDao = evaluacionDelColaboradorDao;
     }
 
     @Override
     public Evaluacion getByRol(String rol) {
+
         return dao.getActiveByRol(rol);
     }
 
     @Override
     public Evaluacion save(Evaluacion evaluacion){
+
         return dao.save(evaluacion);
     }
 
     @Override
     public EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador) {
+
         return evaluacionDelColaboradorDao.save(evaluacionDelColaborador);
     }
 
     @Override
     public EvaluacionDelColaborador get(Long id) {
+
         return evaluacionDelColaboradorDao.findById(id).get();
     }
 
     @Override
+    public List<Evaluacion> findAllPageable(Integer pageSize, Integer pageNo, String sortBy) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Page<Evaluacion> evaluacion = daoPageable.findAll(paging);
+
+        return evaluacion.getContent();
+    }
+
+    @Override
     public List<Evaluacion> findAll() {
-        return dao.findAll();
+        Iterable<Evaluacion> iterator = dao.findAll();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Evaluacion getById(Long id) {
+
         return dao.findById(id).get();
     }
 

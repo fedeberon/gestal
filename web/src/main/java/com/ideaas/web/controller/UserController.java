@@ -23,10 +23,12 @@ public class UserController {
         this.usuarioService = usuarioService;
     }
 
-    @RequestMapping("list")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-         model.addAttribute("usuarios", usuarioService.findAll(size, page, "id"));
+    @RequestMapping("/list")
+    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+                                  @RequestParam(defaultValue = "0") Integer page, Model model){
+        List<User> usuarios = usuarioService.findAllPageable(size, page,"id");
+        model.addAttribute("usuarios", usuarios);
+        model.addAttribute("page" , page);
 
         return "usuario/list";
     }

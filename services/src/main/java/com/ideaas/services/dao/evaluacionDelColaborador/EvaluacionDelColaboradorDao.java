@@ -1,4 +1,4 @@
-package com.ideaas.services.dao;
+package com.ideaas.services.dao.evaluacionDelColaborador;
 
 import com.ideaas.services.domain.EvaluacionDelColaborador;
 import org.springframework.data.jpa.repository.JpaRepository;

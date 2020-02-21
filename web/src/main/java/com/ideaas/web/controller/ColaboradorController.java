@@ -1,6 +1,7 @@
 package com.ideaas.web.controller;
 
 import com.ideaas.services.domain.Colaborador;
+import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.Rol;
 import com.ideaas.services.service.RolService;
 import com.ideaas.services.service.interfaces.ColaboradorService;
@@ -30,13 +31,6 @@ public class ColaboradorController {
         this.rolService = rolService;
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
-        model.addAttribute("colaboradores", colaboradorService.findAll());
-
-        return "colaborador/list";
-    }
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Colaborador colaborador) {
         colaboradorService.save(colaborador);
@@ -62,5 +56,15 @@ public class ColaboradorController {
     public List<Rol> getRoles(){
 
         return rolService.findAll();
+    }
+
+    @RequestMapping("/list")
+    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+                                  @RequestParam(defaultValue = "0") Integer page, Model model){
+        List<Colaborador> colaboradores = colaboradorService.findAllPageable(size, page,"id");
+        model.addAttribute("colaboradores", colaboradores);
+        model.addAttribute("page" , page);
+
+        return "colaborador/list";
     }
 }

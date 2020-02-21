@@ -9,18 +9,19 @@ import com.ideaas.services.service.RolService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import com.ideaas.services.service.interfaces.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Created by Enzo on 10/2/2020.
@@ -38,13 +39,6 @@ public class EvaluacionController {
         this.rolService = rolService;
         this.evaluacionService = evaluacionService;
         this.itemService = itemService;
-    }
-
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
-        model.addAttribute("evaluaciones", evaluacionService.findAll());
-
-        return "evaluacion/list";
     }
 
     @RequestMapping("create")
@@ -108,4 +102,13 @@ public class EvaluacionController {
         return "evaluacion/update";
     }
 
+    @RequestMapping("/list")
+    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+                          @RequestParam(defaultValue = "0") Integer page, Model model){
+        List<Evaluacion> evaluaciones = evaluacionService.findAllPageable(size, page,"id");
+        model.addAttribute("evaluaciones", evaluaciones);
+        model.addAttribute("page" , page);
+
+        return "evaluacion/list";
+    }
 }
