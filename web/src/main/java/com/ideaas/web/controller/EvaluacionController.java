@@ -7,6 +7,7 @@ import com.ideaas.services.domain.Item;
 import com.ideaas.services.domain.Rol;
 import com.ideaas.services.service.RolService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
+import com.ideaas.services.service.interfaces.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,13 +30,14 @@ import java.util.stream.Collectors;
 public class EvaluacionController {
 
     private RolService rolService;
-
+    private ItemService itemService;
     private EvaluacionService evaluacionService;
 
     @Autowired
-    public EvaluacionController(RolService rolService, EvaluacionService evaluacionService) {
+    public EvaluacionController(RolService rolService, EvaluacionService evaluacionService, ItemService itemService) {
         this.rolService = rolService;
         this.evaluacionService = evaluacionService;
+        this.itemService = itemService;
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -58,6 +60,7 @@ public class EvaluacionController {
 
 //        List<Item> items = evaluacion.getItems().stream().filter(s -> checkNotEmptyItem.apply(s)).collect(Collectors.toList());
 //        evaluacion.setItems(items);
+
         evaluacion.getItems().removeIf(item -> item.getValue() == null);
         evaluacion.getItems().forEach(item -> item.setEvaluacion(evaluacion));
         evaluacion.setState(State.ACTIVE);
@@ -100,9 +103,9 @@ public class EvaluacionController {
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         Evaluacion evaluacion= evaluacionService.getById(id);
-        model.addAttribute("colaborador", evaluacion);
+        model.addAttribute("evaluacion", evaluacion);
 
-        return "evaluacion/evaluacion/update";
+        return "evaluacion/update";
     }
 
 }

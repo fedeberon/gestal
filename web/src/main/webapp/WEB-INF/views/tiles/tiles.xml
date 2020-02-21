@@ -73,7 +73,7 @@
 
     <definition name="evaluacion/update" extends="template-def">
         <put-attribute name="title" value="Editar evaluacion" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/modal/update.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/update.jsp" />
     </definition>
 
     <!--Evaluacion del colaborador -->

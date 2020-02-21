@@ -26,4 +26,9 @@ public class ItemServiceImpl implements ItemService{
     public Item save(Item item) {
         return dao.save(item);
     }
+
+    @Override
+    public Item getById(Long id) {
+        return dao.findById(id).get();
+    }
 }

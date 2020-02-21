@@ -30,14 +30,28 @@
                                             <div class="modal fade modal-${bo.id}">
                                                 <div class="modal-dialog  modal-lg">
                                                     <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Items</h5>
+                                                        </div>
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <ul class="list-group">
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <c:forEach items="${bo.items}" var="item">
-                                                                                <li class="list-group-item">${item.value}</li>
+                                                                                <div class="row">
+                                                                                    <div class="col-md-11 mx-3 my-3">
+                                                                                        <ul class="list-group text-center">
+                                                                                            <li class="list-group-item">${item.value}</li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
                                                                             </c:forEach>
+                                                                            <div class="row">
+                                                                                <div class="col-md-10">
+                                                                                    <a href="<c:url value='/evaluacion/update?id=${bo.id}'/>" class="btn btn-success float-right my-3" title="Editar item">Editar</a>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </ul>
