@@ -1,5 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<style>
+    .error {
+        color: red; font-weight: bold;
+    }
+</style>
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -14,12 +19,14 @@
                             <input type="hidden" name="colaborador.id" value="${colaborador.id}"/>
                             <p>
                                 <label>Nombre:</label>
-                                <form:input path="name" required="required"/>
+                                <form:errors path="name" cssClass="error" />
+                                <form:input path="name" size="30"/>
                             </p>
 
                             <p>
                                 <label>Apellido:</label>
-                                <form:input path="lastName"/>
+                                <form:errors path="lastName" cssClass="error"/>
+                                <form:input path="lastName" size="30"/>
                             </p>
 
                             <p>
