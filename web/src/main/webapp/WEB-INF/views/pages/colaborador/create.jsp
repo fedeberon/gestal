@@ -12,23 +12,30 @@
                     <form:form modelAttribute="colaborador" action="${actionUrl}" method="POST">
                         <div class="form-style-8">
                             <input type="hidden" name="colaborador.id" value="${colaborador.id}"/>
-                            <p>
-                                <label>Nombre:</label>
-                                <form:input path="name" required="required"/>
-                            </p>
 
-                            <p>
-                                <label>Apellido:</label>
-                                <form:input path="lastName"/>
-                            </p>
+                            <div class="form-group mt-4">
+                                <label class="form-control-label" for="inputSuccess1">Nombre</label>
+                                <form:input path="name" size="30" cssClass="form-control" id="inputSuccess1"/>
+                                <form:errors path="name" cssClass="error" />
+                            </div>
 
-                            <p>
-                                <form:select  path="rol.id" cssClass="form-control mt-3 w-50">
-                                    <form:option value="Seleccionar rol" required="true"/>
-                                    <form:options items="${roles}" itemValue="id" itemLabel="name"/>
+                            <div class="form-group mt-4">
+                                <label class="form-control-label" for="inputSuccess2">Apellido</label>
+                                <form:input path="lastName" size="30" cssClass="form-control" id="inputSuccess2"/>
+                                <form:errors path="lastName" cssClass="error"/>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label class="form-control-label" for="inputSuccess3">Seleccionar rol</label>
+                                <form:select  path="rol.id" cssClass="form-control">
+                                    <form:options items="${roles}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
                                 </form:select>
-                            </p>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <button type="submit" class="btn btn-secondary" id="btnSubmit">Guardar</button>
+                            </div>
+
                         </div>
                     </form:form>
                 </div>

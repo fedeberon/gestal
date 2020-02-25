@@ -1,6 +1,9 @@
 package com.ideaas.services.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -16,9 +19,11 @@ public class Colaborador implements Serializable{
     private Long id;
 
     @Column(name = "COL_NAME")
+    @NotBlank(message = "No se puede cargar con espacios vacios")
     private String name;
 
     @Column(name = "COL_LAST_NAME")
+    @NotBlank(message = "No se puede cargar con espacios vacios")
     private String lastName;
 
     @ManyToOne(cascade = CascadeType.DETACH)

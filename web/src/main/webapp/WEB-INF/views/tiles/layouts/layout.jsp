@@ -27,6 +27,7 @@
         <link href="<c:url value='/assets/css/evaluacion/style.css' />" rel="stylesheet" />
 
     </head>
+
     <body>
         <div class="flex-container">
             <tiles:insertAttribute name="header" />

@@ -1,6 +1,10 @@
 package com.ideaas.services.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -14,12 +18,16 @@ public class User  implements Serializable {
     private Long id;
 
     @Column(name = "USU_USERNAME")
+    @NotBlank(message = "No se puede cargar con espacios vacios")
     private String username;
 
     @Column(name = "USU_PASSWORD")
+    @NotBlank(message = "No se puede cargar con espacios vacios")
     private String password;
 
     @Column(name = "users_mail")
+    @NotBlank(message = "No se puede cargar con espacios vacios")
+    @Email
     private String mail;
 
     @ManyToMany
