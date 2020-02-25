@@ -12,12 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -53,20 +56,21 @@ public class EvaluacionController {
         return "evaluacion/create";
     }
 
-//    Function<Item, Boolean> checkNotEmptyItem = item -> !item.getValue().isEmpty();
-
     @RequestMapping(method = RequestMethod.POST)
-    public String save(@ModelAttribute Evaluacion evaluacion){
+    public String save(@Valid @ModelAttribute("evaluacion") Evaluacion evaluacion, BindingResult result){
 
-//        List<Item> items = evaluacion.getItems().stream().filter(s -> checkNotEmptyItem.apply(s)).collect(Collectors.toList());
-//        evaluacion.setItems(items);
+        if (result.hasErrors()){
 
-        evaluacion.getItems().removeIf(item -> item.getValue() == null);
-        evaluacion.getItems().forEach(item -> item.setEvaluacion(evaluacion));
-        evaluacion.setState(State.ACTIVE);
-        evaluacionService.save(evaluacion);
+            return "evaluacion/create";
+        }
+        else {
+            evaluacion.getItems().removeIf(item -> item.getValue() == null);
+            evaluacion.getItems().forEach(item -> item.setEvaluacion(evaluacion));
+            evaluacion.setState(State.ACTIVE);
+            evaluacionService.save(evaluacion);
 
-        return "redirect:list";
+            return "redirect:list";
+        }
     }
 
     @ModelAttribute("roles")

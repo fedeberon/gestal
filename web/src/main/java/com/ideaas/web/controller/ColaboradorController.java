@@ -5,16 +5,15 @@ import com.ideaas.services.domain.Rol;
 import com.ideaas.services.service.RolService;
 import com.ideaas.services.service.interfaces.ColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 /**
@@ -43,11 +42,9 @@ public class ColaboradorController {
     }
 
     @RequestMapping(value = "save")
-    public String save(@Valid Colaborador colaborador, Errors errors, Model map) {
+    public String save(@Valid @ModelAttribute("colaborador") Colaborador colaborador, Errors result, Model map) {
 
-        if (errors.hasErrors()){
-            map.addAllAttributes(errors.getAllErrors());
-            map.addAttribute("colaborador", colaborador);
+        if (result.hasErrors()){
 
             return "colaborador/create";
         }

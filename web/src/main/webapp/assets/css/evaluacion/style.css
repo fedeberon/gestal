@@ -183,3 +183,8 @@ a.select2-search-choice-close::before{font-family: 'Font Awesome 5 Pro',"Helveti
 #field1 {
   width: 40%;
 }
+
+.error{
+  color: red;
+
+}

@@ -19,13 +19,11 @@ public class Colaborador implements Serializable{
     private Long id;
 
     @Column(name = "COL_NAME")
-    @NotNull(message = "Campo requerido")
-    @NotBlank(message = "Campo requerido")
+    @NotBlank(message = "No se puede cargar con espacios vacios")
     private String name;
 
     @Column(name = "COL_LAST_NAME")
-    @NotNull(message = "Campo requerido")
-    @NotBlank(message = "Campo requerido")
+    @NotBlank(message = "No se puede cargar con espacios vacios")
     private String lastName;
 
     @ManyToOne(cascade = CascadeType.DETACH)

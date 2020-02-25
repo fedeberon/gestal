@@ -28,11 +28,6 @@
                                         <td>
                                             <div class="row">
                                                 <div class="col-md-2 mx-2">
-                                                    <a class="btn btn-success" href="<c:url value='/usuario/create'/>" title="Agregar usuario">
-                                                        <i class="nc-icon nc-simple-add"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-2 mx-2">
                                                     <a href="<c:url value='/usuario/update?id=${bo.id}'/>" class="btn btn-primary" title="Editar usuario">
                                                         <i class="nc-icon nc-ruler-pencil"></i>
                                                     </a>
@@ -43,6 +38,14 @@
                                     </tr>
                                 </c:forEach>
                             </tbody>
+                            <tfoot>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>
+                                <a class="btn btn-success float-right mr-5 mt-5" href="<c:url value='/usuario/create'/>" title="Agregar usuario">Agregar usuario</a>
+                            </th>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
