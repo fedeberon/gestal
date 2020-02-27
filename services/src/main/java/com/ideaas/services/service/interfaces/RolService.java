@@ -1,8 +1,6 @@
-package com.ideaas.services.service;
+package com.ideaas.services.service.interfaces;
 
 import com.ideaas.services.domain.Rol;
-import com.ideaas.services.service.interfaces.RolServiceImpl;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 

@@ -23,14 +23,14 @@ public class ApiApplication {
 		SpringApplication.run(ApiApplication.class, args);
 	}
 
-
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	@Bean
 	public CommandLineRunner demoData(UsuarioService usuarioService) {
 		return args -> {
 			String pass = bCryptPasswordEncoder.encode("fede");
-			User user = new User("fede", pass);
+			User user = new User("fede", pass, "fede@outlook.com");
 			usuarioService.save(user);
 		};
 	}

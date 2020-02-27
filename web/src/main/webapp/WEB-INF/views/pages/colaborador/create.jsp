@@ -31,6 +31,8 @@
                                     <form:options items="${roles}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
                                 </form:select>
                             </div>
+                            <p>No hay roles? crea uno</p>
+                            <a href="<c:url value='/rol/create'/>">Crear rol</a>
 
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-secondary" id="btnSubmit">Guardar</button>

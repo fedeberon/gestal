@@ -1,8 +1,8 @@
-package com.ideaas.services.service.interfaces;
+package com.ideaas.services.service;
 
 import com.ideaas.services.dao.RolDao;
 import com.ideaas.services.domain.Rol;
-import com.ideaas.services.service.RolService;
+import com.ideaas.services.service.interfaces.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

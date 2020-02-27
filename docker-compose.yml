@@ -13,10 +13,10 @@ services:
     gestal_web:
         container_name: gestal_web
         build:
-            context: ./web
+            context: .
             dockerfile: Dockerfile
         image: damisaez/gestal_web
         ports:
             - "8888:8888"
         volumes:
-            - ./client:/usr/src/app
+            - ./server:/usr/src/web

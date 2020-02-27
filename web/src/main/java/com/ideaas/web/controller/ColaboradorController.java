@@ -1,9 +1,8 @@
 package com.ideaas.web.controller;
 
 import com.ideaas.services.domain.Colaborador;
-import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.Rol;
-import com.ideaas.services.service.RolService;
+import com.ideaas.services.service.interfaces.RolService;
 import com.ideaas.services.service.interfaces.ColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
@@ -38,11 +36,10 @@ public class ColaboradorController {
     @RequestMapping(value = "save")
     public String save(@Valid @ModelAttribute("colaborador") Colaborador colaborador, Errors result, Model map) {
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
 
             return "colaborador/create";
-        }
-        else {
+        } else {
             colaboradorService.save(colaborador);
 
             return "redirect:list";
@@ -52,7 +49,7 @@ public class ColaboradorController {
 
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
-        Colaborador colaborador= colaboradorService.get(id);
+        Colaborador colaborador = colaboradorService.get(id);
         model.addAttribute("colaborador", colaborador);
 
         return "colaborador/update";
@@ -65,17 +62,17 @@ public class ColaboradorController {
     }
 
     @ModelAttribute("roles")
-    public List<Rol> getRoles(){
+    public List<Rol> getRoles() {
 
         return rolService.findAll();
     }
 
     @RequestMapping("/list")
     public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
-                                  @RequestParam(defaultValue = "0") Integer page, Model model){
-        List<Colaborador> colaboradores = colaboradorService.findAllPageable(size, page,"id");
+                                  @RequestParam(defaultValue = "0") Integer page, Model model) {
+        List<Colaborador> colaboradores = colaboradorService.findAll(size, page, "id");
         model.addAttribute("colaboradores", colaboradores);
-        model.addAttribute("page" , page);
+        model.addAttribute("page", page);
 
         return "colaborador/list";
     }
