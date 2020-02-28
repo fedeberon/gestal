@@ -24,16 +24,21 @@
                                 <form:input path="lastName" size="30" cssClass="form-control" id="inputSuccess2"/>
                                 <form:errors path="lastName" cssClass="error"/>
                             </div>
-
-                            <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess3">Seleccionar rol</label>
-                                <form:select  path="rol.id" cssClass="form-control">
-                                    <form:options items="${roles}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
-                                </form:select>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="inputSuccess3">Seleccionar rol</label>
+                                        <form:select  path="rol.id" cssClass="form-control">
+                                            <form:options items="${roles}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
+                                        </form:select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <a class="btn btn-secondary mt-4" href="<c:url value='/rol/list'/>">Crear rol</a>
+                                    </div>
+                                </div>
                             </div>
-                            <p>No hay roles? crea uno</p>
-                            <a href="<c:url value='/rol/create'/>">Crear rol</a>
-
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-secondary" id="btnSubmit">Guardar</button>
                             </div>

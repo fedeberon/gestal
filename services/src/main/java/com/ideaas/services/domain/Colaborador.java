@@ -1,5 +1,8 @@
 package com.ideaas.services.domain;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -28,6 +31,7 @@ public class Colaborador implements Serializable{
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "COL_ROL_ID", nullable = false)
+    @NotFound(action = NotFoundAction.IGNORE)
     private Rol rol;
 
     public Long getId() {
