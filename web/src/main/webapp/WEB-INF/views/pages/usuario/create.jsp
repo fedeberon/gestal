@@ -21,20 +21,20 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label">Usuario:</label>
-                                <form:input path="username" cssClass="form-control"/>
-                                <form:errors path="username" cssClass="error" />
+                                <form:input path="username" cssClass="form-control" size="50"/>
+                                <form:errors path="username" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label">Contrase&ntilde;a:</label>
-                                <form:input path="password" cssClass="form-control"/>
-                                <form:errors path="password" cssClass="error"/>
+                                <form:input path="password" cssClass="form-control" size="50"/>
+                                <form:errors path="password" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label">Email:</label>
-                                <form:input path="mail" cssClass="form-control"/>
-                                <form:errors path="mail" cssClass="error"/>
+                                <form:input path="mail" cssClass="form-control" size="50"/>
+                                <form:errors path="mail" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
