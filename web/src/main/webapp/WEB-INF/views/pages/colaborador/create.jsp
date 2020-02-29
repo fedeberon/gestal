@@ -15,13 +15,13 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre</label>
-                                <form:input path="name" size="30" cssClass="form-control" id="inputSuccess1"/>
+                                <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="name" cssClass="error" />
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess2">Apellido</label>
-                                <form:input path="lastName" size="30" cssClass="form-control" id="inputSuccess2"/>
+                                <form:input path="lastName" size="50" cssClass="form-control" id="inputSuccess2"/>
                                 <form:errors path="lastName" cssClass="error"/>
                             </div>
                             <div class="row">

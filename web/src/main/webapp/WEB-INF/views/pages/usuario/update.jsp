@@ -17,22 +17,22 @@
 
                             <p>
                                 <label>Usuario:</label>
-                                <form:input path="username" required="required"/>
-                                <form:errors path="username" cssClass="error" />
+                                <form:input path="username" required="required" size="50"/>
+                                <form:errors path="username" cssClass="error" size="50"/>
                             </p>
 
                             <p>
                                 <div class="form-group mt-4">
                                     <label class="form-control-label">Contrase&ntilde;a:</label>
-                                    <form:input path="password" cssClass="form-control"/>
-                                    <form:errors path="password" cssClass="error"/>
+                                    <form:input path="password" cssClass="form-control" size="50"/>
+                                    <form:errors path="password" cssClass="error" size="50"/>
                                 </div>
                             </p>
 
                             <p>
                                 <label>Mail:</label>
-                                <form:input path="mail" required="required"/>
-                                <form:errors path="mail" cssClass="error"/>
+                                <form:input path="mail" required="required" size="50"/>
+                                <form:errors path="mail" cssClass="error" size="50"/>
                             </p>
 
                             <button type="submit" class="btn btn-primary">Guardar</button>
