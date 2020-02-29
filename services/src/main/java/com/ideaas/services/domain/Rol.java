@@ -1,6 +1,7 @@
 package com.ideaas.services.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -13,10 +14,12 @@ public class Rol implements Serializable{
 
 
     @Id
-    @Column(name = "ROL_ID")
+    @Column(name = "ROL_ID", unique=true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "ROL_NAME")
+    @NotBlank(message = "No se puede cargar con espacios vacios")
     private String name;
 
     @ManyToMany

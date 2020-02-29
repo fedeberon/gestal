@@ -36,13 +36,31 @@
                                                     <a href="<c:url value='/usuario/update?id=${bo.id}'/>" class="btn btn-primary" title="Editar usuario">
                                                         <i class="nc-icon nc-ruler-pencil"></i>
                                                     </a>
-
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>
+                                        <div class="mt-5">
+                                            <form name="usuario" action="list" method="get">
+                                                <input type="hidden" name="page" value="${page}"/>
+                                                <tags:paginador page="${page}" formName="search"/>
+                                            </form>
+                                        </div>
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>
+                                        <div class="mt-5">
+                                            <a class="btn btn-success" href="<c:url value='/usuario/create'/>"title="Agregar usuario">Agregar usuario</a>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

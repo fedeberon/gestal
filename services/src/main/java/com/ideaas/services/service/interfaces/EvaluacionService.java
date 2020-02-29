@@ -2,6 +2,8 @@ package com.ideaas.services.service.interfaces;
 
 import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,10 +17,13 @@ public interface EvaluacionService {
 
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
 
+    List<Evaluacion> findAllPageable(Integer pageSize, Integer pageNo, String sortBy);
+
     List<Evaluacion> findAll();
 
     Evaluacion getById(Long id);
 
     EvaluacionDelColaborador get(Long id);
+
 
 }

@@ -1,9 +1,7 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.Rol;
 import com.ideaas.services.service.interfaces.RolService;
-import com.ideaas.services.service.interfaces.ColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,31 +14,28 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Created by Enzo on 7/2/2020.
+ * Created by Enzo on 28/2/2020.
  */
 @Controller
-@RequestMapping("colaborador")
-public class ColaboradorController {
+@RequestMapping("rol")
+public class RolController {
 
-    private ColaboradorService colaboradorService;
     private RolService rolService;
 
-
     @Autowired
-    public ColaboradorController(ColaboradorService colaboradorService, RolService rolService) {
+    public RolController( RolService rolService) {
 
-        this.colaboradorService = colaboradorService;
         this.rolService = rolService;
     }
 
     @RequestMapping(value = "save")
-    public String save(@Valid @ModelAttribute("colaborador") Colaborador colaborador, Errors result, Model map) {
+    public String save(@Valid @ModelAttribute("rol") Rol rol, Errors result, Model map) {
 
         if (result.hasErrors()) {
 
-            return "colaborador/create";
+            return "rol/create";
         } else {
-            colaboradorService.save(colaborador);
+            rolService.save(rol);
 
             return "redirect:list";
         }
@@ -49,16 +44,16 @@ public class ColaboradorController {
 
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
-        Colaborador colaborador = colaboradorService.get(id);
-        model.addAttribute("colaborador", colaborador);
+        Rol rol = rolService.get(id);
+        model.addAttribute("rol", rol);
 
-        return "colaborador/update";
+        return "rol/update";
     }
 
     @RequestMapping("/create")
-    public String create(@ModelAttribute("colaborador") Colaborador colaborador) {
+    public String create(@ModelAttribute("rol") Rol rol) {
 
-        return "colaborador/create";
+        return "rol/create";
     }
 
     @ModelAttribute("roles")
@@ -70,10 +65,10 @@ public class ColaboradorController {
     @RequestMapping("/list")
     public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
-        List<Colaborador> colaboradores = colaboradorService.findAll(size, page, "id");
-        model.addAttribute("colaboradores", colaboradores);
+        List<Rol> roles= rolService.findAll(size, page, "id");
+        model.addAttribute("roles", roles);
         model.addAttribute("page", page);
 
-        return "colaborador/list";
+        return "rol/list";
     }
 }

@@ -1,17 +1,14 @@
 package com.ideaas.web.controller;
 
-import com.google.common.base.Strings;
 import com.ideaas.services.bean.State;
 import com.ideaas.services.domain.Evaluacion;
-import com.ideaas.services.domain.Item;
 import com.ideaas.services.domain.Rol;
-import com.ideaas.services.service.RolService;
+import com.ideaas.services.service.interfaces.RolService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import com.ideaas.services.service.interfaces.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 /**
  * Created by Enzo on 10/2/2020.
@@ -40,26 +35,14 @@ public class EvaluacionController {
         this.itemService = itemService;
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
-        model.addAttribute("evaluaciones", evaluacionService.findAll());
-
-        return "evaluacion/list";
-    }
-
     @RequestMapping("create")
     public String create(){
 
         return "evaluacion/create";
     }
 
-//    Function<Item, Boolean> checkNotEmptyItem = item -> !item.getValue().isEmpty();
-
     @RequestMapping(method = RequestMethod.POST)
     public String save(@ModelAttribute Evaluacion evaluacion){
-
-//        List<Item> items = evaluacion.getItems().stream().filter(s -> checkNotEmptyItem.apply(s)).collect(Collectors.toList());
-//        evaluacion.setItems(items);
 
         evaluacion.getItems().removeIf(item -> item.getValue() == null);
         evaluacion.getItems().forEach(item -> item.setEvaluacion(evaluacion));
@@ -108,4 +91,13 @@ public class EvaluacionController {
         return "evaluacion/update";
     }
 
+    @RequestMapping("/list")
+    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+                          @RequestParam(defaultValue = "0") Integer page, Model model){
+        List<Evaluacion> evaluaciones = evaluacionService.findAllPageable(size, page,"id");
+        model.addAttribute("evaluaciones", evaluaciones);
+        model.addAttribute("page" , page);
+
+        return "evaluacion/list";
+    }
 }

@@ -5,6 +5,7 @@ import com.ideaas.services.service.interfaces.ColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ public class ColaboradorRestController {
         this.colaboradorService = colaboradorService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping("/list/{pageSize}")
     public ResponseEntity<List<Colaborador>> findAll(){
         List<Colaborador> colaboradores = colaboradorService.findAll();
 

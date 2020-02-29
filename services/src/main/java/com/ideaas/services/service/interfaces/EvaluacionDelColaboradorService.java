@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface EvaluacionDelColaboradorService {
 
-    List<EvaluacionDelColaborador> findAll();
+    List<EvaluacionDelColaborador> findAllPageable(Integer pageSize, Integer pageNo, String sortBy);
 
 }

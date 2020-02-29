@@ -1,7 +1,7 @@
 package com.ideaas.services.service;
 
 import com.ideaas.services.domain.User;
-import com.ideaas.services.dao.UserDao;
+import com.ideaas.services.dao.user.UserDao;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

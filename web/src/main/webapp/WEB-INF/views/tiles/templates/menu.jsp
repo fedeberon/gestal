@@ -46,6 +46,14 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="<c:url value='/rol/list'/>">
+                        <i class="nc-icon nc-single-copy-04"></i>
+
+                        <p>Roles</p>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>

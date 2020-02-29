@@ -82,6 +82,23 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacionDelColaborador/list.jsp" />
     </definition>
 
+    <!--Rol -->
+    <definition name="rol/create" extends="template-def">
+        <put-attribute name="title" value="Agregar rol" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/rol/create.jsp" />
+    </definition>
+
+    <definition name="rol/list" extends="template-def">
+        <put-attribute name="title" value="Lista de Roles" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/rol/list.jsp" />
+    </definition>
+
+    <definition name="rol/update" extends="template-def">
+        <put-attribute name="title" value="Editar rol" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/rol/update.jsp" />
+    </definition>
+
+    <!--Login -->
     <definition name="login" template="/WEB-INF/views/pages/login.jsp">
         <put-attribute name="title" value="Login" />
         <put-attribute name="header" value="" />

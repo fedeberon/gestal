@@ -12,5 +12,7 @@ public interface ColaboradorService {
     List<Colaborador> findAll();
     Colaborador save(Colaborador colaborador);
     Colaborador get(Long id);
+    List<Colaborador> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
 
 }

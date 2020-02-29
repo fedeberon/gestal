@@ -51,8 +51,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </div>
                 </div>
                 </form:form>
             </div>

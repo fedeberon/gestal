@@ -3,10 +3,14 @@ package com.ideaas.web.controller;
 import com.ideaas.services.domain.User;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -23,19 +27,29 @@ public class UserController {
         this.usuarioService = usuarioService;
     }
 
-    @RequestMapping("list")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-         model.addAttribute("usuarios", usuarioService.findAll(size, page, "id"));
+    @RequestMapping("/list")
+    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+                                  @RequestParam(defaultValue = "0") Integer page, Model model){
+        List<User> usuarios = usuarioService.findAll(size, page,"id");
+        model.addAttribute("usuarios", usuarios);
+        model.addAttribute("page" , page);
 
         return "usuario/list";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(User user) {
-        usuarioService.save(user);
+    @RequestMapping(value = "save")
+    public String save(@Valid @ModelAttribute("usuario") User user, BindingResult result) {
+        if (result.hasErrors()){
+            return "usuario/create";
+        }
+        else {
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            String pass = bCryptPasswordEncoder.encode(user.getPassword());
+            user.setPassword(pass);
+            usuarioService.save(user);
 
-        return "redirect:list";
+            return "redirect:list";
+        }
     }
 
     @RequestMapping("update")

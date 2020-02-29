@@ -7,50 +7,35 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Colaboradores</h4>
+                    <h4 class="card-title"> Roles</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
                             <thead class=" text-primary">
-
                                 <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Editar</th>
-                                <th>Rol</th>
                             </thead>
                             <tbody>
 
-                            <c:forEach items="${colaboradores}" var="bo">
-                                <tr>
-
-                                    <td>${bo.name}</td>
-                                    <td>${bo.lastName}</td>
-                                    <td>
-                                        <a href="<c:url value='/colaborador/update?id=${bo.id}'/>" class="btn btn-success">Editar</a>
-                                    </td>
-                                    <td>${bo.rol.name}</td>
-
-
-                                </tr>
-                            </c:forEach>
-
+                                <c:forEach items="${roles}" var="bo">
+                                    <tr>
+                                        <td>${bo.name}</td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th>
                                         <div class="mt-5">
-                                            <form name="colaborador" action="list" method="get">
+                                            <form name="rol" action="list" method="get">
                                                 <input type="hidden" name="page" value="${page}"/>
                                                 <tags:paginador page="${page}" formName="search"/>
                                             </form>
                                         </div>
                                     </th>
-                                    <th></th>
-                                    <th></th>
                                     <th>
                                         <div class="mt-5">
-                                            <a class="btn btn-success" href="<c:url value='/colaborador/create'/>"title="Agregar colaborador">Agregar colaborador</a>
+                                            <a class="btn btn-success" href="<c:url value='/rol/create'/>"title="Agregar rol">Agregar rol</a>
                                         </div>
                                     </th>
                                 </tr>

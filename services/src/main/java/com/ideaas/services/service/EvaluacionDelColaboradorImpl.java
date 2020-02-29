@@ -1,9 +1,15 @@
 package com.ideaas.services.service;
 
-import com.ideaas.services.dao.EvaluacionDelColaboradorDao;
+import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
+import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorPaginationDao;
+import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,14 +22,20 @@ import java.util.List;
 public class EvaluacionDelColaboradorImpl implements EvaluacionDelColaboradorService{
 
     private EvaluacionDelColaboradorDao dao;
+    private EvaluacionDelColaboradorPaginationDao daoPageable;
 
     @Autowired
-    public EvaluacionDelColaboradorImpl(EvaluacionDelColaboradorDao dao) {
+    public EvaluacionDelColaboradorImpl(EvaluacionDelColaboradorDao dao, EvaluacionDelColaboradorPaginationDao paginationDao) {
         this.dao = dao;
+        this.daoPageable = paginationDao;
     }
 
     @Override
-    public List<EvaluacionDelColaborador> findAll() {
-        return dao.findAll();
+    public List<EvaluacionDelColaborador> findAllPageable(Integer pageSize, Integer pageNo, String sortBy) {
+
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Page<EvaluacionDelColaborador> evaluacionDelColaborador = daoPageable.findAll(paging);
+
+        return evaluacionDelColaborador.getContent();
     }
 }
