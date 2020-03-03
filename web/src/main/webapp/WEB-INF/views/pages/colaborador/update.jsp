@@ -8,6 +8,7 @@
                     <h4 class="card-title"> Editar</h4>
                 </div>
                 <div class="card-body m-auto">
+
                     <c:url var="actionUrl" value="/colaborador/save" />
                     <form:form modelAttribute="colaborador" action="${actionUrl}" method="POST">
                         <form:hidden path="id" value='${colaborador.id}'/>
