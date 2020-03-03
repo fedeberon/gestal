@@ -27,7 +27,7 @@ public class ColaboradorRestController {
         this.colaboradorService = colaboradorService;
     }
 
-    @GetMapping("/list/{pageSize}")
+    @GetMapping("/list")
     public ResponseEntity<List<Colaborador>> findAll(){
         List<Colaborador> colaboradores = colaboradorService.findAll();
 
