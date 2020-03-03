@@ -4,9 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.ideaas.actual</groupId>
-		<artifactId>gestal</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.4.RELEASE</version>
+		<relativePath/>
 	</parent>
 
 	<artifactId>web</artifactId>
@@ -38,6 +39,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -61,7 +68,7 @@
 		<dependency>
 			<groupId>com.ideaas.actual</groupId>
 			<artifactId>services</artifactId>
-			<version>${project.version}</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
@@ -78,14 +85,14 @@
 
 	</dependencies>
 
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<fork>true</fork>
-					<skip>false</skip>
+					<mainClass>com.ideaas.web.ServletInitializer</mainClass>
 				</configuration>
 				<executions>
 					<execution>
@@ -97,4 +104,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

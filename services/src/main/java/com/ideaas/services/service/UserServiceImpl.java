@@ -41,6 +41,11 @@ public class UserServiceImpl implements UsuarioService {
     }
 
     @Override
+    public void delete(User user) {
+        dao.delete(user);
+    }
+
+    @Override
     public List<User> findAll(Integer pageSize, Integer pageNo, String sortBy) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Page<User> usuarios = dao.findAll(paging);

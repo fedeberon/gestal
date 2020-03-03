@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Enzo on 10/2/2020.
  */
 @Service
-public class RolServiceImpl implements RolService{
+public class RolServiceImpl implements RolService {
 
     private RolDao dao;
     private RolDaoPagination daoPagination;

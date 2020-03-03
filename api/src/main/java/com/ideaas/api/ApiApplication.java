@@ -31,6 +31,7 @@ public class ApiApplication {
 		return args -> {
 			String pass = bCryptPasswordEncoder.encode("fede");
 			User user = new User("fede", pass, "fede@outlook.com");
+			usuarioService.delete(user);
 			usuarioService.save(user);
 		};
 	}
