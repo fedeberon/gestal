@@ -8,15 +8,45 @@ services:
         image: damisaez/gestal_api
         ports:
             - "8084:8084"
-        volumes:
-            - ./server:/usr/src/app
+        networks:
+            - app-network
+        depends_on:
+            - gestal_db
+
+
     gestal_web:
         container_name: gestal_web
         build:
-            context: .
+            context: ./web
             dockerfile: Dockerfile
         image: damisaez/gestal_web
         ports:
             - "8888:8888"
+        networks:
+            - app-network
+        depends_on:
+            - gestal_db
+
+    gestal_db:
+        image: mysql:5.6
         volumes:
-            - ./server:/usr/src/web
+            - "./.mysql-data/db:/var/lib/mysql"
+        restart: always
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: gestal
+            MYSQL_USER: sa
+            MYSQL_PASSWORD: sa
+        networks:
+            - app-network
+
+#Docker Networks
+networks:
+    app-network:
+        driver: bridge
+#Volumes
+volumes:
+    dbdata:
+        driver: local
