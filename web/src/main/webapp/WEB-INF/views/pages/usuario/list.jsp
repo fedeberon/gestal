@@ -9,7 +9,7 @@
                     <h4 class="card-title"> Usuarios</h4>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>ID</th>
@@ -42,26 +42,22 @@
                                     </tr>
                                 </c:forEach>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>
-                                        <div class="mt-5">
-                                            <form name="usuario" action="list" method="get">
-                                                <input type="hidden" name="page" value="${page}"/>
-                                                <tags:paginador page="${page}" formName="search"/>
-                                            </form>
-                                        </div>
-                                    </th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>
-                                        <div class="mt-5">
-                                            <a class="btn btn-success" href="<c:url value='/usuario/create'/>"title="Agregar usuario">Agregar usuario</a>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </tfoot>
                         </table>
+                    </div>
+                </div>
+                <div class="card-footer mt-5">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form name="colaborador" action="list" method="get">
+                                <input type="hidden" name="page" value="${page}"/>
+                                <tags:paginador page="${page}" formName="search"/>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-success" href="<c:url value='/colaborador/create'/>"
+                               title="Agregar colaborador">Agregar colaborador</a>
+                        </div>
                     </div>
                 </div>
             </div>

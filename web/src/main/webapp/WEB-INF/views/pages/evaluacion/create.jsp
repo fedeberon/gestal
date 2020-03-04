@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success mx-5 my-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">Crear nueva evaluaci&oacute;n</button>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Crear nueva evaluaci&oacute;n</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"

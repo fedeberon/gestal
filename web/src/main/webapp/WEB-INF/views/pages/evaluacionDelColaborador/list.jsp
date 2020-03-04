@@ -16,12 +16,13 @@
                     <h4 class="card-title"> Evaluaciones de los colaboradores</h4>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive-md">
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>Nombre completo</th>
                                 <th>Rol</th>
                                 <th>Items</th>
+                                <th>Fecha de carga</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${evaluaciones}" var="bo">
@@ -99,25 +100,25 @@
                                             </div>
                                             <!--Fin de modal-->
                                         </td>
+                                        <td>${bo.fechaDeCarga}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>
-                                    <div class="mt-5">
-                                        <form name="evaluacionDelColaborador" action="list" method="get">
-                                            <input type="hidden" name="page" value="${page}"/>
-                                            <tags:paginador page="${page}" formName="search"/>
-                                        </form>
-                                    </div>
-                                </th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </tfoot>
+
                         </table>
                     </div>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <form name="evaluacionDelColaborador" action="list" method="get">
+                                <input type="hidden" name="page" value="${page}"/>
+                                <tags:paginador page="${page}" formName="search"/>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6"></div>
                 </div>
             </div>
         </div>
