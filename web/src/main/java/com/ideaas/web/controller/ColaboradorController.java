@@ -5,6 +5,7 @@ import com.ideaas.services.domain.Rol;
 import com.ideaas.services.service.interfaces.ColaboradorService;
 import com.ideaas.services.service.interfaces.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -40,6 +41,12 @@ public class ColaboradorController {
 
             return "colaborador/create";
         } else {
+
+
+
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            String pass = bCryptPasswordEncoder.encode(colaborador.getPassword());
+            colaborador.setPassword(pass);
             colaboradorService.save(colaborador);
 
             return "redirect:list";

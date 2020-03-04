@@ -1,12 +1,11 @@
 package com.ideaas.services.domain;
 
+import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
@@ -33,6 +32,14 @@ public class Colaborador implements Serializable{
     @JoinColumn(name = "COL_ROL_ID", nullable = false)
     @NotFound(action = NotFoundAction.IGNORE)
     private Rol rol;
+
+    @Column(name = "COL_USERNAME")
+    @Email
+    private String username;
+
+    @Column(name = "COL_PASSWORD")
+    @NotBlank(message = "No se puede cargar con espacios vacios")
+    private String password;
 
     public Long getId() {
         return id;
@@ -64,5 +71,21 @@ public class Colaborador implements Serializable{
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

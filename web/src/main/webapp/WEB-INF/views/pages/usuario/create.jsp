@@ -27,7 +27,7 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label">Contrase&ntilde;a:</label>
-                                <form:input path="password" cssClass="form-control" size="50"/>
+                                <form:password path="password" cssClass="form-control" size="50"/>
                                 <form:errors path="password" cssClass="error" size="50"/>
                             </div>
 

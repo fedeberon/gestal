@@ -16,6 +16,19 @@
                             <input type="hidden" name="colaborador.id" value="${colaborador.id}"/>
 
                             <div class="form-group mt-4">
+                                <label class="form-control-label" for="inputSuccess1">Mail</label>
+                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1"/>
+                                <form:errors path="username" cssClass="error"/>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label class="form-control-label" for="inputSuccess1">Contrase&ntilde;a</label>
+                                <form:password path="password"  size="50" cssClass="form-control" id="inputSuccess1"/>
+                                <form:errors path="password" cssClass="error"/>
+                            </div>
+
+
+                            <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre</label>
                                 <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="name" cssClass="error"/>
