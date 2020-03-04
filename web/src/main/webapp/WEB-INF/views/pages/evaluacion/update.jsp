@@ -6,40 +6,46 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Evaluaciones</h4>
+                    <h4 class="card-title"> Items</h4>
                 </div>
                 <div class="card-body">
-                        <input type="hidden" name="count" value="1"/>
-                        <c:url var="actionUrl" value="/evaluacion/"/>
-                        <form:form modelAttribute="evaluacion" action="${actionUrl}" method="POST">
-                            <form:hidden path="id" value='${evaluacion.id}'/>
-
+                    <input type="hidden" name="count" value="1"/>
+                    <c:url var="actionUrl" value="/evaluacion/"/>
+                    <form:form modelAttribute="evaluacion" action="${actionUrl}" method="POST">
+                    <form:hidden path="id" value='${evaluacion.id}'/>
+                        <div class="form-group mt-4">
                             <div class="control-group" id="fields">
-                                <div class="controls" id="profs">
-                                    <label class="control-label" for="field1">Descripci&oacute;n de la evaluaci&oacute;n</label>
-                                    <c:forEach items="${evaluacion.items}" var="bo" varStatus="status">
+                                <div class="container" style="max-width: 700px;">
+                                    <div class="row">
+                                        <label style="font-size: 16px" class="my-3 mx-3">Editar item</label>
+                                        <c:forEach items="${evaluacion.items}" var="bo" varStatus="status">
                                         <form:hidden path="items" value='${bo.id}'/>
+                                            <div class="col-md-12">
 
-                                        <div id="field">
-                                            <input autocomplete="off" class="input" id="field1" name="items[${status.index}].value" type="text"
-                                                       placeholder="Agregar evaluaci&oacute;n" data-items="8" required value="${bo.value}"/>
-                                                <button id="b1" class="btn add-more ml-3" type="button">+</button>
+                                                <div class="input-group input-group-sm mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text badge badge-secondary border border-right pr-3" id="inputGroup-sizing-sm">${bo.id}</span>
+                                                    </div>
+                                                    <input type="text" name="items[${status.index}].value" value="${bo.value}" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                                </div>
+
                                             </div>
                                     </c:forEach>
-
-                                    <small>Presiona + para agregar la evaluaci&oacute;n</small>
-                                    <br>
-                                    <form:select path="rol.id" cssClass="form-control mt-3 w-25">
-                                        <form:options items="${roles}" itemValue="id" itemLabel="name"/>
-                                    </form:select>
-                                    <br>
+                                    <label style="font-size: 16px" class="my-3 mx-3">Editar rol</label>
+                                    <div class="col-md-12">
+                                            <form:select path="rol.id" cssClass="form-control mt-3 w-50">
+                                                <form:options items="${roles}" itemValue="id" itemLabel="name"/>
+                                            </form:select>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary mt-5">Guardar</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                    </form:form>
+                        </div>
+                    </div>
                 </div>
+                </form:form>
             </div>
         </div>
     </div>

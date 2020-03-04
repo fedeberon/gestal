@@ -1,4 +1,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+    .colaborators{
+        font-size: 24px;
+        float: left;
+        margin-right: 12px;
+        line-height: 30px;
+        width: 34px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.5);
+        position: relative;
+    }
+</style>
 <div>
     <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
@@ -7,7 +19,7 @@
                     <img src="/assets/img/logo-login.png">
                 </div>
             </a>
-            <a href="http://www.creative-tim.com" class="simple-text logo-normal">Actual - Gestal</a>
+            <a href="<c:url value='home'/>" class="simple-text logo-normal">Actual - Gestal</a>
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
@@ -19,7 +31,7 @@
                 </li>
                 <li>
                     <a href="<c:url value='/colaborador/list'/>">
-                        <i class="nc-icon nc-diamond"></i>
+                        <img class="nc-icon colaborators" src="/assets/img/svg/1x/colaborators.png"/>
                         <p>Colaboradores</p>
                     </a>
                 </li>
@@ -32,8 +44,7 @@
                 </li>
                 <li>
                     <a href="<c:url value='/evaluacion/list'/>">
-                        <i class="nc-icon nc-tile-56"></i>
-
+                        <i class="nc-icon nc-bullet-list-67"></i>
                         <p>Evaluaci&oacute;n</p>
                     </a>
                 </li>
@@ -48,7 +59,7 @@
 
                 <li>
                     <a href="<c:url value='/rol/list'/>">
-                        <i class="nc-icon nc-single-copy-04"></i>
+                        <i class="nc-icon nc-key-25"></i>
 
                         <p>Roles</p>
                     </a>
