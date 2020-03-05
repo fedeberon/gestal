@@ -15,7 +15,7 @@
                                 <th>ID</th>
                                 <th>Nombre de usuario</th>
                                 <th>Email</th>
-                                <th>Acciones</th>
+                                <th class="text-center">Editar</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${usuarios}" var="bo">
@@ -28,9 +28,7 @@
                                         <td>
                                             <div class="row">
                                                 <div class="col-md-2 mx-2">
-                                                    <a class="btn btn-success" href="<c:url value='/usuario/create'/>" title="Agregar usuario">
-                                                        <i class="nc-icon nc-simple-add"></i>
-                                                    </a>
+
                                                 </div>
                                                 <div class="col-md-2 mx-2">
                                                     <a href="<c:url value='/usuario/update?id=${bo.id}'/>" class="btn btn-primary" title="Editar usuario">
@@ -55,8 +53,7 @@
                             </form>
                         </div>
                         <div class="col-md-6">
-                            <a class="btn btn-success" href="<c:url value='/colaborador/create'/>"
-                               title="Agregar colaborador">Agregar colaborador</a>
+                            <a class="btn btn-success" href="<c:url value='/usuario/create'/>" title="Agregar usuario">Agregar usuario</a>
                         </div>
                     </div>
                 </div>
