@@ -25,3 +25,21 @@ $(document).ready(function () {
 });
 
 
+$("#addRow").click(function () {
+    var html = '';
+    var next = 1
+    html += '<div id="inputFormRow">';
+    html += '<div class="input-group mb-3">';
+    html += '<input type="text" name="items[' + next + '].value" class="form-control border border-secondary" placeholder="Enter title" autocomplete="off">';
+    html += '<div class="input-group-append ml-3">';
+    html += '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
+    html += '</div>';
+    html += '</div>';
+
+    $('#newRow').append(html);
+});
+
+// remove row
+$(document).on('click', '#removeRow', function () {
+    $(this).closest('#inputFormRow').remove();
+});

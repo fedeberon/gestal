@@ -88,28 +88,22 @@
                                     </tr>
                                 </c:forEach>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>
-                                        <div class="mt-5">
-                                            <form name="evaluacion" action="list" method="get">
-                                                <input type="hidden" name="page" value="${page}"/>
-                                                <tags:paginador page="${page}" formName="search"/>
-                                            </form>
-                                        </div>
-                                    </th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>
-                                        <div class="mt-5">
-                                            <jsp:include page="create.jsp"/>
-                                        </div>
-                                    </th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
+                </div>
+                <div class="card-footer">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form name="rol" action="list" method="get">
+                                <input type="hidden" name="page" value="${page}"/>
+                                <tags:paginador page="${page}" formName="search"/>
+                            </form>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <jsp:include page="create.jsp"/>
+                        </div>
+                     </div>
                 </div>
             </div>
         </div>
