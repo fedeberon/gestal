@@ -21,14 +21,15 @@
                             <thead class=" text-primary">
                                 <th>Nombre completo</th>
                                 <th>Rol</th>
-                                <th>Items</th>
                                 <th>Fecha de carga</th>
+                                <th>Items</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${evaluaciones}" var="bo">
                                     <tr>
                                         <td>${bo.colaborador.lastName} ${bo.colaborador.name}</td>
                                         <td>${bo.rolEvaluado.name}</td>
+                                        <td>${bo.fechaDeCarga}</td>
                                         <td>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".evaluacionDelColaborador-${bo.id}">Items </button>
 
@@ -47,46 +48,37 @@
                                                                             <div class="table-responsive-md">
                                                                                 <table class="table">
                                                                                     <thead class="text-primary">
-                                                                                        <tr>
-                                                                                            <th width="70%">Items</th>
-                                                                                            <th width="30%">Rating</th>
-                                                                                        </tr>
+                                                                                    <tr>
+                                                                                        <th width="70%" class="text-center">Items</th>
+                                                                                        <th width="30%" class="text-center">Rating</th>
+                                                                                    </tr>
                                                                                     </thead>
                                                                                     <tbody>
+                                                                                    <c:forEach items="${bo.itemEvaluados}" var="itemEvaluado">
                                                                                         <tr>
-                                                                                            <td>
-                                                                                                <c:forEach items="${bo.itemEvaluados}" var="item">
-                                                                                                    <li class="list-group-item">${item.value}</li>
-                                                                                                </c:forEach>
+                                                                                            <td class="text-center">
+                                                                                                    ${itemEvaluado.item.value}
                                                                                             </td>
                                                                                             <td>
                                                                                                 <div class="rating-star">
                                                                                                     <ul class="list-inline">
-
                                                                                                         <li class="list-inline-item">
-                                                                                                            <span class="fa fa-star checked" id="one"></span>
+                                                                                                            <c:forEach begin="0" end="5">
+                                                                                                                <c:choose>
+                                                                                                                    <c:when test="${itemEvaluado.rating < 5 }">
+                                                                                                                        <span class="fa fa-star checked"></span>
+                                                                                                                    </c:when>
+                                                                                                                    <c:otherwise>
+                                                                                                                        <span class="fa fa-star"></span>
+                                                                                                                    </c:otherwise>
+                                                                                                                </c:choose>
+                                                                                                            </c:forEach>
                                                                                                         </li>
-
-                                                                                                        <li class="list-inline-item">
-                                                                                                            <span class="fa fa-star checked" id="two"></span>
-                                                                                                        </li>
-
-                                                                                                        <li class="list-inline-item">
-                                                                                                            <span class="fa fa-star checked" id="three"></span>
-                                                                                                        </li>
-
-                                                                                                        <li class="list-inline-item">
-                                                                                                            <span class="fa fa-star" id="four"></span>
-                                                                                                        </li>
-
-                                                                                                        <li class="list-inline-item">
-                                                                                                            <span class="fa fa-star" id="five"></span>
-                                                                                                        </li>
-
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
+                                                                                    </c:forEach>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
@@ -100,7 +92,6 @@
                                             </div>
                                             <!--Fin de modal-->
                                         </td>
-                                        <td>${bo.fechaDeCarga}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

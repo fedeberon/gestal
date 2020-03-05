@@ -15,7 +15,7 @@
                                 <th>ID</th>
                                 <th>Nombre de usuario</th>
                                 <th>Email</th>
-                                <th class="text-center">Editar</th>
+                                <th>Editar</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${usuarios}" var="bo">
@@ -26,16 +26,9 @@
                                         <td>${bo.username}</td>
                                         <td>${bo.mail}</td>
                                         <td>
-                                            <div class="row">
-                                                <div class="col-md-2 mx-2">
-
-                                                </div>
-                                                <div class="col-md-2 mx-2">
-                                                    <a href="<c:url value='/usuario/update?id=${bo.id}'/>" class="btn btn-primary" title="Editar usuario">
-                                                        <i class="nc-icon nc-ruler-pencil"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <a href="<c:url value='/usuario/update?id=${bo.id}'/>" class="btn btn-success" title="Editar usuario">
+                                                Editar
+                                            </a>
                                         </td>
                                     </tr>
                                 </c:forEach>

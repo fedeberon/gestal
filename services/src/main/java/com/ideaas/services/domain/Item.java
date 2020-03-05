@@ -22,6 +22,7 @@ public class Item implements Serializable{
     @Column(name = "ITEM_VALUE")
     private String value;
 
+    @JsonIgnore
     @Column(name = "ITEM_SCORE")
     private Float score;
 
