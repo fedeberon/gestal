@@ -19,7 +19,6 @@ import java.util.List;
 @RequestMapping("api/colaborador")
 public class ColaboradorRestController {
 
-
     private ColaboradorService colaboradorService;
 
     @Autowired
