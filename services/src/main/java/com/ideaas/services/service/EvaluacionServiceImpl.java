@@ -5,6 +5,7 @@ import com.ideaas.services.dao.evaluacion.EvaluacionDaoPagination;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
+import com.ideaas.services.domain.Rol;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,26 +36,18 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
 
     @Override
-    public Evaluacion getByRol(String rol) {
-
+    public Evaluacion getByRol(Rol rol) {
         return dao.getActiveByRol(rol);
     }
 
     @Override
     public Evaluacion save(Evaluacion evaluacion){
-
         return dao.save(evaluacion);
     }
 
-    @Override
-    public EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador) {
-
-        return evaluacionDelColaboradorDao.save(evaluacionDelColaborador);
-    }
 
     @Override
     public EvaluacionDelColaborador get(Long id) {
-
         return evaluacionDelColaboradorDao.findById(id).get();
     }
 

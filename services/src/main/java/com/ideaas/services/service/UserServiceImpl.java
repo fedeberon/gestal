@@ -4,6 +4,7 @@ import com.ideaas.services.domain.User;
 import com.ideaas.services.dao.user.UserDao;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +16,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Primary
+@Service("usuarioService")
 public class UserServiceImpl implements UsuarioService {
 
     private UserDao dao;
@@ -61,4 +63,5 @@ public class UserServiceImpl implements UsuarioService {
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
+
 }

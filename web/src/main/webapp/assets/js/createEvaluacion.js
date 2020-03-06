@@ -43,3 +43,57 @@ $("#addRow").click(function () {
 $(document).on('click', '#removeRow', function () {
     $(this).closest('#inputFormRow').remove();
 });
+
+jQuery(document).ready(function($){
+
+    $(".btnrating").on('click',(function(e) {
+
+        var previous_value = $("#selected_rating").val();
+
+        var selected_value = $(this).attr("data-attr");
+        $("#selected_rating").val(selected_value);
+
+        $(".selected-rating").empty();
+        $(".selected-rating").html(selected_value);
+
+        for (i = 1; i <= selected_value; ++i) {
+            $("#rating-star-"+i).toggleClass('btn-warning');
+            $("#rating-star-"+i).toggleClass('btn-default');
+        }
+
+        for (ix = 1; ix <= previous_value; ++ix) {
+            $("#rating-star-"+ix).toggleClass('btn-warning');
+            $("#rating-star-"+ix).toggleClass('btn-default');
+        }
+
+    }));
+
+});
+jQuery(document).ready(function($){
+
+    $(".btnrating").on('click',(function(e) {
+
+        var id  = $(this).attr('data-id');
+
+        var previous_value = $("#selected_rating-" + id).val();
+
+        var selected_value = $(this).attr("data-attr");
+        $("#selected_rating-" + id).val(selected_value);
+
+        $(".selected-rating-" + id).empty();
+        $(".selected-rating-"+ id).html(selected_value);
+
+        for (i = 1; i <= selected_value; ++i) {
+            $("#rating-star-" + id + +i).toggleClass('btn-warning');
+            $("#rating-star-"+ id +i).toggleClass('btn-default');
+        }
+
+        for (ix = 1; ix <= previous_value; ++ix) {
+            $("#rating-star-"+ id +ix).toggleClass('btn-warning');
+            $("#rating-star-"+ id +ix).toggleClass('btn-default');
+        }
+
+    }));
+
+
+});

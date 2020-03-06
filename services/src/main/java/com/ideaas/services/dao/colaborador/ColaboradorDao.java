@@ -1,6 +1,7 @@
 package com.ideaas.services.dao.colaborador;
 
 import com.ideaas.services.domain.Colaborador;
+import com.ideaas.services.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ColaboradorDao extends JpaRepository<Colaborador, Long> {
 
+    Colaborador findByUsername(String username);
 
 
 }

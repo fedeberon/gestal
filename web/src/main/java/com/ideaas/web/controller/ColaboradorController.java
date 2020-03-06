@@ -29,7 +29,6 @@ public class ColaboradorController {
     private ColaboradorService colaboradorService;
     private RolService rolService;
 
-
     @Autowired
     public ColaboradorController(ColaboradorService colaboradorService, RolService rolService) {
 

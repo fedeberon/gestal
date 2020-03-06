@@ -57,21 +57,15 @@
                                                                                     <c:forEach items="${bo.itemEvaluados}" var="itemEvaluado">
                                                                                         <tr>
                                                                                             <td class="text-center">
-                                                                                                    ${itemEvaluado.item.value}
+                                                                                                ${itemEvaluado.item.value}
                                                                                             </td>
                                                                                             <td>
                                                                                                 <div class="rating-star">
                                                                                                     <ul class="list-inline">
                                                                                                         <li class="list-inline-item">
-                                                                                                            <c:forEach begin="0" end="5">
-                                                                                                                <c:choose>
-                                                                                                                    <c:when test="${itemEvaluado.rating < 5 }">
-                                                                                                                        <span class="fa fa-star checked"></span>
-                                                                                                                    </c:when>
-                                                                                                                    <c:otherwise>
-                                                                                                                        <span class="fa fa-star"></span>
-                                                                                                                    </c:otherwise>
-                                                                                                                </c:choose>
+                                                                                                            <c:set var = "score" scope = "session" value = "${itemEvaluado.rating}"/>
+                                                                                                            <c:forEach begin="1" end="${score}">
+                                                                                                                        <span id="score" class="fa fa-star checked"></span>
                                                                                                             </c:forEach>
                                                                                                         </li>
                                                                                                     </ul>

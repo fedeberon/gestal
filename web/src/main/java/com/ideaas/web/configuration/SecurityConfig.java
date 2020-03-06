@@ -1,7 +1,9 @@
 package com.ideaas.web.configuration;
 
+import com.ideaas.services.service.interfaces.ColaboradorService;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -20,7 +22,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    @Qualifier("usuarioService")
     private UsuarioService usuarioService;
+
+    @Autowired
+    @Qualifier("colaboradorService")
+    private ColaboradorService colaboradorService;
 
     @Autowired
     private BCryptPasswordEncoder bcrypt;
@@ -54,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(usuarioService).passwordEncoder(bcrypt);
+        auth.userDetailsService(colaboradorService).passwordEncoder(bcrypt);
 
 //        auth.inMemoryAuthentication()
 //                .withUser("fede")

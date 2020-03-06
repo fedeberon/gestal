@@ -1,14 +1,23 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.domain.Colaborador;
+import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
+import com.ideaas.services.service.interfaces.ColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
+import com.ideaas.services.service.interfaces.EvaluacionService;
 import com.ideaas.services.service.interfaces.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,23 +31,52 @@ public class EvaluacionDelColaboradorController {
     private RolService rolService;
 
     private EvaluacionDelColaboradorService evaluacionDelColaboradorService;
+    private EvaluacionService evaluacionService;
+    private ColaboradorService colaboradorService;
 
     @Autowired
-    public EvaluacionDelColaboradorController(RolService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService) {
+    public EvaluacionDelColaboradorController(RolService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService, EvaluacionService evaluacionService, ColaboradorService colaboradorService) {
         this.rolService = rolService;
         this.evaluacionDelColaboradorService = evaluacionDelColaboradorService;
+        this.evaluacionService = evaluacionService;
+        this.colaboradorService = colaboradorService;
     }
 
     @RequestMapping("/list")
     public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
-                                  @RequestParam(defaultValue = "0") Integer page, Model model){
+                                  @RequestParam(defaultValue = "0") Integer page, Model model) {
 
-        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size, page,"id");
+        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size, page, "id");
         model.addAttribute("evaluaciones", evaluaciones);
-        model.addAttribute("page" , page);
+        model.addAttribute("page", page);
 
 
         return "evaluacionDelColaborador/list";
     }
 
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(@RequestParam Long id, Model model) {
+        Colaborador colaborador = colaboradorService.get(id);
+        model.addAttribute("colaborador", colaborador);
+        Evaluacion evaluacion = evaluacionService.getByRol(colaborador.getRol());
+        model.addAttribute("evaluacion", evaluacion);
+
+        return "evaluacionDelColaborador/create";
+    }
+
+    @ModelAttribute("evaluacionDelColaborador")
+    public EvaluacionDelColaborador getEvaluacionDelColaborador() {
+        return new EvaluacionDelColaborador();
+    }
+
+    @RequestMapping(value = "save")
+    public String save(@Valid @ModelAttribute("evaluacionDelColaborador") EvaluacionDelColaborador evaluacionDelColaborador, Errors result, Model map) {
+        if (result.hasErrors()) {
+            return "colaborador/create";
+
+        } else {
+            evaluacionDelColaboradorService.save(evaluacionDelColaborador);
+            return "redirect:list";
+        }
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,5 +38,17 @@ public class EvaluacionDelColaboradorImpl implements EvaluacionDelColaboradorSer
         Page<EvaluacionDelColaborador> evaluacionDelColaborador = daoPageable.findAll(paging);
 
         return evaluacionDelColaborador.getContent();
+    }
+
+    @Override
+    public EvaluacionDelColaborador get(Long id) {
+        return dao.findById(id).get();
+    }
+
+    @Override
+    public EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador) {
+        evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> itemEvaluado.setEvaluacionDelColaborador(evaluacionDelColaborador));
+        evaluacionDelColaborador.setFechaDeCarga(new Date());
+        return dao.save(evaluacionDelColaborador);
     }
 }

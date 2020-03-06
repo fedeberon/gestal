@@ -10,7 +10,7 @@
                     <h4 class="card-title"> Colaboradores</h4>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive-md">
+                    <div class="table-responsive-sm">
                         <table class="table">
                             <thead class=" text-primary">
 
@@ -19,7 +19,7 @@
                                 <th>Mail</th>
                                 <th>Rol</th>
                                 <th>Editar</th>
-                                <th>Rol</th>
+                                <th>Evaluar</th>
 
                             </thead>
                             <tbody>
@@ -33,6 +33,10 @@
                                         <td>
                                             <a href="<c:url value='/colaborador/update?id=${bo.id}'/>"
                                                class="btn btn-success">Editar</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="<c:url value='../evaluacionDelColaborador/create?id=${bo.id}'/>"
+                                               title="Agregar evaluaci&oacute;n">Evaluar</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
