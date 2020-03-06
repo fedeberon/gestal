@@ -19,6 +19,7 @@
                                 <th>Mail</th>
                                 <th>Rol</th>
                                 <th>Editar</th>
+                                <th>Rol</th>
 
                             </thead>
                             <tbody>

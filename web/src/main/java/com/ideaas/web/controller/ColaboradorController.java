@@ -1,10 +1,13 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.dao.user.UserDao;
 import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.Rol;
 import com.ideaas.services.service.interfaces.ColaboradorService;
 import com.ideaas.services.service.interfaces.RolService;
+import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
