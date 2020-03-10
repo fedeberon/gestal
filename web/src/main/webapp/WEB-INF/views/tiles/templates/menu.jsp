@@ -23,18 +23,21 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="active   ">
+
+                <li>
                     <a href="<c:url value='home'/>">
                         <i class="nc-icon nc-bank"></i>
                         <p>Inicio</p>
                     </a>
                 </li>
+
                 <li>
                     <a href="<c:url value='/colaborador/list'/>">
                         <img class="nc-icon colaborators" src="/assets/img/svg/1x/colaborators.png"/>
                         <p>Colaboradores</p>
                     </a>
                 </li>
+
                 <li>
                     <a href="<c:url value='/usuario/list'/>">
                         <i class="nc-icon nc-single-02"></i>
@@ -42,6 +45,7 @@
                         <p>Usuarios</p>
                     </a>
                 </li>
+
                 <li>
                     <a href="<c:url value='/evaluacion/list'/>">
                         <i class="nc-icon nc-bullet-list-67"></i>

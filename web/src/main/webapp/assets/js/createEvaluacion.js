@@ -1,3 +1,4 @@
+//Agregar evaluacion modal
 $(document).ready(function () {
     var next = 1;
     $(".add-more").click(function (e) {
@@ -24,7 +25,7 @@ $(document).ready(function () {
     });
 });
 
-
+//Agregar evaluacion edit
 $("#addRow").click(function () {
     var html = '';
     var next = 1
@@ -39,6 +40,7 @@ $("#addRow").click(function () {
     $('#newRow').append(html);
 });
 
+//Rating
 // remove row
 $(document).on('click', '#removeRow', function () {
     $(this).closest('#inputFormRow').remove();
@@ -95,5 +97,19 @@ jQuery(document).ready(function($){
 
     }));
 
-
 });
+
+//Agregar clase active al navegar por el menu
+jQuery(document).ready(function($){
+
+    $(document).ready(function() {
+        var str = location.href.toLowerCase();
+        $(".sidebar-wrapper ul li a").each(function() {
+            if (str.indexOf(this.href.toLowerCase()) > -1) {
+                $("li.active").removeClass("active");
+                $(this).parent().addClass("active");
+            }
+        });
+    })
+});
+
