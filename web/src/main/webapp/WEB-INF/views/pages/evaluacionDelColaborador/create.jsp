@@ -29,7 +29,7 @@
                             <c:set var = "item" scope = "session" value = "${evaluacion.items}"/>
                             <c:choose>
                                 <c:when test="${empty item}">
-                                        <p>No hay items para mostrar</p>
+                                    <p>No hay items para mostrar en el rol ${colaborador.rol.name}</p>
                                 </c:when>
                                 <c:otherwise>
                                     <div class="form-group mt-4">
@@ -62,7 +62,9 @@
                                 </c:otherwise>
                             </c:choose>
                                 <div class="form-group mt-4">
+                                    <c:if test="${!empty item}">
                                     <button type="submit" class="btn btn-default" id="btnSubmit">Guardar</button>
+                                    </c:if>
                                 </div>
                         </div>
                     </form:form>

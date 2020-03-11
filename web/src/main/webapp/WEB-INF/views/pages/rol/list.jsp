@@ -30,15 +30,19 @@
                 <div class="card-footer mt-4">
                     <hr>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <form name="rol" action="list" method="get">
                                 <input type="hidden" name="page" value="${page}"/>
                                 <tags:paginador page="${page}" formName="search"/>
                             </form>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <a class="btn btn-success" href="<c:url value='/rol/create'/>" title="Agregar rol">Agregar
                                 rol</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar
+                                colaborador</a>
                         </div>
                     </div>
                 </div>

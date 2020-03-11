@@ -50,7 +50,7 @@ public class RolController {
         return "rol/update";
     }
 
-    @RequestMapping("/create")
+    @RequestMapping("create")
     public String create(@ModelAttribute("rol") Rol rol) {
 
         return "rol/create";

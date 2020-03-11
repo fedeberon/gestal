@@ -54,7 +54,7 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <a class="btn btn-secondary mt-4" href="<c:url value='/rol/list'/>">Crear
+                                        <a class="btn btn-secondary mt-4" href="<c:url value='/rol/create'/>">Crear
                                             rol</a>
                                     </div>
                                 </div>

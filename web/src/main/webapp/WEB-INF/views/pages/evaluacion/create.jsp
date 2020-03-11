@@ -30,7 +30,7 @@
                                                     <div class="controls" id="profs">
                                                         <label class="control-label" for="field1">Descripci&oacute;n de la evaluaci&oacute;n</label>
                                                         <div id="field">
-                                                            <input autocomplete="off" class="input" id="field1" name="items[0].value" type="text" placeholder="Agregar evaluaci&oacute;n" required/>
+                                                            <input required="required" autocomplete="off" class="input" id="field1" name="items[0].value" type="text" placeholder="Agregar evaluaci&oacute;n"/>
                                                             <button id="b1" class="btn add-more ml-3" type="button">+ </button>
                                                         </div>
                                                         <small>Presiona + para agregar la evaluaci&oacute;n</small>
