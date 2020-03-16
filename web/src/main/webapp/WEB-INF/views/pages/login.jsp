@@ -125,10 +125,10 @@
 
             <div class="mt-4">
                 <div class="d-flex justify-content-center links">
-                    Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+                    No tienes cuenta? <a href="usuario/register" class="ml-2">Registrate!</a>
                 </div>
                 <div class="d-flex justify-content-center links">
-                    <a href="#">Forgot your password?</a>
+                    <a href="#">Olvidaste tu Contraseña?</a>
                 </div>
             </div>
         </div>

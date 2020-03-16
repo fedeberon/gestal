@@ -60,6 +60,12 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/usuario/show.jsp" />
     </definition>
 
+    <definition name="usuario/signin" template="/WEB-INF/views/pages/usuario/signin.jsp">
+        <put-attribute name="title" value="Register" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="" />
+    </definition>
+
     <!--Evaluacion -->
     <definition name="evaluacion/create" extends="template-def">
         <put-attribute name="title" value="Agregar evaluacion" />

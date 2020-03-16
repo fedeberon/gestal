@@ -13,7 +13,7 @@
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>ID</th>
-                                <th>Nombre de usuario</th>
+                                <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Editar</th>
                             </thead>
