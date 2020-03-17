@@ -176,12 +176,11 @@ a.select2-search-choice-close::before{font-family: 'Font Awesome 5 Pro',"Helveti
  }
 
 #field {
-  margin-bottom: 20px;
-  width: 800px;
+  padding-bottom:2px;
 }
 
 #field1 {
-  width: 40%;
+
 }
 
 .error{

@@ -31,6 +31,10 @@ public class Item implements Serializable{
     @JoinColumn(name = "ITEM_EVA_ID", nullable = false)
     private Evaluacion evaluacion;
 
+    @JsonIgnore
+    @Column(name = "ITEM_INAVLID_SCORE")
+    private boolean invalidaEvaluacion = false;
+
     public String getValue() {
         return value;
     }
@@ -53,5 +57,21 @@ public class Item implements Serializable{
 
     public void setEvaluacion(Evaluacion evaluacion) {
         this.evaluacion = evaluacion;
+    }
+
+    public Float getScore() {
+        return score;
+    }
+
+    public void setScore(Float score) {
+        this.score = score;
+    }
+
+    public boolean isInvalidaEvaluacion() {
+        return invalidaEvaluacion;
+    }
+
+    public void setInvalidaEvaluacion(boolean invalidaEvaluacion) {
+        this.invalidaEvaluacion = invalidaEvaluacion;
     }
 }

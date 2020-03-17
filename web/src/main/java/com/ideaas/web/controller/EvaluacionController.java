@@ -36,7 +36,8 @@ public class EvaluacionController {
     }
 
     @RequestMapping("create")
-    public String create(){
+    public String create(@ModelAttribute("evaluacion") Evaluacion evaluacion){
+
 
         return "evaluacion/create";
     }

@@ -44,8 +44,6 @@ public class ColaboradorController {
             return "colaborador/create";
         } else {
 
-
-
             BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
             String pass = bCryptPasswordEncoder.encode(colaborador.getPassword());
             colaborador.setPassword(pass);

@@ -3,9 +3,7 @@ package com.ideaas.services.service;
 import com.ideaas.services.dao.evaluacion.EvaluacionDao;
 import com.ideaas.services.dao.evaluacion.EvaluacionDaoPagination;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
-import com.ideaas.services.domain.Evaluacion;
-import com.ideaas.services.domain.EvaluacionDelColaborador;
-import com.ideaas.services.domain.Rol;
+import com.ideaas.services.domain.*;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -73,5 +72,15 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
         return dao.findById(id).get();
     }
+    public void calcularScore(Evaluacion evaluacion, EvaluacionDelColaborador evaluacionDelColaborador){
+        boolean invalidaEvaluacion = false;
+        evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+            if(itemEvaluado.getItem().isInvalidaEvaluacion() && itemEvaluado.getRating() == 0){
+                itemEvaluado.getItem().setScore(Float.parseFloat("0"));
+            }
+        });
+
+    }
+
 
 }

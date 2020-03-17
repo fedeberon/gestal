@@ -1,3 +1,4 @@
+console.log("en funcion")
 //Agregar evaluacion modal
 $(document).ready(function () {
     var next = 1;
@@ -6,21 +7,59 @@ $(document).ready(function () {
         var addto = "#field" + next;
         var addRemove = "#field" + (next);
         next = next + 1;
-        var newIn = '<input autocomplete="off" class="input" id="field' + next + '" name="items[' + next + '].value" type="text" style="width: 40%">';
+
+
+        var divContainer = $('<div>', {
+            id: next
+        });
+
+        var newIn = '<input autocomplete="off" class="input col-7 mx-3" id="field' + next + '" name="items[' + next + '].value" type="text">';
         var newInput = $(newIn);
-        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me ml-3" >-</button></div><div id="field">';
+        // $(addto).after(newInput);
+
+        $(divContainer).append(newInput);
+
+        var selectScore = $("#select-score-to-clone").clone();
+        selectScore.attr("name", "items[" + next + "].score");
+        selectScore.attr("id", "select_" + next);
+        selectScore.attr("class", "col-2 d-inline");
+        // $(addto).after(selectScore);
+        $(divContainer).append(selectScore);
+
+        var ckeckInvalida = $("#check-invalida-evaluiacion-to-clone").clone();
+        ckeckInvalida.attr("name", "items[" + next + "].invalidaEvaluacion");
+        ckeckInvalida.attr("id", "item_" + next);
+        ckeckInvalida.attr("class", "col-1 mx-3 d-inline");
+        // $(addto).after(ckeckInvalida);
+        $(divContainer).append(ckeckInvalida);
+
+        var removeBtn = '<button id="remove' + (next) + '" class="btn btn-danger remove-me col-1" >-</button></div>';
         var removeButton = $(removeBtn);
-        $(addto).after(newInput);
-        $(addRemove).after(removeButton);
-        $("#field" + next).attr('data-source', $(addto).attr('data-source'));
+        // $(addRemove).after(removeButton);
+        $(divContainer).append(removeButton);
+
+        $("#field").append(divContainer);
+
         $("#count").val(next);
 
         $('.remove-me').click(function (e) {
             e.preventDefault();
             var fieldNum = this.id.charAt(this.id.length - 1);
-            var fieldID = "#field" + fieldNum;
-            $(this).remove();
-            $(fieldID).remove();
+            var divToRemove = $("#"+ fieldNum)
+            $(divToRemove).remove();
+
+            // var fieldNum = this.id.charAt(this.id.length - 1);
+            // var fieldID = "#field" + fieldNum;
+            // $(this).remove();
+            // $(fieldID).remove();
+            //
+            // var selectNum = this.id.charAt(this.id.length - 1);
+            // var selectId = "#select_" + selectNum;
+            // $(selectId).remove();
+            //
+            // var itemNum = this.id.charAt(this.id.length - 1);
+            // var itemId = "#item_" + itemNum;
+            // $(itemId).remove();
         });
     });
 });
