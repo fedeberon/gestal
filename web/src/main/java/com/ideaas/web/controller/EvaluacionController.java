@@ -47,6 +47,12 @@ public class EvaluacionController {
         evaluacion.getItems().removeIf(item -> item.getValue() == null);
         evaluacion.getItems().forEach(item -> item.setEvaluacion(evaluacion));
         evaluacion.setState(State.ACTIVE);
+        List <Evaluacion> evaluaciones = evaluacionService.findAll();
+        evaluaciones.forEach(item->{
+            if (evaluacion.getRol().equals(item.getRol())){
+                item.setState(State.INACTIVE);
+            }
+        });
         evaluacionService.save(evaluacion);
 
         return "redirect:list";
@@ -93,7 +99,7 @@ public class EvaluacionController {
 
     @RequestMapping("/list")
     public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
+                                  @RequestParam(defaultValue = "0") Integer page, Model model){
         List<Evaluacion> evaluaciones = evaluacionService.findAllPageable(size, page,"id");
         model.addAttribute("evaluaciones", evaluaciones);
         model.addAttribute("page" , page);
