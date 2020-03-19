@@ -10,9 +10,8 @@ import java.util.List;
 public interface EvaluacionDelColaboradorService {
 
     List<EvaluacionDelColaborador> findAllPageable(Integer pageSize, Integer pageNo, String sortBy);
+    List<EvaluacionDelColaborador> findAll();
     EvaluacionDelColaborador get(Long id);
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
-
-
-
+    EvaluacionDelColaborador calcularScore();
 }

@@ -72,15 +72,4 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
         return dao.findById(id).get();
     }
-    public void calcularScore(Evaluacion evaluacion, EvaluacionDelColaborador evaluacionDelColaborador){
-        boolean invalidaEvaluacion = false;
-        evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
-            if(itemEvaluado.getItem().isInvalidaEvaluacion() && itemEvaluado.getRating() == 0){
-                itemEvaluado.getItem().setScore(Float.parseFloat("0"));
-            }
-        });
-
-    }
-
-
 }

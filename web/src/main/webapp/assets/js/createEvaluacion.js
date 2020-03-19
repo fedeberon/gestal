@@ -10,10 +10,10 @@ $(document).ready(function () {
 
 
         var divContainer = $('<div>', {
-            id: next
+            id: next,
         });
-
-        var newIn = '<input autocomplete="off" class="input col-7 mx-3" id="field' + next + '" name="items[' + next + '].value" type="text">';
+        $(divContainer).addClass('input-group');
+        var newIn = '<input autocomplete="off" class="input col-7 mx-3" id="field' + next + '" name="items[' + next + '].value" type="text" placeholder="Descripcion del item">';
         var newInput = $(newIn);
         // $(addto).after(newInput);
 
@@ -29,7 +29,7 @@ $(document).ready(function () {
         var ckeckInvalida = $("#check-invalida-evaluiacion-to-clone").clone();
         ckeckInvalida.attr("name", "items[" + next + "].invalidaEvaluacion");
         ckeckInvalida.attr("id", "item_" + next);
-        ckeckInvalida.attr("class", "col-1 mx-3 d-inline");
+        ckeckInvalida.attr("class", "col-1 d-inline mt-2");
         // $(addto).after(ckeckInvalida);
         $(divContainer).append(ckeckInvalida);
 

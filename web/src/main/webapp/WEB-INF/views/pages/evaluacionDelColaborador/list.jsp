@@ -23,6 +23,7 @@
                                 <th>Rol</th>
                                 <th>Fecha de carga</th>
                                 <th>Items</th>
+                                <th>Score</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${evaluaciones}" var="bo">
@@ -64,19 +65,30 @@
                                                                                                     <ul class="list-inline">
                                                                                                         <li class="list-inline-item">
                                                                                                             <c:set var = "score" scope = "session" value = "${itemEvaluado.rating}"/>
-                                                                                                            <c:forEach begin="1" end="${score}">
+                                                                                                            <c:forEach begin="0" end="${score}">
                                                                                                                         <span id="score" class="fa fa-star checked"></span>
                                                                                                             </c:forEach>
                                                                                                         </li>
                                                                                                     </ul>
                                                                                                 </div>
                                                                                             </td>
+
                                                                                         </tr>
                                                                                     </c:forEach>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="card-footer">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6"></div>
+                                                                                <div class="col-md-6">
+
+                                                                                    <c:forEach items="${bo.itemEvaluados}" var="itemEvaluado">
+                                                                                        <span class="badge badge-secondary text-center text-uppercase float-right">Score: ${itemEvaluado.item.score}</span>
+                                                                                    </c:forEach>
+                                                                                </div>
+                                                                            </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -86,6 +98,11 @@
                                             </div>
                                             <!--Fin de modal-->
                                         </td>
+                                        <td>
+
+
+                                        </td>
+
                                     </tr>
                                 </c:forEach>
                             </tbody>

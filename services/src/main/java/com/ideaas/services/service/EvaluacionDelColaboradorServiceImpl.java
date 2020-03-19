@@ -2,8 +2,8 @@ package com.ideaas.services.service;
 
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorPaginationDao;
-import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
+import com.ideaas.services.domain.ItemEvaluado;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,13 +20,13 @@ import java.util.List;
  */
 
 @Service
-public class EvaluacionDelColaboradorImpl implements EvaluacionDelColaboradorService{
+public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColaboradorService{
 
     private EvaluacionDelColaboradorDao dao;
     private EvaluacionDelColaboradorPaginationDao daoPageable;
 
     @Autowired
-    public EvaluacionDelColaboradorImpl(EvaluacionDelColaboradorDao dao, EvaluacionDelColaboradorPaginationDao paginationDao) {
+    public EvaluacionDelColaboradorServiceImpl(EvaluacionDelColaboradorDao dao, EvaluacionDelColaboradorPaginationDao paginationDao) {
         this.dao = dao;
         this.daoPageable = paginationDao;
     }
@@ -41,6 +41,11 @@ public class EvaluacionDelColaboradorImpl implements EvaluacionDelColaboradorSer
     }
 
     @Override
+    public List<EvaluacionDelColaborador> findAll(){
+        return dao.findAll();
+    }
+
+    @Override
     public EvaluacionDelColaborador get(Long id) {
         return dao.findById(id).get();
     }
@@ -50,5 +55,31 @@ public class EvaluacionDelColaboradorImpl implements EvaluacionDelColaboradorSer
         evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> itemEvaluado.setEvaluacionDelColaborador(evaluacionDelColaborador));
         evaluacionDelColaborador.setFechaDeCarga(new Date());
         return dao.save(evaluacionDelColaborador);
+    }
+
+    @Override
+    public EvaluacionDelColaborador calcularScore(){
+        List<EvaluacionDelColaborador> evaluaciones = dao.findAll();
+
+        evaluaciones.forEach(evaluacion ->{
+            evaluacion.getItemEvaluados().forEach(itemEvaluado -> {
+
+                //Si el checkbox que invalida la evaluacion o el rating del item es 0, el score de la evaluacion es 0
+                if(itemEvaluado.getItem().isInvalidaEvaluacion() == true || itemEvaluado.getRating() == 0){
+                    itemEvaluado.getItem().setScore(Float.valueOf(0));
+                }
+
+                //Guardo en la variable "producto" el resultado del producto del rating con el score
+                long producto = (long) (Float.valueOf(itemEvaluado.getRating()) * Float.valueOf(itemEvaluado.getItem().getScore()));
+
+                //Intento sumar pero no funciona
+                long precioTotal= (long) evaluaciones.stream()
+                        .mapToDouble(object -> producto)
+                        .sum();
+                System.out.println(precioTotal);
+            });
+        });
+
+        return null;
     }
 }

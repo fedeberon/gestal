@@ -40,6 +40,8 @@ public class EvaluacionDelColaborador implements Serializable{
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacionDelColaborador", cascade = CascadeType.PERSIST)
     private List<ItemEvaluado> itemEvaluados;
 
+    private Float resultado;
+
     public Long getId() {
         return id;
     }
@@ -78,5 +80,13 @@ public class EvaluacionDelColaborador implements Serializable{
 
     public void setItemEvaluados(List<ItemEvaluado> itemEvaluados) {
         this.itemEvaluados = itemEvaluados;
+    }
+
+    public Float getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(Float resultado) {
+        this.resultado = resultado;
     }
 }

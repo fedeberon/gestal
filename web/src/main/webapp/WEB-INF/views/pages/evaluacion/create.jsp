@@ -25,35 +25,41 @@
                                 <form:form modelAttribute="evaluacion" action="${actionUrl}" method="POST">
                                 <div class="input-group" id="fields">
                                     <div id="profs" style="width: 100%">
-                                        <label for="field1">Items de la evaluaci&oacute;n</label>
 
-                                                <div id="field">
-                                                    <input required="required" autocomplete="off" class="col-7 mx-3" id="field1" name="items[0].value" type="text" placeholder="Agregar Item"/>
+                                        <div id="field">
+                                            <label for="field1">Items de la evaluaci&oacute;n</label>
+                                            <div class="input-group">
+                                                <input required="required" autocomplete="off" class="col-7 mx-3"
+                                                       id="field1" name="items[0].value" type="text"
+                                                       placeholder="Descripcion del item"/>
+                                                <select name="items[0].score" id="select_1" class="col-2 d-inline">
 
-                                                    <select name="items[0].score" id="select_1" class="col-2">
+                                                    <c:forEach var="i" begin="0" end="10">
+                                                        <option value="${i}">${i}</option>
+                                                    </c:forEach>
 
-                                                        <c:forEach var="i" begin="0" end="10">
-                                                            <option  value="${i}">${i}</option>
-                                                        </c:forEach>
+                                                </select>
+                                                <input name="items[0].invalidaEvaluacion" class="col-1 mt-2"
+                                                       type="checkbox" id="check-invalida-evaluiacion-to-clone_0"/>
+                                                <button id="b1" class="btn btn-primary add-more col-1" type="button">+
+                                                </button>
+                                            </div>
+                                        </div>
 
-                                                    </select>
-
-                                                    <input name="items[0].invalidaEvaluacion" class="col-1" type="checkbox" id="check-invalida-evaluiacion-to-clone_0"/>
-
-                                                    <button id="b1" class="btn btn-primary add-more col-1" type="button">+</button>
-                                                </div>
-
-                                            <br/>
+                                        <div class="form-group col-md-4 mt-4">
+                                            <label for="inputRole">Seleccionar rol</label>
                                             <form:select path="rol.id" cssClass="form-control">
                                                 <form:options items="${roles}" itemValue="id" itemLabel="name"/>
                                             </form:select>
-                                            <br>
-                                     </div>
-                                 </div>
+                                        </div>
+
+                                        <br>
+                                    </div>
+                                </div>
                             </div>
-                         </div>
+                        </div>
                     </div>
-                 </div>
+                </div>
 
                 <div class="modal-footer">
                     <div class="row">
@@ -75,9 +81,10 @@
 <select class="col-1" id="select-score-to-clone" style="display: none">
 
     <c:forEach var="i" begin="1" end="10">
-        <option  value="${i}">${i}</option>
+        <option value="${i}">${i}</option>
     </c:forEach>
 
 </select>
 
-<input name="items[0].invalidaEvaluacion" type="checkbox" style="display: none" id="check-invalida-evaluiacion-to-clone"/>
+<input name="items[0].invalidaEvaluacion" type="checkbox" style="display: none"
+       id="check-invalida-evaluiacion-to-clone"/>

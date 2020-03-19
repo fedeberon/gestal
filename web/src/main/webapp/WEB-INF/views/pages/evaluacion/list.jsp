@@ -26,6 +26,7 @@
                                         <td class="text-center">${bo.id}</td>
                                         <td class="text-center">${bo.rol.name}</td>
                                         <td class="text-center">
+
                                             <c:choose>
                                                 <c:when test="${bo.state =='ACTIVE'}">
                                                     <span class="badge badge-success">${bo.state}</span>

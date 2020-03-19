@@ -1,12 +1,7 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.domain.Colaborador;
-import com.ideaas.services.domain.Evaluacion;
-import com.ideaas.services.domain.EvaluacionDelColaborador;
-import com.ideaas.services.service.interfaces.ColaboradorService;
-import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
-import com.ideaas.services.service.interfaces.EvaluacionService;
-import com.ideaas.services.service.interfaces.RolService;
+import com.ideaas.services.domain.*;
+import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,11 +41,11 @@ public class EvaluacionDelColaboradorController {
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
 
         List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size, page, "id");
+        model.addAttribute("score", evaluacionDelColaboradorService.calcularScore());
         model.addAttribute("evaluaciones", evaluaciones);
         model.addAttribute("page", page);
 
-
-        return "evaluacionDelColaborador/list";
+         return "evaluacionDelColaborador/list";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
