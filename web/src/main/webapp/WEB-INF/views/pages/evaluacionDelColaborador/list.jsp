@@ -24,6 +24,7 @@
                                 <th>Nombre completo</th>
                                 <th>Rol</th>
                                 <th>Fecha de carga</th>
+                                <th>Promedio</th>
                                 <th>Items</th>
                             </thead>
                             <tbody>
@@ -33,7 +34,10 @@
                                         <td>${bo.rolEvaluado.name}</td>
                                         <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
                                             value="${bo.fechaDeCarga}" />
+                                        </td>
                                         <td>
+
+                                        </td>>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".evaluacionDelColaborador-${bo.id}">Items </button>
 
                                             <!--Comienzo de modal-->
