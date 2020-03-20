@@ -80,7 +80,7 @@
 
 <select class="col-1" id="select-score-to-clone" style="display: none">
 
-    <c:forEach var="i" begin="1" end="10">
+    <c:forEach var="i" begin="0" end="10">
         <option value="${i}">${i}</option>
     </c:forEach>
 

@@ -83,10 +83,7 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-6"></div>
                                                                                 <div class="col-md-6">
-
-                                                                                    <c:forEach items="${bo.itemEvaluados}" var="itemEvaluado">
-                                                                                        <span class="badge badge-secondary text-center text-uppercase float-right">Score: ${itemEvaluado.item.score}</span>
-                                                                                    </c:forEach>
+                                                                                    <span class="badge badge-secondary text-center text-uppercase float-right">Score: ${bo.resultado}</span>
                                                                                 </div>
                                                                             </div>
                                                                     </div>

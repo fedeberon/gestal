@@ -1,5 +1,6 @@
 package com.ideaas.services.service;
 
+import com.ideaas.services.bean.State;
 import com.ideaas.services.dao.evaluacion.EvaluacionDao;
 import com.ideaas.services.dao.evaluacion.EvaluacionDaoPagination;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
@@ -41,6 +42,14 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
     @Override
     public Evaluacion save(Evaluacion evaluacion){
+        List<Evaluacion> evaluaciones = dao.findAll();
+        evaluaciones.forEach(evaluacionRol ->{
+            if (evaluacion.getRol().getId().equals(evaluacionRol.getRol().getId()) ){
+                evaluacionRol.setState(State.INACTIVE);
+            }
+        });
+
+        evaluacion.setState(State.ACTIVE);
         return dao.save(evaluacion);
     }
 

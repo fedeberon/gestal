@@ -3,7 +3,6 @@ package com.ideaas.services.service;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorPaginationDao;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
-import com.ideaas.services.domain.ItemEvaluado;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,8 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created by Enzo on 17/2/2020.
@@ -62,24 +63,20 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         List<EvaluacionDelColaborador> evaluaciones = dao.findAll();
 
         evaluaciones.forEach(evaluacion ->{
+            AtomicReference<Float> resultado = new AtomicReference<>(Float.valueOf(0));
+
             evaluacion.getItemEvaluados().forEach(itemEvaluado -> {
-
                 //Si el checkbox que invalida la evaluacion o el rating del item es 0, el score de la evaluacion es 0
-                if(itemEvaluado.getItem().isInvalidaEvaluacion() == true || itemEvaluado.getRating() == 0){
-                    itemEvaluado.getItem().setScore(Float.valueOf(0));
+                if(itemEvaluado.getItem().isInvalidaEvaluacion() == true || itemEvaluado.getItem().getScore() == 0) {
+                    evaluacion.setResultado(Float.valueOf(0));
+
+                }else {
+                    Float resultadoPorItem = (Float.valueOf(itemEvaluado.getRating()) * Float.valueOf(itemEvaluado.getItem().getScore()));
+                    resultado.set(resultado.get() + resultadoPorItem);
                 }
-
-                //Guardo en la variable "producto" el resultado del producto del rating con el score
-                long producto = (long) (Float.valueOf(itemEvaluado.getRating()) * Float.valueOf(itemEvaluado.getItem().getScore()));
-
-                //Intento sumar pero no funciona
-                long precioTotal= (long) evaluaciones.stream()
-                        .mapToDouble(object -> producto)
-                        .sum();
-                System.out.println(precioTotal);
             });
+            evaluacion.setResultado(resultado.get());
         });
-
         return null;
     }
 }
