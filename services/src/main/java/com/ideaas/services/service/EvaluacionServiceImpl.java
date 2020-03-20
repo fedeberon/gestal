@@ -48,8 +48,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
                 evaluacionRol.setState(State.INACTIVE);
             }
         });
-
         evaluacion.setState(State.ACTIVE);
+
         return dao.save(evaluacion);
     }
 
@@ -81,4 +81,5 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
         return dao.findById(id).get();
     }
+
 }

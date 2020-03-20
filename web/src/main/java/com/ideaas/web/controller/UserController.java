@@ -78,4 +78,11 @@ public class UserController {
         return "usuario/create";
     }
 
+
+    @RequestMapping("/register")
+    public String register(Model model){
+        return "usuario/signin";
+    }
+
+
 }

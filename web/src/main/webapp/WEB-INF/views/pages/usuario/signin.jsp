@@ -98,38 +98,42 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">
-                <form class="form-signin" name='f' action="login" style="text-align: center" method='POST'>
-                <div class="input-group mb-3">
+
+                <c:url var="actionUrl" value="/usuario/save"/>
+                <form:form modelAttribute="usuario" action="${actionUrl}" method="POST">
+
+                    <div class="input-group mb-3">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text"  name="username" class="form-control input_user" value="" placeholder="username">
+                        <label class="form-control-label">Usuario:</label>
+                        <form:input path="username" cssClass="form-control" size="50"/>
+                        <form:errors path="username" cssClass="error" size="50"/>
                     </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <label class="form-control-label">Email:</label>
+                        <form:input path="mail" cssClass="form-control" size="50"/>
+                        <form:errors path="mail" cssClass="error" size="50"/>
+                    </div>
+
                     <div class="input-group mb-2">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password"name="password" class="form-control input_pass" value="" placeholder="password">
+                        <label class="form-control-label">Contrase&ntilde;a:</label>
+                        <form:password path="password" cssClass="form-control" size="50"/>
+                        <form:errors path="password" cssClass="error" size="50"/>
                     </div>
-                    <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customControlInline">
-                            <label class="custom-control-label" for="customControlInline">Remember me</label>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center mt-3 login_container">
-                        <button type="submit" name="button" class="btn login_btn">Login</button>
-                    </div>
-                </form>
-            </div>
 
-            <div class="mt-4">
-                <div class="d-flex justify-content-center links">
-                    No tienes cuenta? <a href="usuario/register" class="ml-2">Registrate!</a>
-                </div>
-                <div class="d-flex justify-content-center links">
-                    <a href="#">Olvidaste tu Contraseña?</a>
-                </div>
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <button type="submit" name="button" class="btn login_btn" id="btnSubmit">Signin</button>
+                    </div>
+                </form:form>
+
             </div>
         </div>
     </div>

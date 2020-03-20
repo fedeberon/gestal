@@ -74,9 +74,7 @@ public class EvaluacionDelColaborador implements Serializable{
         this.fechaDeCarga = fechaDeCarga;
     }
 
-    public List<ItemEvaluado> getItemEvaluados() {
-        return itemEvaluados;
-    }
+    public List<ItemEvaluado> getItemEvaluados() {return itemEvaluados; }
 
     public void setItemEvaluados(List<ItemEvaluado> itemEvaluados) {
         this.itemEvaluados = itemEvaluados;

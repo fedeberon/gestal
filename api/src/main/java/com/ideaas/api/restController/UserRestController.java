@@ -28,31 +28,31 @@ public class UserRestController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{username}")
-    public User get(@PathVariable String username){
+    public User get(@PathVariable String username) {
         return usuarioService.get(username);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/list/{pageSize}/{pageNo}/{sortBy}")
-    public List<User> findAll(@PathVariable Integer pageSize, @PathVariable Integer pageNo, @PathVariable String sortBy){
+    public List<User> findAll(@PathVariable Integer pageSize, @PathVariable Integer pageNo, @PathVariable String sortBy) {
         return usuarioService.findAll(pageSize, pageNo, sortBy);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/list/{pageSize}/{pageNo}")
-    public List<User> findAll(@PathVariable Integer pageSize, @PathVariable Integer pageNo){
+    public List<User> findAll(@PathVariable Integer pageSize, @PathVariable Integer pageNo) {
         return usuarioService.findAll(pageSize, pageNo, "id");
     }
 
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/list/{pageSize}")
-    public List<User> findAll(@PathVariable Integer pageSize){
+    public List<User> findAll(@PathVariable Integer pageSize) {
         return usuarioService.findAll(pageSize, 0, "id");
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public ResponseEntity<User> save(@RequestBody User userNew){
+    public ResponseEntity<User> save(@RequestBody User userNew) {
         userNew.setPassword(bCryptPasswordEncoder.encode(userNew.getPassword()));
         User user = usuarioService.save(userNew);
 
@@ -61,7 +61,7 @@ public class UserRestController {
 
 
     @GetMapping("me")
-    public ResponseEntity<User> me(){
+    public ResponseEntity<User> me() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         User user = usuarioService.get(currentPrincipalName);

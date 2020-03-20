@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Editar</h4>
+                    <h4 class="card-title"> Editar datos del Colaborador</h4>
                 </div>
                 <div class="card-body m-auto">
 
@@ -18,25 +18,25 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Mail</label>
-                                <form:input path="username" size="75" cssClass="form-control" id="inputSuccess1"/>
+                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="username" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Contrase&ntilde;a</label>
-                                <form:password path="password" size="75" cssClass="form-control" id="inputSuccess1"/>
+                                <form:password path="password" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="password" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre</label>
-                                <form:input path="name" size="75" cssClass="form-control" id="inputSuccess1"/>
+                                <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="name" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess2">Apellido</label>
-                                <form:input path="lastName" size="75" cssClass="form-control" id="inputSuccess2"/>
+                                <form:input path="lastName" size="50" cssClass="form-control" id="inputSuccess2"/>
                                 <form:errors path="lastName" cssClass="error" size="50"/>
                             </div>
 

@@ -30,7 +30,8 @@
                                     <tr>
                                         <td>${bo.colaborador.lastName} ${bo.colaborador.name}</td>
                                         <td>${bo.rolEvaluado.name}</td>
-                                        <td>${bo.fechaDeCarga}</td>
+                                        <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
+                                            value="${bo.fechaDeCarga}" />
                                         <td>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".evaluacionDelColaborador-${bo.id}">Items </button>
 
@@ -65,9 +66,15 @@
                                                                                                     <ul class="list-inline">
                                                                                                         <li class="list-inline-item">
                                                                                                             <c:set var = "score" scope = "session" value = "${itemEvaluado.rating}"/>
-                                                                                                            <c:forEach begin="0" end="${score}">
-                                                                                                                        <span id="score" class="fa fa-star checked"></span>
+                                                                                                            <c:set var = "resto" scope = "session" value = "${5-score}"/>
+                                                                                                            <c:forEach begin="1" end="${score}" varStatus="count">
+                                                                                                                <span id="score" class="fa fa-star checked"></span>
                                                                                                             </c:forEach>
+                                                                                                            <c:forEach begin="1" end="${resto}" varStatus="count">
+                                                                                                                <span id="score" class="fa fa-star"></span>
+                                                                                                            </c:forEach>
+
+
                                                                                                         </li>
                                                                                                     </ul>
                                                                                                 </div>
@@ -93,13 +100,9 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>>
                                             <!--Fin de modal-->
                                         </td>
-                                        <td>
-
-
-                                        </td>
-
                                     </tr>
                                 </c:forEach>
                             </tbody>
