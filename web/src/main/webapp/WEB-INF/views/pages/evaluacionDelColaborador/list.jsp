@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <link rel="stylesheet" href="path/to/font-awesome.min.css">
 <style>
@@ -23,7 +25,6 @@
                                 <th>Rol</th>
                                 <th>Fecha de carga</th>
                                 <th>Items</th>
-                                <th>Score</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${evaluaciones}" var="bo">
@@ -32,6 +33,7 @@
                                         <td>${bo.rolEvaluado.name}</td>
                                         <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
                                             value="${bo.fechaDeCarga}" />
+                                        </td>
                                         <td>
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".evaluacionDelColaborador-${bo.id}">Items </button>
 
@@ -100,7 +102,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>>
+                                        </div>
                                             <!--Fin de modal-->
                                         </td>
                                     </tr>
