@@ -63,5 +63,4 @@ public class UserServiceImpl implements UsuarioService {
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
-
 }

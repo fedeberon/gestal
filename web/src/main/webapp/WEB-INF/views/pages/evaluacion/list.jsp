@@ -64,9 +64,11 @@
                                                                         <div class="col-md-12">
                                                                             <c:forEach items="${bo.items}" var="item">
                                                                                 <div class="row">
-                                                                                    <div class="col-md-11 mx-3 my-3">
-                                                                                        <ul class="list-group text-center">
+                                                                                    <div class="col-md-6 mx-3 my-3">
+                                                                                        <ul class="list-group-horizontal text-center">
                                                                                             <li class="list-group-item">${item.value}</li>
+                                                                                            <li class="list-group-item">${item.score}</li>
+                                                                                            <li class="list-group-item">${item.invalidaEvaluacion}</li>
                                                                                         </ul>
                                                                                     </div>
                                                                                 </div>
