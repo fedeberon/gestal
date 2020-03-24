@@ -109,6 +109,13 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/rol/update.jsp" />
     </definition>
 
+    <!--Sucursal -->
+
+    <definition name="sucursal/list" extends="template-def">
+        <put-attribute name="title" value="Lista de Sucursales" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/sucursal/list.jsp" />
+    </definition>
+
     <!--Login -->
     <definition name="login" template="/WEB-INF/views/pages/login.jsp">
         <put-attribute name="title" value="Login" />

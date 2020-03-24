@@ -13,11 +13,11 @@ public class Sucursal implements Serializable {
 
 
     @Id
-    @Column(name = "SUCURSAL ID", unique = true, nullable = false)
+    @Column(name = "SUC ID", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "SUCURSAL_NAME")
+    @Column(name = "SUC_NAME")
     @NotBlank(message = "No se puede cargar con espacios vacios")
     private String name;
 
@@ -26,11 +26,11 @@ public class Sucursal implements Serializable {
     private String direction;
 
     @Column (name = "SUC TELEFONO")
-    @NotBlank(message= "No se puede cargar con espacios vacios");
+    @NotBlank(message= "No se puede cargar con espacios vacios")
     private Long telephone;
 
     @Column (name ="SUC MAIL")
-    @NotBlank(messeage= "No se puede cargar con espacios vacios");
+    @NotBlank(message= "No se puede cargar con espacios vacios")
     private String mail;
 
     public Long getId() {

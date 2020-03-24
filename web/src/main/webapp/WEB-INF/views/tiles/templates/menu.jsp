@@ -67,8 +67,15 @@
 
                         <p>Roles</p>
                     </a>
-                </li>
+                </li> 
 
+                <li>
+                    <a href="<c:url value='/sucursal/list'/>">
+                        <i class="nc-icon nc-shop"></i>
+
+                        <p>Sucursales</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
