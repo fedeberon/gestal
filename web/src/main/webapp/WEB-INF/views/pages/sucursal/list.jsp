@@ -21,11 +21,20 @@
                         <table class="table">
                             <thead class=" text-primary">
                             <th>Nombre</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Mail</th>
+
                             </thead>
                             <tbody>
-
-
-
+                            <c:forEach items="${sucursales}" var="bo">
+                                <tr>
+                                    <td>${bo.name}</td>
+                                    <td>${bo.direction}</td>
+                                    <td>${bo.telephone}</td>
+                                    <td>${bo.mail}</td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -40,12 +49,7 @@
                             </form>
                         </div>
                         <div class="col-md-4">
-                            <a class="btn btn-success" href="<c:url value='/rol/create'/>" title="Agregar rol">Agregar
-                                rol</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar
-                                colaborador</a>
+                            <a class="btn btn-success" href="<c:url value='/sucursal/create'/>" title="Agregar sucursal">Agregar Sucursal</a>
                         </div>
                     </div>
                 </div>

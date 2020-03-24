@@ -2,7 +2,6 @@ package com.ideaas.services.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.util.Collection;
 
 /**
  * Created by Benja on 22/3/2020.
@@ -13,7 +12,7 @@ public class Sucursal implements Serializable {
 
 
     @Id
-    @Column(name = "SUC ID", unique = true, nullable = false)
+    @Column(name = "SUC_ID", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -25,11 +24,11 @@ public class Sucursal implements Serializable {
     @NotBlank(message = "No se puede cargar con espacios vacios")
     private String direction;
 
-    @Column (name = "SUC TELEFONO")
+    @Column (name = "SUC_TELEFONO")
     @NotBlank(message= "No se puede cargar con espacios vacios")
-    private Long telephone;
+    private String telephone;
 
-    @Column (name ="SUC MAIL")
+    @Column (name ="SUC_MAIL")
     @NotBlank(message= "No se puede cargar con espacios vacios")
     private String mail;
 
@@ -53,9 +52,9 @@ public class Sucursal implements Serializable {
 
     public void setDirection(String direction) { this.direction = direction; }
 
-    public Long getTelephone() { return telephone; }
+    public String getTelephone() { return telephone; }
 
-    public void setTelephone (Long telephone) { this.telephone = telephone; }
+    public void setTelephone (String telephone) { this.telephone = telephone; }
 
     public String getMail () { return mail; }
 
