@@ -24,17 +24,32 @@
                             <th>Direccion</th>
                             <th>Telefono</th>
                             <th>Mail</th>
-
+                            <th>Editar</th>
                             </thead>
                             <tbody>
-                            <c:forEach items="${sucursales}" var="bo">
-                                <tr>
-                                    <td>${bo.name}</td>
-                                    <td>${bo.direction}</td>
-                                    <td>${bo.telephone}</td>
-                                    <td>${bo.mail}</td>
-                                </tr>
-                            </c:forEach>
+                            <c:set var = "sucursales" scope = "session" value = "${sucursales}"/>
+                            <c:choose>
+                                <c:when test="${empty sucursales}">
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            <p class="mt-5">No hay sucursales para mostrar</p>
+                                        </td>
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${sucursales}" var="bo">
+                                        <tr>
+                                            <td>${bo.name}</td>
+                                            <td>${bo.direction}</td>
+                                            <td>${bo.telephone}</td>
+                                            <td>${bo.mail}</td>
+                                            <td>
+                                                <a href="<c:url value='/sucursal/update?id=${bo.id}'/>" class="btn btn-success">Editar</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                             </tbody>
                         </table>
                     </div>
@@ -50,6 +65,10 @@
                         </div>
                         <div class="col-md-4">
                             <a class="btn btn-success" href="<c:url value='/sucursal/create'/>" title="Agregar sucursal">Agregar Sucursal</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar
+                                colaborador</a>
                         </div>
                     </div>
                 </div>

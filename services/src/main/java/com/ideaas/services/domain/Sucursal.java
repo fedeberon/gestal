@@ -1,6 +1,8 @@
 package com.ideaas.services.domain;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -30,6 +32,7 @@ public class Sucursal implements Serializable {
 
     @Column (name ="SUC_MAIL")
     @NotBlank(message= "No se puede cargar con espacios vacios")
+    @Email
     private String mail;
 
     public Long getId() {

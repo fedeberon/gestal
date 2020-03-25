@@ -18,20 +18,32 @@
                                 <th>Editar</th>
                             </thead>
                             <tbody>
-                                <c:forEach items="${usuarios}" var="bo">
+                            <c:set var = "usuario" scope = "session" value = "${usuarios}"/>
+                            <c:choose>
+                                <c:when test="${empty usuario}">
                                     <tr>
-                                        <td>
-                                            <a href="<c:url value='/usuario/show?id=${bo.id}'/>" class="btn btn-primary" title="Perfil de usuario">${bo.id}</a>
-                                        </td>
-                                        <td>${bo.username}</td>
-                                        <td>${bo.mail}</td>
-                                        <td>
-                                            <a href="<c:url value='/usuario/update?id=${bo.id}'/>" class="btn btn-success" title="Editar usuario">
-                                                Editar
-                                            </a>
+                                        <td colspan="4" class="text-center">
+                                            <p class="mt-5">No hay usuarios para mostrar</p>
                                         </td>
                                     </tr>
-                                </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${usuarios}" var="bo">
+                                        <tr>
+                                            <td>
+                                                <a href="<c:url value='/usuario/show?id=${bo.id}'/>" class="btn btn-primary" title="Perfil de usuario">${bo.id}</a>
+                                            </td>
+                                            <td>${bo.username}</td>
+                                            <td>${bo.mail}</td>
+                                            <td>
+                                                <a href="<c:url value='/usuario/update?id=${bo.id}'/>" class="btn btn-success" title="Editar usuario">
+                                                    Editar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
                             </tbody>
                         </table>
                     </div>

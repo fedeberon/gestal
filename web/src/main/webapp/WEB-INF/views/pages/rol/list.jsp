@@ -14,14 +14,30 @@
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>Nombre</th>
+                                <th>Editar</th>
                             </thead>
                             <tbody>
+                            <c:set var = "roles" scope = "session" value = "${roles}"/>
+                            <c:choose>
+                                <c:when test="${empty roles}">
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <p class="mt-5">No hay roles para mostrar</p>
+                                        </td>
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${roles}" var="bo">
+                                        <tr>
+                                            <td>${bo.name}</td>
+                                            <td>
+                                                <a href="<c:url value='/rol/update?id=${bo.id}'/>" class="btn btn-success">Editar</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
 
-                            <c:forEach items="${roles}" var="bo">
-                                <tr>
-                                    <td>${bo.name}</td>
-                                </tr>
-                            </c:forEach>
 
                             </tbody>
                         </table>

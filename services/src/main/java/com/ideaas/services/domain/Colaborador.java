@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "COLABORADORES")
-public class Colaborador implements Serializable{
+public class    Colaborador implements Serializable{
 
     @Id
     @Column(name = "COL_ID")
@@ -40,6 +40,11 @@ public class Colaborador implements Serializable{
     @Column(name = "COL_PASSWORD")
     @NotBlank(message = "No se puede cargar con espacios vacios")
     private String password;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "COL_SUC_ID", nullable = false)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private Sucursal sucursal;
 
     public Long getId() {
         return id;
@@ -87,5 +92,13 @@ public class Colaborador implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 }

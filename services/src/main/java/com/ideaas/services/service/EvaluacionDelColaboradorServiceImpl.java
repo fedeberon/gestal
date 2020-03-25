@@ -11,9 +11,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -61,21 +61,27 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
     @Override
     public EvaluacionDelColaborador calcularScore(){
         List<EvaluacionDelColaborador> evaluaciones = dao.findAll();
+        AtomicBoolean evaluacionInvalidada = new AtomicBoolean(false);
 
         evaluaciones.forEach(evaluacion ->{
             AtomicReference<Float> resultado = new AtomicReference<>(Float.valueOf(0));
+            evaluacionInvalidada.set(false);
 
             evaluacion.getItemEvaluados().forEach(itemEvaluado -> {
                 //Si el checkbox que invalida la evaluacion o el rating del item es 0, el score de la evaluacion es 0
                 if(itemEvaluado.getItem().isInvalidaEvaluacion() == true || itemEvaluado.getItem().getScore() == 0) {
-                    evaluacion.setResultado(Float.valueOf(0));
-
+                    evaluacionInvalidada.set(true);
                 }else {
                     Float resultadoPorItem = (Float.valueOf(itemEvaluado.getRating()) * Float.valueOf(itemEvaluado.getItem().getScore()));
                     resultado.set(resultado.get() + resultadoPorItem);
                 }
             });
-            evaluacion.setResultado(resultado.get());
+            if (evaluacionInvalidada.get() == true){
+                evaluacion.setResultado(Float.valueOf(0));
+
+            }else {
+                evaluacion.setResultado(resultado.get());
+            }
         });
         return null;
     }

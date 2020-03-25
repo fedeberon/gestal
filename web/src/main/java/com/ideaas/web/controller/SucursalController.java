@@ -39,21 +39,27 @@ public class SucursalController {
 
         return "sucursal/list";
     }
+
     @RequestMapping("create")
     public String create(@ModelAttribute("sucursal") Sucursal sucursal) {
-
         return "sucursal/create";
     }
+
     @RequestMapping(value = "save")
     public String save(@Valid @ModelAttribute("sucursal") Sucursal sucursal, Errors result, Model map) {
         if (result.hasErrors()) {
-
             return "sucursal/create";
         } else {
             sucursalService.save(sucursal);
-
             return "redirect:list";
         }
+    }
 
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        Sucursal sucursal = sucursalService.get(id);
+        model.addAttribute("sucursal", sucursal);
+
+        return "sucursal/update";
     }
 }

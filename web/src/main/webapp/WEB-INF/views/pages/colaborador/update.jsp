@@ -8,11 +8,9 @@
                     <h4 class="card-title"> Editar datos del Colaborador</h4>
                 </div>
                 <div class="card-body m-auto">
-
                     <c:url var="actionUrl" value="/colaborador/save" />
                     <form:form modelAttribute="colaborador" action="${actionUrl}" method="POST">
                         <form:hidden path="id" value='${colaborador.id}'/>
-
                         <div class="form-style-8">
                             <input type="hidden" name="colaborador.id" value="${colaborador.id}"/>
 
@@ -44,6 +42,13 @@
                                 <label class="form-control-label" for="inputSuccess3">Seleccionar rol</label>
                                 <form:select  path="rol.id" cssClass="form-control">
                                     <form:options items="${roles}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
+                                </form:select>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label class="form-control-label" for="inputSuccess6">Seleccionar sucursal</label>
+                                <form:select path="sucursal.id" cssClass="form-control">
+                                    <form:options items="${sucursales}" itemValue="id" itemLabel="name" id="inputSuccess6"/>
                                 </form:select>
                             </div>
 

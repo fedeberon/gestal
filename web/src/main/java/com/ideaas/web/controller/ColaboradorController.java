@@ -3,8 +3,10 @@ package com.ideaas.web.controller;
 import com.ideaas.services.dao.user.UserDao;
 import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.Rol;
+import com.ideaas.services.domain.Sucursal;
 import com.ideaas.services.service.interfaces.ColaboradorService;
 import com.ideaas.services.service.interfaces.RolService;
+import com.ideaas.services.service.interfaces.SucursalService;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,12 +30,14 @@ public class ColaboradorController {
 
     private ColaboradorService colaboradorService;
     private RolService rolService;
+    private SucursalService sucursalService;
 
     @Autowired
-    public ColaboradorController(ColaboradorService colaboradorService, RolService rolService) {
+    public ColaboradorController(ColaboradorService colaboradorService, RolService rolService, SucursalService sucursalService) {
 
         this.colaboradorService = colaboradorService;
         this.rolService = rolService;
+        this.sucursalService = sucursalService;
     }
 
     @RequestMapping(value = "save")
@@ -72,6 +76,12 @@ public class ColaboradorController {
     public List<Rol> getRoles() {
 
         return rolService.findAll();
+    }
+
+    @ModelAttribute("sucursales")
+    public List<Sucursal> getSucursales() {
+
+        return sucursalService.findAll();
     }
 
     @RequestMapping("/list")

@@ -110,15 +110,19 @@
     </definition>
 
     <!--Sucursal -->
-
     <definition name="sucursal/list" extends="template-def">
         <put-attribute name="title" value="Lista de Sucursales" />
         <put-attribute name="body" value="/WEB-INF/views/pages/sucursal/list.jsp" />
     </definition>
 
     <definition name="sucursal/create" extends="template-def">
-        <put-attribute name="title" value="Lista de Sucursales" />
+        <put-attribute name="title" value="Crear sucursal" />
         <put-attribute name="body" value="/WEB-INF/views/pages/sucursal/create.jsp" />
+    </definition>
+
+    <definition name="sucursal/update" extends="template-def">
+        <put-attribute name="title" value="Editar sucursal" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/sucursal/update.jsp" />
     </definition>
 
     <!--Login -->

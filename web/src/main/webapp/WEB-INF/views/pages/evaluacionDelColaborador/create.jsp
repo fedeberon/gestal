@@ -11,9 +11,6 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title"> Crear un nueva evaluaci&oacute;n</h4>
-                </div>
                 <div class="card-body m-auto">
                     <c:url var="actionUrl" value="/evaluacionDelColaborador/save" />
                     <form:form modelAttribute="evaluacionDelColaborador" action="${actionUrl}" method="POST">
