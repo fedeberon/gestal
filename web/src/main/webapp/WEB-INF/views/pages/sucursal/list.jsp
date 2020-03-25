@@ -24,6 +24,7 @@
                             <th>Direccion</th>
                             <th>Telefono</th>
                             <th>Mail</th>
+                            <th>Editar</th>
 
                             </thead>
                             <tbody>
@@ -33,6 +34,10 @@
                                     <td>${bo.direction}</td>
                                     <td>${bo.telephone}</td>
                                     <td>${bo.mail}</td>
+                                    <td>
+                                    <a href="<c:url value='/sucursal/update?id=${bo.id}'/>"
+                                       class="btn btn-success">Editar</a>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>

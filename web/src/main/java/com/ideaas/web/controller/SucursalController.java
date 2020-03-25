@@ -1,5 +1,6 @@
 package com.ideaas.web.controller;
 import com.ideaas.services.bean.State;
+import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.Rol;
 import com.ideaas.services.domain.Sucursal;
 import com.ideaas.services.service.interfaces.SucursalService;
@@ -54,6 +55,12 @@ public class SucursalController {
 
             return "redirect:list";
         }
+    }
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        Sucursal sucursal = sucursalService.get(id);
+        model.addAttribute("sucursal", sucursal);
 
+        return "sucursal/update";
     }
 }

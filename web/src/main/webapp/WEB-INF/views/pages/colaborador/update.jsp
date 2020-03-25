@@ -18,8 +18,8 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Mail</label>
-                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1"/>
-                                <form:errors path="username" cssClass="error" size="50"/>
+                                <form:input path="username" size="50"  id="inputSuccess1"/>
+                                <form:errors path="username"  size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
