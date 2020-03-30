@@ -28,7 +28,9 @@
                                     <div id="field">
                                         <label for="field1">Items de la evaluaci&oacute;n</label>
                                         <div class="input-group">
-                                            <input required="required" autocomplete="off" class="col-5 mx-3" id="field1" name="items[0].value" type="text" placeholder="Descripcion del item"/>
+                                            <input required="required" autocomplete="off" class="col-5 mx-3" id="field1"
+                                                   name="items[0].value" type="text"
+                                                   placeholder="Descripcion del item"/>
                                             <select name="items[0].score" id="select_1" class="col-2 d-inline">
 
                                                 <c:forEach var="i" begin="0" end="10">
@@ -36,45 +38,12 @@
                                                 </c:forEach>
 
                                             </select>
-                                            <input name="items[0].invalidaEvaluacion" class="col-1 mt-2" type="checkbox" id="check-invalida-evaluiacion-to-clone_0" style=""/>
-                                            <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong" id="modal_0" style="">
-                                                    Consideraciones
-                                                </button>
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">Consideracioes</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label class="control-label">Descripic&oacute;n</label>
-                                                                <div class="controls">
-                                                                    <div class="form">
-                                                                        <div class="entry input-group col-xs-3">
-                                                                            <input id="consideracion_0" class="form-control" name="items[0].consideraciones[0].value" type="text" placeholder="Ingrese consideraci&oacute;n">
-                                                                            <span class="input-group-btn">
-                                                                                <button class="btn btn-success btn-add" type="button">
-                                                                                    <span class="glyphicon glyphicon-plus"></span>
-                                                                                </button>
-                                                							</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="submit" class="btn btn-primary">Guardar</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <input name="items[0].invalidaEvaluacion" class="col-1 mt-2" type="checkbox"
+                                                   id="check-invalida-evaluiacion-to-clone_0" style=""/>
+                                            <jsp:include page="createConsideracionModal.jsp" />
                                             <div class="col-1">
-                                                <button id="b1" class="btn btn-primary add-more" type="button">+</button>
+                                                <button id="b1" class="btn btn-primary add-more" type="button">+
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -121,8 +90,10 @@
 <input name="items[0].invalidaEvaluacion" type="checkbox" style="display: none"
        id="check-invalida-evaluiacion-to-clone"/>
 
-<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong" id="modal-to-clone" style="display: none">
+<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong" id="modal-to-clone"
+        style="display: none">
     Consideraciones
 </button>
 
-<input id="consideracion-to-clone" class="form-control" name="items[0].consideraciones[0].value" type="text" placeholder="Ingrese consideraci&oacute;n" style="display:none;">
+<input id="consideracion-to-clone" class="form-control" name="items[0].consideraciones[0].value" type="text"
+       placeholder="Ingrese consideraci&oacute;n" style="display:none;">

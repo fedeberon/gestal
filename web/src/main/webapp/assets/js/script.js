@@ -166,34 +166,38 @@ jQuery(document).ready(function($){
 });
 
 
-$(function()
-{
+$(document).ready(function () {
     var next = 1;
-    next = next + 1;
-
-    $(document).on('click', '.btn-add', function(e)
-    {
+    $(".add-consideracion").click(function (e) {
         e.preventDefault();
+        var addto = "#field-consideracion" + next;
+        var addRemove = "#field-consideracion" + (next);
+        next = next + 1;
 
-        var controlForm = $('.controls .form:first'),
-            currentEntry = $(this).parents('.entry:first'),
-            newEntry = $(currentEntry.clone()).appendTo(controlForm);
 
-        newEntry.find('consideracion_').val('');
-        controlForm.find('.entry:not(:last) .btn-add')
-            .removeClass('btn-add').addClass('btn-remove')
-            .removeClass('btn-success').addClass('btn-danger')
-            .html('<span class="glyphicon glyphicon-minus"></span>');
-    }).on('click', '.btn-remove', function(e)
-    {
-        $(this).parents('.entry:first').remove();
+        var divContainer = $('<div>', {
+            id: next,
+        });
+        $(divContainer).addClass('input-group');
+        var newIn = '<input autocomplete="off" class="input col-5 mx-3" id="field-consideracion' + next + '" name="items[' + next + '].consideraciones[' + next + '].value" type="text" placeholder="Descripcion de la consideracion">';
+        var newInput = $(newIn);
+        // $(addto).after(newInput);
+        $(divContainer).append(newInput);
 
-        e.preventDefault();
-        return false;
+        var removeBtn = '<button id="remove-consideracion' + (next) + '" class="btn btn-danger remove-me ml-3" >-</button></div>';
+        var removeButton = $(removeBtn);
+        // $(addRemove).after(removeButton);
+        $(divContainer).append(removeButton);
+
+        $("#field-consideracion").append(divContainer);
+
+        $("#count-consideracion").val(next);
+
+        $('.remove-me').click(function (e) {
+            e.preventDefault();
+            var fieldNum = this.id.charAt(this.id.length - 1);
+            var divToRemove = $("#"+ fieldNum)
+            $(divToRemove).remove();
+        });
     });
-
-    var consideracion = $("#consideracion-to-clone").clone();
-    consideracion.attr("id", "consideracion_" + next);
-    consideracion.attr("class", "form-control d-inline");
-    consideracion.attr("name", "items[" + next + "].consideraciones[" + next + "].value");
 });
