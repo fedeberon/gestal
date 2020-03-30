@@ -13,7 +13,7 @@ $(document).ready(function () {
             id: next,
         });
         $(divContainer).addClass('input-group');
-        var newIn = '<input autocomplete="off" class="input col-7 mx-3" id="field' + next + '" name="items[' + next + '].value" type="text" placeholder="Descripcion del item">';
+        var newIn = '<input autocomplete="off" class="input col-5 mx-3" id="field' + next + '" name="items[' + next + '].value" type="text" placeholder="Descripcion del item">';
         var newInput = $(newIn);
         // $(addto).after(newInput);
 
@@ -33,7 +33,20 @@ $(document).ready(function () {
         // $(addto).after(ckeckInvalida);
         $(divContainer).append(ckeckInvalida);
 
-        var removeBtn = '<button id="remove' + (next) + '" class="btn btn-danger remove-me col-1" >-</button></div>';
+        var modal = $("#modal-to-clone").clone();
+        modal.attr("id", "modal_" + next);
+        modal.attr("class", "btn btn-primary d-inline");
+        modal.attr("data-target", "exlampeModalLong_" + next);
+        // $(addto).after(ckeckInvalida);
+        $(divContainer).append(modal);
+
+        modal.attr("data-target", "exlampeModalLong_" + next);
+        // $(addto).after(ckeckInvalida);
+        $(divContainer).append(modal);
+
+
+
+        var removeBtn = '<button id="remove' + (next) + '" class="btn btn-danger remove-me ml-3" >-</button></div>';
         var removeButton = $(removeBtn);
         // $(addRemove).after(removeButton);
         $(divContainer).append(removeButton);
@@ -152,3 +165,35 @@ jQuery(document).ready(function($){
     })
 });
 
+
+$(function()
+{
+    var next = 1;
+    next = next + 1;
+
+    $(document).on('click', '.btn-add', function(e)
+    {
+        e.preventDefault();
+
+        var controlForm = $('.controls .form:first'),
+            currentEntry = $(this).parents('.entry:first'),
+            newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+        newEntry.find('consideracion_').val('');
+        controlForm.find('.entry:not(:last) .btn-add')
+            .removeClass('btn-add').addClass('btn-remove')
+            .removeClass('btn-success').addClass('btn-danger')
+            .html('<span class="glyphicon glyphicon-minus"></span>');
+    }).on('click', '.btn-remove', function(e)
+    {
+        $(this).parents('.entry:first').remove();
+
+        e.preventDefault();
+        return false;
+    });
+
+    var consideracion = $("#consideracion-to-clone").clone();
+    consideracion.attr("id", "consideracion_" + next);
+    consideracion.attr("class", "form-control d-inline");
+    consideracion.attr("name", "items[" + next + "].consideraciones[" + next + "].value");
+});

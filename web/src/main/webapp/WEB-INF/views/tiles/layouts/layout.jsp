@@ -60,8 +60,8 @@
         <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
         <script type="text/javascript" src='<c:url value="/assets/js/paper-dashboard.min.js?v=2.0.0"/>'></script>
 
-        <%--<script type="text/javascript" href="<c:url value='/assets/js/createEvaluacion.js'/>"></script>--%>
-        <script type="text/javascript" src='<c:url value="/assets/js/createEvaluacion.js"/>'></script>
+        <%--<script type="text/javascript" href="<c:url value='/assets/js/script.js'/>"></script>--%>
+        <script type="text/javascript" src='<c:url value="/assets/js/script.js"/>'></script>
 
         <script type="text/javascript" src='<c:url value="/assets/js/paginador.js"/>'></script>
 
