@@ -1,8 +1,10 @@
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 
@@ -99,33 +101,30 @@
             </div>
             <div class="d-flex justify-content-center form_container">
 
-                <c:url var="actionUrl" value="/usuario/save"/>
+
+            <c:url var="actionUrl" value="/usuario/save"/>
                 <form:form modelAttribute="usuario" action="${actionUrl}" method="POST">
 
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-2">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <label class="form-control-label">Usuario:</label>
-                        <form:input path="username" cssClass="form-control" size="50"/>
-                        <form:errors path="username" cssClass="error" size="50"/>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        </div>
-                        <label class="form-control-label">Email:</label>
-                        <form:input path="mail" cssClass="form-control" size="50"/>
-                        <form:errors path="mail" cssClass="error" size="50"/>
+                        <form:input path="username" cssClass="form-control"  placeholder="Usuario"/>
+                        <form:errors path="username" cssClass="error"/>
                     </div>
 
                     <div class="input-group mb-2">
                         <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <form:input path="mail" cssClass="form-control" />
+                        <form:errors path="mail" cssClass="error"/>
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <label class="form-control-label">Contrase&ntilde;a:</label>
-                        <form:password path="password" cssClass="form-control" size="50"/>
+                        <form:password path="password" cssClass="form-control input_pass"/>
                         <form:errors path="password" cssClass="error" size="50"/>
                     </div>
 

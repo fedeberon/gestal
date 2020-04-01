@@ -80,7 +80,7 @@ public class UserController {
 
 
     @RequestMapping("/register")
-    public String register(Model model){
+    public String register(@ModelAttribute("usuario") User user, Model model){
         return "usuario/signin";
     }
 
