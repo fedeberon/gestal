@@ -35,8 +35,6 @@
                     Nuevo
                 </a>
 
-
-
             </div>
         </div>
     </div>

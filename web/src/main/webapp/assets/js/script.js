@@ -13,7 +13,7 @@ $(document).ready(function () {
             id: next,
         });
         $(divContainer).addClass('input-group');
-        var newIn = '<input autocomplete="off" class="input col-7 mx-3" id="field' + next + '" name="items[' + next + '].value" type="text" placeholder="Descripcion del item">';
+        var newIn = '<input autocomplete="off" class="input col-5 mx-3" id="field' + next + '" name="items[' + next + '].value" type="text" placeholder="Descripcion del item">';
         var newInput = $(newIn);
         // $(addto).after(newInput);
 
@@ -33,7 +33,20 @@ $(document).ready(function () {
         // $(addto).after(ckeckInvalida);
         $(divContainer).append(ckeckInvalida);
 
-        var removeBtn = '<button id="remove' + (next) + '" class="btn btn-danger remove-me col-1" >-</button></div>';
+        var modal = $("#modal-to-clone").clone();
+        modal.attr("id", "modal_" + next);
+        modal.attr("class", "btn btn-primary d-inline");
+        modal.attr("data-target", "exlampeModalLong_" + next);
+        // $(addto).after(ckeckInvalida);
+        $(divContainer).append(modal);
+
+        modal.attr("data-target", "exlampeModalLong_" + next);
+        // $(addto).after(ckeckInvalida);
+        $(divContainer).append(modal);
+
+
+
+        var removeBtn = '<button id="remove' + (next) + '" class="btn btn-danger remove-me ml-3" >-</button></div>';
         var removeButton = $(removeBtn);
         // $(addRemove).after(removeButton);
         $(divContainer).append(removeButton);
@@ -152,3 +165,39 @@ jQuery(document).ready(function($){
     })
 });
 
+
+$(document).ready(function () {
+    var next = 1;
+    $(".add-consideracion").click(function (e) {
+        e.preventDefault();
+        var addto = "#field-consideracion" + next;
+        var addRemove = "#field-consideracion" + (next);
+        next = next + 1;
+
+
+        var divContainer = $('<div>', {
+            id: next,
+        });
+        $(divContainer).addClass('input-group');
+        var newIn = '<input autocomplete="off" class="input col-5 mx-3" id="field-consideracion' + next + '" name="items[' + next + '].consideraciones[' + next + '].value" type="text" placeholder="Descripcion de la consideracion">';
+        var newInput = $(newIn);
+        // $(addto).after(newInput);
+        $(divContainer).append(newInput);
+
+        var removeBtn = '<button id="remove-consideracion' + (next) + '" class="btn btn-danger remove-me ml-3" >-</button></div>';
+        var removeButton = $(removeBtn);
+        // $(addRemove).after(removeButton);
+        $(divContainer).append(removeButton);
+
+        $("#field-consideracion").append(divContainer);
+
+        $("#count-consideracion").val(next);
+
+        $('.remove-me').click(function (e) {
+            e.preventDefault();
+            var fieldNum = this.id.charAt(this.id.length - 1);
+            var divToRemove = $("#"+ fieldNum)
+            $(divToRemove).remove();
+        });
+    });
+});

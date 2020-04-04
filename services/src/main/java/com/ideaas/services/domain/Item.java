@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by federicoberon on 03/02/2020.
@@ -34,6 +35,11 @@ public class Item implements Serializable{
     @JsonIgnore
     @Column(name = "ITEM_INAVLID_SCORE")
     private boolean invalidaEvaluacion = false;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ITEM_CON_ID", nullable = false)
+    private List<Consideracion> consideraciones;
 
     public String getValue() {
         return value;
@@ -73,5 +79,13 @@ public class Item implements Serializable{
 
     public void setInvalidaEvaluacion(boolean invalidaEvaluacion) {
         this.invalidaEvaluacion = invalidaEvaluacion;
+    }
+
+    public List<Consideracion> getConsideraciones() {
+        return consideraciones;
+    }
+
+    public void setConsideraciones(List<Consideracion> consideraciones) {
+        this.consideraciones = consideraciones;
     }
 }
