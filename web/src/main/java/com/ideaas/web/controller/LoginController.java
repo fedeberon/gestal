@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Controller
@@ -29,7 +30,10 @@ public class LoginController {
 
     @RequestMapping(value = {"/home" , ""})
     public String homePage(Model model) {
+        Calendar c1 = Calendar.getInstance();
+        String mes = Integer.toString(c1.get(Calendar.MONTH));
         List<EvaluacionDelColaborador> evaluacionesDeColaboradores = evaluacionDelColaboradorService.findAll();
+        Integer cantidadEvaluaciones = evaluacionService.findOneMonth();
         List<Evaluacion> evaluaciones = evaluacionService.findAll();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
@@ -40,6 +44,7 @@ public class LoginController {
         }
         model.addAttribute("cantColaboradoresEvaluados", evaluacionesDeColaboradores);
         model.addAttribute("evaluaciones", evaluaciones);
+        model.addAttribute("cantidadEvaluaciones", cantidadEvaluaciones);
         return "home";
     }
 
