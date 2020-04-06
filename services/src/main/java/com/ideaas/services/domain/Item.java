@@ -36,8 +36,7 @@ public class Item implements Serializable{
     @Column(name = "ITEM_INAVLID_SCORE")
     private boolean invalidaEvaluacion = false;
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "ITEM_CON_ID", nullable = false)
     private List<Consideracion> consideraciones;
 

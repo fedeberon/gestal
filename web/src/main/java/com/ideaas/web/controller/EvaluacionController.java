@@ -46,7 +46,9 @@ public class EvaluacionController {
     @RequestMapping(method = RequestMethod.POST)
     public String save(@ModelAttribute Evaluacion evaluacion){
         evaluacion.getItems().removeIf(item -> item.getValue() == null);
+
         evaluacion.getItems().forEach(item -> {
+            item.getConsideraciones().removeIf(consideracion -> consideracion.getValue() == null);
             item.setEvaluacion(evaluacion);
         });
         evaluacionService.save(evaluacion);

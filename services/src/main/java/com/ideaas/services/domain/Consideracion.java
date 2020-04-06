@@ -16,6 +16,10 @@ public class Consideracion {
     @Column(name = "CON_VALUE")
     private String value;
 
+    @JsonIgnore
+    @Column(name = "CON_RATING")
+    private boolean rating;
+
     public Long getId() {
         return id;
     }
@@ -30,6 +34,14 @@ public class Consideracion {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public boolean isRating() {
+        return rating;
+    }
+
+    public void setRating(boolean rating) {
+        this.rating = rating;
     }
 
 }

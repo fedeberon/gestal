@@ -107,11 +107,13 @@
                                                                                         <thead class="text-primary">
                                                                                         <tr>
                                                                                             <th width="70%" class="text-center">Items</th>
-                                                                                            <th width="30%" class="text-center">Rating</th>
+                                                                                            <th width="15%" class="text-center">Rating Estrellas</th>
+                                                                                            <th width="15%" class="text-center">Rating Consideraciones</th>
                                                                                         </tr>
                                                                                         </thead>
                                                                                         <tbody>
                                                                                         <c:forEach items="${bo.itemEvaluados}" var="itemEvaluado">
+
                                                                                             <tr>
                                                                                                 <td class="text-center">
                                                                                                         ${itemEvaluado.item.value}
@@ -134,7 +136,22 @@
                                                                                                         </ul>
                                                                                                     </div>
                                                                                                 </td>
-
+                                                                                                <td class="text-center">
+                                                                                                    <div class="rating-star">
+                                                                                                        <ul class="list-inline">
+                                                                                                            <li class="list-inline-item">
+                                                                                                                <c:set var = "score" scope = "session" value = "${itemEvaluado.ratingConsideracion}"/>
+                                                                                                                <c:set var = "resto" scope = "session" value = "${5-score}"/>
+                                                                                                                <c:forEach begin="1" end="${score}" varStatus="count">
+                                                                                                                    <span id="score" class="fa fa-star checked"></span>
+                                                                                                                </c:forEach>
+                                                                                                                <c:forEach begin="1" end="${resto}" varStatus="count">
+                                                                                                                    <span id="score" class="fa fa-star"></span>
+                                                                                                                </c:forEach>
+                                                                                                            </li>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                </td>
                                                                                             </tr>
                                                                                         </c:forEach>
                                                                                         </tbody>

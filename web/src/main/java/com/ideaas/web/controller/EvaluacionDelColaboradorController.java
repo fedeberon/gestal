@@ -78,6 +78,7 @@ public class EvaluacionDelColaboradorController {
 
         } else {
             evaluacionDelColaboradorService.save(evaluacionDelColaborador);
+
             return "redirect:list";
         }
     }

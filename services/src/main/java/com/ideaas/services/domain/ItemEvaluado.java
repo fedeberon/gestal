@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by federicoberon on 04/02/2020.
@@ -21,13 +23,17 @@ public class ItemEvaluado implements Serializable{
     @JoinColumn(name = "IEV_ITEM_ID", nullable = false)
     private Item item;
 
-    @Column(name = "IEV_rating")
+    @Column(name = "IEV_RATING")
     private Float rating;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "IEV_EDC_ID", nullable = false)
     private EvaluacionDelColaborador evaluacionDelColaborador;
+
+    @Column(name = "IEV_RATING_CONSIDERACION")
+    private Float ratingConsideracion;
+
 
     public Long getId() {
         return id;
@@ -59,5 +65,13 @@ public class ItemEvaluado implements Serializable{
 
     public void setRating(Float rating) {
         this.rating = rating;
+    }
+
+    public Float getRatingConsideracion() {
+        return ratingConsideracion;
+    }
+
+    public void setRatingConsideracion(Float ratingConsideracion) {
+        this.ratingConsideracion = ratingConsideracion;
     }
 }
