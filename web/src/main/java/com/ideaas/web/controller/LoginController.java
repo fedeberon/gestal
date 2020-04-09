@@ -31,9 +31,12 @@ public class LoginController {
     @RequestMapping(value = {"/home" , ""})
     public String homePage(Model model) {
         Calendar c1 = Calendar.getInstance();
-        String mes = Integer.toString(c1.get(Calendar.MONTH));
+        Integer mes = c1.get(Calendar.MONTH);
+        Integer anio = c1.get(Calendar.YEAR);
+        System.out.println(mes);
+        System.out.println(anio);
         List<EvaluacionDelColaborador> evaluacionesDeColaboradores = evaluacionDelColaboradorService.findAll();
-        Integer cantidadEvaluaciones = evaluacionService.findOneMonth();
+        Integer cantidadEvaluaciones = evaluacionService.findOneMonth(mes,anio);
         List<Evaluacion> evaluaciones = evaluacionService.findAll();
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {

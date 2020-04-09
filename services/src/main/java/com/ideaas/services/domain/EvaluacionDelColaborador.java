@@ -35,6 +35,7 @@ public class EvaluacionDelColaborador implements Serializable{
     private LocalDateTime fecha = LocalDateTime.now();*/
 
     @Column(name = "EDC_FECHA_DE_CARGA")
+    @Temporal(TemporalType.DATE)
     private Date fechaDeCarga;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacionDelColaborador", cascade = CascadeType.PERSIST)
