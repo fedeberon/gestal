@@ -22,5 +22,4 @@ public interface EvaluacionService {
 
     EvaluacionDelColaborador get(Long id);
 
-    Integer findOneMonth(Integer mes, Integer anio);
 }

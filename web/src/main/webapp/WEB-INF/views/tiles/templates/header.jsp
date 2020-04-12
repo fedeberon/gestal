@@ -1,5 +1,11 @@
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.userdetails.UserDetails" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    String username = ((UserDetails)principal).getUsername();
+%>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
    <div class="container-fluid">
@@ -25,7 +31,7 @@
             <li class="nav-item btn-rotate dropdown">
                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <p>
-                     <span class="d-md-block">${usuario}</span>
+                     <span class="d-md-block"><%=username%></span>
                   </p>
                </a>
                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">

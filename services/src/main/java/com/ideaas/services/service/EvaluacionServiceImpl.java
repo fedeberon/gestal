@@ -77,13 +77,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
     @Override
     public Evaluacion getById(Long id) {
-
         return dao.findById(id).get();
-    }
-    @Override
-    public Integer findOneMonth(Integer mes, Integer anio){
-
-        return null;
     }
 
 }

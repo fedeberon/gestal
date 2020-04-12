@@ -16,9 +16,5 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Long> {
 
     @Query("FROM Evaluacion WHERE rol = ?1 and state = 'ACTIVE'")
     Evaluacion getActiveByRol(Rol rol);
-
-    @Query("SELECT e FROM EVALUACIONES_DE_COLABORADORES WHERE year(e.fechaDeCarga) = ?2 AND MONTH(e.fechaDeCarga) = ?1")
-    findOneMonth(Integer mes, Integer anio) {
-
     }
-}
+

@@ -1,3 +1,5 @@
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.userdetails.UserDetails" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
@@ -31,7 +33,6 @@
     <body>
         <div class="flex-container">
             <tiles:insertAttribute name="header" />
-
             <tiles:insertAttribute name="menu" />
             <div class="main-panel">
                 <tiles:insertAttribute name="body" />
@@ -64,6 +65,5 @@
         <script type="text/javascript" src='<c:url value="/assets/js/script.js"/>'></script>
 
         <script type="text/javascript" src='<c:url value="/assets/js/paginador.js"/>'></script>
-
     </body>
 </html>

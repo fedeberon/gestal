@@ -30,24 +30,10 @@ public class LoginController {
 
     @RequestMapping(value = {"/home" , ""})
     public String homePage(Model model) {
-        Calendar c1 = Calendar.getInstance();
-        Integer mes = c1.get(Calendar.MONTH);
-        Integer anio = c1.get(Calendar.YEAR);
-        System.out.println(mes);
-        System.out.println(anio);
         List<EvaluacionDelColaborador> evaluacionesDeColaboradores = evaluacionDelColaboradorService.findAll();
-        Integer cantidadEvaluaciones = evaluacionService.findOneMonth(mes,anio);
         List<Evaluacion> evaluaciones = evaluacionService.findAll();
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails)principal).getUsername();
-            model.addAttribute("usuario", username);
-        } else {
-            String username = principal.toString();
-        }
         model.addAttribute("cantColaboradoresEvaluados", evaluacionesDeColaboradores);
         model.addAttribute("evaluaciones", evaluaciones);
-        model.addAttribute("cantidadEvaluaciones", cantidadEvaluaciones);
         return "home";
     }
 
