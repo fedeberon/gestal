@@ -1,15 +1,8 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.dao.user.UserDao;
-import com.ideaas.services.domain.Colaborador;
-import com.ideaas.services.domain.Rol;
-import com.ideaas.services.domain.Sucursal;
-import com.ideaas.services.service.interfaces.ColaboradorService;
-import com.ideaas.services.service.interfaces.RolService;
-import com.ideaas.services.service.interfaces.SucursalService;
-import com.ideaas.services.service.interfaces.UsuarioService;
+import com.ideaas.services.domain.*;
+import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,13 +24,16 @@ public class ColaboradorController {
     private ColaboradorService colaboradorService;
     private RolService rolService;
     private SucursalService sucursalService;
-
+    private EvaluacionService evaluacionService;
+    private ItemService itemService;
     @Autowired
-    public ColaboradorController(ColaboradorService colaboradorService, RolService rolService, SucursalService sucursalService) {
+    public ColaboradorController(ColaboradorService colaboradorService, RolService rolService, SucursalService sucursalService, EvaluacionService evaluacionService, ItemService itemService) {
 
         this.colaboradorService = colaboradorService;
         this.rolService = rolService;
         this.sucursalService = sucursalService;
+        this.evaluacionService = evaluacionService;
+        this.itemService = itemService;
     }
 
     @RequestMapping(value = "save")
@@ -69,7 +65,7 @@ public class ColaboradorController {
     @RequestMapping("/create")
     public String create(@ModelAttribute("colaborador") Colaborador colaborador) {
 
-        return "colaborador/create";
+         return "colaborador/create";
     }
 
     @ModelAttribute("roles")
@@ -88,6 +84,9 @@ public class ColaboradorController {
     public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
         List<Colaborador> colaboradores = colaboradorService.findAll(size, page, "id");
+        List<Evaluacion> evaluaciones = evaluacionService.findAll();
+
+        model.addAttribute("evaluaciones", evaluaciones);
         model.addAttribute("colaboradores", colaboradores);
         model.addAttribute("page", page);
 

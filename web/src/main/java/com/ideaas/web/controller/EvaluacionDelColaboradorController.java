@@ -5,7 +5,6 @@ import com.ideaas.services.service.interfaces.*;
 import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
-import com.ideaas.services.domain.ItemEvaluado;
 import com.ideaas.services.service.interfaces.ColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
@@ -35,13 +34,15 @@ public class EvaluacionDelColaboradorController {
     private EvaluacionDelColaboradorService evaluacionDelColaboradorService;
     private EvaluacionService evaluacionService;
     private ColaboradorService colaboradorService;
+    private ItemService itemService;
 
     @Autowired
-    public EvaluacionDelColaboradorController(RolService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService, EvaluacionService evaluacionService, ColaboradorService colaboradorService) {
+    public EvaluacionDelColaboradorController(RolService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService, EvaluacionService evaluacionService, ColaboradorService colaboradorService, ItemService itemService) {
         this.rolService = rolService;
         this.evaluacionDelColaboradorService = evaluacionDelColaboradorService;
         this.evaluacionService = evaluacionService;
         this.colaboradorService = colaboradorService;
+        this.itemService = itemService;
     }
 
     @RequestMapping("/list")
@@ -59,9 +60,12 @@ public class EvaluacionDelColaboradorController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
-        model.addAttribute("colaborador", colaborador);
         Evaluacion evaluacion = evaluacionService.getByRol(colaborador.getRol());
+        List <Evaluacion> evaluaciones = evaluacionService.findAll();
+
+        model.addAttribute("colaborador", colaborador);
         model.addAttribute("evaluacion", evaluacion);
+        model.addAttribute("evaluaciones", evaluaciones);
 
         return "evaluacionDelColaborador/create";
     }

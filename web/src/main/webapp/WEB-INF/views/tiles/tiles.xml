@@ -93,6 +93,11 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacionDelColaborador/create.jsp" />
     </definition>
 
+    <definition name="evaluacionDelColaborador/createEvaluacion" extends="template-def">
+        <put-attribute name="title" value="Crear evaluacion" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/evaluacionDelColaborador/createEvaluacion.jsp" />
+    </definition>
+
     <!--Rol -->
     <definition name="rol/create" extends="template-def">
         <put-attribute name="title" value="Agregar rol" />

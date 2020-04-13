@@ -78,84 +78,84 @@
                 <div class="card-body">
                     <c:url var="actionUrl" value="/evaluacionDelColaborador/save" />
                     <form:form modelAttribute="evaluacionDelColaborador" action="${actionUrl}" method="POST">
-                                <div class="form-style-8">
-                                    <input type="hidden" name="evaluacionDelColaborador.id" value="${evaluacionDelColaborador.id}"/>
+                        <div class="form-style-8">
+                            <input type="hidden" name="evaluacionDelColaborador.id" value="${evaluacionDelColaborador.id}"/>
 
+                            <div class="form-group mt-4">
+                                <h4 class="form-control-label" for="inputSuccess1">${colaborador.name} ${colaborador.lastName}</h4>
+                                <input name="colaborador.id" type="hidden" value="${colaborador.id}">
+                                <input name="rolEvaluado.id" type="hidden" value="${colaborador.rol.id}">
+                            </div>
+
+                            <c:set var = "item" scope = "session" value = "${evaluacion.items}"/>
+                            <c:choose>
+                                <c:when test="${empty item}">
+                                    <p>No hay items para mostrar en el rol ${colaborador.rol.name}</p>
+                                </c:when>
+                                <c:otherwise>
                                     <div class="form-group mt-4">
-                                        <h4 class="form-control-label" for="inputSuccess1">${colaborador.name} ${colaborador.lastName}</h4>
-                                        <input name="colaborador.id" type="hidden" value="${colaborador.id}">
-                                        <input name="rolEvaluado.id" type="hidden" value="${colaborador.rol.id}">
-                                    </div>
 
-                                    <c:set var = "item" scope = "session" value = "${evaluacion.items}"/>
-                                    <c:choose>
-                                        <c:when test="${empty item}">
-                                            <p>No hay items para mostrar en el rol ${colaborador.rol.name}</p>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <div class="form-group mt-4">
+                                        <c:forEach items="${evaluacion.items}" var="bo" varStatus="status">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card border-dark mt-5">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">
+                                                                <span class="field-label-header">Item a evaluar "<strong>${bo.value}</strong>"</span><br>
+                                                                <input type="hidden" id="selected_rating-${bo.id}" name="itemEvaluados[${status.index}].rating" value="" required="required">
+                                                                <input type="hidden" name="itemEvaluados[${status.index}].item.id" value="${bo.id}"/>
+                                                                <input type="hidden" class="selected_rating_consideracion" id="rating-consideracion" name="itemEvaluados[${status.index}].ratingConsideracion" value=""/>
+                                                            </h5>
+                                                            <div class="form-group mt-5" id="rating-ability-wrapper">
 
-                                                <c:forEach items="${evaluacion.items}" var="bo" varStatus="status">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="card border-dark mt-5">
-                                                                <div class="card-body">
-                                                                    <h5 class="card-title">
-                                                                            <span class="field-label-header">Item a evaluar "<strong>${bo.value}</strong>"</span><br>
-                                                                            <input type="hidden" id="selected_rating-${bo.id}" name="itemEvaluados[${status.index}].rating" value="" required="required">
-                                                                            <input type="hidden" name="itemEvaluados[${status.index}].item.id" value="${bo.id}"/>
-                                                                            <input type="hidden" id="rating-consideracion" name="itemEvaluados[${status.index}].ratingConsideracion" value=""/>
-                                                                    </h5>
-                                                                    <div class="form-group mt-5" id="rating-ability-wrapper">
-
-                                                                        <h4 class="bold rating-header" style="">
-                                                                            <span class="selected-rating-${bo.id}">0</span><small> / 5</small>
-                                                                        </h4>
-                                                                        <c:forEach var = "i" begin = "1" end = "5">
-                                                                            <button type="button" name="items[${bo.id}].value" data-id="${bo.id}" class="btnrating btn btn-default btn-lg" data-attr="${i}" id="rating-star-${bo.id}${i}">
-                                                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                                            </button>
-                                                                        </c:forEach>
-                                                                    </div>
-                                                                    <div class="form-group" id="rating-ability-wrapper">
-                                                                        <c:forEach items="${bo.consideraciones}" var="consideracion" varStatus="statusConsideracion">
-                                                                            <input type="hidden" name="itemEvaluados[${status.index}].item.consideraciones[${statusConsideracion.index}].id" value=""/>
-
-                                                                            <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                    <label class="control-label my-4" for="rating" style="font-size: 16px">
-                                                                                        <span class="field-label-header">Consideracion a evaluar "<strong>${consideracion.value}</strong>"</span><br>
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                    <div class="p-4 check-input">
-<%--                                                                                        <input class="col-1 mt-2" type="checkbox" />--%>
-
-                                                                                        <!-- Rounded switch -->
-                                                                                        <label class="switch col-1 mt-2">
-                                                                                            <input type="checkbox" onclick="getAllCheckSelected();">
-                                                                                            <span class="slider round"></span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </c:forEach>
-                                                                    </div>
-                                                                </div>
+                                                                <h4 class="bold rating-header" style="">
+                                                                    <span class="selected-rating-${bo.id}">0</span><small> / 5</small>
+                                                                </h4>
+                                                                <c:forEach var = "i" begin = "1" end = "5">
+                                                                    <button type="button" name="items[${bo.id}].value" data-id="${bo.id}" class="btnrating btn btn-default btn-lg" data-attr="${i}" id="rating-star-${bo.id}${i}">
+                                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </c:forEach>
                                                             </div>
+                                                            <div class="form-group" id="rating-ability-wrapper">
+                                                                <c:forEach items="${bo.consideraciones}" var="consideracion" varStatus="statusConsideracion">
+                                                                    <input type="hidden" name="itemEvaluados[${status.index}].item.consideraciones[${statusConsideracion.index}].id" value=""/>
 
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <label class="control-label my-4" for="rating" style="font-size: 16px">
+                                                                                <span class="field-label-header">Consideracion a evaluar "<strong>${consideracion.value}</strong>"</span><br>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="p-4 check-input">
+                                                                                    <%--                                                                                        <input class="col-1 mt-2" type="checkbox" />--%>
+
+                                                                                <!-- Rounded switch -->
+                                                                                <label class="switch col-1 mt-2">
+                                                                                    <input name="itemEvaluados[${status.index}].ratingConsideracion" class="selected-rating-consideracion" id="${statusConsideracion.index}" type="checkbox">
+                                                                                    <span class="slider round"></span>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </c:forEach>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </c:forEach>
+
+                                                </div>
                                             </div>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <div class="form-group mt-4">
-                                        <c:if test="${!empty item}">
-                                            <button type="submit" class="btn btn-default" id="btnSubmit">Guardar</button>
-                                        </c:if>
+                                        </c:forEach>
                                     </div>
-                                </div>
+                                </c:otherwise>
+                            </c:choose>
+                            <div class="form-group mt-4">
+                                <c:if test="${!empty item}">
+                                    <button type="submit" class="btn btn-default" id="btnSubmit">Guardar</button>
+                                </c:if>
+                            </div>
+                        </div>
                     </form:form>
                 </div>
             </div>

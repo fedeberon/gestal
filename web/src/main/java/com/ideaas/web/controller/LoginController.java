@@ -31,13 +31,6 @@ public class LoginController {
     public String homePage(Model model) {
         List<EvaluacionDelColaborador> evaluacionesDeColaboradores = evaluacionDelColaboradorService.findAll();
         List<Evaluacion> evaluaciones = evaluacionService.findAll();
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails)principal).getUsername();
-            model.addAttribute("usuario", username);
-        } else {
-            String username = principal.toString();
-        }
         model.addAttribute("cantColaboradoresEvaluados", evaluacionesDeColaboradores);
         model.addAttribute("evaluaciones", evaluaciones);
         return "home";

@@ -1,6 +1,5 @@
 console.log("en funcion")
 //Agregar evaluacion modal
-$(document).ready(function () {
     var next = 1;
     $(".add-more").click(function (e) {
         e.preventDefault();
@@ -93,7 +92,6 @@ $(document).ready(function () {
             // $(itemId).remove();
         });
     });
-});
 
 //Agregar evaluacion edit
 $("#addRow").click(function () {
@@ -124,7 +122,6 @@ jQuery(document).ready(function($){
 
         var selected_value = $(this).attr("data-attr");
         $("#selected_rating").val(selected_value);
-
         $(".selected-rating").empty();
         $(".selected-rating").html(selected_value);
 
@@ -186,7 +183,6 @@ jQuery(document).ready(function($){
 });
 
 
-$(document).ready(function () {
     var getId = $('.itemField').attr('id');
     var next = 1;
     $(".add-consideracion").click(function (e) {
@@ -213,7 +209,6 @@ $(document).ready(function () {
         $("#field-consideracion").append(divContainer);
 
         $("#count-consideracion").val(next);
-
         $('.remove-me').click(function (e) {
             e.preventDefault();
             var fieldNum = this.id.charAt(this.id.length - 1);
@@ -221,10 +216,15 @@ $(document).ready(function () {
             $(divToRemove).remove();
         });
     });
-});
-
+h
 //Obtengo todos los checkbox de las consideraciones en true y las asigno al atributo value
-function getAllCheckSelected() {
-var setValue = $(".check-input input:checkbox:checked").length;
-    $('#rating-consideracion').attr('value', setValue);
-}
+
+    $(".selected-rating-consideracion").on('click',(function(e) {
+        var getChecked = $(".check-input input:checkbox:checked").length;
+        $('#rating-consideracion').attr('value', getChecked);
+        console.log(getChecked);
+    }));
+
+
+
+
