@@ -85,4 +85,10 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         });
         return null;
     }
+
+    @Override
+    public long cantidadMes() {
+        return dao.cantidadMes();
+    }
+
 }

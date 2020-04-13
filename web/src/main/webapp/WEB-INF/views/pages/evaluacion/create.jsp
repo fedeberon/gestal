@@ -30,6 +30,7 @@
                                     <div id="field">
                                         <label for="field1">Items de la evaluaci&oacute;n</label>
                                         <div class="input-group">
+                                            <input type="hidden" class="setId" id=""/>
                                             <input required="required" autocomplete="off" class="col-5 mx-3 itemField" id="0" name="items[0].value" type="text" placeholder="Descripcion del item"/>
                                             <select name="items[0].score" id="select_1" class="col-2 d-inline">
                                                 <c:forEach var="i" begin="0" end="10">

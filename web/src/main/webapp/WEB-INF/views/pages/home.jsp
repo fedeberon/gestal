@@ -14,7 +14,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">Cantidad de evaluaciones en el mes</p>
-                                <p class="card-title">0<p>
+                                <p class="card-title">${cantidadMes}<p>
                             </div>
                         </div>
                     </div>
@@ -70,8 +70,8 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers">
-                                <p class="card-category">Sucursales evaluadas</p>
-                                <p class="card-title">0<p>
+                                <p class="card-category">Sucursales</p>
+                                <p class="card-title"><c:out value="${fn:length(sucursales)}" /><p>
                             </div>
                         </div>
                     </div>

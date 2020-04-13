@@ -185,7 +185,7 @@ jQuery(document).ready(function($){
 
     var getId = $('.itemField').attr('id');
     var next = 1;
-    $(".add-consideracion").click(function (e) {
+    $(document).on('click', '.add-consideracion', function (e) {
         e.preventDefault();
         var addto = "#field-consideracion" + next;
         var addRemove = "#field-consideracion" + (next);
@@ -216,14 +216,16 @@ jQuery(document).ready(function($){
             $(divToRemove).remove();
         });
     });
-h
+
 //Obtengo todos los checkbox de las consideraciones en true y las asigno al atributo value
 
-    $(".selected-rating-consideracion").on('click',(function(e) {
-        var getChecked = $(".check-input input:checkbox:checked").length;
-        $('#rating-consideracion').attr('value', getChecked);
-        console.log(getChecked);
-    }));
+    function getChecked(id) {
+        var test = $("#getClass").attr("class");
+        console.log(test);
+        var isChecked = $(".selected-rating-consideracion input:checkbox:checked").length;
+        $('#rating-consideracion-' + id).attr('value', isChecked);
+        console.log(isChecked);
+    }
 
 
 

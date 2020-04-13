@@ -14,4 +14,5 @@ public interface EvaluacionDelColaboradorService {
     EvaluacionDelColaborador get(Long id);
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
     EvaluacionDelColaborador calcularScore();
+    long cantidadMes();
 }

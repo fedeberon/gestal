@@ -31,9 +31,8 @@ public class ItemEvaluado implements Serializable{
     @JoinColumn(name = "IEV_EDC_ID", nullable = false)
     private EvaluacionDelColaborador evaluacionDelColaborador;
 
-    @Column(name = "IEV_RATING_CONSIDERACION")
-    private Float ratingConsideracion;
-
+    @OneToMany(mappedBy = "itemEvaluado", cascade = CascadeType.PERSIST)
+    private List<ConsideracionItemEvaluado> consideracionItemEvaluados;
 
     public Long getId() {
         return id;
@@ -67,11 +66,11 @@ public class ItemEvaluado implements Serializable{
         this.rating = rating;
     }
 
-    public Float getRatingConsideracion() {
-        return ratingConsideracion;
+    public List<ConsideracionItemEvaluado> getConsideracionItemEvaluados() {
+        return consideracionItemEvaluados;
     }
 
-    public void setRatingConsideracion(Float ratingConsideracion) {
-        this.ratingConsideracion = ratingConsideracion;
+    public void setConsideracionItemEvaluados(List<ConsideracionItemEvaluado> consideracionItemEvaluados) {
+        this.consideracionItemEvaluados = consideracionItemEvaluados;
     }
 }

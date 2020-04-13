@@ -16,4 +16,5 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Long> {
 
     @Query("FROM Evaluacion WHERE rol = ?1 and state = 'ACTIVE'")
     Evaluacion getActiveByRol(Rol rol);
+
 }

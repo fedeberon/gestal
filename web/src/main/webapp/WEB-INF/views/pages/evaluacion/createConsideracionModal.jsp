@@ -16,7 +16,7 @@
                         <div id="field-consideracion">
                             <label for="field1">Items de la evaluaci&oacute;n</label>
                             <div class="input-group">
-                                <input required="required" autocomplete="off" class="col-10" id="field-consideracion1" name="items[0].consideraciones[0].value" type="text" placeholder="Descripcion de la consideraci&oacute;n"/>
+                                <input required="required" autocomplete="off" class="col-10" id="field-consideracion" name="items[0].consideraciones[0].value" type="text" placeholder="Descripcion de la consideraci&oacute;n"/>
                                 <div class="col-1">
                                     <button id="b2" class="btn btn-primary add-consideracion" type="button">+ </button>
                                 </div>

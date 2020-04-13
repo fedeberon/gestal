@@ -104,7 +104,7 @@
                                                                 <span class="field-label-header">Item a evaluar "<strong>${bo.value}</strong>"</span><br>
                                                                 <input type="hidden" id="selected_rating-${bo.id}" name="itemEvaluados[${status.index}].rating" value="" required="required">
                                                                 <input type="hidden" name="itemEvaluados[${status.index}].item.id" value="${bo.id}"/>
-                                                                <input type="hidden" class="selected_rating_consideracion" id="rating-consideracion" name="itemEvaluados[${status.index}].ratingConsideracion" value=""/>
+                                                                <input type="hidden" class="selected_rating_consideracion" id="rating-consideracion-${bo.id}" name="itemEvaluados[${status.index}].ratingConsideracion" value=""/>
                                                             </h5>
                                                             <div class="form-group mt-5" id="rating-ability-wrapper">
 
@@ -129,11 +129,9 @@
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="p-4 check-input">
-                                                                                    <%--                                                                                        <input class="col-1 mt-2" type="checkbox" />--%>
 
-                                                                                <!-- Rounded switch -->
                                                                                 <label class="switch col-1 mt-2">
-                                                                                    <input name="itemEvaluados[${status.index}].ratingConsideracion" class="selected-rating-consideracion" id="${statusConsideracion.index}" type="checkbox">
+                                                                                    <input name="itemEvaluados[${status.index}].ratingConsideracion" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
                                                                                     <span class="slider round"></span>
                                                                                 </label>
                                                                             </div>
