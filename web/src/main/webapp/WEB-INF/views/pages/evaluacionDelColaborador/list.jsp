@@ -140,7 +140,7 @@
                                                                                                     <div class="rating-star">
                                                                                                         <ul class="list-inline">
                                                                                                             <li class="list-inline-item">
-                                                                                                                <c:set var = "score" scope = "session" value = "${itemEvaluado.ratingConsideracion}"/>
+                                                                                                                <c:set var = "score" scope = "session" value = "${itemEvaluado.valorConsideracionItemEvaluados}"/>
                                                                                                                 <c:set var = "resto" scope = "session" value = "${5-score}"/>
                                                                                                                 <c:forEach begin="1" end="${score}" varStatus="count">
                                                                                                                     <span id="score" class="fa fa-star checked"></span>

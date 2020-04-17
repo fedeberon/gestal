@@ -10,8 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -56,6 +59,20 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> itemEvaluado.setEvaluacionDelColaborador(evaluacionDelColaborador));
         evaluacionDelColaborador.setFechaDeCarga(new Date());
         return dao.save(evaluacionDelColaborador);
+    }
+
+    @Override
+    public EvaluacionDelColaborador calcularRatingPorConsideracion(){
+        List<EvaluacionDelColaborador> evaluacionesDeColaboradores = dao.findAll();
+        evaluacionesDeColaboradores.forEach(evaluacionDelColaborador -> {
+            evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+                double precioTotal = itemEvaluado.getConsideracionItemEvaluados().stream()
+                        .mapToDouble(o -> o.isCheckeado() ? 1 : 0)
+                        .sum();
+                itemEvaluado.setValorConsideracionItemEvaluados(precioTotal);
+            });
+        });
+        return null;
     }
 
     @Override

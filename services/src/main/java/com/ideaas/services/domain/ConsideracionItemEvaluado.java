@@ -10,17 +10,17 @@ import javax.persistence.*;
 public class ConsideracionItemEvaluado {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "CIE_ID")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "CON_ID", nullable = false)
-    private Consideracion consideracion;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "CON_ID", nullable = false)
+//    private Consideracion consideracion;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "IEV_ID", nullable = false)
-    private ItemEvaluado itemEvaluado;
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+//    @JoinColumn(name = "IEV_ID", nullable = false)
+//    private ItemEvaluado itemEvaluado;
 
     private boolean checkeado;
 
@@ -32,21 +32,21 @@ public class ConsideracionItemEvaluado {
         this.id = id;
     }
 
-    public Consideracion getConsideracion() {
-        return consideracion;
-    }
-
-    public void setConsideracion(Consideracion consideracion) {
-        this.consideracion = consideracion;
-    }
-
-    public ItemEvaluado getItemEvaluado() {
-        return itemEvaluado;
-    }
-
-    public void setItemEvaluado(ItemEvaluado itemEvaluado) {
-        this.itemEvaluado = itemEvaluado;
-    }
+//    public Consideracion getConsideracion() {
+//        return consideracion;
+//    }
+//
+//    public void setConsideracion(Consideracion consideracion) {
+//        this.consideracion = consideracion;
+//    }
+//
+//    public ItemEvaluado getItemEvaluado() {
+//        return itemEvaluado;
+//    }
+//
+//    public void setItemEvaluado(ItemEvaluado itemEvaluado) {
+//        this.itemEvaluado = itemEvaluado;
+//    }
 
     public boolean isCheckeado() {
         return checkeado;
@@ -55,4 +55,5 @@ public class ConsideracionItemEvaluado {
     public void setCheckeado(boolean checkeado) {
         this.checkeado = checkeado;
     }
+
 }

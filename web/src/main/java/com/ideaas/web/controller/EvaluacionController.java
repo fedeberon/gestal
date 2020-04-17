@@ -51,7 +51,7 @@ public class EvaluacionController {
             item.getConsideraciones().removeIf(consideracion -> consideracion.getValue() == null);
             item.setEvaluacion(evaluacion);
         });
-        evaluacionService.save(evaluacion);
+            evaluacionService.save(evaluacion);
 
         return "redirect:list";
     }

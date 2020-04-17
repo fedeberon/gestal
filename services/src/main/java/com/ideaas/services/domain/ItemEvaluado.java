@@ -27,12 +27,17 @@ public class ItemEvaluado implements Serializable{
     private Float rating;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "IEV_EDC_ID", nullable = false)
     private EvaluacionDelColaborador evaluacionDelColaborador;
 
-    @OneToMany(mappedBy = "itemEvaluado", cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "IEV_CON_ID", nullable = false)
     private List<ConsideracionItemEvaluado> consideracionItemEvaluados;
+
+    @Column(name = "IEV_CON_ITEM_EVALUADO")
+    private Double valorConsideracionItemEvaluados = 0.0;
 
     public Long getId() {
         return id;
@@ -72,5 +77,13 @@ public class ItemEvaluado implements Serializable{
 
     public void setConsideracionItemEvaluados(List<ConsideracionItemEvaluado> consideracionItemEvaluados) {
         this.consideracionItemEvaluados = consideracionItemEvaluados;
+    }
+
+    public Double getValorConsideracionItemEvaluados() {
+        return valorConsideracionItemEvaluados;
+    }
+
+    public void setValorConsideracionItemEvaluados(Double valorConsideracionItemEvaluados) {
+        this.valorConsideracionItemEvaluados = valorConsideracionItemEvaluados;
     }
 }

@@ -1,12 +1,13 @@
 console.log("en funcion")
 //Agregar evaluacion modal
-    var next = 1;
+    var next = 0;
     $(".add-more").click(function (e) {
+        next = next + 1;
+        nextConsideracion = 1;
         e.preventDefault();
         var addto = "#field" + next;
         var addRemove = "#field" + (next);
-        next = next + 1;
-
+        var getItemId = $(".getItemId").attr("id", next);
         var divContainer = $('<div>', {
             id: next,
         });
@@ -24,6 +25,11 @@ console.log("en funcion")
         // $(addto).after(selectScore);
         $(divContainer).append(selectScore);
 
+        var getItemId = $(".getItemId").clone();
+        getItemId.attr("id", next);
+        // $(addto).after(selectScore);
+        $(divContainer).append(getItemId);
+
         var ckeckInvalida = $("#check-invalida-evaluiacion-to-clone").clone();
         ckeckInvalida.attr("name", "items[" + next + "].invalidaEvaluacion");
         ckeckInvalida.attr("id", "item_" + next);
@@ -31,35 +37,33 @@ console.log("en funcion")
         // $(addto).after(ckeckInvalida);
         $(divContainer).append(ckeckInvalida);
 
-            var html = '';
-            html += '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong-to-clone_'+next+'" id="modal_'+next+'" style=""> Consideraciones </button>';
-            html += '<div class="modal fade modal_consideraciones" id="exampleModalLong-to-clone_'+next+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">';
-            html +=     '<div class="modal-dialog" role="document">';
-            html +=         '<div class="modal-content">';
-            html +=             '<div class="modal-header">';
-            html +=                 '<h5 class="modal-title" id="exampleModalLongTitle">Consideraciones</h5>';
-            html +=                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>';
-            html +=             '</div>';
-            html +=             '<div class="modal-body">';
-            html +=                 '<input type="hidden" name="count-consideracion" value="1"/>';
-            html +=                     '<div class="input-group" id="fields-consideracion">';
-            html +=                         '<div id="profs-consideracion" style="width: 100%">';
-            html +=                             '<div id="field-consideracion">';
-            html +=                                 '<label for="field1">Items de la evaluaci&oacute;n</label>';
-            html +=                                 '<div class="input-group">';
-            html +=                                     '<input required="required" autocomplete="off" class="col-10" id="field-consideracion'+next+'" name="items['+next+'].consideraciones[0].value" type="text" placeholder="Descripcion de la consideraci&oacute;n"/>';
-            html +=                                     '<div class="col-1">';
-            html +=                                         '<button id="b2" class="btn btn-primary add-consideracion" type="button">+ </button>';
-            html +=                                     '</div>';
-            html +=                                 '</div>';
-            html +=                             '</div>';
-            html +=                             '<br>';
-            html +=                         '</div>';
-            html +=                     '</div>';
-            html +=                 '</div>';
-            html +=             '</div>';
-            html +=         '</div>';
-            html +=     '</div>';
+        var html = '';
+        html += '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong-to-clone_'+next+'" id="modal_'+next+'" style=""> Consideraciones </button>';
+        html += '<div class="modal fade modal_consideraciones" id="exampleModalLong-to-clone_'+next+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">';
+        html +=     '<div class="modal-dialog" role="document">';
+        html +=         '<div class="modal-content">';
+        html +=             '<div class="modal-header">';
+        html +=                 '<h5 class="modal-title" id="exampleModalLongTitle">Consideraciones</h5>';
+        html +=                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>';
+        html +=             '</div>';
+        html +=             '<div class="modal-body">';
+        html +=                     '<div class="row">';
+        html +=                         '<div class="col-lg-12">';
+        html +=                             '<div id="inputFormRow">';
+        html +=                                 '<div class="input-group mb-3">';
+        html +=                                 '<input type="text" name="items['+next+'].consideraciones['+nextConsideracion+'].value" class="form-control m-input" placeholder="Enter title" autocomplete="off">';
+        html +=                                     '<div class="input-group-append">';
+        html +=                                     '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
+        html +=                                         '</div>';
+        html +=                                     '</div>';
+        html +=                                 '</div>';
+        html +=                             '<div id="newRow-'+next+'"></div>';
+        html +=                             '<button id="addRow" type="button" class="btn btn-info">Add Row</button>';
+        html +=                         '</div>';
+        html +=                     '</div>';
+        html +=             '</div>';
+        html +=         '</div>';
+        html +=     '</div>';
 
             $(divContainer).append(html);
 
@@ -78,34 +82,24 @@ console.log("en funcion")
             var divToRemove = $("#"+ fieldNum)
             $(divToRemove).remove();
 
-            // var fieldNum = this.id.charAt(this.id.length - 1);
-            // var fieldID = "#field" + fieldNum;
-            // $(this).remove();
-            // $(fieldID).remove();
-            //
-            // var selectNum = this.id.charAt(this.id.length - 1);
-            // var selectId = "#select_" + selectNum;
-            // $(selectId).remove();
-            //
-            // var itemNum = this.id.charAt(this.id.length - 1);
-            // var itemId = "#item_" + itemNum;
-            // $(itemId).remove();
         });
     });
 
-//Agregar evaluacion edit
-$("#addRow").click(function () {
+//Agregar consideraciones
+var nextConsideracion = 1;
+$(document).on('click', '#addRow', function (e) {
     var html = '';
-    var next = 1
+    nextConsideracion = nextConsideracion + 1;
+
     html += '<div id="inputFormRow">';
     html += '<div class="input-group mb-3">';
-    html += '<input type="text" name="items[' + next + '].value" class="form-control border border-secondary" placeholder="Enter title" autocomplete="off">';
+    html += '<input type="text" name="items[' + next + '].consideraciones[' + nextConsideracion + '].value" class="form-control border border-secondary" placeholder="Enter title" autocomplete="off">';
     html += '<div class="input-group-append ml-3">';
     html += '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
     html += '</div>';
     html += '</div>';
 
-    $('#newRow').append(html);
+    $('#newRow-'+next+'').append(html);
 });
 
 //Rating
@@ -167,8 +161,7 @@ jQuery(document).ready(function($){
 
 });
 
-
-//Agregar clase active al navegar por el menu
+//Agregar clase active a los elementos del menu al navegar por el menu
 jQuery(document).ready(function($){
 
     $(document).ready(function() {
@@ -181,52 +174,6 @@ jQuery(document).ready(function($){
         });
     })
 });
-
-
-    var getId = $('.itemField').attr('id');
-    var next = 1;
-    $(document).on('click', '.add-consideracion', function (e) {
-        e.preventDefault();
-        var addto = "#field-consideracion" + next;
-        var addRemove = "#field-consideracion" + (next);
-        next = next + 1;
-
-
-        var divContainer = $('<div>', {
-            id: next,
-        });
-        $(divContainer).addClass('input-group');
-        var newIn = '<input autocomplete="off" class="input col-10" id="field-consideracion' + next + '" name="items[' + getId + '].consideraciones[' + next + '].value" type="text" placeholder="Descripcion de la consideracion">';
-        var newInput = $(newIn);
-        // $(addto).after(newInput);
-        $(divContainer).append(newInput);
-
-        var removeBtn = '<button id="remove-consideracion' + (next) + '" class="btn btn-danger remove-me ml-3" >-</button></div>';
-        var removeButton = $(removeBtn);
-        // $(addRemove).after(removeButton);
-        $(divContainer).append(removeButton);
-
-        $("#field-consideracion").append(divContainer);
-
-        $("#count-consideracion").val(next);
-        $('.remove-me').click(function (e) {
-            e.preventDefault();
-            var fieldNum = this.id.charAt(this.id.length - 1);
-            var divToRemove = $("#"+ fieldNum)
-            $(divToRemove).remove();
-        });
-    });
-
-//Obtengo todos los checkbox de las consideraciones en true y las asigno al atributo value
-
-    function getChecked(id) {
-        var test = $("#getClass").attr("class");
-        console.log(test);
-        var isChecked = $(".selected-rating-consideracion input:checkbox:checked").length;
-        $('#rating-consideracion-' + id).attr('value', isChecked);
-        console.log(isChecked);
-    }
-
-
-
-
+$(document).on('click', '#removeRow', function () {
+    $(this).closest('#inputFormRow').remove();
+});
