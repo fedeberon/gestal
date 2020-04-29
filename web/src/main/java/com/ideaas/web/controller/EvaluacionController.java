@@ -9,12 +9,14 @@ import com.ideaas.services.service.interfaces.RolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -44,16 +46,20 @@ public class EvaluacionController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String save(@ModelAttribute Evaluacion evaluacion){
-        evaluacion.getItems().removeIf(item -> item.getValue() == null);
+    public String save(@Valid @ModelAttribute Evaluacion evaluacion, Errors result, Model map){
+        if (result.hasErrors()) {
 
-        evaluacion.getItems().forEach(item -> {
-            item.getConsideraciones().removeIf(consideracion -> consideracion.getValue() == null);
-            item.setEvaluacion(evaluacion);
-        });
+            return "evaluacion/create";
+        } else {
+            evaluacion.getItems().removeIf(item -> item.getValue() == null);
+
+            evaluacion.getItems().forEach(item -> {
+                item.getConsideraciones().removeIf(consideracion -> consideracion.getValue() == null);
+                item.setEvaluacion(evaluacion);
+            });
             evaluacionService.save(evaluacion);
-
-        return "redirect:list";
+            return "redirect:list";
+        }
     }
 
     @ModelAttribute("roles")
@@ -99,9 +105,20 @@ public class EvaluacionController {
     public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model){
         List<Evaluacion> evaluaciones = evaluacionService.findAllPageable(size, page,"id");
+        List<Evaluacion> asd = evaluacionService.findAll();
         model.addAttribute("evaluaciones", evaluaciones);
+        model.addAttribute("asd", asd);
+
         model.addAttribute("page" , page);
 
         return "evaluacion/list";
+    }
+
+    @RequestMapping("/home")
+    public String findAll(Model model){
+        List<Evaluacion> evaluaciones = evaluacionService.findAll();
+        model.addAttribute("evaluaciones", evaluaciones);
+
+        return "redirect:/home";
     }
 }

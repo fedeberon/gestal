@@ -1,9 +1,9 @@
-console.log("en funcion")
 //Agregar evaluacion modal
     var next = 0;
     $(".add-more").click(function (e) {
         next = next + 1;
         nextConsideracion = 1;
+        asd= 1;
         e.preventDefault();
         var addto = "#field" + next;
         var addRemove = "#field" + (next);
@@ -43,7 +43,7 @@ console.log("en funcion")
         html +=     '<div class="modal-dialog" role="document">';
         html +=         '<div class="modal-content">';
         html +=             '<div class="modal-header">';
-        html +=                 '<h5 class="modal-title" id="exampleModalLongTitle">Consideraciones</h5>';
+        html +=                 '<h5 class="modal-title" id="exampleModalLongTitle">Consideraciones <small>(max 5)</small></h5>';
         html +=                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>';
         html +=             '</div>';
         html +=             '<div class="modal-body">';
@@ -51,21 +51,21 @@ console.log("en funcion")
         html +=                         '<div class="col-lg-12">';
         html +=                             '<div id="inputFormRow">';
         html +=                                 '<div class="input-group mb-3">';
-        html +=                                 '<input type="text" name="items['+next+'].consideraciones['+nextConsideracion+'].value" class="form-control m-input" placeholder="Enter title" autocomplete="off">';
-        html +=                                     '<div class="input-group-append">';
-        html +=                                     '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
-        html +=                                         '</div>';
-        html +=                                     '</div>';
+        html +=                                 '<input type="text" name="items['+next+'].consideraciones[0].value" class="form-control border border-secondary" autocomplete="off">';
+        // html +=                                     '<div class="input-group-append">';
+        // html +=                                     '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
+        // html +=                                         '</div>';
+        // html +=                                     '</div>';
         html +=                                 '</div>';
         html +=                             '<div id="newRow-'+next+'"></div>';
-        html +=                             '<button id="addRow" type="button" class="btn btn-info">Add Row</button>';
+        html +=                             '<button id="addRow" type="button" class="btn btn-info">AGREGAR ITEM</button>';
         html +=                         '</div>';
         html +=                     '</div>';
         html +=             '</div>';
         html +=         '</div>';
         html +=     '</div>';
 
-            $(divContainer).append(html);
+        $(divContainer).append(html);
 
         var removeBtn = '<button id="remove' + (next) + '" class="btn btn-danger remove-me ml-3" >-</button></div>';
         var removeButton = $(removeBtn);
@@ -81,31 +81,38 @@ console.log("en funcion")
             var fieldNum = this.id.charAt(this.id.length - 1);
             var divToRemove = $("#"+ fieldNum)
             $(divToRemove).remove();
-
         });
+        console.log(next);
     });
 
 //Agregar consideraciones
+var maxFields = 5;
 var nextConsideracion = 1;
 $(document).on('click', '#addRow', function (e) {
     var html = '';
-    nextConsideracion = nextConsideracion + 1;
+    if (nextConsideracion < maxFields){
+        nextConsideracion++;
+        html += '<div id="inputFormRow">';
+        html += '<div class="input-group mb-3">';
+        html += '<input type="text" name="items[' + next + '].consideraciones[' + nextConsideracion + '].value" id="'+ nextConsideracion +'" class="form-control border border-secondary consideraciones-input" autocomplete="off">';
+        // html += '<div class="input-group-append ml-3">';
+        // html += '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
+        // html += '</div>';
+        html += '</div>';
 
-    html += '<div id="inputFormRow">';
-    html += '<div class="input-group mb-3">';
-    html += '<input type="text" name="items[' + next + '].consideraciones[' + nextConsideracion + '].value" class="form-control border border-secondary" placeholder="Enter title" autocomplete="off">';
-    html += '<div class="input-group-append ml-3">';
-    html += '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
-    html += '</div>';
-    html += '</div>';
+        $('#newRow-'+next+'').append(html);
 
-    $('#newRow-'+next+'').append(html);
+
+    }
+    else {
+        demo.showNotification('top','center');
+    }
 });
 
-//Rating
-// remove row
-$(document).on('click', '#removeRow', function () {
+$(document).on('click', '#removeRow', function (e) {
+    e.preventDefault();
     $(this).closest('#inputFormRow').remove();
+    nextConsideracion = nextConsideracion - 1;
 });
 
 jQuery(document).ready(function($){
@@ -176,4 +183,53 @@ jQuery(document).ready(function($){
 });
 $(document).on('click', '#removeRow', function () {
     $(this).closest('#inputFormRow').remove();
+});
+
+jQuery(document).ready(function($){
+    //Grafico score por evaluaciones
+    var chart1 = new CanvasJS.Chart("graficoScoreEvaluacion", {
+        animationEnabled: true,
+        theme: "light2",
+        title:{
+            text: "Score por evaluación"
+        },
+        axisY:{
+            includeZero: false
+        },
+        data: [{
+            type: "line",
+            indexLabelFontSize: 16,
+            dataPoints: []
+        }]
+    });
+    chart1.render();
+
+    $( ".listaScore li" ).each(function( index ) {
+        chart1.options.data[0].dataPoints.push(
+            { y: parseInt($( this ).text()) }
+        );
+        chart1.render();
+    });
+
+    //Grafico score por sucursales
+    var chart2 = new CanvasJS.Chart("graficoSucursal", {
+        animationEnabled: true,
+        theme: "light1", // "light1", "light2", "dark1", "dark2"
+        title:{
+            text: "Score por sucursal"
+        },
+        data: [{
+            type: "column",
+            showInLegend: false,
+            dataPoints: []
+        }]
+    });
+    chart2.render();
+
+    $( ".listaScoreSucursal li" ).each(function( index ) {
+        chart2.options.data[0].dataPoints.push(
+            { y: parseInt($( this ).text()), label: $(this).attr("id") }
+        );
+        chart2.render();
+    });
 });

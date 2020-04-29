@@ -389,15 +389,15 @@ demo = {
     },
 
     showNotification: function(from, align) {
-        color = 'primary';
+        color = 'danger';
 
         $.notify({
             icon: "nc-icon nc-bell-55",
-            message: "Welcome to <b>Paper Dashboard</b> - a beautiful bootstrap dashboard for every web developer."
+            message: "Límite de consideraciones excedido <b>máximo 5</b>."
 
         }, {
             type: color,
-            timer: 8000,
+            timer: 1000,
             placement: {
                 from: from,
                 align: align

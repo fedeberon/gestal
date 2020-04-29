@@ -19,6 +19,8 @@ public class ItemEvaluado implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
+    @ElementCollection
+    @OrderBy
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "IEV_ITEM_ID", nullable = false)
     private Item item;
@@ -31,13 +33,15 @@ public class ItemEvaluado implements Serializable{
     @JoinColumn(name = "IEV_EDC_ID", nullable = false)
     private EvaluacionDelColaborador evaluacionDelColaborador;
 
+    @ElementCollection
+    @OrderBy
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "IEV_CON_ID", nullable = false)
     private List<ConsideracionItemEvaluado> consideracionItemEvaluados;
 
     @Column(name = "IEV_CON_ITEM_EVALUADO")
-    private Double valorConsideracionItemEvaluados = 0.0;
+    private Long valorConsideracionItemEvaluados;
 
     public Long getId() {
         return id;
@@ -79,11 +83,11 @@ public class ItemEvaluado implements Serializable{
         this.consideracionItemEvaluados = consideracionItemEvaluados;
     }
 
-    public Double getValorConsideracionItemEvaluados() {
+    public Long getValorConsideracionItemEvaluados() {
         return valorConsideracionItemEvaluados;
     }
 
-    public void setValorConsideracionItemEvaluados(Double valorConsideracionItemEvaluados) {
+    public void setValorConsideracionItemEvaluados(Long valorConsideracionItemEvaluados) {
         this.valorConsideracionItemEvaluados = valorConsideracionItemEvaluados;
     }
 }

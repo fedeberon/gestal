@@ -53,13 +53,21 @@ public class EvaluacionDelColaboradorController {
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
 
         List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size, page, "id");
-        model.addAttribute("score", evaluacionDelColaboradorService.calcularScore());
         model.addAttribute("ratingConsideracion", evaluacionDelColaboradorService.calcularRatingPorConsideracion());
+        evaluaciones.forEach(evaluacionDelColaborador -> {
+            evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+                if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
+                    Float scoreEnCero = 0f;
+                    model.addAttribute("score0", scoreEnCero);
+                    evaluacionDelColaborador.setResultado(0f);
+                }
+            });
+        });
         model.addAttribute("evaluaciones", evaluaciones);
         model.addAttribute("page", page);
         model.addAttribute("consideracionItemEvaluado", consideracionItemEvaluadoService.findAll());
 
-         return "evaluacionDelColaborador/list";
+        return "evaluacionDelColaborador/list";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)

@@ -82,7 +82,17 @@
                                                                                     <div class="row">
                                                                                         <div class="col-md-4 my-3">${item.value}</div>
                                                                                         <div class="col-md-4 my-3">${item.score}</div>
-                                                                                        <div class="col-md-4 my-3">${item.invalidaEvaluacion}</div>
+                                                                                        <div class="col-md-4 my-3">
+                                                                                            <c:choose>
+                                                                                                <c:when test = "${item.invalidaEvaluacion == true}">
+                                                                                                    <span class="badge badge-danger">${item.invalidaEvaluacion = 'Si'}</span>
+                                                                                                </c:when>
+
+                                                                                                <c:otherwise>
+                                                                                                    <span class="badge badge-success">${item.invalidaEvaluacion = 'No'}</span>
+                                                                                                </c:otherwise>
+                                                                                            </c:choose>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </c:forEach>
                                                                                 <div class="row">

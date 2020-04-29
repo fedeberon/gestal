@@ -14,9 +14,8 @@ public class ConsideracionItemEvaluado {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "CON_ID", nullable = false)
-//    private Consideracion consideracion;
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    private Consideracion consideracion;
 
 //    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
 //    @JoinColumn(name = "IEV_ID", nullable = false)
@@ -32,13 +31,13 @@ public class ConsideracionItemEvaluado {
         this.id = id;
     }
 
-//    public Consideracion getConsideracion() {
-//        return consideracion;
-//    }
-//
-//    public void setConsideracion(Consideracion consideracion) {
-//        this.consideracion = consideracion;
-//    }
+    public Consideracion getConsideracion() {
+        return consideracion;
+    }
+
+    public void setConsideracion(Consideracion consideracion) {
+        this.consideracion = consideracion;
+    }
 //
 //    public ItemEvaluado getItemEvaluado() {
 //        return itemEvaluado;

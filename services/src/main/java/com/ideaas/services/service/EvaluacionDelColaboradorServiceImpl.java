@@ -3,6 +3,7 @@ package com.ideaas.services.service;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorPaginationDao;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
+import com.ideaas.services.domain.ItemEvaluado;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -44,6 +46,10 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         return evaluacionDelColaborador.getContent();
     }
 
+    private Sort sortByIdAsc() {
+        return new Sort(Sort.Direction.ASC, "id");
+    }
+
     @Override
     public List<EvaluacionDelColaborador> findAll(){
         return dao.findAll();
@@ -66,17 +72,12 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         List<EvaluacionDelColaborador> evaluacionesDeColaboradores = dao.findAll();
         evaluacionesDeColaboradores.forEach(evaluacionDelColaborador -> {
             evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
-                double precioTotal = itemEvaluado.getConsideracionItemEvaluados().stream()
-                        .mapToDouble(o -> o.isCheckeado() ? 1 : 0)
+                Long check = itemEvaluado.getConsideracionItemEvaluados().stream()
+                        .mapToLong(o -> o.isCheckeado() ? 1 : 0)
                         .sum();
-                itemEvaluado.setValorConsideracionItemEvaluados(precioTotal);
+                itemEvaluado.setValorConsideracionItemEvaluados(check);
             });
         });
-        return null;
-    }
-
-    @Override
-    public EvaluacionDelColaborador calcularScore(){
         List<EvaluacionDelColaborador> evaluaciones = dao.findAll();
         AtomicBoolean evaluacionInvalidada = new AtomicBoolean(false);
 
@@ -89,7 +90,7 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
                 if(itemEvaluado.getItem().isInvalidaEvaluacion() == true && itemEvaluado.getItem().getScore() == 0) {
                     evaluacionInvalidada.set(true);
                 }else {
-                    Float resultadoPorItem = (Float.valueOf(itemEvaluado.getRating()) * Float.valueOf(itemEvaluado.getItem().getScore()));
+                    Float resultadoPorItem = (Float.valueOf(itemEvaluado.getValorConsideracionItemEvaluados()) * Float.valueOf(itemEvaluado.getItem().getScore()));
                     resultado.set(resultado.get() + resultadoPorItem);
                 }
             });
@@ -102,6 +103,34 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         });
         return null;
     }
+
+//    @Override
+//    public EvaluacionDelColaborador calcularScore(){
+//        List<EvaluacionDelColaborador> evaluaciones = dao.findAll();
+//        AtomicBoolean evaluacionInvalidada = new AtomicBoolean(false);
+//
+//        evaluaciones.forEach(evaluacion ->{
+//            AtomicReference<Float> resultado = new AtomicReference<>(Float.valueOf(0));
+//            evaluacionInvalidada.set(false);
+//
+//            evaluacion.getItemEvaluados().forEach(itemEvaluado -> {
+//                //Si el checkbox que invalida la evaluacion o el rating del item es 0, el score de la evaluacion es 0
+//                if(itemEvaluado.getItem().isInvalidaEvaluacion() == true && itemEvaluado.getItem().getScore() == 0) {
+//                    evaluacionInvalidada.set(true);
+//                }else {
+//                    Float resultadoPorItem = (Float.valueOf(itemEvaluado.getValorConsideracionItemEvaluados()) * Float.valueOf(itemEvaluado.getItem().getScore()));
+//                    resultado.set(resultado.get() + resultadoPorItem);
+//                }
+//            });
+//            if (evaluacionInvalidada.get() == true){
+//                evaluacion.setResultado(Float.valueOf(0));
+//
+//            }else {
+//                evaluacion.setResultado(resultado.get());
+//            }
+//        });
+//        return null;
+//    }
 
     @Override
     public long cantidadMes() {
