@@ -68,6 +68,7 @@
 
         <script type="text/javascript" src='<c:url value="/assets/js/paginador.js"/>'></script>
         <%--Graficos Plugin--%>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/canvasjs.min.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/jquery.canvasjs.min.js"/>'></script>
 
