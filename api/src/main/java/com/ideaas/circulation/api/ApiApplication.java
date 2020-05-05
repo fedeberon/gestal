@@ -1,4 +1,4 @@
-package com.ideaas.api;
+package com.ideaas.circulation.api;
 
 import com.ideaas.services.bean.FileStorageProperties;
 import org.springframework.boot.SpringApplication;

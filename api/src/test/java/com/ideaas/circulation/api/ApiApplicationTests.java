@@ -1,4 +1,4 @@
-package com.ideaas.api;
+package com.ideaas.circulation.api;
 
 class ApiApplicationTests {
 

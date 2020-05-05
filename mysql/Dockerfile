@@ -1,7 +1,7 @@
 # Derived from official mysql image (our base image)
 FROM mysql
 # Add a database
-ENV MYSQL_DATABASE gestal
+ENV MYSQL_DATABASE CCT
 ENV MYSQL_ROOT_PASSWORD root!
 ENV MYSQL_USER sa
 ENV MYSQL_PASSWORD sa
@@ -11,4 +11,4 @@ ENV MYSQL_PASSWORD sa
 # executed during container startup
 COPY sql-scripts/ /docker-entrypoint-initdb.d/
 CMD ["mysqld"]
-EXPOSE 3306 33060
+EXPOSE 3306 3306

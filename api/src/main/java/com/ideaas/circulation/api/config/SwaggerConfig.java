@@ -1,4 +1,4 @@
-package com.ideaas.api.config;
+package com.ideaas.circulation.api.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

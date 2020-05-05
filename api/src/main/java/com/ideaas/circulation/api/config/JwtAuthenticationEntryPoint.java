@@ -1,4 +1,4 @@
-package com.ideaas.api.config;
+package com.ideaas.circulation.api.config;
 
 import java.io.IOException;
 import java.io.Serializable;
