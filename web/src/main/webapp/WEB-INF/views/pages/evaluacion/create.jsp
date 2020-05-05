@@ -41,10 +41,8 @@
                                             <input name="items[0].invalidaEvaluacion" class="col-1 mt-2" type="checkbox" id="check-invalida-evaluiacion-to-clone_0" style=""/>
 
                                             <jsp:include page="createConsideracionModal.jsp" />
-
                                             <div class="col-1">
-                                                <button id="b1" class="btn btn-primary add-more" type="button">+
-                                                </button>
+                                                <button id="b1" class="btn btn-primary add-more" type="button">+ </button>
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +89,7 @@
 <input name="items[0].invalidaEvaluacion" type="checkbox" style="display: none"
        id="check-invalida-evaluiacion-to-clone"/>
 
-<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong" id="modal-to-clone"
-        style="display: none">
-    Consideraciones
-</button>
+<%--<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong" id="modal-to-clone"--%>
+        <%--style="display: none">--%>
+    <%--Consideraciones--%>
+<%--</button>--%>

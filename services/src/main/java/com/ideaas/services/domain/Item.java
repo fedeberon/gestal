@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name = "ITEMS")
 public class Item implements Serializable{
 
+    @NotNull(message = "Please enter id")
     @Id
     @Column(name = "ITEM_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +29,7 @@ public class Item implements Serializable{
     private Float score;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ITEM_EVA_ID", nullable = false)
     private Evaluacion evaluacion;
 
@@ -36,7 +37,9 @@ public class Item implements Serializable{
     @Column(name = "ITEM_INAVLID_SCORE")
     private boolean invalidaEvaluacion = false;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ElementCollection
+    @OrderBy
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ITEM_CON_ID", nullable = false)
     private List<Consideracion> consideraciones;
 

@@ -54,7 +54,9 @@
         <!-- Chart JS -->
         <script type="text/javascript" src='<c:url value="/assets/js/plugins/chartjs.min.js"/>'></script>
 
-        <!--  Notifications Plugin    -->
+        <!--  Notificaciones Plugin    -->
+        <script type="text/javascript" src='<c:url value="/assets/js/plugins/bootstrap-notify.js"/>'></script>
+        <script type="text/javascript" src='<c:url value="/assets/demo/demo.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/assets/js/plugins/bootstrap-notify.js"/>'></script>
 
         <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
@@ -63,7 +65,12 @@
         <%--<script type="text/javascript" href="<c:url value='/assets/js/script.js'/>"></script>--%>
         <script type="text/javascript" src='<c:url value="/assets/js/script.js"/>'></script>
 
+
         <script type="text/javascript" src='<c:url value="/assets/js/paginador.js"/>'></script>
+        <%--Graficos Plugin--%>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/canvasjs.min.js"/>'></script>
+        <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/jquery.canvasjs.min.js"/>'></script>
 
     </body>
 </html>

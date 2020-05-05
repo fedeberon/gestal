@@ -102,24 +102,27 @@
                                                         <div class="card-body">
                                                             <h5 class="card-title">
                                                                 <span class="field-label-header">Item a evaluar "<strong>${bo.value}</strong>"</span><br>
-                                                                <input type="hidden" id="selected_rating-${bo.id}" name="itemEvaluados[${status.index}].rating" value="" required="required">
+                                                                <%--<input type="hidden" id="selected_rating-${bo.id}" name="itemEvaluados[${status.index}].rating" value="" required="required">--%>
                                                                 <input type="hidden" name="itemEvaluados[${status.index}].item.id" value="${bo.id}"/>
-                                                                <input type="hidden" class="selected_rating_consideracion" id="rating-consideracion-${bo.id}" name="itemEvaluados[${status.index}].ratingConsideracion" value=""/>
+                                                                <%--<input type="hidden" name="itemEvaluados[${status.index}].id" value="${bo.id}"/>--%>
                                                             </h5>
-                                                            <div class="form-group mt-5" id="rating-ability-wrapper">
+                                                            <%--<div class="form-group mt-5" id="rating-ability-wrapper">--%>
 
-                                                                <h4 class="bold rating-header" style="">
-                                                                    <span class="selected-rating-${bo.id}">0</span><small> / 5</small>
-                                                                </h4>
-                                                                <c:forEach var = "i" begin = "1" end = "5">
-                                                                    <button type="button" name="items[${bo.id}].value" data-id="${bo.id}" class="btnrating btn btn-default btn-lg" data-attr="${i}" id="rating-star-${bo.id}${i}">
-                                                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                                                    </button>
-                                                                </c:forEach>
-                                                            </div>
+                                                                <%--<h4 class="bold rating-header" style="">--%>
+                                                                    <%--<span class="selected-rating-${bo.id}">0</span><small> / 5</small>--%>
+                                                                <%--</h4>--%>
+                                                                <%--<c:forEach var = "i" begin = "1" end = "5">--%>
+                                                                    <%--<button type="button" name="items[${bo.id}].value" data-id="${bo.id}" class="btnrating btn btn-default btn-lg" data-attr="${i}" id="rating-star-${bo.id}${i}">--%>
+                                                                        <%--<i class="fa fa-star" aria-hidden="true"></i>--%>
+                                                                    <%--</button>--%>
+                                                                <%--</c:forEach>--%>
+                                                            <%--</div>--%>
                                                             <div class="form-group" id="rating-ability-wrapper">
                                                                 <c:forEach items="${bo.consideraciones}" var="consideracion" varStatus="statusConsideracion">
-                                                                    <input type="hidden" name="itemEvaluados[${status.index}].item.consideraciones[${statusConsideracion.index}].id" value=""/>
+                                                                    <input type="hidden" name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].id"/>
+                                                                    <input type="hidden" name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].consideracion.id" value="${consideracion.id}"/>
+                                                                    <%--<input type="hidden" name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].itemEvaluado.id" value="${bo.id}"/>--%>
+                                                                    <%--<input type="hidden" name="itemEvaluados[${status.index}].item.consideraciones[${statusConsideracion.index}].id" value="${consideracion.id}"/>--%>
 
                                                                     <div class="row">
                                                                         <div class="col-md-6">
@@ -131,7 +134,7 @@
                                                                             <div class="p-4 check-input">
 
                                                                                 <label class="switch col-1 mt-2">
-                                                                                    <input name="itemEvaluados[${status.index}].ratingConsideracion" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
+                                                                                    <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
                                                                                     <span class="slider round"></span>
                                                                                 </label>
                                                                             </div>

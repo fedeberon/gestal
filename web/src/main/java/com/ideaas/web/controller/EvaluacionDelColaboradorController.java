@@ -1,6 +1,7 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.domain.*;
+import com.ideaas.services.domain.ConsideracionItemEvaluado;
+import com.ideaas.services.service.ConsideracionItemEvaluadoService;
 import com.ideaas.services.service.interfaces.*;
 import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.Evaluacion;
@@ -35,14 +36,16 @@ public class EvaluacionDelColaboradorController {
     private EvaluacionService evaluacionService;
     private ColaboradorService colaboradorService;
     private ItemService itemService;
+    private ConsideracionItemEvaluadoService consideracionItemEvaluadoService;
 
     @Autowired
-    public EvaluacionDelColaboradorController(RolService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService, EvaluacionService evaluacionService, ColaboradorService colaboradorService, ItemService itemService) {
+    public EvaluacionDelColaboradorController(RolService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService, EvaluacionService evaluacionService, ColaboradorService colaboradorService, ItemService itemService, ConsideracionItemEvaluadoService consideracionItemEvaluadoService) {
         this.rolService = rolService;
         this.evaluacionDelColaboradorService = evaluacionDelColaboradorService;
         this.evaluacionService = evaluacionService;
         this.colaboradorService = colaboradorService;
         this.itemService = itemService;
+        this.consideracionItemEvaluadoService = consideracionItemEvaluadoService;
     }
 
     @RequestMapping("/list")
@@ -50,11 +53,21 @@ public class EvaluacionDelColaboradorController {
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
 
         List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size, page, "id");
-        model.addAttribute("score", evaluacionDelColaboradorService.calcularScore());
+        model.addAttribute("ratingConsideracion", evaluacionDelColaboradorService.calcularRatingPorConsideracion());
+        evaluaciones.forEach(evaluacionDelColaborador -> {
+            evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+                if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
+                    Float scoreEnCero = 0f;
+                    model.addAttribute("score0", scoreEnCero);
+                    evaluacionDelColaborador.setResultado(0f);
+                }
+            });
+        });
         model.addAttribute("evaluaciones", evaluaciones);
         model.addAttribute("page", page);
+        model.addAttribute("consideracionItemEvaluado", consideracionItemEvaluadoService.findAll());
 
-         return "evaluacionDelColaborador/list";
+        return "evaluacionDelColaborador/list";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)

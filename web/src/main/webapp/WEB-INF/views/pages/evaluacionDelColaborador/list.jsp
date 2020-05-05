@@ -9,6 +9,7 @@
     .checked {
         color: orange;
     }
+
 </style>
 <div class="content">
     <div class="row">
@@ -106,9 +107,10 @@
                                                                                     <table class="table">
                                                                                         <thead class="text-primary">
                                                                                         <tr>
-                                                                                            <th width="70%" class="text-center">Items</th>
-                                                                                            <th width="15%" class="text-center">Rating Estrellas</th>
-                                                                                            <th width="15%" class="text-center">Rating Consideraciones</th>
+                                                                                            <th class="text-center">Items</th>
+                                                                                            <%--<th width="15%" class="text-center">Rating Estrellas</th>--%>
+                                                                                            <th class="text-center">Consideraciones</th>
+                                                                                            <th class="text-center">Rating</th>
                                                                                         </tr>
                                                                                         </thead>
                                                                                         <tbody>
@@ -116,31 +118,75 @@
 
                                                                                             <tr>
                                                                                                 <td class="text-center">
-                                                                                                        ${itemEvaluado.item.value}
+                                                                                                    ${itemEvaluado.item.value}
                                                                                                 </td>
+                                                                                                <%--<td class="text-center">--%>
+                                                                                                    <%--<div class="rating-star">--%>
+                                                                                                        <%--<ul class="list-inline">--%>
+                                                                                                            <%--<li class="list-inline-item">--%>
+                                                                                                                <%--<c:set var = "score" scope = "session" value = "${itemEvaluado.rating}"/>--%>
+                                                                                                                <%--<c:set var = "resto" scope = "session" value = "${5-score}"/>--%>
+                                                                                                                <%--<c:forEach begin="1" end="${score}" varStatus="count">--%>
+                                                                                                                    <%--<span id="score" class="fa fa-star checked"></span>--%>
+                                                                                                                <%--</c:forEach>--%>
+                                                                                                                <%--<c:forEach begin="1" end="${resto}" varStatus="count">--%>
+                                                                                                                    <%--<span id="score" class="fa fa-star"></span>--%>
+                                                                                                                <%--</c:forEach>--%>
+
+
+                                                                                                            <%--</li>--%>
+                                                                                                        <%--</ul>--%>
+                                                                                                    <%--</div>--%>
+                                                                                                <%--</td>--%>
+                                                                                                <%--<td class="text-center">--%>
                                                                                                 <td class="text-center">
-                                                                                                    <div class="rating-star">
-                                                                                                        <ul class="list-inline">
-                                                                                                            <li class="list-inline-item">
-                                                                                                                <c:set var = "score" scope = "session" value = "${itemEvaluado.rating}"/>
-                                                                                                                <c:set var = "resto" scope = "session" value = "${5-score}"/>
-                                                                                                                <c:forEach begin="1" end="${score}" varStatus="count">
-                                                                                                                    <span id="score" class="fa fa-star checked"></span>
-                                                                                                                </c:forEach>
-                                                                                                                <c:forEach begin="1" end="${resto}" varStatus="count">
-                                                                                                                    <span id="score" class="fa fa-star"></span>
-                                                                                                                </c:forEach>
+                                                                                                    <!-- Collapse buttons -->
+                                                                                                    <div>
+                                                                                                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#consideraciones-${itemEvaluado.id}"
+                                                                                                                aria-expanded="false" aria-controls="collapseExample">
+                                                                                                            Consideraciones
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <!-- / Collapse buttons -->
 
+                                                                                                    <!-- Collapsible element -->
+                                                                                                    <div class="collapse" id="consideraciones-${itemEvaluado.id}">
+                                                                                                        <div class="mt-3">
+                                                                                                            <table class="table table-striped">
+                                                                                                                <thead>
+                                                                                                                <tr>
+                                                                                                                    <th scope="col">Descripci&oacute;n de la consideraci&oacute;n</th>
+                                                                                                                    <th scope="col">Checkeado</th>
+                                                                                                                </tr>
+                                                                                                                </thead>
+                                                                                                                <tbody>
 
-                                                                                                            </li>
-                                                                                                        </ul>
+                                                                                                                <c:forEach items="${itemEvaluado.consideracionItemEvaluados}" var="consideracionItemEvaluado">
+                                                                                                                    <tr class="table-info">
+                                                                                                                        <td class="p-3">${consideracionItemEvaluado.consideracion.value}</td>
+                                                                                                                        <td class="p-3">
+                                                                                                                            <c:choose>
+                                                                                                                                <c:when test = "${consideracionItemEvaluado.checkeado == true}">
+                                                                                                                                    <span class="badge badge-success">${consideracionItemEvaluado.checkeado = 'Si'}</span>
+                                                                                                                                </c:when>
+
+                                                                                                                                <c:otherwise>
+                                                                                                                                    <span class="badge badge-danger">${consideracionItemEvaluado.checkeado = 'No'}</span>
+                                                                                                                                </c:otherwise>
+                                                                                                                            </c:choose>
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                </c:forEach>
+                                                                                                                </tbody>
+                                                                                                            </table>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </td>
                                                                                                 <td class="text-center">
                                                                                                     <div class="rating-star">
                                                                                                         <ul class="list-inline">
                                                                                                             <li class="list-inline-item">
-                                                                                                                <c:set var = "score" scope = "session" value = "${itemEvaluado.ratingConsideracion}"/>
+                                                                                                                <c:set var = "score" scope = "session" value = "${itemEvaluado.valorConsideracionItemEvaluados}"/>
                                                                                                                 <c:set var = "resto" scope = "session" value = "${5-score}"/>
                                                                                                                 <c:forEach begin="1" end="${score}" varStatus="count">
                                                                                                                     <span id="score" class="fa fa-star checked"></span>
@@ -162,7 +208,18 @@
                                                                                 <div class="row">
                                                                                     <div class="col-md-6"></div>
                                                                                     <div class="col-md-6">
-                                                                                        <span class="badge badge-secondary text-center text-uppercase float-right">Score: ${bo.resultado}</span>
+                                                                                        <span class="badge badge-secondary text-center text-uppercase float-right">
+                                                                                            <%--<c:forEach items="${bo.itemEvaluados}" var="itemEvaluadoo">--%>
+                                                                                                <%--<c:if test="${itemEvaluadoo.item.invalidaEvaluacion eq true}">--%>
+                                                                                                <%--<continue>--%>
+                                                                                                <%--Score: ${bo.resultado * 0}--%>
+                                                                                                <%--</c:if>--%>
+                                                                                                <%--Score: ${bo.resultado}--%>
+                                                                                            <%--</c:forEach>--%>
+                                                                                            Score: ${bo.resultado}
+
+
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -200,3 +257,4 @@
         </div>
     </div>
 </div>
+

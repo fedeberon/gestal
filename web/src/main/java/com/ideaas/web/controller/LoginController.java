@@ -32,10 +32,10 @@ public class LoginController {
     @RequestMapping(value = {"/home" , ""})
     public String homePage(Model model) {
         List<EvaluacionDelColaborador> evaluacionesDeColaboradores = evaluacionDelColaboradorService.findAll();
-        List<Evaluacion> evaluaciones = evaluacionService.findAll();
         List<Sucursal> sucursales = sucursalDao.findAll();
         model.addAttribute("cantColaboradoresEvaluados", evaluacionesDeColaboradores);
-        model.addAttribute("evaluaciones", evaluaciones);
+        model.addAttribute("evaluaciones", evaluacionesDeColaboradores);
+        model.addAttribute("score", evaluacionDelColaboradorService.calcularRatingPorConsideracion());
         model.addAttribute("cantidadMes", evaluacionDelColaboradorService.cantidadMes());
         model.addAttribute("sucursales", sucursales);
 

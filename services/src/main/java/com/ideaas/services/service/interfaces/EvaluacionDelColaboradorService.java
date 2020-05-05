@@ -13,6 +13,7 @@ public interface EvaluacionDelColaboradorService {
     List<EvaluacionDelColaborador> findAll();
     EvaluacionDelColaborador get(Long id);
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
-    EvaluacionDelColaborador calcularScore();
+    EvaluacionDelColaborador calcularRatingPorConsideracion();
+
     long cantidadMes();
 }

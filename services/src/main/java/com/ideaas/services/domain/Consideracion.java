@@ -3,12 +3,14 @@ package com.ideaas.services.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 @Table(name = "CONSIDERACIONES")
 public class Consideracion {
 
+    @NotNull
     @Id
     @Column(name = "CON_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)

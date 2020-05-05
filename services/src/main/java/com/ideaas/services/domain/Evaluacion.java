@@ -20,6 +20,8 @@ public class Evaluacion {
     private Long id;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacion", cascade = CascadeType.PERSIST)
+    @ElementCollection
+    @OrderBy
     private List<Item> items;
 
     @Column(name = "EVA_COMENTARIOS")
