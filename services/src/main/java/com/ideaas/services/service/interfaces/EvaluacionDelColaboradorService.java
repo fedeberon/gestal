@@ -13,7 +13,9 @@ public interface EvaluacionDelColaboradorService {
     List<EvaluacionDelColaborador> findAll();
     EvaluacionDelColaborador get(Long id);
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
-    EvaluacionDelColaborador calcularRatingPorConsideracion();
-
-    long cantidadMes();
+    Float calcularRatingPorConsideracion(EvaluacionDelColaborador evaluacionDelColaborador);
+    long cantidadEvaluacionesMes();
+    long cantidadEvaluacionesEntreRango();
+    long cantidadEvaluacionesMayor();
+    long cantidadEvaluacionesEnCero();
 }

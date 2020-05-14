@@ -104,6 +104,7 @@
                                                                 <span class="field-label-header">Item a evaluar "<strong>${bo.value}</strong>"</span><br>
                                                                 <%--<input type="hidden" id="selected_rating-${bo.id}" name="itemEvaluados[${status.index}].rating" value="" required="required">--%>
                                                                 <input type="hidden" name="itemEvaluados[${status.index}].item.id" value="${bo.id}"/>
+                                                                <input type="hidden" name="itemEvaluados[${status.index}].item.score" value="${bo.score}"/>
                                                                 <%--<input type="hidden" name="itemEvaluados[${status.index}].id" value="${bo.id}"/>--%>
                                                             </h5>
                                                             <%--<div class="form-group mt-5" id="rating-ability-wrapper">--%>

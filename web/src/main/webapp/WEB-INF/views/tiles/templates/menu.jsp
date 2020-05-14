@@ -49,7 +49,7 @@
                 <li>
                     <a href="<c:url value='/evaluacion/list'/>">
                         <i class="nc-icon nc-bullet-list-67"></i>
-                        <p>Evaluaci&oacute;n</p>
+                        <p>Evaluaci&oacute;nes</p>
                     </a>
                 </li>
 
@@ -57,7 +57,7 @@
                     <a href="<c:url value='/evaluacionDelColaborador/list'/>">
                         <i class="nc-icon nc-single-copy-04"></i>
 
-                        <p>Evaluaci&oacute;n del colaborador</p>
+                        <p>Evaluaci&oacute;nes de colaboradores</p>
                     </a>
                 </li>
 

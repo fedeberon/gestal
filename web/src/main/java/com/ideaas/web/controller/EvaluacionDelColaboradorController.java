@@ -53,7 +53,6 @@ public class EvaluacionDelColaboradorController {
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
 
         List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size, page, "id");
-        model.addAttribute("ratingConsideracion", evaluacionDelColaboradorService.calcularRatingPorConsideracion());
         evaluaciones.forEach(evaluacionDelColaborador -> {
             evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
                 if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
@@ -95,7 +94,6 @@ public class EvaluacionDelColaboradorController {
 
         } else {
             evaluacionDelColaboradorService.save(evaluacionDelColaborador);
-
             return "redirect:list";
         }
     }

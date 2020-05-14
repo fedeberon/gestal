@@ -15,8 +15,9 @@
                 </button>
             </div>
             <div class="modal-body">
+                <%--<jsp:include page="../item/create.jsp" />--%>
 
-                <div class="form-group">
+            <div class="form-group">
                     <div class="row">
                         <div class="col-12">
 
@@ -60,19 +61,18 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
-                </form:form>
             </div>
+            </form:form>
         </div>
     </div>
 </div>

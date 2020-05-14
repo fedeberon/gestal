@@ -55,7 +55,13 @@ public class EvaluacionController {
 
             evaluacion.getItems().forEach(item -> {
                 item.getConsideraciones().removeIf(consideracion -> consideracion.getValue() == null);
+                if (item.isInvalidaEvaluacion() == true){
+                    evaluacion.getItems().forEach(allItems -> {
+                        allItems.setScore(0f);
+                    });
+                }
                 item.setEvaluacion(evaluacion);
+
             });
             evaluacionService.save(evaluacion);
             return "redirect:list";

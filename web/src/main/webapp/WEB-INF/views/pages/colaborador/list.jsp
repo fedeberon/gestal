@@ -90,7 +90,7 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <a href="<c:url value='/colaborador/update?id=${bo.id}'/>"
-                                                       class="btn btn-success">Editar</a>
+                                                       class="btn btn-secondary">Editar</a>
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="btn btn-success"

@@ -9,5 +9,17 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface EvaluacionDelColaboradorDao extends JpaRepository<EvaluacionDelColaborador, Long> {
     @Query( value = "SELECT COUNT(*) FROM EVALUACIONES_DE_COLABORADORES WHERE MONTH(EDC_FECHA_DE_CARGA) = MONTH(CURRENT_DATE())", nativeQuery = true)
-    long cantidadMes();
+    long cantidadEvaluacionesMes();
+
+    @Query( value = "SELECT COUNT(*) FROM EVALUACIONES_DE_COLABORADORES WHERE resultado BETWEEN 1 AND 20", nativeQuery = true)
+    long cantidadEvaluacionesEntreRango();
+
+    @Query( value = "SELECT COUNT(*) FROM EVALUACIONES_DE_COLABORADORES WHERE resultado > 20", nativeQuery = true)
+    long cantidadEvaluacionesMayor();
+
+    @Query( value = "SELECT COUNT(*) FROM EVALUACIONES_DE_COLABORADORES WHERE resultado = 0", nativeQuery = true)
+    long cantidadEvaluacionesEnCero();
+
+
+
 }
