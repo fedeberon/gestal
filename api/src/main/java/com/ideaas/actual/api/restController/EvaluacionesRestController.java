@@ -1,4 +1,4 @@
-package com.ideaas.circulation.api.restController;
+package com.ideaas.actual.api.restController;
 
 import com.ideaas.services.domain.EvaluacionDelColaborador;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
@@ -19,9 +19,18 @@ public class EvaluacionesRestController {
         this.evaluacionDelColaboradorService = evaluacionDelColaboradorService;
     }
 
+    @RequestMapping("list/{page}/{textToSearch}")
+    public ResponseEntity<List<EvaluacionDelColaborador>> findAll(@PathVariable Integer page, @PathVariable String textToSearch){
+        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(10, page, "id", textToSearch);
+
+        return ResponseEntity.ok(evaluaciones);
+    }
+
+
     @RequestMapping("list/{page}")
     public ResponseEntity<List<EvaluacionDelColaborador>> findAll(@PathVariable Integer page){
         List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(10, page, "id");
+        evaluaciones.forEach(line -> line.getItemEvaluados().forEach(itemEvaluado -> itemEvaluado.setConsideracionItemEvaluados(null))) ;
 
         return ResponseEntity.ok(evaluaciones);
     }

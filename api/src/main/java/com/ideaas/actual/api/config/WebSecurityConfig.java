@@ -1,4 +1,4 @@
-package com.ideaas.circulation.api.config;
+package com.ideaas.actual.api.config;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;

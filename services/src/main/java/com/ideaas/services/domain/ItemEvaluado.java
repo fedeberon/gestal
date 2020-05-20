@@ -19,8 +19,6 @@ public class ItemEvaluado implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    @ElementCollection
-    @OrderBy
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "IEV_ITEM_ID", nullable = false)
     private Item item;
@@ -33,9 +31,6 @@ public class ItemEvaluado implements Serializable{
     @JoinColumn(name = "IEV_EDC_ID", nullable = false)
     private EvaluacionDelColaborador evaluacionDelColaborador;
 
-    @ElementCollection
-    @OrderBy
-    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "IEV_CON_ID", nullable = false)
     private List<ConsideracionItemEvaluado> consideracionItemEvaluados;
@@ -90,4 +85,20 @@ public class ItemEvaluado implements Serializable{
     public void setValorConsideracionItemEvaluados(Long valorConsideracionItemEvaluados) {
         this.valorConsideracionItemEvaluados = valorConsideracionItemEvaluados;
     }
+
+    public Integer calculateRating(){
+        Integer ratingTotal = 5;
+
+        Integer totalConsideraciones = this.consideracionItemEvaluados.size();
+        Long consideracionesChequeadas = this.consideracionItemEvaluados.stream().filter(line -> line.isCheckeado()).count();
+
+        Long porcentajeDeConsideracionesChequeadas = (consideracionesChequeadas * 100) / totalConsideraciones;
+        Integer porcentajeDeConsideracionesChequeadasConValorRedondeado = Math.round(porcentajeDeConsideracionesChequeadas);
+
+
+        Integer estrellasCalculadas = (porcentajeDeConsideracionesChequeadasConValorRedondeado * ratingTotal) / 100;
+
+        return Math.round(estrellasCalculadas);
+    }
+
 }

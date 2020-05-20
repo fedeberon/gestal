@@ -30,4 +30,9 @@ public class ItemEvaluadoServiceImpl implements ItemEvaluadoService {
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public ItemEvaluado get(Long id) {
+        return dao.getOne(id);
+    }
 }

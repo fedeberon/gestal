@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "CONSIDERACIONES")
-public class Consideracion {
+public class Consideracion implements Serializable {
 
     @NotNull
     @Id

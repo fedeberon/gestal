@@ -9,4 +9,5 @@ public interface ItemEvaluadoService {
 
     List<ItemEvaluado> findAll();
 
+    ItemEvaluado get(Long id);
 }

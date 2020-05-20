@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "COLABORADORES")
-public class    Colaborador implements Serializable{
+public class Colaborador implements Serializable {
 
     @Id
     @Column(name = "COL_ID")

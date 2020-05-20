@@ -1,6 +1,5 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.domain.ConsideracionItemEvaluado;
 import com.ideaas.services.service.ConsideracionItemEvaluadoService;
 import com.ideaas.services.service.interfaces.*;
 import com.ideaas.services.domain.Colaborador;
@@ -52,7 +51,7 @@ public class EvaluacionDelColaboradorController {
     public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
 
-        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size, page, "id");
+        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size, page, "id", "id");
         model.addAttribute("ratingConsideracion", evaluacionDelColaboradorService.calcularRatingPorConsideracion());
         evaluaciones.forEach(evaluacionDelColaborador -> {
             evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {

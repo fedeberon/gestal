@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by federicoberon on 03/02/2020.
@@ -89,5 +90,16 @@ public class Item implements Serializable{
 
     public void setConsideraciones(List<Consideracion> consideraciones) {
         this.consideraciones = consideraciones;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Item item = (Item) o;
+        return item.getId() == id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

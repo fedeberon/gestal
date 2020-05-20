@@ -1,4 +1,4 @@
-package com.ideaas.circulation.api.restController;
+package com.ideaas.actual.api.restController;
 
 import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
@@ -8,10 +8,7 @@ import com.ideaas.services.service.interfaces.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by federicoberon on 04/02/2020.
@@ -30,9 +27,6 @@ public class EvaluacionRestController {
     }
 
 
-
-
-
     @RequestMapping(value = "byRol", method = RequestMethod.POST)
     public ResponseEntity<Evaluacion> getByRol(@RequestBody Rol rol){
         Evaluacion evaluacion = evaluacionService.getByRol(rol);
@@ -41,10 +35,10 @@ public class EvaluacionRestController {
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public ResponseEntity<EvaluacionDelColaborador> save(@RequestBody EvaluacionDelColaborador evaluacionDelColaborador){
+    public @ResponseBody EvaluacionDelColaborador save(@RequestBody EvaluacionDelColaborador evaluacionDelColaborador){
         EvaluacionDelColaborador evaluacion = evaluacionDelColaboradorService.save(evaluacionDelColaborador);
-
-        return new ResponseEntity(evaluacion, HttpStatus.OK);
+        evaluacion.getItemEvaluados().forEach(itemEvaluado -> itemEvaluado.setConsideracionItemEvaluados(null));
+        return evaluacion;
     }
 
 }
