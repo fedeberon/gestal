@@ -44,7 +44,7 @@
                                             <td>${bo.telephone}</td>
                                             <td>${bo.mail}</td>
                                             <td>
-                                                <a href="<c:url value='/sucursal/update?id=${bo.id}'/>" class="btn btn-success">Editar</a>
+                                                <a href="<c:url value='/sucursal/update?id=${bo.id}'/>" class="btn btn-secondary">Editar</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

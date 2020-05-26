@@ -17,9 +17,11 @@ public interface EvaluacionDelColaboradorService {
 
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
 
-    EvaluacionDelColaborador calcularRatingPorConsideracion();
-
-    long cantidadMes();
+    Float calcularRatingPorConsideracion(EvaluacionDelColaborador evaluacionDelColaborador);
+    long cantidadEvaluacionesMes();
+    long cantidadEvaluacionesEntreRango();
+    long cantidadEvaluacionesMayor();
+    long cantidadEvaluacionesEnCero();
 
     List<EvaluacionDelColaborador> findAllPageable(int i, Integer page, String id);
 }

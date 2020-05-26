@@ -35,8 +35,11 @@ public class LoginController {
         List<Sucursal> sucursales = sucursalDao.findAll();
         model.addAttribute("cantColaboradoresEvaluados", evaluacionesDeColaboradores);
         model.addAttribute("evaluaciones", evaluacionesDeColaboradores);
-        model.addAttribute("score", evaluacionDelColaboradorService.calcularRatingPorConsideracion());
-        model.addAttribute("cantidadMes", evaluacionDelColaboradorService.cantidadMes());
+//        model.addAttribute("score", evaluacionDelColaboradorService.calcularRatingPorConsideracion());
+        model.addAttribute("cantidadEvaluacionesMes", evaluacionDelColaboradorService.cantidadEvaluacionesMes());
+        model.addAttribute("cantidadEvaluacionesEntreRango", evaluacionDelColaboradorService.cantidadEvaluacionesEntreRango());
+        model.addAttribute("cantidadEvaluacionesMayor", evaluacionDelColaboradorService.cantidadEvaluacionesMayor());
+        model.addAttribute("cantidadEvaluacionesEnCero", evaluacionDelColaboradorService.cantidadEvaluacionesEnCero());
         model.addAttribute("sucursales", sucursales);
 
         return "home";

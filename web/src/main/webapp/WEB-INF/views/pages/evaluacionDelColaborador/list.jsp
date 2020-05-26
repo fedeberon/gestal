@@ -43,46 +43,33 @@
                                         <tr>
                                             <td>${bo.colaborador.lastName} ${bo.colaborador.name}</td>
                                             <td>${bo.rolEvaluado.name}</td>
-                                            <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short"
-                                                                value="${bo.fechaDeCarga}" />
-                                            </td>
+                                            <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${bo.fechaDeCarga}" /></td>
                                             <td class="text-center">
 
-                                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                        data-target=".modal-${bo.id}">SUCURSAL
-                                                </button>
+                                                <!-- Large modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal-${bo.id}">SUCURSAL</button>
 
-                                                <!--Comienzo de modal-->
-                                                <div class="modal fade modal-${bo.id}">
-                                                    <div class="modal-dialog  modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Datos de la sucursal</h5>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="row">
-                                                                        <div class="col-md-3 my-3">
-                                                                            <strong>Nombre</strong>
-                                                                        </div>
-                                                                        <div class="col-md-3 my-3">
-                                                                            <strong>Direcci&oacute;n</strong>
-                                                                        </div>
-                                                                        <div class="col-md-3 my-3">
-                                                                            <strong>Tel&eacute;fono</strong>
-                                                                        </div>
-                                                                        <div class="col-md-3 my-3">
-                                                                            <strong>mail</strong>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-3 my-3">${bo.colaborador.sucursal.name}</div>
-                                                                        <div class="col-md-3 my-3">${bo.colaborador.sucursal.direction}</div>
-                                                                        <div class="col-md-3 my-3">${bo.colaborador.sucursal.telephone}</div>
-                                                                        <div class="col-md-3 my-3">${bo.colaborador.sucursal.mail}</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                <div class="modal fade modal-${bo.id}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content p-5">
+                                                            <table class="table">
+                                                                <thead class="thead-light">
+                                                                <tr>
+                                                                    <th scope="col">Nombre</th>
+                                                                    <th scope="col">Direcci&oacute;n</th>
+                                                                    <th scope="col">Tel&eacute;fono</th>
+                                                                    <th scope="col">Correo Electr&oacute;nico</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr>
+                                                                    <th>${bo.colaborador.sucursal.name}</th>
+                                                                    <td>${bo.colaborador.sucursal.direction}</td>
+                                                                    <td>${bo.colaborador.sucursal.telephone}</td>
+                                                                    <td>${bo.colaborador.sucursal.mail}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -107,10 +94,10 @@
                                                                                     <table class="table">
                                                                                         <thead class="text-primary">
                                                                                         <tr>
-                                                                                            <th class="text-center">Items</th>
+                                                                                            <th class="text-center" width="10%">Items</th>
                                                                                             <%--<th width="15%" class="text-center">Rating Estrellas</th>--%>
-                                                                                            <th class="text-center">Consideraciones</th>
-                                                                                            <th class="text-center">Rating</th>
+                                                                                            <th class="text-center" width="70%">Consideraciones</th>
+                                                                                            <th class="text-center" width="20%">Rating</th>
                                                                                         </tr>
                                                                                         </thead>
                                                                                         <tbody>

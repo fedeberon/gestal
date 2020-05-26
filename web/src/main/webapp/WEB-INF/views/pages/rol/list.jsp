@@ -31,7 +31,7 @@
                                         <tr>
                                             <td>${bo.name}</td>
                                             <td>
-                                                <a href="<c:url value='/rol/update?id=${bo.id}'/>" class="btn btn-success">Editar</a>
+                                                <a href="<c:url value='/rol/update?id=${bo.id}'/>" class="btn btn-secondary">Editar</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

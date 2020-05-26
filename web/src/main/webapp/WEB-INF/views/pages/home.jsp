@@ -49,7 +49,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">Cantidad de evaluaciones en el mes</p>
-                                <p class="card-title">${cantidadMes}<p>
+                                <p class="card-title">${cantidadEvaluacionesMes}<p>
                             </div>
                         </div>
                     </div>
@@ -146,9 +146,9 @@
                         <div class="col-md-4 card-category">Score mas de 21</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 mt-3">0</div>
-                        <div class="col-md-4 mt-3">0</div>
-                        <div class="col-md-4 mt-3">0</div>
+                        <div class="col-md-4 mt-3">${cantidadEvaluacionesEnCero}</div>
+                        <div class="col-md-4 mt-3">${cantidadEvaluacionesEntreRango}</div>
+                        <div class="col-md-4 mt-3">${cantidadEvaluacionesMayor}</div>
                     </div>
                 </div>
 

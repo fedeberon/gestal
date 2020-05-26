@@ -1,9 +1,10 @@
+
 //Agregar evaluacion modal
     var next = 0;
     $(".add-more").click(function (e) {
         next = next + 1;
         nextConsideracion = 1;
-        asd= 1;
+        console.log(next);
         e.preventDefault();
         var addto = "#field" + next;
         var addRemove = "#field" + (next);
@@ -79,10 +80,10 @@
         $('.remove-me').click(function (e) {
             e.preventDefault();
             var fieldNum = this.id.charAt(this.id.length - 1);
-            var divToRemove = $("#"+ fieldNum)
-            $(divToRemove).remove();
+            // var divToRemove = $("#"+ fieldNum)
+            // $(divToRemove).remove();
+            $(this).parent().remove();
         });
-        console.log(next);
     });
 
 //Agregar consideraciones
@@ -90,24 +91,16 @@ var maxFields = 5;
 var nextConsideracion = 1;
 $(document).on('click', '#addRow', function (e) {
     var html = '';
-    if (nextConsideracion < maxFields){
         nextConsideracion++;
         html += '<div id="inputFormRow">';
         html += '<div class="input-group mb-3">';
-        html += '<input type="text" name="items[' + next + '].consideraciones[' + nextConsideracion + '].value" id="'+ nextConsideracion +'" class="form-control border border-secondary consideraciones-input" autocomplete="off">';
+        html += '<input type="text" id="'+nextConsideracion+'" name="items[' + next + '].consideraciones[' + nextConsideracion + '].value" id="'+ nextConsideracion +'" class="form-control border border-secondary consideraciones-input" autocomplete="off">';
         // html += '<div class="input-group-append ml-3">';
         // html += '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
         // html += '</div>';
         html += '</div>';
-
         $('#newRow-'+next+'').append(html);
-
-
-    }
-    else {
-        demo.showNotification('top','center');
-    }
-});
+    });
 
 $(document).on('click', '#removeRow', function (e) {
     e.preventDefault();

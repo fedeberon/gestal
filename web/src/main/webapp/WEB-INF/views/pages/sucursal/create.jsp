@@ -15,22 +15,22 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre</label>
-                                <form:input path="name" size="30" cssClass="form-control text-uppercase" id="inputSuccess1"/>
+                                <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="name" cssClass="error" />
                             </div>
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Direccion</label>
-                                <form:input path="direction" size="30" cssClass="form-control text-uppercase" id="inputSuccess1"/>
+                                <form:input path="direction" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="direction" cssClass="error" />
                             </div>
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Telefono</label>
-                                <form:input path="telephone" size="30" cssClass="form-control" id="inputSuccess1"/>
+                                <form:input path="telephone" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="telephone" cssClass="error" />
                             </div>
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Email</label>
-                                <form:input path="mail" size="30" cssClass="form-control text-uppercase" id="inputSuccess1"/>
+                                <form:input path="mail" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="mail" cssClass="error" />
                             </div>
                             <div class="form-group mt-4">

@@ -63,46 +63,59 @@
                                                 <!--Comienzo de modal-->
                                                 <div class="modal fade modal-${bo.id}">
                                                     <div class="modal-dialog  modal-lg">
-                                                        <div class="modal-content">
+                                                        <div class="modal-content p-3">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title">Items</h5>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <ul class="list-group">
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-4 my-3"><strong>Nombre</strong></div>
-                                                                                    <div class="col-md-4 my-3"><strong>Score</strong></div>
-                                                                                    <div class="col-md-4 my-3"><strong>Invalida evaluaci&oacute;n</strong></div>
-                                                                                </div>
-                                                                                <c:forEach items="${bo.items}" var="item">
+                                                            <table class="table">
+                                                                <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th scope="col text-center">Nombre</th>
+                                                                        <th scope="col text-center">Score</th>
+                                                                        <th scope="col text-center">Invalida evaluaci&oacute;n</th>
+                                                                        <th colspan="3" scope="col">Consideraciones</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <c:forEach items="${bo.items}" var="item">
+                                                                    <tr>
+                                                                        <td class="p-4">${item.value}</td>
+                                                                        <td class="p-4">${item.score}</td>
+                                                                        <td class="p-4">
+                                                                            <c:choose>
+                                                                                <c:when test = "${item.invalidaEvaluacion == true}">
+                                                                                    <span class="badge badge-danger">${item.invalidaEvaluacion = 'Si'}</span>
+                                                                                </c:when>
 
-                                                                                    <div class="row">
-                                                                                        <div class="col-md-4 my-3">${item.value}</div>
-                                                                                        <div class="col-md-4 my-3">${item.score}</div>
-                                                                                        <div class="col-md-4 my-3">
-                                                                                            <c:choose>
-                                                                                                <c:when test = "${item.invalidaEvaluacion == true}">
-                                                                                                    <span class="badge badge-danger">${item.invalidaEvaluacion = 'Si'}</span>
-                                                                                                </c:when>
-
-                                                                                                <c:otherwise>
-                                                                                                    <span class="badge badge-success">${item.invalidaEvaluacion = 'No'}</span>
-                                                                                                </c:otherwise>
-                                                                                            </c:choose>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </c:forEach>
-                                                                                <div class="row">
-                                                                                    <div class="col-md-10">
-                                                                                        <a href="<c:url value='/evaluacion/update?id=${bo.id}'/>" class="btn btn-success float-right my-3" title="Editar item">Editar</a>
-                                                                                    </div>
-                                                                                </div>
+                                                                                <c:otherwise>
+                                                                                    <span class="badge badge-success">${item.invalidaEvaluacion = 'No'}</span>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </td>
+                                                                        <td class="p-4">
+                                                                            <!-- Collapse button -->
+                                                                            <div>
+                                                                                <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#consideraciones-${item.id}"
+                                                                                        aria-expanded="false" aria-controls="collapseExample">
+                                                                                    Consideraciones
+                                                                                </button>
                                                                             </div>
-                                                                        </div>
-                                                                    </ul>
+                                                                            <!-- Collapsible element -->
+                                                                            <div class="collapse" id="consideraciones-${item.id}">
+                                                                                <ul class="list-group mt-2">
+                                                                                    <c:forEach items="${item.consideraciones}" var="consideracion">
+                                                                                    <li class="list-group-item">${consideracion.value}</li>
+                                                                                    </c:forEach>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    </c:forEach>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="row">
+                                                                <div class="col-md-10">
+                                                                    <a href="<c:url value='/evaluacion/update?id=${bo.id}'/>" class="btn btn-secondary float-right my-3" title="Editar item">Editar</a>
                                                                 </div>
                                                             </div>
                                                         </div>

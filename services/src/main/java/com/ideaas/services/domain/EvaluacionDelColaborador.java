@@ -37,6 +37,8 @@ public class EvaluacionDelColaborador implements Serializable{
     @Column(name = "EDC_FECHA_DE_CARGA")
     private Date fechaDeCarga;
 
+    @ElementCollection
+    @OrderBy
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "evaluacionDelColaborador", cascade = CascadeType.ALL)
     private List<ItemEvaluado> itemEvaluados;
 
