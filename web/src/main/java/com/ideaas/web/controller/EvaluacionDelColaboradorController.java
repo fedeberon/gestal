@@ -51,7 +51,7 @@ public class EvaluacionDelColaboradorController {
     public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
 
-        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size, page, "id", "id");
+        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAll();
         evaluaciones.forEach(evaluacionDelColaborador -> {
             evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
                 if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){

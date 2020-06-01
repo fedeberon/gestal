@@ -21,7 +21,7 @@ services:
             dockerfile: Dockerfile
         image: damisaez/gestal_web
         ports:
-            - "8888:8888"
+            - "8887:8887"
         networks:
             - app-network
         depends_on:
