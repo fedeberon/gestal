@@ -108,7 +108,7 @@ public class EvaluacionController {
     }
 
     @RequestMapping("/list")
-    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+    public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model){
         List<Evaluacion> evaluaciones = evaluacionService.findAllPageable(size, page,"id");
         List<Evaluacion> asd = evaluacionService.findAll();

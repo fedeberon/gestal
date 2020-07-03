@@ -12,7 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/")
@@ -31,16 +35,20 @@ public class LoginController {
 
     @RequestMapping(value = {"/home" , ""})
     public String homePage(Model model) {
+
+        List<String> scoreFinal = evaluacionDelColaboradorService.scoreSucursal();
         List<EvaluacionDelColaborador> evaluacionesDeColaboradores = evaluacionDelColaboradorService.findAll();
-        List<Sucursal> sucursales = sucursalDao.findAll();
         model.addAttribute("cantColaboradoresEvaluados", evaluacionesDeColaboradores);
         model.addAttribute("evaluaciones", evaluacionesDeColaboradores);
-//        model.addAttribute("score", evaluacionDelColaboradorService.calcularRatingPorConsideracion());
         model.addAttribute("cantidadEvaluacionesMes", evaluacionDelColaboradorService.cantidadEvaluacionesMes());
         model.addAttribute("cantidadEvaluacionesEntreRango", evaluacionDelColaboradorService.cantidadEvaluacionesEntreRango());
         model.addAttribute("cantidadEvaluacionesMayor", evaluacionDelColaboradorService.cantidadEvaluacionesMayor());
         model.addAttribute("cantidadEvaluacionesEnCero", evaluacionDelColaboradorService.cantidadEvaluacionesEnCero());
-        model.addAttribute("sucursales", sucursales);
+
+        try {
+            model.addAttribute("scoreSucursal", evaluacionDelColaboradorService.scoreSucursal());
+        }catch(Exception e){
+        }
 
         return "home";
     }

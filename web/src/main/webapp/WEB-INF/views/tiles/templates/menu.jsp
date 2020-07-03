@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <style>
     .colaborators{
         font-size: 24px;
@@ -11,6 +12,7 @@
         position: relative;
     }
 </style>
+
 <div>
     <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
@@ -23,7 +25,6 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-
                 <li>
                     <a href="<c:url value='home'/>">
                         <i class="nc-icon nc-bank"></i>
@@ -74,6 +75,13 @@
                         <i class="nc-icon nc-shop"></i>
 
                         <p>Sucursales</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value='/certificado/list'/>">
+                        <i class="nc-icon nc-credit-card"></i>
+
+                        <p>Certificados m&eacute;dicos</p>
                     </a>
                 </li>
             </ul>

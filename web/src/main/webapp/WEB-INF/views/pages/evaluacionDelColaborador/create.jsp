@@ -68,6 +68,29 @@
     .slider.round:before {
         border-radius: 50%;
     }
+    @media (max-width: 400px) {
+        .slider-check {
+            width: 66px;
+        }
+    }
+
+    @media (max-width: 1000px) {
+        .slider-check {
+            width: 66px;
+        }
+    }
+
+    @media (max-width: 1400px) {
+        .slider-check {
+            width: 66px;
+        }
+    }
+
+    @media (max-width: 1800px) {
+        .slider-check {
+            width: 66px;
+        }
+    }
 
 
 </style>
@@ -136,7 +159,7 @@
 
                                                                                 <label class="switch col-1 mt-2">
                                                                                     <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
-                                                                                    <span class="slider round"></span>
+                                                                                    <span class="slider round slider-check"></span>
                                                                                 </label>
                                                                             </div>
                                                                         </div>

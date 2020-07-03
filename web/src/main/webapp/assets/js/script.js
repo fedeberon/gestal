@@ -38,13 +38,18 @@
         // $(addto).after(ckeckInvalida);
         $(divContainer).append(ckeckInvalida);
 
+        var checkInvalidaLabelToClone = $("#check-invalida-label-to-clone").clone();
+        checkInvalidaLabelToClone.attr("class", "col-1 d-inline mt-1");
+        $(divContainer).append(checkInvalidaLabelToClone);
+
+
         var html = '';
-        html += '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong-to-clone_'+next+'" id="modal_'+next+'" style=""> Consideraciones </button>';
+        html += '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong-to-clone_'+next+'" id="modal_'+next+'" style=""> Categor&iacute;as del indicador </button>';
         html += '<div class="modal fade modal_consideraciones" id="exampleModalLong-to-clone_'+next+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">';
         html +=     '<div class="modal-dialog" role="document">';
         html +=         '<div class="modal-content">';
         html +=             '<div class="modal-header">';
-        html +=                 '<h5 class="modal-title" id="exampleModalLongTitle">Consideraciones <small>(max 5)</small></h5>';
+        html +=                 '<h5 class="modal-title" id="exampleModalLongTitle">Categor&iacute;as del indicador</h5>';
         html +=                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>';
         html +=             '</div>';
         html +=             '<div class="modal-body">';
@@ -183,9 +188,6 @@ jQuery(document).ready(function($){
     var chart1 = new CanvasJS.Chart("graficoScoreEvaluacion", {
         animationEnabled: true,
         theme: "light2",
-        title:{
-            text: "Score por evaluación"
-        },
         axisY:{
             includeZero: false
         },
@@ -208,9 +210,6 @@ jQuery(document).ready(function($){
     var chart2 = new CanvasJS.Chart("graficoSucursal", {
         animationEnabled: true,
         theme: "light1", // "light1", "light2", "dark1", "dark2"
-        title:{
-            text: "Score por sucursal"
-        },
         data: [{
             type: "column",
             showInLegend: false,
@@ -226,3 +225,11 @@ jQuery(document).ready(function($){
         chart2.render();
     });
 });
+$(document).ready(function(){
+    $( "#inp-buscar" ).submit(function() {
+        document.forms['buscar'].submit();
+    });
+});
+function closeModal(){
+    $("#exampleModalLong-to-clone_0").modal("hide");
+}

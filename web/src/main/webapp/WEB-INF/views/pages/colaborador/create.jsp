@@ -14,7 +14,7 @@
                             <input type="hidden" name="colaborador.id" value="${colaborador.id}"/>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess1">Mail</label>
+                                <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
                                 <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1"/>
                                 <form:errors path="username" cssClass="error" size="50"/>
                             </div>
@@ -35,6 +35,12 @@
                                 <label class="form-control-label" for="inputSuccess4">Apellido</label>
                                 <form:input path="lastName" size="50" cssClass="form-control" id="inputSuccess4"/>
                                 <form:errors path="lastName" cssClass="error"/>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label class="form-control-label" for="inputSuccess4">Correo electr&oacute;nico</label>
+                                <form:input path="email" size="50" cssClass="form-control" id="inputSuccess4"/>
+                                <form:errors path="email" cssClass="error"/>
                             </div>
 
                             <div class="form-group mt-4">

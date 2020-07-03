@@ -7,6 +7,7 @@ import org.hibernate.annotations.NotFoundAction;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * Created by federicoberon on 30/01/2020.
@@ -34,8 +35,11 @@ public class Colaborador implements Serializable {
     private Rol rol;
 
     @Column(name = "COL_USERNAME")
-    @Email
     private String username;
+
+    @Column(name = "COL_EMAIL")
+    @Email
+    private String email;
 
     @Column(name = "COL_PASSWORD")
     @NotBlank(message = "No se puede cargar con espacios vacios")
@@ -100,5 +104,13 @@ public class Colaborador implements Serializable {
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

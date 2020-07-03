@@ -1,13 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <div class="content">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Colaboradores</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="card-title"> Colaboradores</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <form class="form-inline" action="<c:url value="/colaborador/search"/> ">
+                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar certificado" aria-label="Search">
+                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
@@ -38,7 +49,7 @@
                                             <tr>
                                                 <td class="text-center">${bo.name}</td>
                                                 <td class="text-center">${bo.lastName}</td>
-                                                <td class="text-center">${bo.username}</td>
+                                                <td class="text-center">${bo.email}</td>
                                                 <td class="text-center">${bo.rol.name}</td>
                                                 <td class="text-center">
 
@@ -108,14 +119,17 @@
                 <div class="card-footer mt-4">
                     <hr>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <form name="colaborador" action="list" method="get">
                                 <input type="hidden" name="page" value="${page}"/>
                                 <tags:paginador page="${page}" formName="search"/>
                             </form>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar colaborador</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-success" href="<c:url value='/colaborador/list'/>" title="Agregar sucursal">Lista completa</a>
                         </div>
                     </div>
                 </div>

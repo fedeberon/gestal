@@ -1,20 +1,15 @@
-package com.ideaas.actual.api.restController;
-
-/**
- * Created by Damian Saez on 13/12/2019.
- */
+package com.ideaas.web.controller;
 
 import com.ideaas.services.bean.FileUtil;
 import com.ideaas.services.payload.UploadFileResponse;
 import com.ideaas.services.service.FileServiceImpl;
 import com.ideaas.services.service.interfaces.FileStorageService;
-import net.lingala.zip4j.ZipFile;
-import net.lingala.zip4j.exception.ZipException;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -25,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -36,13 +32,13 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.zip.ZipFile;
 
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RestController
 @RequestMapping("api/file")
-public class FileRestController {
-
-    private static final Logger logger = LoggerFactory.getLogger(FileRestController.class);
+public class FileRestControllerWeb {
+    private static final Logger logger = LoggerFactory.getLogger(FileRestControllerWeb.class);
 
     @Value("${file.upload-dir}")
     private String destination;
@@ -55,7 +51,7 @@ public class FileRestController {
     private FileServiceImpl fileService;
 
     @Autowired
-    public FileRestController(FileStorageService fileStorageService, FileServiceImpl fileService) {
+    public FileRestControllerWeb(FileStorageService fileStorageService, FileServiceImpl fileService) {
         this.fileStorageService = fileStorageService;
         this.fileService = fileService;
     }
@@ -80,45 +76,6 @@ public class FileRestController {
                 .map(file -> uploadFile(file))
                 .collect(Collectors.toList());
     }
-
-    @PostMapping("/uploadZip")
-    public List<UploadFileResponse> add(@RequestParam("file") MultipartFile file) throws IOException {
-
-        /**
-         * save file to temp
-         */
-        File zip = File.createTempFile(UUID.randomUUID().toString(), "temp");
-        FileOutputStream o = new FileOutputStream(zip);
-        IOUtils.copy(file.getInputStream(), o);
-        o.close();
-
-        /**
-         * unizp file from temp by zip4j
-         */
-        try {
-            ZipFile zipFile = new ZipFile(zip);
-            zipFile.extractAll(destinationTemp);
-            File filesTemp = new File(destinationTemp);
-
-            try (Stream<Path> paths = Files.walk(Paths.get(filesTemp.toURI()))) {
-                return paths
-                        .filter(Files::isRegularFile)
-                        .map(path -> createFile(path))
-                        .collect(Collectors.toList());
-            }
-
-        } catch (ZipException e) {
-            e.printStackTrace();
-
-            return null;
-        } finally {
-            /**
-             * delete temp file
-             */
-            zip.delete();
-        }
-    }
-
 
     private UploadFileResponse createFile(Path path){
         String fileDownloadUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -152,7 +109,7 @@ public class FileRestController {
         }
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(contentType))
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; folder, filename='image/png'")
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; folder, filename=\"" + hash + "\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
 }

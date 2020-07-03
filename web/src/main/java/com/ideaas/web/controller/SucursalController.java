@@ -31,7 +31,7 @@ public class SucursalController {
     }
 
     @RequestMapping("/list")
-    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+    public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model){
         List <Sucursal> sucursales = sucursalService.findAllPageable(size, page,"id");
         model.addAttribute("sucursales", sucursales);

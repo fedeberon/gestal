@@ -65,7 +65,6 @@
         <%--<script type="text/javascript" href="<c:url value='/assets/js/script.js'/>"></script>--%>
         <script type="text/javascript" src='<c:url value="/assets/js/script.js"/>'></script>
 
-
         <script type="text/javascript" src='<c:url value="/assets/js/paginador.js"/>'></script>
         <%--Graficos Plugin--%>
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/canvasjs.min.js"/>'></script>

@@ -35,4 +35,5 @@ public class ItemEvaluadoServiceImpl implements ItemEvaluadoService {
     public ItemEvaluado get(Long id) {
         return dao.getOne(id);
     }
+
 }

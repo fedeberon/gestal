@@ -96,4 +96,10 @@ public class EvaluacionDelColaboradorController {
             return "redirect:list";
         }
     }
+
+    @RequestMapping("/search")
+    public String findColaboradorByName(@RequestParam(defaultValue = "") String value, Model model) {
+        model.addAttribute("evaluaciones", evaluacionDelColaboradorService.findColaboradorByName(value));
+        return "evaluacionDelColaborador/list";
+    }
 }

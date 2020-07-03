@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @RequestMapping("/list")
-    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+    public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model){
         List<User> usuarios = usuarioService.findAll(size, page,"id");
         model.addAttribute("usuarios", usuarios);

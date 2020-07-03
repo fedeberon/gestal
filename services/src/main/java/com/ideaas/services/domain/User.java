@@ -34,7 +34,7 @@ public class User  implements Serializable {
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "USU_USERNAME"),
+                    name = "USU_ID", referencedColumnName = "USU_USERNAME"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "ROL_ID"))
     private Collection<Rol> roles;

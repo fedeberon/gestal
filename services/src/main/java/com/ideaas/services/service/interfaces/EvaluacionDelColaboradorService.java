@@ -1,6 +1,8 @@
 package com.ideaas.services.service.interfaces;
 
+import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
+import com.ideaas.services.domain.Sucursal;
 
 import java.util.List;
 
@@ -10,18 +12,16 @@ import java.util.List;
 public interface EvaluacionDelColaboradorService {
 
     List<EvaluacionDelColaborador> findAllPageable(Integer pageSize, Integer pageNo, String id, String sortBy);
-
     List<EvaluacionDelColaborador> findAll();
-
     EvaluacionDelColaborador get(Long id);
-
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
-
     Float calcularRatingPorConsideracion(EvaluacionDelColaborador evaluacionDelColaborador);
     long cantidadEvaluacionesMes();
     long cantidadEvaluacionesEntreRango();
     long cantidadEvaluacionesMayor();
     long cantidadEvaluacionesEnCero();
-
+    List<String> scoreSucursal();
     List<EvaluacionDelColaborador> findAllPageable(int i, Integer page, String id);
+
+    List<EvaluacionDelColaborador> findColaboradorByName(String name);
 }

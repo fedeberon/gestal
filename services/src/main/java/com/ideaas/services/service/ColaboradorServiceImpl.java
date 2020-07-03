@@ -67,4 +67,11 @@ public class ColaboradorServiceImpl implements ColaboradorService {
         }
         return new org.springframework.security.core.userdetails.User(colaborador.getUsername(), colaborador.getPassword(), new ArrayList<>());
     }
+
+    @Override
+    public List<Colaborador> findColaboradorByName(String value) {
+        return dao.findColaboradorByName(value);
+    }
+
+
 }

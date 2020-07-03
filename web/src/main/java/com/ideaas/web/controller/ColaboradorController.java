@@ -3,6 +3,9 @@ package com.ideaas.web.controller;
 import com.ideaas.services.domain.*;
 import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -81,7 +85,7 @@ public class ColaboradorController {
     }
 
     @RequestMapping("/list")
-    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+    public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
         List<Colaborador> colaboradores = colaboradorService.findAll(size, page, "id");
         List<Evaluacion> evaluaciones = evaluacionService.findAll();
@@ -92,4 +96,11 @@ public class ColaboradorController {
 
         return "colaborador/list";
     }
+
+    @RequestMapping("/search")
+    public String findColaboradorByName(@RequestParam(defaultValue = "") String value, Model model) {
+        model.addAttribute("colaboradores", colaboradorService.findColaboradorByName(value));
+        return "colaborador/list";
+    }
+
 }

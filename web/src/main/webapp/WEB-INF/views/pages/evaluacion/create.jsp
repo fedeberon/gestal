@@ -29,18 +29,19 @@
                                 <div id="profs" style="width: 100%">
 
                                     <div id="field">
-                                        <label for="field1">Items de la evaluaci&oacute;n</label>
                                         <div class="input-group">
                                             <input type="hidden" class="setId" id=""/>
-                                            <input required="required" autocomplete="off" class="col-5 mx-3 itemField" id="0" name="items[0].value" type="text" placeholder="Descripcion del item"/>
+                                            <input required="required" autocomplete="off" class="col-5 mx-3 itemField" id="0" name="items[0].value" type="text" placeholder="Nombre del indicador"/>
                                             <select name="items[0].score" id="select_1" class="col-2 d-inline">
+                                                <option hidden selected value> Peso del indicador</option>
                                                 <c:forEach var="i" begin="0" end="10">
                                                     <option value="${i}">${i}</option>
                                                 </c:forEach>
                                             </select>
 
-                                            <input name="items[0].invalidaEvaluacion" class="col-1 mt-2" type="checkbox" id="check-invalida-evaluiacion-to-clone_0" style=""/>
 
+                                            <input name="items[0].invalidaEvaluacion" class="col-1 mt-2" type="checkbox" id="check-invalida-evaluiacion-to-clone_0" style=""/>
+                                            <label class="col-1 mt-2">Invalida la evaluaci&oacute;n</label>
                                             <jsp:include page="createConsideracionModal.jsp" />
                                             <div class="col-1">
                                                 <button id="b1" class="btn btn-primary add-more" type="button">+ </button>
@@ -79,7 +80,7 @@
 
 
 <select class="col-1" id="select-score-to-clone" style="display: none">
-
+    <option hidden selected value> Peso del indicador</option>
     <c:forEach var="i" begin="0" end="10">
         <option value="${i}">${i}</option>
     </c:forEach>
@@ -89,6 +90,7 @@
 <input name="items[0].invalidaEvaluacion" type="checkbox" style="display: none"
        id="check-invalida-evaluiacion-to-clone"/>
 
+<label id="check-invalida-label-to-clone" style="display:none;">Invalida la evaluaci&oacute;n</label>
 <%--<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong" id="modal-to-clone"--%>
         <%--style="display: none">--%>
     <%--Consideraciones--%>

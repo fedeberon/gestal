@@ -130,6 +130,27 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/sucursal/update.jsp" />
     </definition>
 
+    <!--Certificado -->
+    <definition name="certificado/list" extends="template-def">
+        <put-attribute name="title" value="Lista de certificados" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/list.jsp" />
+    </definition>
+
+    <definition name="certificado/create" extends="template-def">
+        <put-attribute name="title" value="Crear certificado" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/create.jsp" />
+    </definition>
+
+    <definition name="certificado/update" extends="template-def">
+        <put-attribute name="title" value="Editar certificado" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/update.jsp" />
+    </definition>
+
+    <definition name="certificado/show" extends="template-def">
+        <put-attribute name="title" value="Certificado" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/show.jsp" />
+    </definition>
+
     <!--Login -->
     <definition name="login" template="/WEB-INF/views/pages/login.jsp">
         <put-attribute name="title" value="Login" />

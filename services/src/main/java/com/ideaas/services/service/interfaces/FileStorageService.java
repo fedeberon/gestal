@@ -21,8 +21,8 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileStorageService {
 
-    private final Path fileStorageLocation;
 
+    private final Path fileStorageLocation;
     @Autowired
     public FileStorageService(FileStorageProperties fileStorageProperties) {
         this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
@@ -55,9 +55,23 @@ public class FileStorageService {
         }
     }
 
-    public Resource loadFileAsResource(String fileName) {
+//    public Resource loadFileAsResource(String fileName) {
+//        try {
+//            Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+//            Resource resource = new UrlResource(filePath.toUri());
+//            if(resource.exists()) {
+//                return resource;
+//            } else {
+//                throw new MyFileNotFoundException("File not found " + fileName);
+//            }
+//        } catch (MalformedURLException ex) {
+//            throw new MyFileNotFoundException("File not found " + fileName, ex);
+//        }
+//    }
+
+    public Resource loadFileAsResource(String folder, String fileName) {
         try {
-            Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+            Path filePath = this.fileStorageLocation.resolve(folder.concat("/").concat(fileName)).normalize();
             Resource resource = new UrlResource(filePath.toUri());
             if(resource.exists()) {
                 return resource;
