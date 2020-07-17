@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-md-6">
                             <form class="form-inline" action="<c:url value="/evaluacionDelColaborador/search"/> ">
-                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar certificado" aria-label="Search">
+                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar colaborador" aria-label="Search">
                                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
                             </form>
                         </div>

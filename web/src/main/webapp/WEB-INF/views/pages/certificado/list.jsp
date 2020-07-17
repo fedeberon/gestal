@@ -28,7 +28,10 @@
                             <th>Motivo</th>
                             <th>Nombre del Colaborador</th>
                             <th>Sucursal</th>
-                            <th>Fecha de carga</th>
+                            <th>Fecha de inicio</th>
+                            <th>Fecha de finalizaci&oacute;n</th>
+                            <th width="2%">D&iacute;as de ausentismo</th>
+                            <th class="text-center">Editar</th>
                             <th>Certificados</th>
                             </thead>
                             <tbody>
@@ -43,13 +46,18 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${certificados}" var="bo">
+                                        <fmt:parseDate value="${bo.fechaInicio}" pattern="yyyy-MM-dd" var="fechaInicioParsed" type="date"/>
+                                        <fmt:parseDate value="${bo.fechaFinalizacion}" pattern="yyyy-MM-dd" var="fechaFinalizacionParsed" type="date"/>
                                         <tr>
                                             <td>${bo.tipoCertificado.displayName}</td>
-                                            <td>${bo.colaborador.name}</td>
+                                            <td>${bo.colaborador.name} ${bo.colaborador.lastName}</td>
                                             <td>${bo.colaborador.sucursal.name}</td>
-                                            <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${bo.fechaDeCarga}" /></td>
+                                            <td><fmt:formatDate pattern="dd/MMM/yyyy" value="${fechaInicioParsed}"/></td>
+                                            <td><fmt:formatDate pattern="dd/MMM/yyyy" value="${fechaFinalizacionParsed}"/></td>
+                                            <td>${bo.ausentismo}</td>
+                                            <td><a href="<c:url value='/certificado/update?id=${bo.id}'/>" class="btn btn-success float-right my-3" title="Editar item">Editar</a></td>
                                             <td>
-                                                <a href="<c:url value='/certificado/show?id=${bo.id}'/>" class="btn btn-secondary" id="on-display-image">Imagenes</a>
+                                                <a href="<c:url value='/certificado/show?id=${bo.id}'/>" class="btn btn-secondary" id="on-display-image">Licencias cargadas</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -62,18 +70,21 @@
                 <div class="card-footer mt-4">
                     <hr>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <form name="certificado" action="list" method="get">
                                 <input type="hidden" name="page" value="${page}"/>
                                 <tags:paginador page="${page}" formName="search"/>
                             </form>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <a class="btn btn-success" href="<c:url value='/certificado/create'/>" title="Agregar rol">Agregar
                                 certificado</a>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <a class="btn btn-success" href="<c:url value='/certificado/list'/>" title="Agregar sucursal">Lista completa</a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="<c:url value='/certificado/stats'/>" class="btn btn-secondary">Estad&iacute;sticas</a>
                         </div>
                     </div>
                 </div>

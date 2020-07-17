@@ -48,5 +48,62 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <c:set var = "certificado" scope = "session" value = "${certificado}"/>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"> Estad&iacute;sticas anuales</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-md">
+                        <table class="table">
+                            <thead class=" text-primary">
+                            <th>${certificado.fechaInicio.year}</th>
+                            </thead>
+                            <tbody>
+                            <c:choose>
+                                <c:when test="${empty certificado}">
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <p class="mt-5">No hay colaboradores para mostrar</p>
+                                        </td>
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                        <tr>
+                                            <td>asd</td>
+
+                                        </tr>
+                                </c:otherwise>
+                            </c:choose>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer mt-4">
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form name="rol" action="list" method="get">
+                                <input type="hidden" name="page" value="${page}"/>
+                                <tags:paginador page="${page}" formName="search"/>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-success" href="<c:url value='/rol/create'/>" title="Agregar rol">Agregar
+                                rol</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar
+                                colaborador</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>

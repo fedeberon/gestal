@@ -1,12 +1,17 @@
 package com.ideaas.services.domain.certificado;
 
 import com.ideaas.services.domain.Colaborador;
+import org.apache.tomcat.jni.Local;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,11 +34,19 @@ public class Certificado implements Serializable {
     @NotFound(action = NotFoundAction.IGNORE)
     private Colaborador colaborador;
 
-    @Column(name = "CER_FECHA_CARGA")
-    private Date fechaDeCarga;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "CER_FECHA_INICIO")
+    private LocalDate fechaInicio;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Column(name = "CER_FECHA_FIN")
+    private LocalDate fechaFinalizacion;
 
     @Transient
     public List<Imagen> imagenes = new ArrayList<>();
+
+    @Column(name = "CER_AUSENTISMO")
+    private Integer ausentismo;
 
     public Long getId() {
         return id;
@@ -59,19 +72,35 @@ public class Certificado implements Serializable {
         this.colaborador = colaborador;
     }
 
-    public Date getFechaDeCarga() {
-        return fechaDeCarga;
-    }
-
-    public void setFechaDeCarga(Date fechaDeCarga) {
-        this.fechaDeCarga = fechaDeCarga;
-    }
-
     public List<Imagen> getImagenes() {
         return imagenes;
     }
 
     public void setImagenes(List<Imagen> imagenes) {
         this.imagenes = imagenes;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaFinalizacion() {
+        return fechaFinalizacion;
+    }
+
+    public void setFechaFinalizacion(LocalDate fechaFinalizacion) {
+        this.fechaFinalizacion = fechaFinalizacion;
+    }
+
+    public Integer getAusentismo() {
+        return ausentismo;
+    }
+
+    public void setAusentismo(Integer ausentismo) {
+        this.ausentismo = ausentismo;
     }
 }

@@ -32,6 +32,16 @@
                             </div>
 
                             <div class="form-group mt-4">
+                                <label class="form-control-label">Seleccionar fecha de inicio de la licencia</label>
+                                <form:input path="fechaInicio" size="50" autocomplete="off" cssClass="form-control" id="fechaInicio"/>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label class="form-control-label">D&iacute;as de ausentismo</label>
+                                <form:input path="ausentismo" size="50" cssClass="form-control"/>
+                            </div>
+
+                            <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-secondary" id="btnSubmit">Guardar</button>
                             </div>
 

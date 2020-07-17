@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by federicoberon on 30/01/2020.
@@ -113,4 +115,5 @@ public class Colaborador implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

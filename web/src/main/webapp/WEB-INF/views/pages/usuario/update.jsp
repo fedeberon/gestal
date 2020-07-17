@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Editar al usuario <span class="badge badge-success">${usuario.username}</span> </h4>
+                    <h4 class="card-title"> Editar usuario</h4>
                 </div>
                 <div class="card-body m-auto">
                     <c:url var="actionUrl" value="/usuario/save" />
@@ -17,7 +17,7 @@
 
                             <p>
                                 <label>Usuario:</label>
-                                <form:input path="username" required="required" size="50"/>
+                                <form:input path="username" cssClass="form-control" required="required" size="50"/>
                                 <form:errors path="username" cssClass="error" size="50"/>
                             </p>
 
@@ -27,12 +27,6 @@
                                     <form:input path="password" cssClass="form-control" size="50"/>
                                     <form:errors path="password" cssClass="error" size="50"/>
                                 </div>
-                            </p>
-
-                            <p>
-                                <label>Mail:</label>
-                                <form:input path="mail" required="required" size="50"/>
-                                <form:errors path="mail" cssClass="error" size="50"/>
                             </p>
 
                             <button type="submit" class="btn btn-primary">Guardar</button>

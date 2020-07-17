@@ -14,7 +14,6 @@
                             <thead class=" text-primary">
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Email</th>
                                 <th>Editar</th>
                             </thead>
                             <tbody>
@@ -34,7 +33,6 @@
                                                 <a href="<c:url value='/usuario/show?id=${bo.id}'/>" class="btn btn-primary" title="Perfil de usuario">${bo.id}</a>
                                             </td>
                                             <td>${bo.username}</td>
-                                            <td>${bo.mail}</td>
                                             <td>
                                                 <a href="<c:url value='/usuario/update?id=${bo.id}'/>" class="btn btn-secondary" title="Editar usuario">
                                                     Editar

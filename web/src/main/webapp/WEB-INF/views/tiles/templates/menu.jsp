@@ -22,9 +22,12 @@
                 </div>
             </a>
             <a href="<c:url value='home'/>" class="simple-text logo-normal">Actual - Gestal</a>
+            <span><sec:authentication property="principal.authorities"></sec:authentication></span>
         </div>
         <div class="sidebar-wrapper">
-            <ul class="nav">
+        <ul class="nav">
+            <sec:authorize access="hasAnyAuthority('ADMIN')">
+
                 <li>
                     <a href="<c:url value='home'/>">
                         <i class="nc-icon nc-bank"></i>
@@ -77,6 +80,7 @@
                         <p>Sucursales</p>
                     </a>
                 </li>
+            </sec:authorize>
                 <li>
                     <a href="<c:url value='/certificado/list'/>">
                         <i class="nc-icon nc-credit-card"></i>

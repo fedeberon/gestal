@@ -33,8 +33,6 @@ public class CertificadoController {
     private FileServiceImpl fileService;
 
 
-    private static String UPLOADED_FOLDER = "C:"+File.separator+"Users"+File.separator+"enzo"+File.separator+"spring_upload_example"+File.separator+"";
-
     @Autowired
     public CertificadoController(CertificadoService certificadoService, ColaboradorService colaboradorService, FileServiceImpl fileService) {
         this.certificadoService = certificadoService;
@@ -113,4 +111,13 @@ public class CertificadoController {
         model.addAttribute("certificados", certificadoService.findCertificadoByColaborador(value));
         return "certificado/list";
     }
+
+    @RequestMapping(value = {"/stats" , ""})
+    public String estadisticaCertificado(Model model) {
+        List<Certificado> certificados= certificadoService.findAll();
+
+        model.addAttribute("colaboradores", certificados);
+        return "certificado/stats";
+    }
+
 }

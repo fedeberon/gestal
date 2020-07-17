@@ -151,9 +151,20 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/certificado/show.jsp" />
     </definition>
 
+    <definition name="certificado/stats" extends="template-def">
+        <put-attribute name="title" value="Estadisticas" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/stats.jsp" />
+    </definition>
+
     <!--Login -->
     <definition name="login" template="/WEB-INF/views/pages/login.jsp">
         <put-attribute name="title" value="Login" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="" />
+    </definition>
+
+    <definition name="403" template="/WEB-INF/views/pages/403.jsp">
+        <put-attribute name="title" value="Acceso denegado" />
         <put-attribute name="header" value="" />
         <put-attribute name="body" value="" />
     </definition>

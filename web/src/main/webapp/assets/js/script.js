@@ -233,3 +233,90 @@ $(document).ready(function(){
 function closeModal(){
     $("#exampleModalLong-to-clone_0").modal("hide");
 }
+
+//DatePicker
+$(function(){
+    $.datepicker.regional['es'] = {
+        closeText: 'Cerrar',
+        prevText: '< Ant',
+        nextText: 'Sig >',
+        currentText: 'Hoy',
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+        dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+        dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+        dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+        weekHeader: 'Sm',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+    };
+    $.datepicker.setDefaults($.datepicker.regional['es']);
+    $(function () {
+        $("#fechaInicio").datepicker();
+        $("#fechaFin").datepicker();
+    });
+});
+
+//Graficos de certificados.
+window.onload = function () {
+
+        var chart4 = new CanvasJS.Chart("ausentismoPorMesPorColaborador", {
+            animationEnabled: true,
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            data: [{
+                type: "column",
+                showInLegend: true,
+                legendMarkerColor: "grey",
+                dataPoints: [
+                    { y: 300878, label: "Enero" },
+                    { y: 266455,  label: "Febrero" },
+                    { y: 169709,  label: "Marzo" },
+                    { y: 158400,  label: "Abril" },
+                    { y: 142503,  label: "Mayo" },
+                    { y: 101500, label: "Junio" },
+                    { y: 97800,  label: "Julio" },
+                    { y: 97800,  label: "Agosto" },
+                    { y: 97800,  label: "Septiembre" },
+                    { y: 97800,  label: "Octubre" },
+                    { y: 97800,  label: "Noviembre" },
+                    { y: 80000,  label: "Diciembre" }
+                ]
+            }]
+        });
+        chart4.render();
+
+    }
+window.onload = function () {
+
+    var chart5 = new CanvasJS.Chart("ausentismoPorAnioPorColaborador", {
+        animationEnabled: true,
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        data: [{
+            type: "column",
+            showInLegend: true,
+            legendMarkerColor: "grey",
+            dataPoints: [
+                { y: 300878, label: "Enero" },
+                { y: 266455,  label: "Febrero" },
+                { y: 169709,  label: "Marzo" },
+                { y: 158400,  label: "Abril" },
+                { y: 142503,  label: "Mayo" },
+                { y: 101500, label: "Junio" },
+                { y: 97800,  label: "Julio" },
+                { y: 97800,  label: "Agosto" },
+                { y: 97800,  label: "Septiembre" },
+                { y: 97800,  label: "Octubre" },
+                { y: 97800,  label: "Noviembre" },
+                { y: 80000,  label: "Diciembre" }
+            ]
+        }]
+    });
+    chart5.render();
+
+}
+
+
+

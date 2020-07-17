@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,7 +56,16 @@ public class CertificadoServiceImpl implements CertificadoService {
 
     @Override
     public Certificado save(Certificado certificado){
-        certificado.setFechaDeCarga(new Date());
+
+        //Al ingresar un dia de ausentismo se setea a la fecha de finalizacion el mismo dia que la fecha de comienzo porque la ausencia sera el mismo dia.
+        switch (certificado.getAusentismo()){
+            case 1:
+                certificado.setFechaFinalizacion(certificado.getFechaInicio());
+                break;
+            default:
+                certificado.setFechaFinalizacion(certificado.getFechaInicio().plusDays(certificado.getAusentismo()));
+                break;
+        }
         return dao.save(certificado);
     }
 
@@ -126,4 +137,5 @@ public class CertificadoServiceImpl implements CertificadoService {
     public List<Certificado> findCertificadoByColaborador(String value) {
         return dao.findCertificadoByColaborador(value);
     }
+
 }

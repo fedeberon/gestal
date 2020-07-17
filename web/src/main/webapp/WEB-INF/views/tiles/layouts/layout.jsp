@@ -25,7 +25,7 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="<c:url value='/assets/demo/demo.css' />" rel="stylesheet" />
         <link href="<c:url value='/assets/css/evaluacion/style.css' />" rel="stylesheet" />
-
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
 
     <body>
@@ -69,6 +69,7 @@
         <%--Graficos Plugin--%>
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/canvasjs.min.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/jquery.canvasjs.min.js"/>'></script>
-
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </body>
 </html>

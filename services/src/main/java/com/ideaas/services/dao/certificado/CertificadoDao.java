@@ -14,7 +14,7 @@ public interface CertificadoDao extends JpaRepository<Certificado, Long> {
     @Query("SELECT c FROM Certificado c WHERE c.colaborador.name LIKE %?1%"
             + "OR c.colaborador.lastName LIKE %?1%"
             + "OR c.colaborador.sucursal.name LIKE %?1%"
-            + "OR c.fechaDeCarga LIKE %?1%"
     )
     List<Certificado> findCertificadoByColaborador(String value);
+
 }

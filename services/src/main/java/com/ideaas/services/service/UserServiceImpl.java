@@ -1,5 +1,6 @@
 package com.ideaas.services.service;
 
+import com.ideaas.services.dao.RoleRepository;
 import com.ideaas.services.domain.User;
 import com.ideaas.services.dao.user.UserDao;
 import com.ideaas.services.service.interfaces.UsuarioService;
@@ -9,12 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Primary
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UsuarioService {
     private UserDao dao;
 
     @Autowired
-    public UserServiceImpl(UserDao dao) {
+    public UserServiceImpl(UserDao dao, RoleRepository roleDao) {
         this.dao = dao;
     }
 
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UsuarioService {
 
     @Override
     public User save(User user) {
+        user.setEnabled(true);
         return dao.save(user);
     }
 

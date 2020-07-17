@@ -28,4 +28,5 @@ public interface CertificadoService {
     void agregarImagenesALosCertificados(List<Certificado> certificados);
 
     List<Certificado> findCertificadoByColaborador(String value);
+
 }
