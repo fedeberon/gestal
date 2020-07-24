@@ -2,30 +2,28 @@ package com.ideaas.services.service;
 
 import com.ideaas.services.dao.certificado.CertificadoDao;
 import com.ideaas.services.dao.certificado.CertificadoDaoPagination;
+import com.ideaas.services.dao.colaborador.ColaboradorDao;
 import com.ideaas.services.domain.Colaborador;
+import com.ideaas.services.domain.Rol;
+import com.ideaas.services.domain.User;
 import com.ideaas.services.domain.certificado.Certificado;
 import com.ideaas.services.domain.certificado.Imagen;
 import com.ideaas.services.service.interfaces.CertificadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.time.LocalDate;
-import java.time.Period;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 @Service
 public class CertificadoServiceImpl implements CertificadoService {
@@ -33,6 +31,7 @@ public class CertificadoServiceImpl implements CertificadoService {
     private CertificadoDao dao;
     private CertificadoDaoPagination daoPagination;
     private FileServiceImpl fileService;
+    private ColaboradorDao colaboradorDao;
 
     @Value("${file.upload-dir}")
     private String filePathCertificados;
@@ -44,10 +43,11 @@ public class CertificadoServiceImpl implements CertificadoService {
     private String pathImagenesContext;
 
     @Autowired
-    public CertificadoServiceImpl(CertificadoDao dao, CertificadoDaoPagination daoPagination, FileServiceImpl fileService) {
+    public CertificadoServiceImpl(CertificadoDao dao, CertificadoDaoPagination daoPagination, FileServiceImpl fileService, ColaboradorDao colaboradorDao) {
         this.dao = dao;
         this.daoPagination = daoPagination;
         this.fileService = fileService;
+        this.colaboradorDao = colaboradorDao;
     }
 
     @Override
@@ -77,16 +77,19 @@ public class CertificadoServiceImpl implements CertificadoService {
     }
 
     @Override
-    public List<Certificado> findAll(Integer pageSize, Integer pageNo, String sortBy) {
+    public List<Certificado> findAll(Integer pageSize, Integer pageNo, String sortBy, User user) {
+        Rol rol = user.getRoles().stream().filter(rolUser -> rolUser.getId() == 2).findAny().orElse(null);
+
+        if(Objects.nonNull(rol)){
+            Colaborador colaborador = colaboradorDao.findByUsername(user.getUsername());
+            return dao.findByColaborador(colaborador);
+        }
+
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Page<Certificado> certificados = daoPagination.findAll(paging);
-
         return certificados.getContent();
+
     }
-
-
-
-
 
     @Override
     public void saveImage(MultipartFile imageFile) throws Exception {

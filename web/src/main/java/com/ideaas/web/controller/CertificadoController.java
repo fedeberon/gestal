@@ -1,26 +1,21 @@
 package com.ideaas.web.controller;
 
-import com.google.common.collect.Lists;
 import com.ideaas.services.domain.Colaborador;
+import com.ideaas.services.domain.Rol;
+import com.ideaas.services.domain.User;
 import com.ideaas.services.domain.certificado.Certificado;
 import com.ideaas.services.domain.certificado.CertificadoTipo;
-import com.ideaas.services.domain.certificado.Imagen;
 import com.ideaas.services.service.FileServiceImpl;
 import com.ideaas.services.service.interfaces.CertificadoService;
 import com.ideaas.services.service.interfaces.ColaboradorService;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.DateFormatSymbols;
+import java.security.Principal;
 import java.time.format.TextStyle;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -32,13 +27,15 @@ public class CertificadoController {
     private CertificadoService certificadoService;
     private ColaboradorService colaboradorService;
     private FileServiceImpl fileService;
+    private UsuarioService userSercice;
 
 
     @Autowired
-    public CertificadoController(CertificadoService certificadoService, ColaboradorService colaboradorService, FileServiceImpl fileService) {
+    public CertificadoController(CertificadoService certificadoService, ColaboradorService colaboradorService, FileServiceImpl fileService, UsuarioService userSercice) {
         this.certificadoService = certificadoService;
         this.colaboradorService = colaboradorService;
         this.fileService = fileService;
+        this.userSercice = userSercice;
     }
 
     @RequestMapping(value = "save")
@@ -77,9 +74,9 @@ public class CertificadoController {
 
     @RequestMapping("/list")
     public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
-                                  @RequestParam(defaultValue = "0") Integer page, Model model) {
-        List<Certificado> certificados= certificadoService.findAll(size, page, "id");
-
+                                  @RequestParam(defaultValue = "0") Integer page, Model model, Principal principal) {
+        User user = userSercice.get(principal.getName());
+        List<Certificado> certificados = certificadoService.findAll(size, page, "id", user);
         model.addAttribute("tipoCertificados", CertificadoTipo.values());
         model.addAttribute("certificados", certificados);
         model.addAttribute("page", page);

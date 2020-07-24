@@ -1,5 +1,6 @@
 package com.ideaas.services.service.interfaces;
 
+import com.ideaas.services.domain.User;
 import com.ideaas.services.domain.certificado.Certificado;
 import com.ideaas.services.domain.certificado.Imagen;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +16,7 @@ public interface CertificadoService {
 
     Certificado get(Long id);
 
-    List<Certificado> findAll(Integer pageSize, Integer pageNo, String sortBy);
+    List<Certificado> findAll(Integer pageSize, Integer pageNo, String sortBy, User user);
 
     void saveImage(MultipartFile imageFile) throws Exception;
 

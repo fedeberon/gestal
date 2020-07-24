@@ -1,5 +1,6 @@
 package com.ideaas.services.dao.certificado;
 
+import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.certificado.Certificado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,6 +14,8 @@ public interface CertificadoDao extends JpaRepository<Certificado, Long> {
             + "OR c.colaborador.sucursal.name LIKE %?1%"
     )
     List<Certificado> findCertificadoByColaborador(String value);
+
+    List<Certificado> findByColaborador(Colaborador colaborador);
 
     @Query( value = "SELECT SUM( CER_AUSENTISMO) AS CANTIDAD_AUSENCIA FROM CERTIFICADOS WHERE MONTH(CER_FECHA_INICIO)=1 AND YEAR(CER_FECHA_INICIO) = YEAR(CURDATE());", nativeQuery = true)
     Integer findByAusentismoEnero();
