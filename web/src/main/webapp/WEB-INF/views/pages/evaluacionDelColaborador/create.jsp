@@ -105,15 +105,15 @@
                             <input type="hidden" name="evaluacionDelColaborador.id" value="${evaluacionDelColaborador.id}"/>
 
                             <div class="form-group mt-4">
-                                <h4 class="form-control-label" for="inputSuccess1">${colaborador.name} ${colaborador.lastName}</h4>
+                                <h4 class="form-control-label" for="inputSuccess1">${colaborador.name}</h4>
                                 <input name="colaborador.id" type="hidden" value="${colaborador.id}">
-                                <input name="rolEvaluado.id" type="hidden" value="${colaborador.rol.id}">
+                                <input name="rolEvaluado.id" type="hidden" value="${colaborador.puesto.id}">
                             </div>
 
                             <c:set var = "item" scope = "session" value = "${evaluacion.items}"/>
                             <c:choose>
                                 <c:when test="${empty item}">
-                                    <p>No hay items para mostrar en el rol ${colaborador.rol.name}</p>
+                                    <p>No hay items para mostrar en el puesto ${colaborador.puesto.name}</p>
                                 </c:when>
                                 <c:otherwise>
                                     <div class="form-group mt-4">

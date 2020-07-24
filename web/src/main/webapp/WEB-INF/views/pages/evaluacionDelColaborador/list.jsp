@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-md-6">
                             <form class="form-inline" action="<c:url value="/evaluacionDelColaborador/search"/> ">
-                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar colaborador" aria-label="Search">
+                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar evaluaci&oacute;nes" aria-label="Search">
                                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
                             </form>
                         </div>
@@ -33,7 +33,7 @@
                             <thead class=" text-primary">
                                 <th>ID</th>
                                 <th>Nombre completo</th>
-                                <th>Rol</th>
+                                <th>Puesto</th>
                                 <th>Fecha de carga</th>
                                 <th class="text-center">Sucursal</th>
                                 <th>Items</th>
@@ -52,7 +52,7 @@
                                     <c:forEach items="${evaluaciones}" var="bo">
                                         <tr>
                                             <td>${bo.id}</td>
-                                            <td>${bo.colaborador.name} ${bo.colaborador.lastName}</td>
+                                            <td>${bo.colaborador.name}</td>
                                             <td>${bo.rolEvaluado.name}</td>
                                             <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${bo.fechaDeCarga}" /></td>
                                             <td class="text-center">

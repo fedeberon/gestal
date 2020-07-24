@@ -32,6 +32,7 @@
                             </div>
 
                             <div class="form-group mt-4">
+                                <label class="form-control-label">Rol del usuario:</label>
                                 <select name="roles" class="custom-select">
                                     <c:forEach items="${roles}" var="bo" varStatus="status">
                                         <option value="${status.count}">${bo.name}</option>

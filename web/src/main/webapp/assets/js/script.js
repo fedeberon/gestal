@@ -224,7 +224,9 @@ jQuery(document).ready(function($){
         );
         chart2.render();
     });
+
 });
+
 $(document).ready(function(){
     $( "#inp-buscar" ).submit(function() {
         document.forms['buscar'].submit();
@@ -260,63 +262,31 @@ $(function(){
     });
 });
 
-//Graficos de certificados.
-window.onload = function () {
-
-        var chart4 = new CanvasJS.Chart("ausentismoPorMesPorColaborador", {
-            animationEnabled: true,
-            theme: "light2", // "light1", "light2", "dark1", "dark2"
-            data: [{
-                type: "column",
-                showInLegend: true,
-                legendMarkerColor: "grey",
-                dataPoints: [
-                    { y: 300878, label: "Enero" },
-                    { y: 266455,  label: "Febrero" },
-                    { y: 169709,  label: "Marzo" },
-                    { y: 158400,  label: "Abril" },
-                    { y: 142503,  label: "Mayo" },
-                    { y: 101500, label: "Junio" },
-                    { y: 97800,  label: "Julio" },
-                    { y: 97800,  label: "Agosto" },
-                    { y: 97800,  label: "Septiembre" },
-                    { y: 97800,  label: "Octubre" },
-                    { y: 97800,  label: "Noviembre" },
-                    { y: 80000,  label: "Diciembre" }
-                ]
-            }]
-        });
-        chart4.render();
-
-    }
-window.onload = function () {
-
-    var chart5 = new CanvasJS.Chart("ausentismoPorAnioPorColaborador", {
-        animationEnabled: true,
-        theme: "light2", // "light1", "light2", "dark1", "dark2"
-        data: [{
-            type: "column",
-            showInLegend: true,
-            legendMarkerColor: "grey",
-            dataPoints: [
-                { y: 300878, label: "Enero" },
-                { y: 266455,  label: "Febrero" },
-                { y: 169709,  label: "Marzo" },
-                { y: 158400,  label: "Abril" },
-                { y: 142503,  label: "Mayo" },
-                { y: 101500, label: "Junio" },
-                { y: 97800,  label: "Julio" },
-                { y: 97800,  label: "Agosto" },
-                { y: 97800,  label: "Septiembre" },
-                { y: 97800,  label: "Octubre" },
-                { y: 97800,  label: "Noviembre" },
-                { y: 80000,  label: "Diciembre" }
-            ]
-        }]
-    });
-    chart5.render();
-
-}
-
-
-
+// window.onload = function() {
+//
+//         var chart = new CanvasJS.Chart("chartContainer", {
+//             theme: "light2", // "light1", "light2", "dark1", "dark2"
+//             exportEnabled: true,
+//             animationEnabled: true,
+//             data: [{
+//                 type: "pie",
+//                 startAngle: 25,
+//                 toolTipContent: "<b>{label}</b>: {y}%",
+//                 showInLegend: "true",
+//                 legendText: "{label}",
+//                 indexLabelFontSize: 16,
+//                 indexLabel: "{label} - {y}%",
+//                 dataPoints: [
+//                     { y: 51.08, label: "Chrome" },
+//                     { y: 27.34, label: "Internet Explorer" },
+//                     { y: 10.62, label: "Firefox" },
+//                     { y: 5.02, label: "Microsoft Edge" },
+//                     { y: 4.07, label: "Safari" },
+//                     { y: 1.22, label: "Opera" },
+//                     { y: 0.44, label: "Others" }
+//                 ]
+//             }]
+//         });
+//         chart.render();
+//
+//     };

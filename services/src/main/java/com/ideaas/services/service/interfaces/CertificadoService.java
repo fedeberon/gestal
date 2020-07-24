@@ -29,4 +29,33 @@ public interface CertificadoService {
 
     List<Certificado> findCertificadoByColaborador(String value);
 
+    Integer findByAusentismoEnero();
+
+    Integer findByAusentismoFebrero();
+
+    Integer findByAusentismoMarzo();
+
+    Integer findByAusentismoAbril();
+
+    Integer findByAusentismoMayo();
+
+    Integer findByAusentismoJunio();
+
+    Integer findByAusentismoJulio();
+
+    Integer findByAusentismoAgosto();
+
+    Integer findByAusentismoSeptiembre();
+
+    Integer findByAusentismoOctubre();
+
+    Integer findByAusentismoNoviembre();
+
+    Integer findByAusentismoDiciembre();
+
+    Integer findByAusentismoFechaActual();
+
+    Integer findByAusentismoAnioActual();
+
+    List<String> findByAusentismoColaborador();
 }

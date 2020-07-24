@@ -1,8 +1,7 @@
 package com.ideaas.services.dao;
 
-import com.ideaas.services.domain.Role;
-import com.ideaas.services.domain.User;
+import com.ideaas.services.domain.Rol;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RoleRepository extends JpaRepository<Role, Long> {
+public interface RoleRepository extends JpaRepository<Rol, Long> {
 }

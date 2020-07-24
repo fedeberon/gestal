@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-md-6">
                             <form class="form-inline" action="<c:url value="/colaborador/search"/> ">
-                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar colaborador" aria-label="Search">
+                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar colaboradores" aria-label="Search">
                                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
                             </form>
                         </div>
@@ -25,12 +25,10 @@
                         <table class="table">
                             <thead class=" text-primary">
 
-                                <th class="text-center">Nombre</th>
-                                <th class="text-center">Apellido</th>
+                                <th class="text-center">Nombre completo</th>
                                 <th class="text-center">Mail</th>
-                                <th class="text-center">Rol</th>
+                                <th class="text-center">Puesto</th>
                                 <th class="text-center">Sucursal</th>
-                                <th class="text-center">Editar</th>
                                 <th class="text-center">Evaluar</th>
 
                             </thead>
@@ -48,9 +46,8 @@
                                         <c:forEach items="${colaboradores}" var="bo">
                                             <tr>
                                                 <td class="text-center">${bo.name}</td>
-                                                <td class="text-center">${bo.lastName}</td>
                                                 <td class="text-center">${bo.email}</td>
-                                                <td class="text-center">${bo.rol.name}</td>
+                                                <td class="text-center">${bo.puesto.name}</td>
                                                 <td class="text-center">
 
                                                     <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -85,13 +82,6 @@
                                                                             <div class="col-md-3 my-3">${bo.sucursal.direction}</div>
                                                                             <div class="col-md-3 my-3">${bo.sucursal.telephone}</div>
                                                                             <div class="col-md-3 my-3">${bo.sucursal.mail}</div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-md-10">
-                                                                                <a href="<c:url value='/evaluacion/update?id=${bo.id}'/>"
-                                                                                   class="btn btn-success float-right my-3"
-                                                                                   title="Editar item">Editar</a>
-                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>

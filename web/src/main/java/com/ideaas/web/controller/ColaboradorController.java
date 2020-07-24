@@ -3,9 +3,6 @@ package com.ideaas.web.controller;
 import com.ideaas.services.domain.*;
 import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -26,15 +22,15 @@ import java.util.List;
 public class ColaboradorController {
 
     private ColaboradorService colaboradorService;
-    private RolService rolService;
+    private PuestoService puestoService;
     private SucursalService sucursalService;
     private EvaluacionService evaluacionService;
     private ItemService itemService;
     @Autowired
-    public ColaboradorController(ColaboradorService colaboradorService, RolService rolService, SucursalService sucursalService, EvaluacionService evaluacionService, ItemService itemService) {
+    public ColaboradorController(ColaboradorService colaboradorService, PuestoService puestoService, SucursalService sucursalService, EvaluacionService evaluacionService, ItemService itemService) {
 
         this.colaboradorService = colaboradorService;
-        this.rolService = rolService;
+        this.puestoService = puestoService;
         this.sucursalService = sucursalService;
         this.evaluacionService = evaluacionService;
         this.itemService = itemService;
@@ -72,10 +68,10 @@ public class ColaboradorController {
          return "colaborador/create";
     }
 
-    @ModelAttribute("roles")
-    public List<Rol> getRoles() {
+    @ModelAttribute("puestos")
+    public List<Puesto> getPuestos() {
 
-        return rolService.findAll();
+        return puestoService.findAll();
     }
 
     @ModelAttribute("sucursales")

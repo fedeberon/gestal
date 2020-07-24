@@ -14,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -36,8 +35,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
 
     @Override
-    public Evaluacion getByRol(Rol rol) {
-        return dao.getActiveByRol(rol);
+    public Evaluacion getByPuesto(Puesto puesto) {
+        return dao.getActiveByPuesto(puesto);
     }
 
     @Override

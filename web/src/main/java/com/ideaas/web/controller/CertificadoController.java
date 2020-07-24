@@ -20,9 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.List;
+import java.text.DateFormatSymbols;
+import java.time.format.TextStyle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("certificado")
@@ -115,8 +116,28 @@ public class CertificadoController {
     @RequestMapping(value = {"/stats" , ""})
     public String estadisticaCertificado(Model model) {
         List<Certificado> certificados= certificadoService.findAll();
-
         model.addAttribute("colaboradores", certificados);
+        model.addAttribute("findByAusentismoEnero", certificadoService.findByAusentismoEnero());
+        model.addAttribute("findByAusentismoFebrero", certificadoService.findByAusentismoFebrero());
+        model.addAttribute("findByAusentismoMarzo", certificadoService.findByAusentismoMarzo());
+        model.addAttribute("findByAusentismoAbril", certificadoService.findByAusentismoAbril());
+        model.addAttribute("findByAusentismoMayo", certificadoService.findByAusentismoMayo());
+        model.addAttribute("findByAusentismoJunio", certificadoService.findByAusentismoJunio());
+        model.addAttribute("findByAusentismoJulio", certificadoService.findByAusentismoJulio());
+        model.addAttribute("findByAusentismoAgosto", certificadoService.findByAusentismoAgosto());
+        model.addAttribute("findByAusentismoSeptiembre", certificadoService.findByAusentismoSeptiembre());
+        model.addAttribute("findByAusentismoOctubre", certificadoService.findByAusentismoOctubre());
+        model.addAttribute("findByAusentismoNoviembre", certificadoService.findByAusentismoNoviembre());
+        model.addAttribute("findByAusentismoDiciembre", certificadoService.findByAusentismoDiciembre());
+        model.addAttribute("findByAusentismoFechaActual", certificadoService.findByAusentismoFechaActual());
+        model.addAttribute("findByAusentismoAnioActual", certificadoService.findByAusentismoAnioActual());
+//        model.addAttribute("findByAusentismoColaborador", certificadoService.findByAusentismoColaborador());
+        model.addAttribute("findByAusentismoPrueba",certificados.stream().collect(Collectors.groupingBy(certificado -> certificado.getFechaInicio().getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")),Collectors.summingInt(Certificado::getAusentismo))));
+
+
+        model.addAttribute("findByAusentismoColaborador", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy( Certificado::getColaborador, Collectors.summingInt(Certificado::getAusentismo))));
+        model.addAttribute("findByAusentismoSucursal", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy( certificado -> certificado.getColaborador().getSucursal(), Collectors.summingInt(Certificado::getAusentismo))));
+        model.addAttribute("findByAusentismoMotivo", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy(certificado -> certificado.getTipoCertificado(), Collectors.summingInt(Certificado::getAusentismo))));
         return "certificado/stats";
     }
 

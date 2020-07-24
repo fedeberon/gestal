@@ -1,33 +1,25 @@
 package com.ideaas.services.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 
-/**
- * Created by federicoberon on 04/02/2020.
- */
 @Entity
 @Table(name = "ROLES")
-public class Rol implements Serializable{
-
+public class Rol {
 
     @Id
-    @Column(name = "ROL_ID", unique=true, nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ROLE_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "ROL_NAME")
-    @NotBlank(message = "No se puede cargar con espacios vacios")
+    @Column(name = "ROLE_NAME")
     private String name;
 
     @ManyToMany
     @JoinTable(
             name = "roles_privileges",
             joinColumns = @JoinColumn(
-                    name = "rol_id", referencedColumnName = "ROL_ID"),
+                    name = "rol_id", referencedColumnName = "ROLE_ID"),
             inverseJoinColumns = @JoinColumn(
                     name = "privilege_id", referencedColumnName = "PRI_ID"))
     private Collection<Privilege> privileges;

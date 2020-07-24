@@ -2,7 +2,7 @@ package com.ideaas.services.service.interfaces;
 
 import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
-import com.ideaas.services.domain.Rol;
+import com.ideaas.services.domain.Puesto;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * Created by federicoberon on 04/02/2020.
  */
 public interface EvaluacionService {
-    Evaluacion getByRol(Rol rol);
+    Evaluacion getByPuesto(Puesto puesto);
 
     Evaluacion save(Evaluacion evaluacion);
 

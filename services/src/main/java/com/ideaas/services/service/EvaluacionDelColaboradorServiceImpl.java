@@ -37,14 +37,6 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
     }
 
     @Override
-    public List<EvaluacionDelColaborador> findAllPageable(Integer pageSize, Integer pageNo, String sortBy, String textToSearch) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-        Page<EvaluacionDelColaborador> evaluacionDelColaborador = daoPageable.findByColaborador_LastNameContainingOrderByIdDesc(textToSearch, paging);
-
-        return evaluacionDelColaborador.getContent();
-    }
-
-    @Override
     public List<EvaluacionDelColaborador> findAll(){
         return dao.findAll();
     }

@@ -25,6 +25,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CertificadoServiceImpl implements CertificadoService {
@@ -136,6 +137,81 @@ public class CertificadoServiceImpl implements CertificadoService {
     @Override
     public List<Certificado> findCertificadoByColaborador(String value) {
         return dao.findCertificadoByColaborador(value);
+    }
+
+    @Override
+    public Integer findByAusentismoEnero() {
+        return dao.findByAusentismoEnero();
+    }
+
+    @Override
+    public Integer findByAusentismoFebrero() {
+        return dao.findByAusentismoFebrero();
+    }
+
+    @Override
+    public Integer findByAusentismoMarzo() {
+        return dao.findByAusentismoMarzo();
+    }
+
+    @Override
+    public Integer findByAusentismoAbril() {
+        return dao.findByAusentismoAbril();
+    }
+
+    @Override
+    public Integer findByAusentismoMayo() {
+        return dao.findByAusentismoMayo();
+    }
+
+    @Override
+    public Integer findByAusentismoJunio() {
+        return dao.findByAusentismoJunio();
+    }
+
+    @Override
+    public Integer findByAusentismoJulio() {
+        return dao.findByAusentismoJulio();
+    }
+
+    @Override
+    public Integer findByAusentismoAgosto() {
+        return dao.findByAusentismoAgosto();
+    }
+
+    @Override
+    public Integer findByAusentismoSeptiembre() {
+        return dao.findByAusentismoSeptiembre();
+    }
+
+    @Override
+    public Integer findByAusentismoOctubre() {
+        return dao.findByAusentismoOctubre();
+    }
+
+    @Override
+    public Integer findByAusentismoNoviembre() {
+        return dao.findByAusentismoNoviembre();
+    }
+
+    @Override
+    public Integer findByAusentismoDiciembre() {
+        return dao.findByAusentismoDiciembre();
+    }
+
+    @Override
+    public Integer findByAusentismoFechaActual() {
+        return dao.findByAusentismoFechaActual();
+    }
+
+    @Override
+    public Integer findByAusentismoAnioActual() {
+        return dao.findByAusentismoAnioActual();
+    }
+
+    @Override
+    public List<String> findByAusentismoColaborador() {
+        return dao.findByAusentismoColaborador();
     }
 
 }

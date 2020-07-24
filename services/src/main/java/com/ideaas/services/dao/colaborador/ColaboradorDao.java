@@ -17,8 +17,7 @@ import java.util.List;
 public interface ColaboradorDao extends JpaRepository<Colaborador, Long> {
 
     @Query("SELECT c FROM Colaborador c WHERE c.name LIKE %?1%"
-            + "OR c.lastName LIKE %?1%"
-            + "OR c.rol.name LIKE %?1%"
+            + "OR c.puesto.name LIKE %?1%"
             + "OR c.sucursal.name LIKE %?1%"
             + "OR c.email LIKE %?1%"
     )

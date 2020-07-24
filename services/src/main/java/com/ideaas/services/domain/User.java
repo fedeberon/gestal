@@ -1,12 +1,11 @@
 package com.ideaas.services.domain;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,7 +35,7 @@ public class User  implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles = new HashSet<>();
+    private Set<Rol> roles = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -70,11 +69,11 @@ public class User  implements Serializable {
         this.enabled = enabled;
     }
 
-    public Set<Role> getRoles() {
+    public Set<Rol> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<Rol> roles) {
         this.roles = roles;
     }
 }

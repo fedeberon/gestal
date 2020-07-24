@@ -2,10 +2,10 @@ package com.ideaas.web.controller;
 
 import com.ideaas.services.bean.State;
 import com.ideaas.services.domain.Evaluacion;
-import com.ideaas.services.domain.Rol;
+import com.ideaas.services.domain.Puesto;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import com.ideaas.services.service.interfaces.ItemService;
-import com.ideaas.services.service.interfaces.RolService;
+import com.ideaas.services.service.interfaces.PuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Created by Enzo on 10/2/2020.
@@ -27,12 +26,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @RequestMapping("evaluacion")
 public class EvaluacionController {
 
-    private RolService rolService;
+    private PuestoService rolService;
     private ItemService itemService;
     private EvaluacionService evaluacionService;
 
     @Autowired
-    public EvaluacionController(RolService rolService, EvaluacionService evaluacionService, ItemService itemService) {
+    public EvaluacionController(PuestoService rolService, EvaluacionService evaluacionService, ItemService itemService) {
         this.rolService = rolService;
         this.evaluacionService = evaluacionService;
         this.itemService = itemService;
@@ -69,7 +68,7 @@ public class EvaluacionController {
     }
 
     @ModelAttribute("roles")
-    public List<Rol> getRoles(){
+    public List<Puesto> getRoles(){
 
         return rolService.findAll();
     }
@@ -111,10 +110,7 @@ public class EvaluacionController {
     public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model){
         List<Evaluacion> evaluaciones = evaluacionService.findAllPageable(size, page,"id");
-        List<Evaluacion> asd = evaluacionService.findAll();
         model.addAttribute("evaluaciones", evaluaciones);
-        model.addAttribute("asd", asd);
-
         model.addAttribute("page" , page);
 
         return "evaluacion/list";

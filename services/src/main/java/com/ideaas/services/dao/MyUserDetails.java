@@ -1,6 +1,6 @@
 package com.ideaas.services.dao;
 
-import com.ideaas.services.domain.Role;
+import com.ideaas.services.domain.Rol;
 import com.ideaas.services.domain.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,10 +21,10 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Role> roles = user.getRoles();
+        Set<Rol> roles = user.getRoles();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-        for (Role role : roles){
+        for (Rol role : roles){
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         return authorities;

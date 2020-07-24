@@ -15,26 +15,29 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
-                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1"/>
-                                <form:errors path="username" cssClass="error" size="50"/>
+                                <form:input path="user.username" size="50" cssClass="form-control" id="inputSuccess1"/>
+                                <form:errors path="user.username" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess2">Contrase&ntilde;a</label>
-                                <form:password path="password"  size="50" cssClass="form-control" id="inputSuccess2"/>
-                                <form:errors path="password" cssClass="error" size="50"/>
+                                <form:password path="user.password"  size="50" cssClass="form-control" id="inputSuccess2"/>
+                                <form:errors path="user.password" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess3">Nombre</label>
+                                <label class="form-control-label">Rol del colaborador:</label>
+                                <select name="roles" class="custom-select">
+                                    <c:forEach items="${user.roles}" var="bo" varStatus="status">
+                                        <option value="${status.count}">${bo.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label class="form-control-label" for="inputSuccess3">Nombre completo</label>
                                 <form:input path="name" size="50" cssClass="form-control" id="inputSuccess3"/>
                                 <form:errors path="name" cssClass="error"/>
-                            </div>
-
-                            <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess4">Apellido</label>
-                                <form:input path="lastName" size="50" cssClass="form-control" id="inputSuccess4"/>
-                                <form:errors path="lastName" cssClass="error"/>
                             </div>
 
                             <div class="form-group mt-4">
@@ -44,9 +47,9 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess5">Seleccionar rol</label>
-                                <form:select path="rol.id" cssClass="form-control">
-                                    <form:options items="${roles}" itemValue="id" itemLabel="name"
+                                <label class="form-control-label" for="inputSuccess5">Seleccionar puesto</label>
+                                <form:select path="puesto.id" cssClass="form-control">
+                                    <form:options items="${puestos}" itemValue="id" itemLabel="name"
                                                   id="inputSuccess5"/>
                                 </form:select>
                             </div>

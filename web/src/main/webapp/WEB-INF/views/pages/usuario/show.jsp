@@ -11,7 +11,6 @@
                             <img class="avatar border-gray" src="/assets/img/user.jpg" alt="...">
                             <h5 class="title">${usuario.username}</h5>
                         </a>
-                        <p class="description">${usuario.mail}</p>
                     </div>
                 </div>
             </div>

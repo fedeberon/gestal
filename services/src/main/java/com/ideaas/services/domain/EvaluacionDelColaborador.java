@@ -1,10 +1,7 @@
 package com.ideaas.services.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +24,7 @@ public class EvaluacionDelColaborador implements Serializable{
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "EDC_ROL_ID", nullable = false)
-    private Rol rolEvaluado;
+    private Puesto rolEvaluado;
 
     /**
      * No es posible usarlo en level 25 de Android
@@ -60,11 +57,11 @@ public class EvaluacionDelColaborador implements Serializable{
         this.colaborador = colaborador;
     }
 
-    public Rol getRolEvaluado() {
+    public Puesto getRolEvaluado() {
         return rolEvaluado;
     }
 
-    public void setRolEvaluado(Rol rolEvaluado) {
+    public void setRolEvaluado(Puesto rolEvaluado) {
         this.rolEvaluado = rolEvaluado;
     }
 

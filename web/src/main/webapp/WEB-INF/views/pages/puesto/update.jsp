@@ -5,15 +5,15 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Editar rol</h4>
+                    <h4 class="card-title"> Editar puesto</h4>
                 </div>
                 <div class="card-body m-auto">
-                    <c:url var="actionUrl" value="/rol/save" />
-                    <form:form modelAttribute="rol" action="${actionUrl}" method="POST">
-                        <form:hidden path="id" value='${rol.id}'/>
+                    <c:url var="actionUrl" value="/puesto/save" />
+                    <form:form modelAttribute="puesto" action="${actionUrl}" method="POST">
+                        <form:hidden path="id" value='${puesto.id}'/>
 
                         <div class="form-style-8">
-                            <input type="hidden" name="rol.id" value="${rol.id}"/>
+                            <input type="hidden" name="puesto.id" value="${puesto.id}"/>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre</label>

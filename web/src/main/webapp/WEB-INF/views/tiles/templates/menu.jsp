@@ -22,7 +22,6 @@
                 </div>
             </a>
             <a href="<c:url value='home'/>" class="simple-text logo-normal">Actual - Gestal</a>
-            <span><sec:authentication property="principal.authorities"></sec:authentication></span>
         </div>
         <div class="sidebar-wrapper">
         <ul class="nav">
@@ -66,10 +65,10 @@
                 </li>
 
                 <li>
-                    <a href="<c:url value='/rol/list'/>">
+                    <a href="<c:url value='/puesto/list'/>">
                         <i class="nc-icon nc-key-25"></i>
 
-                        <p>Roles</p>
+                        <p>Puestos</p>
                     </a>
                 </li> 
 

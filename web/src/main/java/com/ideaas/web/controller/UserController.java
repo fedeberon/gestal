@@ -1,8 +1,7 @@
 package com.ideaas.web.controller;
 
 import com.ideaas.services.dao.RoleRepository;
-import com.ideaas.services.domain.Role;
-import com.ideaas.services.domain.Sucursal;
+import com.ideaas.services.domain.Rol;
 import com.ideaas.services.domain.User;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +79,7 @@ public class UserController {
     }
 
     @ModelAttribute("roles")
-    public List<Role> getRoles() {
+    public List<Rol> getRoles() {
         return roleDao.findAll();
     }
 

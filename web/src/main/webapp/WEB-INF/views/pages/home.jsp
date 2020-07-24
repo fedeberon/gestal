@@ -161,23 +161,11 @@
                 </div>
                 <div class="card-body">
                     <div id="graficoSucursal" style="height: 370px; width: 100%;"></div>
-                    <c:forEach items="${scoreSucursal}" var="bo" varStatus="status">
+                    <c:forEach items="${scorePorSucursal}" var="bo" varStatus="status">
                         <ul class="listaScoreSucursal d-none">
-                            <li class="scoreSucursalGraph d-none" id="${bo}">${bo}</li>
+                            <li class="scoreSucursalGraph d-none" id="${bo.key.name}">${bo.value}</li>
                         </ul>
                     </c:forEach>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card ">
-                <div class="card-header ">
-                    <h5 class="card-title">Estad&iacute;sticas mensuales</h5>
-                </div>
-                <div class="card-body ">
-                    <div id="ausentismoMesPorSucursal" style="height: 370px; width: 100%;"></div>
                 </div>
             </div>
         </div>

@@ -1,13 +1,11 @@
 package com.ideaas.services.domain;
 
-import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,14 +25,10 @@ public class Colaborador implements Serializable {
     @NotBlank(message = "No se puede cargar con espacios vacios")
     private String name;
 
-    @Column(name = "COL_LAST_NAME")
-    @NotBlank(message = "No se puede cargar con espacios vacios")
-    private String lastName;
-
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "COL_ROL_ID", nullable = false)
+    @JoinColumn(name = "COL_PUE_ID", nullable = false)
     @NotFound(action = NotFoundAction.IGNORE)
-    private Rol rol;
+    private Puesto puesto;
 
     @Column(name = "COL_USERNAME")
     private String username;
@@ -68,22 +62,6 @@ public class Colaborador implements Serializable {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -114,6 +92,14 @@ public class Colaborador implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Puesto getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(Puesto puesto) {
+        this.puesto = puesto;
     }
 
 }

@@ -1,9 +1,9 @@
 package com.ideaas.services.service;
 
-import com.ideaas.services.dao.rol.RolDao;
-import com.ideaas.services.dao.rol.RolDaoPagination;
-import com.ideaas.services.domain.Rol;
-import com.ideaas.services.service.interfaces.RolService;
+import com.ideaas.services.dao.puesto.PuestoDao;
+import com.ideaas.services.dao.puesto.PuestoDaoPagination;
+import com.ideaas.services.domain.Puesto;
+import com.ideaas.services.service.interfaces.PuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,36 +17,36 @@ import java.util.List;
  * Created by Enzo on 10/2/2020.
  */
 @Service
-public class RolServiceImpl implements RolService {
+public class PuestoServiceImpl implements PuestoService {
 
-    private RolDao dao;
-    private RolDaoPagination daoPagination;
+    private PuestoDao dao;
+    private PuestoDaoPagination daoPagination;
 
     @Autowired
-    public RolServiceImpl(RolDao dao, RolDaoPagination daoPagination) {
+    public PuestoServiceImpl(PuestoDao dao, PuestoDaoPagination daoPagination) {
         this.dao = dao;
         this.daoPagination = daoPagination;
     }
 
     @Override
-    public List<Rol> findAll(){
+    public List<Puesto> findAll(){
         return dao.findAll();
     }
 
     @Override
-    public Rol save(Rol rol) {
+    public Puesto save(Puesto rol) {
         return dao.save(rol);
     }
 
     @Override
-    public Rol get(Long id) {
+    public Puesto get(Long id) {
         return dao.findById(id).get();
     }
 
     @Override
-    public List<Rol> findAll(Integer pageSize, Integer pageNo, String sortBy) {
+    public List<Puesto> findAll(Integer pageSize, Integer pageNo, String sortBy) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-        Page<Rol> roles = daoPagination.findAll(paging);
+        Page<Puesto> roles = daoPagination.findAll(paging);
 
         return roles.getContent();
     }

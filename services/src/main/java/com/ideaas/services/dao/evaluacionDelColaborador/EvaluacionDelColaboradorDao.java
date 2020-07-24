@@ -30,7 +30,6 @@ public interface EvaluacionDelColaboradorDao extends JpaRepository<EvaluacionDel
     List<String> scoreSucursal();
 
     @Query("SELECT c FROM EvaluacionDelColaborador c WHERE c.colaborador.name LIKE %?1%"
-            + "OR c.colaborador.lastName LIKE %?1%"
             + "OR c.id LIKE %?1%"
             + "OR c.colaborador.sucursal.name LIKE %?1%"
             + "OR c.fechaDeCarga LIKE %?1%"

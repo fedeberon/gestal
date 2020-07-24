@@ -49,6 +49,7 @@ public class LoginController {
         model.addAttribute("cantidadEvaluacionesEntreRango", evaluacionDelColaboradorService.cantidadEvaluacionesEntreRango());
         model.addAttribute("cantidadEvaluacionesMayor", evaluacionDelColaboradorService.cantidadEvaluacionesMayor());
         model.addAttribute("cantidadEvaluacionesEnCero", evaluacionDelColaboradorService.cantidadEvaluacionesEnCero());
+        model.addAttribute("scorePorSucursal", evaluacionesDeColaboradores.stream().collect( Collectors.groupingBy( o -> o.getColaborador().getSucursal(), Collectors.summingDouble(EvaluacionDelColaborador::getResultado))));
 
         try {
             model.addAttribute("scoreSucursal", evaluacionDelColaboradorService.scoreSucursal());

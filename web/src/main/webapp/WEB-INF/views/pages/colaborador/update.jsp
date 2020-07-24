@@ -39,9 +39,9 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess3">Seleccionar rol</label>
-                                <form:select  path="rol.id" cssClass="form-control">
-                                    <form:options items="${roles}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
+                                <label class="form-control-label" for="inputSuccess3">Seleccionar puesto</label>
+                                <form:select  path="puesto.id" cssClass="form-control">
+                                    <form:options items="${puestos}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
                                 </form:select>
                             </div>
 

@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-md-4">
                             <form class="form-inline" action="<c:url value="/certificado/search"/> ">
-                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar certificado" aria-label="Search">
+                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar certificados" aria-label="Search">
                                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
 
                             </form>
@@ -25,11 +25,11 @@
                     <div class="table-responsive-md">
                         <table class="table">
                             <thead class=" text-primary">
-                            <th>Motivo</th>
                             <th>Nombre del Colaborador</th>
                             <th>Sucursal</th>
                             <th>Fecha de inicio</th>
                             <th>Fecha de finalizaci&oacute;n</th>
+                            <th>Motivo</th>
                             <th width="2%">D&iacute;as de ausentismo</th>
                             <th class="text-center">Editar</th>
                             <th>Certificados</th>
@@ -49,11 +49,11 @@
                                         <fmt:parseDate value="${bo.fechaInicio}" pattern="yyyy-MM-dd" var="fechaInicioParsed" type="date"/>
                                         <fmt:parseDate value="${bo.fechaFinalizacion}" pattern="yyyy-MM-dd" var="fechaFinalizacionParsed" type="date"/>
                                         <tr>
-                                            <td>${bo.tipoCertificado.displayName}</td>
-                                            <td>${bo.colaborador.name} ${bo.colaborador.lastName}</td>
+                                            <td>${bo.colaborador.name}</td>
                                             <td>${bo.colaborador.sucursal.name}</td>
                                             <td><fmt:formatDate pattern="dd/MMM/yyyy" value="${fechaInicioParsed}"/></td>
                                             <td><fmt:formatDate pattern="dd/MMM/yyyy" value="${fechaFinalizacionParsed}"/></td>
+                                            <td>${bo.tipoCertificado.displayName}</td>
                                             <td>${bo.ausentismo}</td>
                                             <td><a href="<c:url value='/certificado/update?id=${bo.id}'/>" class="btn btn-success float-right my-3" title="Editar item">Editar</a></td>
                                             <td>
