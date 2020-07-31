@@ -17,7 +17,7 @@
                                 <th width="10%" class="text-center">ID</th>
                                 <th width="20%" class="text-center">Rol</th>
                                 <th width="10%" class="text-center">Estado</th>
-                                <th width="20%" class="text-center">Dar de baja/alta</th>
+                                <th width="20%" class="text-center">Dar de alta/baja</th>
                                 <th width="20%" class="text-center">Items</th>
                             </thead>
                             <tbody>

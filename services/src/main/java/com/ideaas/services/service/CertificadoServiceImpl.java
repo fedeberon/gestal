@@ -71,19 +71,17 @@ public class CertificadoServiceImpl implements CertificadoService {
     }
 
     @Override
-    public Certificado get(Long id) {
-        Certificado certificado = dao.findById(id).get();
+    public Certificado getById(Long id) {
         return dao.findById(id).get();
     }
 
     @Override
-    public List<Certificado> findAll(Integer pageSize, Integer pageNo, String sortBy, User user) {
-        Rol rol = user.getRoles().stream().filter(rolUser -> rolUser.getId() == 2).findAny().orElse(null);
+    public void deleteById(Long id){
+        dao.deleteById(id);
+    }
 
-        if(Objects.nonNull(rol)){
-            Colaborador colaborador = colaboradorDao.findByUsername(user.getUsername());
-            return dao.findByColaborador(colaborador);
-        }
+    @Override
+    public List<Certificado> findAll(Integer pageSize, Integer pageNo, String sortBy) {
 
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Page<Certificado> certificados = daoPagination.findAll(paging);

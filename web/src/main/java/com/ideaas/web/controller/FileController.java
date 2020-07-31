@@ -42,7 +42,7 @@ public class FileController {
                              @RequestParam Long idCertificado,
                              RedirectAttributes redirectAttributes) {
 
-        Certificado certificado = certificadoService.get(idCertificado);
+        Certificado certificado = certificadoService.getById(idCertificado);
 
         fileService.guardarImagen(file, certificado);
         redirectAttributes.addAttribute("idCertificado", certificado.getId());

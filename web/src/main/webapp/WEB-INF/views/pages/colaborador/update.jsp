@@ -16,25 +16,32 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
-                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1"/>
-                                <form:errors path="username" cssClass="error" size="50"/>
+                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Contrase&ntilde;a</label>
-                                <form:password path="password" size="50" cssClass="form-control" id="inputSuccess1"/>
-                                <form:errors path="password" cssClass="error" size="50"/>
+                                <form:password path="password" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label class="form-control-label">Rol del colaborador:</label>
+                                <select name="roles" class="custom-select">
+                                    <c:forEach items="${roles}" var="bo" varStatus="status">
+                                        <option value="${status.count}">${bo.name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre Completo</label>
-                                <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1"/>
+                                <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                                 <form:errors path="name" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess2">Correo electr&oacute;nico</label>
-                                <form:input path="email" size="50" cssClass="form-control" id="inputSuccess2"/>
+                                <form:input path="email" size="50" cssClass="form-control" id="inputSuccess2" required="true"/>
                                 <form:errors path="email" cssClass="error" size="50"/>
                             </div>
 

@@ -47,7 +47,7 @@ public class CertificadoController {
 
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
-        Certificado certificado = certificadoService.get(id);
+        Certificado certificado = certificadoService.getById(id);
         model.addAttribute("certificado", certificado);
         model.addAttribute("idCertificado", certificado);
 
@@ -74,9 +74,8 @@ public class CertificadoController {
 
     @RequestMapping("/list")
     public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
-                                  @RequestParam(defaultValue = "0") Integer page, Model model, Principal principal) {
-        User user = userSercice.get(principal.getName());
-        List<Certificado> certificados = certificadoService.findAll(size, page, "id", user);
+                                  @RequestParam(defaultValue = "0") Integer page, Model model) {
+        List<Certificado> certificados = certificadoService.findAll(size, page, "id");
         model.addAttribute("tipoCertificados", CertificadoTipo.values());
         model.addAttribute("certificados", certificados);
         model.addAttribute("page", page);
@@ -84,13 +83,28 @@ public class CertificadoController {
         return "certificado/list";
     }
 
+//    @RequestMapping("show")
+//    public String show(@RequestParam Long id, Model model) {
+//        Certificado certificado= certificadoService.get(id);
+//        certificadoService.agregarImagenesALosCertificados(Arrays.asList(certificado));
+//        model.addAttribute("certificado", certificado.getId());
+//
+//        return "certificado/show";
+//    }
+
     @RequestMapping("show")
     public String show(@RequestParam Long id, Model model) {
-        Certificado certificado= certificadoService.get(id);
+        Certificado certificado= certificadoService.getById(id);
         certificadoService.agregarImagenesALosCertificados(Arrays.asList(certificado));
         model.addAttribute("certificado", certificado);
 
         return "certificado/show";
+    }
+
+    @RequestMapping("deleteById")
+    public String deleteById(@RequestParam Long id){
+        certificadoService.deleteById(id);
+        return "redirect:list";
     }
 
     @PostMapping("/uploadImage")

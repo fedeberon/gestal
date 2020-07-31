@@ -41,13 +41,13 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="<c:url value='/usuario/list'/>">
-                        <i class="nc-icon nc-single-02"></i>
+                <%--<li>--%>
+                    <%--<a href="<c:url value='/usuario/list'/>">--%>
+                        <%--<i class="nc-icon nc-single-02"></i>--%>
 
-                        <p>Usuarios</p>
-                    </a>
-                </li>
+                        <%--<p>Usuarios</p>--%>
+                    <%--</a>--%>
+                <%--</li>--%>
 
                 <li>
                     <a href="<c:url value='/evaluacion/list'/>">
@@ -55,7 +55,7 @@
                         <p>Evaluaci&oacute;nes</p>
                     </a>
                 </li>
-
+            </sec:authorize>
                 <li>
                     <a href="<c:url value='/evaluacionDelColaborador/list'/>">
                         <i class="nc-icon nc-single-copy-04"></i>
@@ -63,6 +63,7 @@
                         <p>Evaluaci&oacute;nes de colaboradores</p>
                     </a>
                 </li>
+            <sec:authorize access="hasAnyAuthority('ADMIN')">
 
                 <li>
                     <a href="<c:url value='/puesto/list'/>">
@@ -79,7 +80,6 @@
                         <p>Sucursales</p>
                     </a>
                 </li>
-            </sec:authorize>
                 <li>
                     <a href="<c:url value='/certificado/list'/>">
                         <i class="nc-icon nc-credit-card"></i>
@@ -87,7 +87,8 @@
                         <p>Certificados m&eacute;dicos</p>
                     </a>
                 </li>
-            </ul>
+            </sec:authorize>
+        </ul>
         </div>
     </div>
 </div>

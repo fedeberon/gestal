@@ -43,6 +43,17 @@ public class ColaboradorServiceImpl implements ColaboradorService {
 
     @Override
     public Colaborador save(Colaborador colaborador) {
+
+        switch (colaborador.getState()){
+            case ACTIVE:
+                colaborador.setEnabled(true);
+                break;
+            case INACTIVE:
+                colaborador.setEnabled(false);
+                break;
+            default:
+                colaborador.setEnabled(true);
+        }
         return dao.save(colaborador);
     }
 

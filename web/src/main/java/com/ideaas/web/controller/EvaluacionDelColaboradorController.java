@@ -10,6 +10,8 @@ import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import com.ideaas.services.service.interfaces.PuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Enzo on 17/2/2020.

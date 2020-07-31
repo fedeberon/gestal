@@ -12,6 +12,9 @@ import java.util.List;
 public interface EvaluacionDelColaboradorService {
 
     List<EvaluacionDelColaborador> findAll();
+
+    EvaluacionDelColaborador getById(Long id);
+
     EvaluacionDelColaborador get(Long id);
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
     Float calcularRatingPorConsideracion(EvaluacionDelColaborador evaluacionDelColaborador);

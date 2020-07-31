@@ -33,6 +33,7 @@
                             <th width="2%">D&iacute;as de ausentismo</th>
                             <th class="text-center">Editar</th>
                             <th>Certificados</th>
+                            <th>Eliminar</th>
                             </thead>
                             <tbody>
                             <c:set var = "roles" scope = "session" value = "${certificados}"/>
@@ -58,6 +59,9 @@
                                             <td><a href="<c:url value='/certificado/update?id=${bo.id}'/>" class="btn btn-success float-right my-3" title="Editar item">Editar</a></td>
                                             <td>
                                                 <a href="<c:url value='/certificado/show?id=${bo.id}'/>" class="btn btn-secondary" id="on-display-image">Licencias cargadas</a>
+                                            </td>
+                                            <td>
+                                                <a href="<c:url value='/certificado/deleteById?id=${bo.id}'/>" class="btn btn-danger">Eliminar</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

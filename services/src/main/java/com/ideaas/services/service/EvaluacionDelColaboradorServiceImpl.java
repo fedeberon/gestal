@@ -42,6 +42,11 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
     }
 
     @Override
+    public EvaluacionDelColaborador getById(Long id) {
+        return dao.findById(id).get();
+    }
+
+    @Override
     public EvaluacionDelColaborador get(Long id) {
         return dao.findById(id).get();
     }

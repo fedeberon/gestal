@@ -1,5 +1,6 @@
 package com.ideaas.services.dao;
 
+import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.Rol;
 import com.ideaas.services.domain.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,9 +14,9 @@ import java.util.Set;
 
 public class MyUserDetails implements UserDetails {
 
-    private User user;
+    private Colaborador user;
 
-    public MyUserDetails(User user) {
+    public MyUserDetails(Colaborador user) {
         this.user = user;
     }
 

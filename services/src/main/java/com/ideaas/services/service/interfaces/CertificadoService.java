@@ -14,9 +14,11 @@ public interface CertificadoService {
 
     Certificado save(Certificado certificado);
 
-    Certificado get(Long id);
+    Certificado getById(Long id);
 
-    List<Certificado> findAll(Integer pageSize, Integer pageNo, String sortBy, User user);
+    void deleteById(Long id);
+
+    List<Certificado> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
     void saveImage(MultipartFile imageFile) throws Exception;
 
@@ -59,4 +61,5 @@ public interface CertificadoService {
     Integer findByAusentismoAnioActual();
 
     List<String> findByAusentismoColaborador();
+
 }

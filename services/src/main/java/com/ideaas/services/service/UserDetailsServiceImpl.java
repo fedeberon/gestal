@@ -2,6 +2,7 @@ package com.ideaas.services.service;
 
 import com.ideaas.services.dao.MyUserDetails;
 import com.ideaas.services.dao.UserRepository;
+import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = dao.getUserByUsername(username);
+        Colaborador user = dao.getColaboradorByUsername(username);
 
         if (user == null){
             throw new UsernameNotFoundException("No se pudo encontrar usuario");

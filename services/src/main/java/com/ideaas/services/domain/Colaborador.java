@@ -1,5 +1,6 @@
 package com.ideaas.services.domain;
 
+import com.ideaas.services.bean.State;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
@@ -34,7 +35,6 @@ public class Colaborador implements Serializable {
     private String username;
 
     @Column(name = "COL_EMAIL")
-    @Email
     private String email;
 
     @Column(name = "COL_PASSWORD")
@@ -45,6 +45,20 @@ public class Colaborador implements Serializable {
     @JoinColumn(name = "COL_SUC_ID", nullable = false)
     @NotFound(action = NotFoundAction.IGNORE)
     private Sucursal sucursal;
+
+    @Column(name = "COL_ENABLED")
+    private boolean enabled;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USERS_ROLES",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Rol> roles = new HashSet<>();
+
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     public Long getId() {
         return id;
@@ -102,4 +116,27 @@ public class Colaborador implements Serializable {
         this.puesto = puesto;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
 }

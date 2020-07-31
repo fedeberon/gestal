@@ -29,7 +29,10 @@
                                 <th class="text-center">Mail</th>
                                 <th class="text-center">Puesto</th>
                                 <th class="text-center">Sucursal</th>
+                                <th class="text-center">Editar</th>
                                 <th class="text-center">Evaluar</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Dar de alta/baja</th>
 
                             </thead>
                             <tbody>
@@ -97,6 +100,28 @@
                                                     <a class="btn btn-success"
                                                        href="<c:url value='../evaluacionDelColaborador/create?id=${bo.id}'/>"
                                                        title="Agregar evaluaci&oacute;n">Evaluar</a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <c:choose>
+                                                        <c:when test="${bo.state =='ACTIVE'}">
+                                                            <span class="badge badge-success">${bo.state.displayName}</span>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="badge badge-danger">${bo.state.displayName}</span>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-3">
+                                                            <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon float-right" href="<c:url value='/colaborador/alta?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-add"></i></a>
+                                                        </div>
+
+                                                        <div class="col-md-6 col-3">
+                                                            <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/colaborador/baja?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-delete"></i></a>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </c:forEach>
