@@ -29,7 +29,7 @@ public class PuestoController {
     }
 
     @RequestMapping(value = "save")
-    public String save(@Valid @ModelAttribute("puesto") Puesto puesto, Errors result, Model map) {
+    public String save(@Valid @ModelAttribute("puesto") Puesto puesto, Errors result) {
 
         if (result.hasErrors()) {
 

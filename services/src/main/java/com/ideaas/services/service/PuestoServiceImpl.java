@@ -44,8 +44,8 @@ public class PuestoServiceImpl implements PuestoService {
     }
 
     @Override
-    public List<Puesto> findAll(Integer pageSize, Integer pageNo, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    public List<Puesto> findAll(Integer pageSize, Integer pageNo, String id) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(id).descending());
         Page<Puesto> roles = daoPagination.findAll(paging);
 
         return roles.getContent();

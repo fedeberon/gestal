@@ -42,9 +42,9 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     @Override
     public Evaluacion save(Evaluacion evaluacion){
         List<Evaluacion> evaluaciones = dao.findAll();
-        evaluaciones.forEach(evaluacionRol ->{
-            if (evaluacion.getRol().getId().equals(evaluacionRol.getRol().getId()) ){
-                evaluacionRol.setState(State.INACTIVE);
+        evaluaciones.forEach(evaluacionPuesto ->{
+            if (evaluacion.getPuesto().getId().equals(evaluacionPuesto.getPuesto().getId()) ){
+                evaluacionPuesto.setState(State.INACTIVE);
             }
         });
         evaluacion.setState(State.ACTIVE);
@@ -59,8 +59,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
 
     @Override
-    public List<Evaluacion> findAllPageable(Integer pageSize, Integer pageNo, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    public List<Evaluacion> findAllPageable(Integer pageSize, Integer pageNo, String id) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(id).descending());
         Page<Evaluacion> evaluacion = daoPageable.findAll(paging);
 
         return evaluacion.getContent();

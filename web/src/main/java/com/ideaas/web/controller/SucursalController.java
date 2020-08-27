@@ -42,13 +42,9 @@ public class SucursalController {
     }
 
     @RequestMapping(value = "save")
-    public String save(@Valid @ModelAttribute("sucursal") Sucursal sucursal, Errors result, Model map) {
-        if (result.hasErrors()) {
-            return "sucursal/create";
-        } else {
-            sucursalService.save(sucursal);
-            return "redirect:list";
-        }
+    public String save(@ModelAttribute("sucursal") Sucursal sucursal) {
+        sucursalService.save(sucursal);
+        return "redirect:list";
     }
 
     @RequestMapping("update")

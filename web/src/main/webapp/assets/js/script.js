@@ -1,117 +1,42 @@
+$(document).ready(function(){
 
-//Agregar evaluacion modal
-    var next = 0;
-    $(".add-more").click(function (e) {
-        next = next + 1;
-        nextConsideracion = 1;
-        console.log(next);
-        e.preventDefault();
-        var addto = "#field" + next;
-        var addRemove = "#field" + (next);
-        var getItemId = $(".getItemId").attr("id", next);
-        var divContainer = $('<div>', {
-            id: next,
-        });
-        $(divContainer).addClass('input-group');
-        var newIn = '<input autocomplete="off" class="input col-5 mx-3 itemField " id="' + next + '" name="items[' + next + '].value" type="text" placeholder="Descripcion del item">';
-        var newInput = $(newIn);
-        // $(addto).after(newInput);
-
-        $(divContainer).append(newInput);
-
-        var selectScore = $("#select-score-to-clone").clone();
-        selectScore.attr("name", "items[" + next + "].score");
-        selectScore.attr("id", "select_" + next);
-        selectScore.attr("class", "col-2 d-inline");
-        // $(addto).after(selectScore);
-        $(divContainer).append(selectScore);
-
-        var getItemId = $(".getItemId").clone();
-        getItemId.attr("id", next);
-        // $(addto).after(selectScore);
-        $(divContainer).append(getItemId);
-
-        var ckeckInvalida = $("#check-invalida-evaluiacion-to-clone").clone();
-        ckeckInvalida.attr("name", "items[" + next + "].invalidaEvaluacion");
-        ckeckInvalida.attr("id", "item_" + next);
-        ckeckInvalida.attr("class", "col-1 d-inline mt-2");
-        // $(addto).after(ckeckInvalida);
-        $(divContainer).append(ckeckInvalida);
-
-        var checkInvalidaLabelToClone = $("#check-invalida-label-to-clone").clone();
-        checkInvalidaLabelToClone.attr("class", "col-1 d-inline mt-1");
-        $(divContainer).append(checkInvalidaLabelToClone);
+    indiceIndicador = 0;
+    indiceCategoriaIndicador = 0;
 
 
-        var html = '';
-        html += '<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModalLong-to-clone_'+next+'" id="modal_'+next+'" style=""> Categor&iacute;as del indicador </button>';
-        html += '<div class="modal fade modal_consideraciones" id="exampleModalLong-to-clone_'+next+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">';
-        html +=     '<div class="modal-dialog" role="document">';
-        html +=         '<div class="modal-content">';
-        html +=             '<div class="modal-header">';
-        html +=                 '<h5 class="modal-title" id="exampleModalLongTitle">Categor&iacute;as del indicador</h5>';
-        html +=                 '<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>';
-        html +=             '</div>';
-        html +=             '<div class="modal-body">';
-        html +=                     '<div class="row">';
-        html +=                         '<div class="col-lg-12">';
-        html +=                             '<div id="inputFormRow">';
-        html +=                                 '<div class="input-group mb-3">';
-        html +=                                 '<input type="text" name="items['+next+'].consideraciones[0].value" class="form-control border border-secondary" autocomplete="off">';
-        // html +=                                     '<div class="input-group-append">';
-        // html +=                                     '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
-        // html +=                                         '</div>';
-        // html +=                                     '</div>';
-        html +=                                 '</div>';
-        html +=                             '<div id="newRow-'+next+'"></div>';
-        html +=                             '<button id="addRow" type="button" class="btn btn-info">AGREGAR ITEM</button>';
-        html +=                         '</div>';
-        html +=                     '</div>';
-        html +=             '</div>';
-        html +=         '</div>';
-        html +=     '</div>';
+    $(this).on('click', '.agregar-item-indicador', function(){
+        indiceIndicador = indiceIndicador + 1;
+        indiceCategoriaIndicador = 0;
 
-        $(divContainer).append(html);
+        var html = '<div class="row mt-5"> <div class="col-md-3"> <input type="text" name="items['+indiceIndicador+'].value" placeholder="Nombre del indicador" class="form-control" required> </div>'
+        html += '<div class="col-md-2"><select name="items['+indiceIndicador+'].score" id="select_1" class="form-control"> <option hidden selected value> Peso del indicador</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div>';
+        html += '<div class="col-md-3"><button type="button" class="btn btn-success agregar-item-indicador">Agregar nuevo indicador</button><button type="button" class="btn btn-danger remover-item-indicador">Borrar</button></div>';
+        html += '<div class="col-md-12"> <div class="items-consideracion-inputs form-inline" id="'+ indiceIndicador +'"><input type="text" id="'+indiceIndicador+'" name="items['+indiceIndicador+'].consideraciones['+ indiceCategoriaIndicador +'].value" placeholder="Descripci&oacute;n de la categor&iacute;a del indicador" class="form-control d-block mt-3 w-50 mr-3 categoria-indicador" required><input name="items['+ indiceIndicador +'].invalidaEvaluacion" class="form-check-input" type="checkbox" id="gridCheck1"><label class="form-check-label" for="gridCheck1">Invalida la evaluaci&oacute;n</label><button type="button" class="btn btn-success agregar-item-consideracion mt-3 ml-3">Agregar item</button></div></div></div>';
 
-        var removeBtn = '<button id="remove' + (next) + '" class="btn btn-danger remove-me ml-3" >-</button></div>';
-        var removeButton = $(removeBtn);
-        // $(addRemove).after(removeButton);
-        $(divContainer).append(removeButton);
-
-        $("#field").append(divContainer);
-
-        $("#count").val(next);
-
-        $('.remove-me').click(function (e) {
-            e.preventDefault();
-            var fieldNum = this.id.charAt(this.id.length - 1);
-            // var divToRemove = $("#"+ fieldNum)
-            // $(divToRemove).remove();
-            $(this).parent().remove();
-        });
+        console.log(indiceIndicador);
+        $('.items-evaluacion-inputs').append(html);
     });
 
-//Agregar consideraciones
-var maxFields = 5;
-var nextConsideracion = 1;
-$(document).on('click', '#addRow', function (e) {
-    var html = '';
-        nextConsideracion++;
-        html += '<div id="inputFormRow">';
-        html += '<div class="input-group mb-3">';
-        html += '<input type="text" id="'+nextConsideracion+'" name="items[' + next + '].consideraciones[' + nextConsideracion + '].value" id="'+ nextConsideracion +'" class="form-control border border-secondary consideraciones-input" autocomplete="off">';
-        // html += '<div class="input-group-append ml-3">';
-        // html += '<button id="removeRow" type="button" class="btn btn-danger">Eliminar</button>';
-        // html += '</div>';
-        html += '</div>';
-        $('#newRow-'+next+'').append(html);
+    $(this).on('click', '.remover-item-indicador', function(){
+        var target_input = $(this).parent().parent();
+        target_input.remove()
     });
 
-$(document).on('click', '#removeRow', function (e) {
-    e.preventDefault();
-    $(this).closest('#inputFormRow').remove();
-    nextConsideracion = nextConsideracion - 1;
+    $(this).on('click', '.remover-categoria-indicador', function(){
+        var target_input = $(this).parent();
+        target_input.remove()
+    });
+
+    $(this).on('click', '.agregar-item-consideracion', function(){
+        indiceCategoriaIndicador = indiceCategoriaIndicador + 1;
+        idIndicador = $(this).parent().attr('id');
+
+        var html = '<div class="item-categoria-indicador-container form-inline"><input type="text" id="'+ idIndicador +'" name="items['+idIndicador+'].consideraciones['+indiceCategoriaIndicador+'].value" placeholder="Descripci&oacute;n de la categor&iacute;a del indicador" class="form-control mt-3 categoria-indicador w-50" required><input name="items['+ indiceIndicador +'].invalidaEvaluacion" class="form-check-input required ml-3" type="checkbox" id="gridCheck1"><label class="form-check-label" for="gridCheck1">Invalida la evaluaci&oacute;n</label><button type="button" class="btn btn-danger remover-categoria-indicador ml-2">Borrar</button></div>';
+        $(this).parent().parent().append(html);
+
+    });
 });
+
 
 jQuery(document).ready(function($){
 
@@ -261,32 +186,3 @@ $(function(){
         $("#fechaFin").datepicker();
     });
 });
-
-// window.onload = function() {
-//
-//         var chart = new CanvasJS.Chart("chartContainer", {
-//             theme: "light2", // "light1", "light2", "dark1", "dark2"
-//             exportEnabled: true,
-//             animationEnabled: true,
-//             data: [{
-//                 type: "pie",
-//                 startAngle: 25,
-//                 toolTipContent: "<b>{label}</b>: {y}%",
-//                 showInLegend: "true",
-//                 legendText: "{label}",
-//                 indexLabelFontSize: 16,
-//                 indexLabel: "{label} - {y}%",
-//                 dataPoints: [
-//                     { y: 51.08, label: "Chrome" },
-//                     { y: 27.34, label: "Internet Explorer" },
-//                     { y: 10.62, label: "Firefox" },
-//                     { y: 5.02, label: "Microsoft Edge" },
-//                     { y: 4.07, label: "Safari" },
-//                     { y: 1.22, label: "Opera" },
-//                     { y: 0.44, label: "Others" }
-//                 ]
-//             }]
-//         });
-//         chart.render();
-//
-//     };

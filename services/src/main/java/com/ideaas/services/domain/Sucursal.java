@@ -19,20 +19,15 @@ public class Sucursal implements Serializable {
     private Long id;
 
     @Column(name = "SUC_NAME")
-    @NotBlank(message = "No se puede cargar con espacios vacios")
     private String name;
 
     @Column(name = "SUC_DIRECCION")
-    @NotBlank(message = "No se puede cargar con espacios vacios")
     private String direction;
 
     @Column (name = "SUC_TELEFONO")
-    @NotBlank(message= "No se puede cargar con espacios vacios")
     private String telephone;
 
     @Column (name ="SUC_MAIL")
-    @NotBlank(message= "No se puede cargar con espacios vacios")
-    @Email
     private String mail;
 
     public Long getId() {

@@ -81,9 +81,9 @@ public class CertificadoServiceImpl implements CertificadoService {
     }
 
     @Override
-    public List<Certificado> findAll(Integer pageSize, Integer pageNo, String sortBy) {
+    public List<Certificado> findAll(Integer pageSize, Integer pageNo, String id) {
 
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(id).descending());
         Page<Certificado> certificados = daoPagination.findAll(paging);
         return certificados.getContent();
 

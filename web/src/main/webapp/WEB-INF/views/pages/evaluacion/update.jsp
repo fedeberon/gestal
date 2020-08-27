@@ -31,10 +31,10 @@
 
                                             </div>
                                     </c:forEach>
-                                    <label style="font-size: 16px" class="my-3 mx-3">Editar rol</label>
+                                    <label style="font-size: 16px" class="my-3 mx-3">Editar puesto</label>
                                     <div class="col-md-12">
-                                            <form:select path="rol.id" cssClass="form-control mt-3 w-50">
-                                                <form:options items="${roles}" itemValue="id" itemLabel="name"/>
+                                            <form:select path="puesto.id" cssClass="form-control mt-3 w-50">
+                                                <form:options items="${puestos}" itemValue="id" itemLabel="name"/>
                                             </form:select>
                                     </div>
                                     <div class="col-md-12">

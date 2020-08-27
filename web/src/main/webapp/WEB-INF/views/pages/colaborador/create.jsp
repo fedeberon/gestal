@@ -57,10 +57,8 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                    <a class="btn btn-secondary ml-auto" href="<c:url value='/rol/create'/>">Crear rol</a>
-                                    <button type="submit" class="btn btn-secondary" id="btnSubmit">Guardar</button>
+                                <button type="submit" class="btn btn-secondary" id="btnSubmit">Guardar</button>
                             </div>
-
                         </div>
                     </form:form>
                 </div>

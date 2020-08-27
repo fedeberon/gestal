@@ -29,15 +29,19 @@
     </head>
 
     <body>
-        <div class="flex-container">
+    <div class="wrapper">
+        <div class="main-panel">
             <tiles:insertAttribute name="header" />
 
             <tiles:insertAttribute name="menu" />
-            <div class="main-panel">
-                <tiles:insertAttribute name="body" />
+            <tiles:insertAttribute name="body" />
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <tiles:insertAttribute name="footer" />
+                </div>
             </div>
-            <tiles:insertAttribute name="footer" />
         </div>
+    </div>
 
         <!--   Core JS Files   -->
         <script type="text/javascript" src='<c:url value="/assets/plugins/jquery/jquery-3.2.1.min.js"/>'></script>

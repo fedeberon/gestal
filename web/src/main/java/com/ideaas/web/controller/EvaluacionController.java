@@ -26,13 +26,13 @@ import java.util.List;
 @RequestMapping("evaluacion")
 public class EvaluacionController {
 
-    private PuestoService rolService;
+    private PuestoService puestoService;
     private ItemService itemService;
     private EvaluacionService evaluacionService;
 
     @Autowired
-    public EvaluacionController(PuestoService rolService, EvaluacionService evaluacionService, ItemService itemService) {
-        this.rolService = rolService;
+    public EvaluacionController(PuestoService puestoService, EvaluacionService evaluacionService, ItemService itemService) {
+        this.puestoService = puestoService;
         this.evaluacionService = evaluacionService;
         this.itemService = itemService;
     }
@@ -67,10 +67,10 @@ public class EvaluacionController {
         }
     }
 
-    @ModelAttribute("roles")
-    public List<Puesto> getRoles(){
+    @ModelAttribute("puestos")
+    public List<Puesto> getPuestos(){
 
-        return rolService.findAll();
+        return puestoService.findAll();
     }
 
     @ModelAttribute("evaluacion")

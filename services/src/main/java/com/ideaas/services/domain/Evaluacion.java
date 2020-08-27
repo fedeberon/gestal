@@ -56,12 +56,12 @@ public class Evaluacion {
         this.items = items;
     }
 
-    public Puesto getRol() {
+    public Puesto getPuesto() {
         return puesto;
     }
 
-    public void setRol(Puesto rol) {
-        this.puesto = rol;
+    public void setPuesto(Puesto puesto) {
+        this.puesto = puesto;
     }
 
     public State getState() {

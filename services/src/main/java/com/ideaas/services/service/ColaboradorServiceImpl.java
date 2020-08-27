@@ -63,8 +63,8 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     }
 
     @Override
-    public List<Colaborador> findAll(Integer pageSize, Integer pageNo, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    public List<Colaborador> findAll(Integer pageSize, Integer pageNo, String id) {
+        Pageable paging = PageRequest.of(pageNo, pageSize,Sort.by(id).descending());
         Page<Colaborador> colaborador = daoPagination.findAll(paging);
 
         return colaborador.getContent();

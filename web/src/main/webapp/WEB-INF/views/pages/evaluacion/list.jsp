@@ -15,7 +15,7 @@
                         <table class="table">
                             <thead class=" text-primary">
                                 <th width="10%" class="text-center">ID</th>
-                                <th width="20%" class="text-center">Rol</th>
+                                <th width="20%" class="text-center">Puesto</th>
                                 <th width="10%" class="text-center">Estado</th>
                                 <th width="20%" class="text-center">Dar de alta/baja</th>
                                 <th width="20%" class="text-center">Items</th>
@@ -34,7 +34,7 @@
                                     <c:forEach items="${evaluaciones}" var="bo">
                                         <tr>
                                             <td class="text-center">${bo.id}</td>
-                                            <td class="text-center">${bo.rol.name}</td>
+                                            <td class="text-center">${bo.puesto.name}</td>
                                             <td class="text-center">
 
                                                 <c:choose>
@@ -73,7 +73,7 @@
                                                                         <th scope="col text-center">Nombre</th>
                                                                         <th scope="col text-center">Score</th>
                                                                         <th scope="col text-center">Invalida evaluaci&oacute;n</th>
-                                                                        <th colspan="3" scope="col">Consideraciones</th>
+                                                                        <th colspan="3" scope="col">Categor&iacute;a de indicador</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -97,7 +97,7 @@
                                                                             <div>
                                                                                 <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#consideraciones-${item.id}"
                                                                                         aria-expanded="false" aria-controls="collapseExample">
-                                                                                    Consideraciones
+                                                                                    Categor&iacute;as de indicador
                                                                                 </button>
                                                                             </div>
                                                                             <!-- Collapsible element -->
@@ -141,7 +141,8 @@
                             </form>
                         </div>
                         <div class="col-md-6 mb-4">
-                            <jsp:include page="create.jsp"/>
+                            <%--<jsp:include page="create.jsp"/>--%>
+                                <a href="<c:url value='/evaluacion/create'/>" class="btn btn-secondary" title="Editar item">Crear evaluaci&oacute;n</a>
                         </div>
                      </div>
                 </div>

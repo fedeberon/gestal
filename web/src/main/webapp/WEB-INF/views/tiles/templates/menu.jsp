@@ -71,7 +71,7 @@
 
                         <p>Puestos</p>
                     </a>
-                </li> 
+                </li>
 
                 <li>
                     <a href="<c:url value='/sucursal/list'/>">

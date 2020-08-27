@@ -51,8 +51,8 @@ public class UserServiceImpl implements UsuarioService {
     }
 
     @Override
-    public List<User> findAll(Integer pageSize, Integer pageNo, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    public List<User> findAll(Integer pageSize, Integer pageNo, String id) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(id).descending());
         Page<User> usuarios = dao.findAll(paging);
 
         return usuarios.getContent();

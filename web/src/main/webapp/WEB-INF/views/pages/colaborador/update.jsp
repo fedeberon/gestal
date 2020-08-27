@@ -12,16 +12,16 @@
                     <form:form modelAttribute="colaborador" action="${actionUrl}" method="POST">
                         <form:hidden path="id" value='${colaborador.id}'/>
                         <div class="form-style-8">
-                            <input type="hidden" name="colaborador.id" value="${colaborador.id}"/>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
                                 <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                             </div>
 
-                            <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess1">Contrase&ntilde;a</label>
-                                <form:password path="password" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
+                            <div class="form-group mt-4 d-none">
+                                <label class="form-control-label">Contrase&ntilde;a:</label>
+                                <form:input path="password" cssClass="form-control" size="50"/>
+                                <form:errors path="password" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
