@@ -49,6 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/data/**").permitAll()
                 .antMatchers("/pages/**").permitAll()
                 .antMatchers("/assets/**").permitAll()
+                .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/usuario/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -64,18 +65,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(usuarioService).passwordEncoder(bcrypt);
         auth.userDetailsService(colaboradorService).passwordEncoder(bcrypt);
 
-//        auth.inMemoryAuthentication()
-//                .withUser("fede")
-//                .password("{noop}fede")
-//                .roles("USER")
-//                .and()
-//                .withUser("admin")
-//                .password("{noop}admin")
-//                .credentialsExpired(true)
-//                .accountExpired(true)
-//                .accountLocked(true)
-//                .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
-//                .roles("MANAGER");
+        auth.inMemoryAuthentication()
+                .withUser("fede")
+                .password("{noop}fede")
+                .roles("USER")
+                .and()
+                .withUser("admin")
+                .password("{noop}admin")
+                .credentialsExpired(true)
+                .accountExpired(true)
+                .accountLocked(true)
+                .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
+                .roles("MANAGER");
     }
 
 }
