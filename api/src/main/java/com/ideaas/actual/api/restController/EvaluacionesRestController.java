@@ -21,7 +21,7 @@ public class EvaluacionesRestController {
 
     @RequestMapping("list/{page}/{textToSearch}")
     public ResponseEntity<List<EvaluacionDelColaborador>> findAll(@PathVariable Integer page, @PathVariable String textToSearch){
-        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(10, page, "id", textToSearch);
+        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(10, page, "id");
 
         return ResponseEntity.ok(evaluaciones);
     }

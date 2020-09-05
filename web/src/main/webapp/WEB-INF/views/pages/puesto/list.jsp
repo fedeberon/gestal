@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Roles</h4>
+                    <h4 class="card-title"> Puestos</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-md">
@@ -17,21 +17,21 @@
                                 <th>Editar</th>
                             </thead>
                             <tbody>
-                            <c:set var = "roles" scope = "session" value = "${roles}"/>
+                            <c:set var = "puestos" scope = "session" value = "${puestos}"/>
                             <c:choose>
-                                <c:when test="${empty roles}">
+                                <c:when test="${empty puestos}">
                                     <tr>
                                         <td colspan="5" class="text-center">
-                                            <p class="mt-5">No hay roles para mostrar</p>
+                                            <p class="mt-5">No hay puestos para mostrar</p>
                                         </td>
                                     </tr>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:forEach items="${roles}" var="bo">
+                                    <c:forEach items="${puestos}" var="bo">
                                         <tr>
                                             <td>${bo.name}</td>
                                             <td>
-                                                <a href="<c:url value='/rol/update?id=${bo.id}'/>" class="btn btn-secondary">Editar</a>
+                                                <a href="<c:url value='/puesto/update?id=${bo.id}'/>" class="btn btn-secondary">Editar</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -47,14 +47,14 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-4">
-                            <form name="rol" action="list" method="get">
+                            <form name="puesto" action="list" method="get">
                                 <input type="hidden" name="page" value="${page}"/>
                                 <tags:paginador page="${page}" formName="search"/>
                             </form>
                         </div>
                         <div class="col-md-4">
-                            <a class="btn btn-success" href="<c:url value='/rol/create'/>" title="Agregar rol">Agregar
-                                rol</a>
+                            <a class="btn btn-success" href="<c:url value='/puesto/create'/>" title="Agregar puesto">Agregar
+                                puesto</a>
                         </div>
                         <div class="col-md-4">
                             <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar

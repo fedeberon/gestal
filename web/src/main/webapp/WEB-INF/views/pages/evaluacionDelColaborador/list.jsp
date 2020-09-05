@@ -3,7 +3,6 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
 <link rel="stylesheet" href="path/to/font-awesome.min.css">
 <style>
     .checked {
@@ -16,14 +15,25 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Evaluaciones de los colaboradores</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4 class="card-title"> Evaluaciones de los colaboradores</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <form class="form-inline" action="<c:url value="/evaluacionDelColaborador/search"/> ">
+                                <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar evaluaci&oacute;nes" aria-label="Search">
+                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-md">
                         <table class="table">
                             <thead class=" text-primary">
+                                <th>ID</th>
                                 <th>Nombre completo</th>
-                                <th>Rol</th>
+                                <th>Puesto</th>
                                 <th>Fecha de carga</th>
                                 <th class="text-center">Sucursal</th>
                                 <th>Items</th>
@@ -41,7 +51,8 @@
                                 <c:otherwise>
                                     <c:forEach items="${evaluaciones}" var="bo">
                                         <tr>
-                                            <td>${bo.colaborador.lastName} ${bo.colaborador.name}</td>
+                                            <td>${bo.id}</td>
+                                            <td>${bo.colaborador.name}</td>
                                             <td>${bo.rolEvaluado.name}</td>
                                             <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${bo.fechaDeCarga}" /></td>
                                             <td class="text-center">
@@ -237,8 +248,10 @@
                                 <tags:paginador page="${page}" formName="search"/>
                             </form>
                         </div>
+                        <div class="col-md-6">
+                            <a class="btn btn-success" href="<c:url value='/evaluacionDelColaborador/list'/>" title="Agregar sucursal">Lista completa</a>
+                        </div>
                     </div>
-                    <div class="col-md-6"></div>
                 </div>
             </div>
         </div>

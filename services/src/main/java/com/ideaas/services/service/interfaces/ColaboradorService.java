@@ -16,7 +16,7 @@ public interface ColaboradorService extends UserDetailsService {
     Colaborador save(Colaborador colaborador);
     Colaborador get(Long id);
     List<Colaborador> findAll(Integer pageSize, Integer pageNo, String sortBy);
-
-
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+
+    List<Colaborador> findColaboradorByName(String value);
 }

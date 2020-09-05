@@ -3,12 +3,13 @@
 <%@ page import="org.springframework.ui.Model" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
    String username = ((UserDetails)principal).getUsername();
    %>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+<nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
    <div class="container-fluid">
       <div class="navbar-wrapper">
          <div class="navbar-toggle">
@@ -18,15 +19,28 @@
                <span class="navbar-toggler-bar bar3"></span>
             </button>
          </div>
-         <a class="navbar-brand" style="margin-left:250px">
-           Gestal
-         </a>
+         <div class="row">
+            <div class="col-md-2">
+               <a type="button" class="btn btn-secondary navbar-brand" data-toggle="tooltip" data-placement="top" title="Atras" onclick="history.go(-1);" >
+                  <i class="nc-icon nc-minimal-left"></i>
+               </a>
+            </div>
+            <div class="col-md-1">
+               <a class="navbar-brand mt-2 ml-5">
+                  Gestal
+               </a>
+            </div>
+            <%--<div class="col-xs-12">--%>
+               <%--<button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">--%>
+                  <%--<span class="navbar-toggler-bar navbar-kebab"></span>--%>
+                  <%--<span class="navbar-toggler-bar navbar-kebab"></span>--%>
+                  <%--<span class="navbar-toggler-bar navbar-kebab"></span>--%>
+               <%--</button>--%>
+            <%--</div>--%>
+         </div>
+
       </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-bar navbar-kebab"></span>
-         <span class="navbar-toggler-bar navbar-kebab"></span>
-         <span class="navbar-toggler-bar navbar-kebab"></span>
-      </button>
+
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
          <ul class="navbar-nav">
             <li class="nav-item btn-rotate dropdown">

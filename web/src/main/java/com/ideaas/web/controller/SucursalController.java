@@ -1,6 +1,4 @@
 package com.ideaas.web.controller;
-import com.ideaas.services.bean.State;
-import com.ideaas.services.domain.Rol;
 import com.ideaas.services.domain.Sucursal;
 import com.ideaas.services.service.interfaces.SucursalService;
 import com.ideaas.services.service.interfaces.ItemService;
@@ -10,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -31,7 +27,7 @@ public class SucursalController {
     }
 
     @RequestMapping("/list")
-    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+    public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model){
         List <Sucursal> sucursales = sucursalService.findAllPageable(size, page,"id");
         model.addAttribute("sucursales", sucursales);
@@ -46,13 +42,9 @@ public class SucursalController {
     }
 
     @RequestMapping(value = "save")
-    public String save(@Valid @ModelAttribute("sucursal") Sucursal sucursal, Errors result, Model map) {
-        if (result.hasErrors()) {
-            return "sucursal/create";
-        } else {
-            sucursalService.save(sucursal);
-            return "redirect:list";
-        }
+    public String save(@ModelAttribute("sucursal") Sucursal sucursal) {
+        sucursalService.save(sucursal);
+        return "redirect:list";
     }
 
     @RequestMapping("update")

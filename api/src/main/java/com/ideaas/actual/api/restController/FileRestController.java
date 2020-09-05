@@ -6,7 +6,7 @@ package com.ideaas.actual.api.restController;
 
 import com.ideaas.services.bean.FileUtil;
 import com.ideaas.services.payload.UploadFileResponse;
-import com.ideaas.services.service.interfaces.FileService;
+import com.ideaas.services.service.FileServiceImpl;
 import com.ideaas.services.service.interfaces.FileStorageService;
 import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -37,7 +37,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RestController
 @RequestMapping("api/file")
 public class FileRestController {
@@ -52,10 +52,10 @@ public class FileRestController {
 
     private FileStorageService fileStorageService;
 
-    private FileService fileService;
+    private FileServiceImpl fileService;
 
     @Autowired
-    public FileRestController(FileStorageService fileStorageService, FileService fileService) {
+    public FileRestController(FileStorageService fileStorageService, FileServiceImpl fileService) {
         this.fileStorageService = fileStorageService;
         this.fileService = fileService;
     }
@@ -80,31 +80,6 @@ public class FileRestController {
                 .map(file -> uploadFile(file))
                 .collect(Collectors.toList());
     }
-
-    @GetMapping("download/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
-        // Load file as Resource
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
-
-        // Try to determine file's content type
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        } catch (IOException ex) {
-            logger.info("Could not determine file type.");
-        }
-
-        // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
-            contentType = "application/octet-stream";
-        }
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
-    }
-
 
     @PostMapping("/uploadZip")
     public List<UploadFileResponse> add(@RequestParam("file") MultipartFile file) throws IOException {
@@ -159,5 +134,25 @@ public class FileRestController {
         }
 
         else return new UploadFileResponse(file.getName(), fileDownloadUrl, FileUtil.getMimeType(file.getName()), file.length());
+    }
+
+    @GetMapping("download/{hash}/{fileName:.+}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String hash, @PathVariable String fileName, HttpServletRequest request) {
+        // Load file as Resource
+        Resource resource = fileStorageService.loadFileAsResource(hash, fileName);
+        // Try to determine file's content type
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+        }
+        // Fallback to the default content type if type could not be determined
+        if(contentType == null) {
+            contentType = "application/octet-stream";
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; folder, filename='image/png'")
+                .body(resource);
     }
 }

@@ -11,6 +11,4 @@ import org.springframework.data.repository.query.Param;
  */
 public interface EvaluacionDelColaboradorPaginationDao extends PagingAndSortingRepository<EvaluacionDelColaborador, Long> {
 
-    Page<EvaluacionDelColaborador> findByColaborador_LastNameContainingOrderByIdDesc(@Param("LastName") String LastName, Pageable pageable);
-
 }

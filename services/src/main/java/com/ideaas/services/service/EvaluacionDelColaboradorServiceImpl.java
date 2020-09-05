@@ -2,7 +2,9 @@ package com.ideaas.services.service;
 
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorPaginationDao;
+import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
+import com.ideaas.services.domain.Sucursal;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +37,13 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
     }
 
     @Override
-    public List<EvaluacionDelColaborador> findAllPageable(Integer pageSize, Integer pageNo, String sortBy, String textToSearch) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-        Page<EvaluacionDelColaborador> evaluacionDelColaborador = daoPageable.findByColaborador_LastNameContainingOrderByIdDesc(textToSearch, paging);
-
-        return evaluacionDelColaborador.getContent();
+    public List<EvaluacionDelColaborador> findAll(){
+        return dao.findAll();
     }
 
     @Override
-    public List<EvaluacionDelColaborador> findAll(){
-        return dao.findAll();
+    public EvaluacionDelColaborador getById(Long id) {
+        return dao.findById(id).get();
     }
 
     @Override
@@ -68,9 +67,21 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
 
         AtomicReference<Float> resultado = new AtomicReference<>(Float.valueOf(0));
             evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
-                Long cantConsideracionesEnchecked = itemEvaluado.getConsideracionItemEvaluados().stream().mapToLong(consideracionItemEvaluado -> consideracionItemEvaluado.isCheckeado() ? 1 : 0).sum();
+//                Long cantConsideracionesEnchecked = itemEvaluado.getConsideracionItemEvaluados().stream().mapToLong(consideracionItemEvaluado -> consideracionItemEvaluado.isCheckeado() ? 1 : 0).sum();
+//
+//                itemEvaluado.setValorConsideracionItemEvaluados(cantConsideracionesEnchecked);
+                Integer ratingTotal = 5;
 
-                itemEvaluado.setValorConsideracionItemEvaluados(cantConsideracionesEnchecked);
+                Integer totalConsideraciones = itemEvaluado.getConsideracionItemEvaluados().size();
+                Long consideracionesChequeadas = itemEvaluado.getConsideracionItemEvaluados().stream().filter(line -> line.isCheckeado()).count();
+
+                Long porcentajeDeConsideracionesChequeadas = (consideracionesChequeadas * 100) / totalConsideraciones;
+                Integer porcentajeDeConsideracionesChequeadasConValorRedondeado = Math.round(porcentajeDeConsideracionesChequeadas);
+
+
+                Integer estrellasCalculadas = (porcentajeDeConsideracionesChequeadasConValorRedondeado * ratingTotal) / 100;
+                itemEvaluado.setValorConsideracionItemEvaluados(Math.round(estrellasCalculadas));
+
             });
         AtomicBoolean evaluacionInvalidada = new AtomicBoolean(false);
         evaluacionInvalidada.set(false);
@@ -113,6 +124,10 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         return dao.cantidadEvaluacionesEnCero();
     }
 
+    @Override
+    public List<String> scoreSucursal(){
+        return dao.scoreSucursal();
+    }
 
     @Override
     public List<EvaluacionDelColaborador> findAllPageable(int pageSize, Integer pageNo, String id) {
@@ -122,4 +137,8 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         return evaluacionDelColaborador.getContent();
     }
 
+    @Override
+    public List<EvaluacionDelColaborador> findColaboradorByName(String name) {
+        return dao.findEvaluacionDelColaboradorByName(name);
+    }
 }

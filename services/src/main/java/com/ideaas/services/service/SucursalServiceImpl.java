@@ -53,11 +53,11 @@ public class SucursalServiceImpl implements SucursalService {
     }
 
     @Override
-    public List<Sucursal> findAllPageable(Integer pageSize, Integer pageNo, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
-        Page<Sucursal> sucursal = daoPagination.findAll(paging);
+    public List<Sucursal> findAllPageable(Integer pageSize, Integer pageNo, String id) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(id).descending());
+        Page<Sucursal> evaluacion = dao.findAll(paging);
 
-        return sucursal.getContent();
+        return evaluacion.getContent();
     }
 
 

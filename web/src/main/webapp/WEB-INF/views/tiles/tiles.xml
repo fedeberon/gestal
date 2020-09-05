@@ -98,20 +98,20 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacionDelColaborador/createEvaluacion.jsp" />
     </definition>
 
-    <!--Rol -->
-    <definition name="rol/create" extends="template-def">
+    <!--Puesto -->
+    <definition name="puesto/create" extends="template-def">
         <put-attribute name="title" value="Agregar rol" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/rol/create.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/puesto/create.jsp" />
     </definition>
 
-    <definition name="rol/list" extends="template-def">
-        <put-attribute name="title" value="Lista de Roles" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/rol/list.jsp" />
+    <definition name="puesto/list" extends="template-def">
+        <put-attribute name="title" value="Lista de Puestos" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/puesto/list.jsp" />
     </definition>
 
-    <definition name="rol/update" extends="template-def">
+    <definition name="puesto/update" extends="template-def">
         <put-attribute name="title" value="Editar rol" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/rol/update.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/puesto/update.jsp" />
     </definition>
 
     <!--Sucursal -->
@@ -130,9 +130,41 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/sucursal/update.jsp" />
     </definition>
 
+    <!--Certificado -->
+    <definition name="certificado/list" extends="template-def">
+        <put-attribute name="title" value="Lista de certificados" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/list.jsp" />
+    </definition>
+
+    <definition name="certificado/create" extends="template-def">
+        <put-attribute name="title" value="Crear certificado" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/create.jsp" />
+    </definition>
+
+    <definition name="certificado/update" extends="template-def">
+        <put-attribute name="title" value="Editar certificado" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/update.jsp" />
+    </definition>
+
+    <definition name="certificado/show" extends="template-def">
+        <put-attribute name="title" value="Certificado" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/show.jsp" />
+    </definition>
+
+    <definition name="certificado/stats" extends="template-def">
+        <put-attribute name="title" value="Estadisticas" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/certificado/stats.jsp" />
+    </definition>
+
     <!--Login -->
     <definition name="login" template="/WEB-INF/views/pages/login.jsp">
         <put-attribute name="title" value="Login" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="" />
+    </definition>
+
+    <definition name="403" template="/WEB-INF/views/pages/403.jsp">
+        <put-attribute name="title" value="Acceso denegado" />
         <put-attribute name="header" value="" />
         <put-attribute name="body" value="" />
     </definition>

@@ -2,6 +2,7 @@ package com.ideaas.actual.api.restController;
 
 import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
+import com.ideaas.services.domain.Puesto;
 import com.ideaas.services.domain.Rol;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
@@ -27,9 +28,9 @@ public class EvaluacionRestController {
     }
 
 
-    @RequestMapping(value = "byRol", method = RequestMethod.POST)
-    public ResponseEntity<Evaluacion> getByRol(@RequestBody Rol rol){
-        Evaluacion evaluacion = evaluacionService.getByRol(rol);
+    @RequestMapping(value = "byPuesto", method = RequestMethod.POST)
+    public ResponseEntity<Evaluacion> getByPuesto(@RequestBody Puesto puesto){
+        Evaluacion evaluacion = evaluacionService.getByPuesto(puesto);
 
         return new ResponseEntity(evaluacion, HttpStatus.OK);
     }

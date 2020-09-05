@@ -14,8 +14,7 @@
                             <thead class=" text-primary">
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Editar</th>
+                                <th>Rol</th>
                             </thead>
                             <tbody>
                             <c:set var = "usuario" scope = "session" value = "${usuarios}"/>
@@ -29,19 +28,17 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${usuarios}" var="bo">
+                                    <c:forEach items="${bo.roles}" var="rol">
                                         <tr>
                                             <td>
                                                 <a href="<c:url value='/usuario/show?id=${bo.id}'/>" class="btn btn-primary" title="Perfil de usuario">${bo.id}</a>
                                             </td>
                                             <td>${bo.username}</td>
-                                            <td>${bo.mail}</td>
-                                            <td>
-                                                <a href="<c:url value='/usuario/update?id=${bo.id}'/>" class="btn btn-secondary" title="Editar usuario">
-                                                    Editar
-                                                </a>
-                                            </td>
+                                            <td>${rol.name}</td>
                                         </tr>
                                     </c:forEach>
+                                    </c:forEach>
+
                                 </c:otherwise>
                             </c:choose>
                             </tbody>

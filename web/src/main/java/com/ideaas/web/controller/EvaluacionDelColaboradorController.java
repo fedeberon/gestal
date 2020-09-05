@@ -8,8 +8,10 @@ import com.ideaas.services.domain.EvaluacionDelColaborador;
 import com.ideaas.services.service.interfaces.ColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
-import com.ideaas.services.service.interfaces.RolService;
+import com.ideaas.services.service.interfaces.PuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Enzo on 17/2/2020.
@@ -29,7 +32,7 @@ import java.util.List;
 @RequestMapping("evaluacionDelColaborador")
 public class EvaluacionDelColaboradorController {
 
-    private RolService rolService;
+    private PuestoService rolService;
 
     private EvaluacionDelColaboradorService evaluacionDelColaboradorService;
     private EvaluacionService evaluacionService;
@@ -38,7 +41,7 @@ public class EvaluacionDelColaboradorController {
     private ConsideracionItemEvaluadoService consideracionItemEvaluadoService;
 
     @Autowired
-    public EvaluacionDelColaboradorController(RolService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService, EvaluacionService evaluacionService, ColaboradorService colaboradorService, ItemService itemService, ConsideracionItemEvaluadoService consideracionItemEvaluadoService) {
+    public EvaluacionDelColaboradorController(PuestoService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService, EvaluacionService evaluacionService, ColaboradorService colaboradorService, ItemService itemService, ConsideracionItemEvaluadoService consideracionItemEvaluadoService) {
         this.rolService = rolService;
         this.evaluacionDelColaboradorService = evaluacionDelColaboradorService;
         this.evaluacionService = evaluacionService;
@@ -48,10 +51,10 @@ public class EvaluacionDelColaboradorController {
     }
 
     @RequestMapping("/list")
-    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+    public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
 
-        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAll();
+        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size,page,"id");
         evaluaciones.forEach(evaluacionDelColaborador -> {
             evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
                 if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
@@ -71,7 +74,7 @@ public class EvaluacionDelColaboradorController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
-        Evaluacion evaluacion = evaluacionService.getByRol(colaborador.getRol());
+        Evaluacion evaluacion = evaluacionService.getByPuesto(colaborador.getPuesto());
         List <Evaluacion> evaluaciones = evaluacionService.findAll();
 
         model.addAttribute("colaborador", colaborador);
@@ -95,5 +98,11 @@ public class EvaluacionDelColaboradorController {
             evaluacionDelColaboradorService.save(evaluacionDelColaborador);
             return "redirect:list";
         }
+    }
+
+    @RequestMapping("/search")
+    public String findColaboradorByName(@RequestParam(defaultValue = "") String value, Model model) {
+        model.addAttribute("evaluaciones", evaluacionDelColaboradorService.findColaboradorByName(value));
+        return "evaluacionDelColaborador/list";
     }
 }

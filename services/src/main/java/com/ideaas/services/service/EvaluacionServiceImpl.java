@@ -14,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -36,16 +35,16 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
 
     @Override
-    public Evaluacion getByRol(Rol rol) {
-        return dao.getActiveByRol(rol);
+    public Evaluacion getByPuesto(Puesto puesto) {
+        return dao.getActiveByPuesto(puesto);
     }
 
     @Override
     public Evaluacion save(Evaluacion evaluacion){
         List<Evaluacion> evaluaciones = dao.findAll();
-        evaluaciones.forEach(evaluacionRol ->{
-            if (evaluacion.getRol().getId().equals(evaluacionRol.getRol().getId()) ){
-                evaluacionRol.setState(State.INACTIVE);
+        evaluaciones.forEach(evaluacionPuesto ->{
+            if (evaluacion.getPuesto().getId().equals(evaluacionPuesto.getPuesto().getId()) ){
+                evaluacionPuesto.setState(State.INACTIVE);
             }
         });
         evaluacion.setState(State.ACTIVE);
@@ -60,8 +59,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
 
     @Override
-    public List<Evaluacion> findAllPageable(Integer pageSize, Integer pageNo, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    public List<Evaluacion> findAllPageable(Integer pageSize, Integer pageNo, String id) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(id).descending());
         Page<Evaluacion> evaluacion = daoPageable.findAll(paging);
 
         return evaluacion.getContent();

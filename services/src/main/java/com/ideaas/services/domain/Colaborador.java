@@ -1,12 +1,15 @@
 package com.ideaas.services.domain;
 
-import org.hibernate.annotations.NaturalId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ideaas.services.bean.State;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by federicoberon on 30/01/2020.
@@ -24,18 +27,16 @@ public class Colaborador implements Serializable {
     @NotBlank(message = "No se puede cargar con espacios vacios")
     private String name;
 
-    @Column(name = "COL_LAST_NAME")
-    @NotBlank(message = "No se puede cargar con espacios vacios")
-    private String lastName;
-
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "COL_ROL_ID", nullable = false)
+    @JoinColumn(name = "COL_PUE_ID", nullable = false)
     @NotFound(action = NotFoundAction.IGNORE)
-    private Rol rol;
+    private Puesto puesto;
 
     @Column(name = "COL_USERNAME")
-    @Email
     private String username;
+
+    @Column(name = "COL_EMAIL")
+    private String email;
 
     @Column(name = "COL_PASSWORD")
     @NotBlank(message = "No se puede cargar con espacios vacios")
@@ -45,6 +46,20 @@ public class Colaborador implements Serializable {
     @JoinColumn(name = "COL_SUC_ID", nullable = false)
     @NotFound(action = NotFoundAction.IGNORE)
     private Sucursal sucursal;
+
+    @Column(name = "COL_ENABLED")
+    private boolean enabled;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USERS_ROLES",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Rol> roles = new HashSet<>();
+
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     public Long getId() {
         return id;
@@ -60,22 +75,6 @@ public class Colaborador implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
     }
 
     public String getUsername() {
@@ -100,5 +99,45 @@ public class Colaborador implements Serializable {
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Puesto getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(Puesto puesto) {
+        this.puesto = puesto;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

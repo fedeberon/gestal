@@ -12,36 +12,43 @@
                     <form:form modelAttribute="colaborador" action="${actionUrl}" method="POST">
                         <form:hidden path="id" value='${colaborador.id}'/>
                         <div class="form-style-8">
-                            <input type="hidden" name="colaborador.id" value="${colaborador.id}"/>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess1">Mail</label>
-                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1"/>
-                                <form:errors path="username" cssClass="error" size="50"/>
+                                <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
+                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                             </div>
 
-                            <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess1">Contrase&ntilde;a</label>
-                                <form:password path="password" size="50" cssClass="form-control" id="inputSuccess1"/>
+                            <div class="form-group mt-4 d-none">
+                                <label class="form-control-label">Contrase&ntilde;a:</label>
+                                <form:input path="password" cssClass="form-control" size="50"/>
                                 <form:errors path="password" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess1">Nombre</label>
-                                <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1"/>
+                                <label class="form-control-label">Rol del colaborador:</label>
+                                <select name="roles" class="custom-select">
+                                    <c:forEach items="${roles}" var="bo" varStatus="status">
+                                        <option value="${status.count}">${bo.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <div class="form-group mt-4">
+                                <label class="form-control-label" for="inputSuccess1">Nombre Completo</label>
+                                <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                                 <form:errors path="name" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess2">Apellido</label>
-                                <form:input path="lastName" size="50" cssClass="form-control" id="inputSuccess2"/>
-                                <form:errors path="lastName" cssClass="error" size="50"/>
+                                <label class="form-control-label" for="inputSuccess2">Correo electr&oacute;nico</label>
+                                <form:input path="email" size="50" cssClass="form-control" id="inputSuccess2" required="true"/>
+                                <form:errors path="email" cssClass="error" size="50"/>
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess3">Seleccionar rol</label>
-                                <form:select  path="rol.id" cssClass="form-control">
-                                    <form:options items="${roles}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
+                                <label class="form-control-label" for="inputSuccess3">Seleccionar puesto</label>
+                                <form:select  path="puesto.id" cssClass="form-control">
+                                    <form:options items="${puestos}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
                                 </form:select>
                             </div>
 

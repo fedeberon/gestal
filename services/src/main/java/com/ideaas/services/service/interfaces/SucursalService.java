@@ -1,6 +1,7 @@
 package com.ideaas.services.service.interfaces;
 
 import com.ideaas.services.domain.Sucursal;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -13,5 +14,6 @@ public interface SucursalService {
     List<Sucursal> findAll();
     Sucursal get(Long id);
     Sucursal save(Sucursal sucursal);
+
 }
 

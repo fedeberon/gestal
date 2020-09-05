@@ -1,55 +1,48 @@
 package com.ideaas.services.domain;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
 public class User  implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USU_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "USU_USERNAME")
-    @NotBlank(message = "No se puede cargar con espacios vacios")
+    @NotBlank
     private String username;
 
     @Column(name = "USU_PASSWORD")
-    @NotBlank(message = "No se puede cargar con espacios vacios")
+    @NotBlank
     private String password;
 
-    @Column(name = "users_mail")
-    @NotBlank(message = "No se puede cargar con espacios vacios")
-    @Email
-    private String mail;
+    @Column(name = "USU_ENABLED")
+    private boolean enabled;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "USU_USERNAME"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "ROL_ID"))
-    private Collection<Rol> roles;
+            name = "USERS_ROLES",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Rol> roles = new HashSet<>();
 
-    public User() {}
-
-    public User(String username, String password){
-        this.username = username;
-        this.password = password;
+    public Long getId() {
+        return id;
     }
 
-    public User(String username, String password, String mail) {
-        this.username = username;
-        this.password = password;
-        this.mail = mail;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -68,27 +61,19 @@ public class User  implements Serializable {
         this.password = password;
     }
 
-    public String getMail() {
-        return mail;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public Collection<Rol> getRoles() {
+    public Set<Rol> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection<Rol> roles) {
+    public void setRoles(Set<Rol> roles) {
         this.roles = roles;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

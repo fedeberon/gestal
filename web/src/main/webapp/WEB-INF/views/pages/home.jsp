@@ -118,7 +118,7 @@
         <div class="col-md-12">
             <div class="card ">
                 <div class="card-header ">
-                    <h5 class="card-title">Score en total de las evaluaciones</h5>
+                    <h5 class="card-title">Desempe&ntilde;o promedio mensual general </h5>
                 </div>
                 <div class="card-body ">
                     <div id="graficoScoreEvaluacion" style="width:100%; height:280px"></div>
@@ -157,13 +157,13 @@
         <div class="col-md-8">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-title">Puntuaci&oacute;n por sucursal</h5>
+                    <h5 class="card-title">Desempe&ntilde;o promedio mensual por sucursal</h5>
                 </div>
                 <div class="card-body">
                     <div id="graficoSucursal" style="height: 370px; width: 100%;"></div>
-                    <c:forEach items="${evaluaciones}" var="bo" varStatus="status">
+                    <c:forEach items="${scorePorSucursal}" var="bo" varStatus="status">
                         <ul class="listaScoreSucursal d-none">
-                            <li class="scoreSucursalGraph d-none" id="${bo.colaborador.sucursal.name}">${bo.resultado}</li>
+                            <li class="scoreSucursalGraph d-none" id="${bo.key.name}">${bo.value}</li>
                         </ul>
                     </c:forEach>
                 </div>

@@ -43,6 +43,17 @@ public class ColaboradorServiceImpl implements ColaboradorService {
 
     @Override
     public Colaborador save(Colaborador colaborador) {
+
+        switch (colaborador.getState()){
+            case ACTIVE:
+                colaborador.setEnabled(true);
+                break;
+            case INACTIVE:
+                colaborador.setEnabled(false);
+                break;
+            default:
+                colaborador.setEnabled(true);
+        }
         return dao.save(colaborador);
     }
 
@@ -52,8 +63,8 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     }
 
     @Override
-    public List<Colaborador> findAll(Integer pageSize, Integer pageNo, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    public List<Colaborador> findAll(Integer pageSize, Integer pageNo, String id) {
+        Pageable paging = PageRequest.of(pageNo, pageSize,Sort.by(id).descending());
         Page<Colaborador> colaborador = daoPagination.findAll(paging);
 
         return colaborador.getContent();
@@ -67,4 +78,11 @@ public class ColaboradorServiceImpl implements ColaboradorService {
         }
         return new org.springframework.security.core.userdetails.User(colaborador.getUsername(), colaborador.getPassword(), new ArrayList<>());
     }
+
+    @Override
+    public List<Colaborador> findColaboradorByName(String value) {
+        return dao.findColaboradorByName(value);
+    }
+
+
 }

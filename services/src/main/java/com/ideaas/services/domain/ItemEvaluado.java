@@ -36,7 +36,7 @@ public class ItemEvaluado implements Serializable{
     private List<ConsideracionItemEvaluado> consideracionItemEvaluados;
 
     @Column(name = "IEV_CON_ITEM_EVALUADO")
-    private Long valorConsideracionItemEvaluados;
+    private Integer valorConsideracionItemEvaluados;
 
     public Long getId() {
         return id;
@@ -78,11 +78,11 @@ public class ItemEvaluado implements Serializable{
         this.consideracionItemEvaluados = consideracionItemEvaluados;
     }
 
-    public Long getValorConsideracionItemEvaluados() {
+    public Integer getValorConsideracionItemEvaluados() {
         return valorConsideracionItemEvaluados;
     }
 
-    public void setValorConsideracionItemEvaluados(Long valorConsideracionItemEvaluados) {
+    public void setValorConsideracionItemEvaluados(Integer valorConsideracionItemEvaluados) {
         this.valorConsideracionItemEvaluados = valorConsideracionItemEvaluados;
     }
 

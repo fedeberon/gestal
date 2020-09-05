@@ -25,19 +25,23 @@
         <!-- CSS Just for demo purpose, don't include it in your project -->
         <link href="<c:url value='/assets/demo/demo.css' />" rel="stylesheet" />
         <link href="<c:url value='/assets/css/evaluacion/style.css' />" rel="stylesheet" />
-
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </head>
 
     <body>
-        <div class="flex-container">
+    <div class="wrapper">
+        <div class="main-panel">
             <tiles:insertAttribute name="header" />
 
             <tiles:insertAttribute name="menu" />
-            <div class="main-panel">
-                <tiles:insertAttribute name="body" />
+            <tiles:insertAttribute name="body" />
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <tiles:insertAttribute name="footer" />
+                </div>
             </div>
-            <tiles:insertAttribute name="footer" />
         </div>
+    </div>
 
         <!--   Core JS Files   -->
         <script type="text/javascript" src='<c:url value="/assets/plugins/jquery/jquery-3.2.1.min.js"/>'></script>
@@ -65,11 +69,11 @@
         <%--<script type="text/javascript" href="<c:url value='/assets/js/script.js'/>"></script>--%>
         <script type="text/javascript" src='<c:url value="/assets/js/script.js"/>'></script>
 
-
         <script type="text/javascript" src='<c:url value="/assets/js/paginador.js"/>'></script>
         <%--Graficos Plugin--%>
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/canvasjs.min.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/jquery.canvasjs.min.js"/>'></script>
-
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </body>
 </html>

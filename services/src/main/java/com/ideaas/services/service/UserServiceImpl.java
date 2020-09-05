@@ -1,5 +1,6 @@
 package com.ideaas.services.service;
 
+import com.ideaas.services.dao.RoleRepository;
 import com.ideaas.services.domain.User;
 import com.ideaas.services.dao.user.UserDao;
 import com.ideaas.services.service.interfaces.UsuarioService;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Primary
@@ -23,7 +25,7 @@ public class UserServiceImpl implements UsuarioService {
     private UserDao dao;
 
     @Autowired
-    public UserServiceImpl(UserDao dao) {
+    public UserServiceImpl(UserDao dao, RoleRepository roleDao) {
         this.dao = dao;
     }
 
@@ -39,6 +41,7 @@ public class UserServiceImpl implements UsuarioService {
 
     @Override
     public User save(User user) {
+        user.setEnabled(true);
         return dao.save(user);
     }
 
@@ -48,8 +51,8 @@ public class UserServiceImpl implements UsuarioService {
     }
 
     @Override
-    public List<User> findAll(Integer pageSize, Integer pageNo, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+    public List<User> findAll(Integer pageSize, Integer pageNo, String id) {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(id).descending());
         Page<User> usuarios = dao.findAll(paging);
 
         return usuarios.getContent();
@@ -63,4 +66,5 @@ public class UserServiceImpl implements UsuarioService {
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
+
 }

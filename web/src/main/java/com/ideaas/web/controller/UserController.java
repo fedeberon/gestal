@@ -1,17 +1,14 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.dao.RoleRepository;
+import com.ideaas.services.domain.Rol;
 import com.ideaas.services.domain.User;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,14 +22,17 @@ import java.util.List;
 public class UserController {
 
     private UsuarioService usuarioService;
+    private RoleRepository roleDao;
+
 
     @Autowired
-    public UserController(UsuarioService usuarioService) {
+    public UserController(UsuarioService usuarioService, RoleRepository roleDao) {
         this.usuarioService = usuarioService;
+        this.roleDao = roleDao;
     }
 
     @RequestMapping("/list")
-    public String findAllPageable(@RequestParam(defaultValue = "5") Integer size,
+    public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model){
         List<User> usuarios = usuarioService.findAll(size, page,"id");
         model.addAttribute("usuarios", usuarios);
@@ -76,6 +76,11 @@ public class UserController {
     public String create(@ModelAttribute("usuario") User user) {
 
         return "usuario/create";
+    }
+
+    @ModelAttribute("roles")
+    public List<Rol> getRoles() {
+        return roleDao.findAll();
     }
 
 

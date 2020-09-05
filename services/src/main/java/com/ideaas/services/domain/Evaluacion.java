@@ -3,8 +3,6 @@ package com.ideaas.services.domain;
 import com.ideaas.services.bean.State;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -29,7 +27,7 @@ public class Evaluacion {
 
     @ManyToOne
     @JoinColumn(name = "ROL_ID")
-    private Rol rol;
+    private Puesto puesto;
 
     @Enumerated(EnumType.STRING)
     private State state;
@@ -58,12 +56,12 @@ public class Evaluacion {
         this.items = items;
     }
 
-    public Rol getRol() {
-        return rol;
+    public Puesto getPuesto() {
+        return puesto;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setPuesto(Puesto puesto) {
+        this.puesto = puesto;
     }
 
     public State getState() {
