@@ -52,6 +52,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
+
+        auth.inMemoryAuthentication()
+                .withUser("fede")
+                .password("{noop}fede")
+                .roles("USER")
+                .and()
+                .withUser("admin")
+                .password("{noop}admin")
+                .credentialsExpired(true)
+                .accountExpired(true)
+                .accountLocked(true)
+                .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
+                .roles("MANAGER");
     }
 
     @Override
@@ -65,6 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/usuario/**").hasAnyAuthority("ADMIN")
             .antMatchers("/certificado/**").hasAnyAuthority("ADMIN", "COLABORADOR")
             .antMatchers("/assets/**").permitAll()
+            .antMatchers("/api/authenticate").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
