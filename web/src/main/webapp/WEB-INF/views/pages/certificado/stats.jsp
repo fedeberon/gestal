@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <style>
     .highcharts-figure, .highcharts-data-table table {
         min-width: 360px;
@@ -148,6 +149,22 @@
                 <div class="card-header">
                     <h4 class="card-title"> Cantidad de ausencias por colaborador (d&iacute;as)</h4>
                 </div>
+                <form action="<c:url value='/certificado/buscarPorFecha'/>" method="post">
+                    <div class="form-row">
+                        <div class="col">
+                            <label class="form-control-label">Seleccionar fecha de inicio</label>
+                            <input name="fechaInicio" size="50" autocomplete="off" class="form-control ml-1" id="fechaInicio"/>
+                        </div>
+                        <div class="col">
+                            <label class="form-control-label">Seleccionar fecha de fin</label>
+                            <input name="fechaFin" size="50" autocomplete="off" class="form-control ml-1" id="fechaFin"/>
+                        </div>
+                        <div class="col">
+                            <input type="submit" class="btn btn-success" value="Filtrar">
+                        </div>
+                    </div>
+                </form>
+
                 <div class="card-body">
                     <div class="table-responsive-md">
                         <table class="table">

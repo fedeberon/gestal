@@ -124,6 +124,11 @@ public class CertificadoController {
         return "certificado/list";
     }
 
+    @RequestMapping("/buscarPorFecha")
+    public String buscarPorFecha(@RequestParam(required = false) String fechaInicio, @RequestParam(required = false) String fechaFin, Model model){
+        model.addAttribute("fecha", certificadoService.buscarEstadisticasPorFechta(fechaInicio, fechaFin));
+        return "certificado/stats";
+    }
     @RequestMapping(value = {"/stats" , ""})
     public String estadisticaCertificado(Model model) {
         List<Certificado> certificados= certificadoService.findAll();

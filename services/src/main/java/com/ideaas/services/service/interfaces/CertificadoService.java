@@ -62,4 +62,5 @@ public interface CertificadoService {
 
     List<String> findByAusentismoColaborador();
 
+    List<Certificado> buscarEstadisticasPorFechta(String fechaInicio, String fechaFin);
 }
