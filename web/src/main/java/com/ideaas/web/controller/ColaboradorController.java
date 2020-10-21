@@ -52,9 +52,25 @@ public class ColaboradorController {
         return "redirect:list";
         }
 
+    @RequestMapping(value = "saveAndUpdate")
+    public String saveAndUpdate(@ModelAttribute("colaborador") Colaborador colaborador) {
+        String password = colaborador.getPassword();
+        colaborador.setPassword(password);
+        colaborador.setState(State.ACTIVE);
+        colaboradorService.save(colaborador);
+
+        return "redirect:list";
+    }
+
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String p = bCryptPasswordEncoder.encode(colaborador.getPassword());
+        Boolean checkPassword = bCryptPasswordEncoder.matches(colaborador.getPassword(), p);
+        if (checkPassword == true){
+
+        }
         model.addAttribute("colaborador", colaborador);
 
         return "colaborador/update";

@@ -21,11 +21,9 @@
                                 </form:select>
                             </div>
 
-
-
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess5">Seleccionar colaborador</label>
-                                <form:select path="colaborador.id" cssClass="form-control">
+                                <form:select path="colaborador.id" cssClass="form-control selectColaboradorCertificado">
                                     <form:options items="${colaboradores}" itemValue="id" itemLabel="name"
                                                   id="inputSuccess5"/>
                                 </form:select>

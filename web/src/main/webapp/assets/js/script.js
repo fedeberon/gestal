@@ -186,3 +186,9 @@ $(function(){
         $("#fechaFin").datepicker();
     });
 });
+
+$(document).ready(function () {
+    $('.selectColaboradorCertificado').selectize({
+        sortField: 'text'
+    });
+});

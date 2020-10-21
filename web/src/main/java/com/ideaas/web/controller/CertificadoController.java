@@ -59,12 +59,12 @@ public class CertificadoController {
         return "certificado/create";
     }
 
-
     @ModelAttribute("certificados")
     public CertificadoTipo[] getCertificados() {
 
         return CertificadoTipo.values();
     }
+
 
     @ModelAttribute("colaboradores")
     public List<Colaborador> getColaboradores() {
@@ -130,7 +130,7 @@ public class CertificadoController {
         return "certificado/stats";
     }
     @RequestMapping(value = {"/stats" , ""})
-    public String estadisticaCertificado(Model model) {
+    public String estadisticaCertificado(Model model, @ModelAttribute("certificado") Certificado certificado) {
         List<Certificado> certificados= certificadoService.findAll();
         model.addAttribute("colaboradores", certificados);
         model.addAttribute("findByAusentismoEnero", certificadoService.findByAusentismoEnero());
@@ -147,14 +147,15 @@ public class CertificadoController {
         model.addAttribute("findByAusentismoDiciembre", certificadoService.findByAusentismoDiciembre());
         model.addAttribute("findByAusentismoFechaActual", certificadoService.findByAusentismoFechaActual());
         model.addAttribute("findByAusentismoAnioActual", certificadoService.findByAusentismoAnioActual());
+        model.addAttribute("findByAusentismoColaboradorPorAnio", certificadoService.findByAusentismoColaboradorPorAnio());
+
 //        model.addAttribute("findByAusentismoColaborador", certificadoService.findByAusentismoColaborador());
-        model.addAttribute("findByAusentismoPrueba",certificados.stream().collect(Collectors.groupingBy(certificado -> certificado.getFechaInicio().getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")),Collectors.summingInt(Certificado::getAusentismo))));
+        model.addAttribute("findByAusentismoPrueba",certificados.stream().collect(Collectors.groupingBy(object -> object.getFechaInicio().getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")),Collectors.summingInt(Certificado::getAusentismo))));
 
 
         model.addAttribute("findByAusentismoColaborador", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy( Certificado::getColaborador, Collectors.summingInt(Certificado::getAusentismo))));
-        model.addAttribute("findByAusentismoSucursal", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy( certificado -> certificado.getColaborador().getSucursal(), Collectors.summingInt(Certificado::getAusentismo))));
-        model.addAttribute("findByAusentismoMotivo", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy(certificado -> certificado.getTipoCertificado(), Collectors.summingInt(Certificado::getAusentismo))));
+        model.addAttribute("findByAusentismoSucursal", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy( object -> object.getColaborador().getSucursal(), Collectors.summingInt(Certificado::getAusentismo))));
+        model.addAttribute("findByAusentismoMotivo", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy(object -> object.getTipoCertificado(), Collectors.summingInt(Certificado::getAusentismo))));
         return "certificado/stats";
     }
-
 }
