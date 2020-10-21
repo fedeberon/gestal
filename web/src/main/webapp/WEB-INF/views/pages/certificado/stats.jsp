@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <style>
     .highcharts-figure, .highcharts-data-table table {
         min-width: 360px;
@@ -113,25 +114,100 @@
                                         <tr>
                                             <c:choose>
                                                 <c:when test="${empty findByAusentismoEnero}">
-                                                    <td class="text-center">No hay registros</td>
-
+                                                    <td class="text-center">-</td>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <td class="text-center">${findByAusentismoEnero}</td>
                                                 </c:otherwise>
                                             </c:choose>
-
-                                            <td class="text-center">${findByAusentismoFebrero}</td>
-                                            <td class="text-center">${findByAusentismoMarzo}</td>
-                                            <td class="text-center">${findByAusentismoAbril}</td>
-                                            <td class="text-center">${findByAusentismoMayo}</td>
-                                            <td class="text-center">${findByAusentismoJunio}</td>
-                                            <td class="text-center">${findByAusentismoJulio}</td>
-                                            <td class="text-center">${findByAusentismoAgosto}</td>
-                                            <td class="text-center">${findByAusentismoSeptiembre}</td>
-                                            <td class="text-center">${findByAusentismoOctubre}</td>
-                                            <td class="text-center">${findByAusentismoNoviembre}</td>
-                                            <td class="text-center">${findByAusentismoDiciembre}</td>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoFebrero}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoFebrero}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoMarzo}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoMarzo}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoAbril}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoAbril}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoMayo}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoMayo}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoJunio}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoJunio}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoJulio}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoJulio}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoAgosto}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoAgosto}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoSeptiembre}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoSeptiembre}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoOctubre}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoOctubre}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoNoviembre}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoNoviembre}</td>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:choose>
+                                                <c:when test="${empty findByAusentismoDiciembre}">
+                                                    <td class="text-center">-</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td class="text-center">${findByAusentismoDiciembre}</td>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </tr>
                                 </c:otherwise>
                             </c:choose>
@@ -148,12 +224,26 @@
                 <div class="card-header">
                     <h4 class="card-title"> Cantidad de ausencias por colaborador (d&iacute;as)</h4>
                 </div>
+                <div>
+                    <form:form modelAttribute="certificado" id="formCertificado" action="${actionUrl}" method="POST">
+                        <form class="form-inline" action="<c:url value="/certificado/stats"/> ">
+                            <input class="form-control mr-sm-2 w-50" name="value" type="search" placeholder="Buscar colaboradores" aria-label="Search">
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+                        </form>
+                    <div class="form-group mt-4">
+                        <label class="form-control-label">Filtrar por fecha</label>
+                        <form:input path="fechaInicio" size="50" autocomplete="off" cssClass="form-control w-50" id="fechaInicio"/>
+                    </div>
+                    </form:form>
+
+                </div>
                 <div class="card-body">
                     <div class="table-responsive-md">
                         <table class="table">
                             <thead class=" text-primary">
-                                <th width="50%">Nombre del colaborador</th>
-                                <th width="50%" class="text-center">Cantidad de ausencias</th>
+                                <th>Nombre del colaborador</th>
+                                <th class="text-center">Cantidad de ausencias</th>
+                                <th class="text-center">Cantidad de ausencias en el a&ntilde;o </th>
                             </thead>
                             <tbody>
                             <c:set var = "certificados" scope = "session" value = "${certificados}"/>
@@ -170,6 +260,7 @@
                                         <tr>
                                             <td>${bo.key.name}</td>
                                             <td class="text-center">${bo.value}</td>
+                                            <td class="text-center">${findByAusentismoColaboradorPorAnio}</td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>

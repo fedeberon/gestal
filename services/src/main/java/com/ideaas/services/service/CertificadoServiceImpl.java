@@ -215,4 +215,9 @@ public class CertificadoServiceImpl implements CertificadoService {
         return dao.findByAusentismoColaborador();
     }
 
+    @Override
+    public Integer findByAusentismoColaboradorPorAnio() {
+        return dao.findByAusentismoColaboradorPorAnio();
+    }
+
 }
