@@ -23,8 +23,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class CertificadoServiceImpl implements CertificadoService {
@@ -212,13 +214,7 @@ public class CertificadoServiceImpl implements CertificadoService {
     }
 
     @Override
-    public List<String> findByAusentismoColaborador() {
-        return dao.findByAusentismoColaborador();
+    public List<Certificado> buscarEstadisticasPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
+        return dao.findAllByFechaInicioLessThanEqualAndFechaFinalizacionGreaterThanEqual(fechaInicio, fechaFin);
     }
-
-    @Override
-    public List<Certificado> buscarEstadisticasPorFechta(String fechaInicio, String fechaFin) {
-        return dao.findCertificadoByFechaInicioBetween(fechaInicio, fechaFin);
-    }
-
 }

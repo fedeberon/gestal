@@ -6,6 +6,7 @@ import com.ideaas.services.domain.certificado.Imagen;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface CertificadoService {
@@ -60,7 +61,6 @@ public interface CertificadoService {
 
     Integer findByAusentismoAnioActual();
 
-    List<String> findByAusentismoColaborador();
+    List<Certificado> buscarEstadisticasPorFecha(LocalDate fechaInicio, LocalDate fechaFin);
 
-    List<Certificado> buscarEstadisticasPorFechta(String fechaInicio, String fechaFin);
 }

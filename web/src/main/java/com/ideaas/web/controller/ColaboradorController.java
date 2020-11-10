@@ -53,27 +53,36 @@ public class ColaboradorController {
         }
 
     @RequestMapping(value = "saveAndUpdate")
-    public String saveAndUpdate(@ModelAttribute("colaborador") Colaborador colaborador) {
-        String password = colaborador.getPassword();
-        colaborador.setPassword(password);
+    public String saveAndUpdate(@RequestParam Long id ,@ModelAttribute("colaborador") Colaborador colaborador) {
         colaborador.setState(State.ACTIVE);
         colaboradorService.save(colaborador);
+        return "redirect:list";
+    }
 
+    @RequestMapping(value = "saveAndUpdatePassword")
+    public String saveAndUpdatePassword(@RequestParam Long id ,@ModelAttribute("colaborador") Colaborador colaborador) {
+        colaborador.setState(State.ACTIVE);
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String password = bCryptPasswordEncoder.encode(colaborador.getPassword());
+        colaborador.setPassword(password);
+        colaboradorService.save(colaborador);
         return "redirect:list";
     }
 
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String p = bCryptPasswordEncoder.encode(colaborador.getPassword());
-        Boolean checkPassword = bCryptPasswordEncoder.matches(colaborador.getPassword(), p);
-        if (checkPassword == true){
-
-        }
         model.addAttribute("colaborador", colaborador);
 
         return "colaborador/update";
+    }
+
+    @RequestMapping("updatePassword")
+    public String updatePassword(@RequestParam Long id, Model model) {
+        Colaborador colaborador = colaboradorService.get(id);
+        model.addAttribute("colaborador", colaborador);
+
+        return "colaborador/updatePassword";
     }
 
     @RequestMapping("baja")
@@ -114,6 +123,11 @@ public class ColaboradorController {
         return sucursalService.findAll();
     }
 
+    @ModelAttribute("roles")
+    public List<Rol> getRoles() {
+        return rolService.findAll();
+    }
+
     @RequestMapping("/list")
     public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
@@ -131,11 +145,6 @@ public class ColaboradorController {
     public String findColaboradorByName(@RequestParam(defaultValue = "") String value, Model model) {
         model.addAttribute("colaboradores", colaboradorService.findColaboradorByName(value));
         return "colaborador/list";
-    }
-
-    @ModelAttribute("roles")
-    public List<Rol> getRoles() {
-        return rolService.findAll();
     }
 
 }

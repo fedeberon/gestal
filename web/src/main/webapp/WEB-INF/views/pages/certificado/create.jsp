@@ -1,6 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<style>
+    .select2{
+        display: block;
+    }
+    .select2-search__field{
+        outline:none !important;
+        outline-width: 0 !important;
+        box-shadow: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        padding: 3%;
+    }
+</style>
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -23,15 +35,16 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess5">Seleccionar colaborador</label>
-                                <form:select path="colaborador.id" cssClass="form-control selectColaboradorCertificado">
+                                <form:select path="colaborador.id" cssClass="form-control select2">
                                     <form:options items="${colaboradores}" itemValue="id" itemLabel="name"
                                                   id="inputSuccess5"/>
                                 </form:select>
                             </div>
 
+
                             <div class="form-group mt-4">
                                 <label class="form-control-label">Seleccionar fecha de inicio de la licencia</label>
-                                <form:input path="fechaInicio" size="50" autocomplete="off" cssClass="form-control" id="fechaInicio"/>
+                                <form:input path="fechaInicio" size="50" autocomplete="off" cssClass="form-control" id="fechaInicioCreate"/>
                             </div>
 
                             <div class="form-group mt-4">

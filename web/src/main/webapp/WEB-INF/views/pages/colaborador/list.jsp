@@ -26,7 +26,6 @@
                             <thead class=" text-primary">
 
                                 <th class="text-center">Nombre completo</th>
-                                <th class="text-center">Mail</th>
                                 <th class="text-center">Puesto</th>
                                 <th class="text-center">Sucursal</th>
                                 <th class="text-center">Editar</th>
@@ -51,7 +50,6 @@
                                                 <c:when test="${bo.state =='ACTIVE'}">
                                                     <tr>
                                                         <td class="text-center">${bo.name}</td>
-                                                        <td class="text-center">${bo.email}</td>
                                                         <td class="text-center">${bo.puesto.name}</td>
                                                         <td class="text-center">
 

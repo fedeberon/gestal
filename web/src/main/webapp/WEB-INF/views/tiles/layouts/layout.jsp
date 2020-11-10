@@ -26,6 +26,10 @@
         <link href="<c:url value='/assets/demo/demo.css' />" rel="stylesheet" />
         <link href="<c:url value='/assets/css/evaluacion/style.css' />" rel="stylesheet" />
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+
+
     </head>
 
     <body>
@@ -75,5 +79,7 @@
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/jquery.canvasjs.min.js"/>'></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     </body>
 </html>

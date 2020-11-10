@@ -112,16 +112,7 @@
                                 </c:when>
                                 <c:otherwise>
                                         <tr>
-                                            <c:choose>
-                                                <c:when test="${empty findByAusentismoEnero}">
-                                                    <td class="text-center">No hay registros</td>
-
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <td class="text-center">${findByAusentismoEnero}</td>
-                                                </c:otherwise>
-                                            </c:choose>
-
+                                            <td class="text-center">${findByAusentismoEnero}</td>
                                             <td class="text-center">${findByAusentismoFebrero}</td>
                                             <td class="text-center">${findByAusentismoMarzo}</td>
                                             <td class="text-center">${findByAusentismoAbril}</td>
@@ -149,18 +140,18 @@
                 <div class="card-header">
                     <h4 class="card-title"> Cantidad de ausencias por colaborador (d&iacute;as)</h4>
                 </div>
-                <form action="<c:url value='/certificado/buscarPorFecha'/>" method="post">
+                <form action="<c:url value='/certificado/buscarColaboradorPorFecha'/>" method="post">
                     <div class="form-row">
                         <div class="col">
                             <label class="form-control-label">Seleccionar fecha de inicio</label>
-                            <input name="fechaInicio" size="50" autocomplete="off" class="form-control ml-1" id="fechaInicio"/>
+                            <input name="fechaInicio" size="50" autocomplete="off" class="form-control ml-1" id="datepickerColaboradorInicio" placeholder="${fechaInicio}" required/>
                         </div>
                         <div class="col">
                             <label class="form-control-label">Seleccionar fecha de fin</label>
-                            <input name="fechaFin" size="50" autocomplete="off" class="form-control ml-1" id="fechaFin"/>
+                            <input name="fechaFin" size="50" autocomplete="off" class="form-control ml-1" id="datepickerColaboradorFin" placeholder="${fechaFin}" required/>
                         </div>
                         <div class="col">
-                            <input type="submit" class="btn btn-success" value="Filtrar">
+                            <input type="submit" class="btn btn-success mt-3" value="Filtrar">
                         </div>
                     </div>
                 </form>
@@ -204,6 +195,21 @@
                 <div class="card-header">
                     <h4 class="card-title"> Cantidad de ausencias por sucursal (d&iacute;as)</h4>
                 </div>
+                <form action="<c:url value='/certificado/buscarSucursalPorFecha'/>" method="post">
+                    <div class="form-row">
+                        <div class="col">
+                            <label class="form-control-label">Seleccionar fecha de inicio</label>
+                            <input name="fechaInicio" size="50" autocomplete="off" class="form-control ml-1" id="datepickerSucursalInicio" required/>
+                        </div>
+                        <div class="col">
+                            <label class="form-control-label">Seleccionar fecha de fin</label>
+                            <input name="fechaFin" size="50" autocomplete="off" class="form-control ml-1" id="datepickerSucursalFin" required/>
+                        </div>
+                        <div class="col">
+                            <input type="submit" class="btn btn-success mt-3" value="Filtrar">
+                        </div>
+                    </div>
+                </form>
                 <div class="card-body">
                     <div class="table-responsive-md">
                         <table class="table">
@@ -243,6 +249,21 @@
                 <div class="card-header">
                     <h4 class="card-title"> Motivos predominantes</h4>
                 </div>
+                <form action="<c:url value='/certificado/buscarMotivoPorFecha'/>" method="post">
+                    <div class="form-row">
+                        <div class="col">
+                            <label class="form-control-label">Seleccionar fecha de inicio</label>
+                            <input name="fechaInicio" size="50" autocomplete="off" class="form-control ml-1" id="datepickerMotivoInicio" required/>
+                        </div>
+                        <div class="col">
+                            <label class="form-control-label">Seleccionar fecha de fin</label>
+                            <input name="fechaFin" size="50" autocomplete="off" class="form-control ml-1" id="datepickerMotivoFin" required/>
+                        </div>
+                        <div class="col">
+                            <input type="submit" class="btn btn-success mt-3" value="Filtrar">
+                        </div>
+                    </div>
+                </form>
                 <div class="card-body">
                     <div class="table-responsive-md">
                         <table class="table">

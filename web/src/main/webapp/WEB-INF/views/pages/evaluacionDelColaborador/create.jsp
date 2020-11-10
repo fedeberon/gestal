@@ -177,7 +177,7 @@
                             </c:choose>
                             <div class="form-group mt-4">
                                 <c:if test="${!empty item}">
-                                    <button type="submit" class="btn btn-default" id="btnSubmit">Guardar</button>
+                                    <button type="submit" class="btn btn-default" id="btnSubmit">Finalizar Evaluaci&oacute;n</button>
                                 </c:if>
                             </div>
                         </div>

@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-secondary mt-5 ml-5" id="btnSubmit">Guardar</button>
+                                <button type="submit" class="btn btn-secondary mt-5 ml-5" id="btnSubmit">Finalizar Evaluaci&oacute;n</button>
                             </div>
                         </div>
                     </form:form>

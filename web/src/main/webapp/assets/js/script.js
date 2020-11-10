@@ -182,8 +182,17 @@ $(function(){
     };
     $.datepicker.setDefaults($.datepicker.regional['es']);
     $(function () {
-        $("#fechaInicio").datepicker();
-        $("#fechaFin").datepicker();
+        $("#datepickerColaboradorInicio").datepicker({dateFormat: 'yy-mm-dd'}).val();
+        $("#datepickerColaboradorFin").datepicker({dateFormat: 'yy-mm-dd'}).val();
+
+        $("#datepickerSucursalInicio").datepicker({dateFormat: 'yy-mm-dd'}).val();
+        $("#datepickerSucursalFin").datepicker({dateFormat: 'yy-mm-dd'}).val();
+
+        $("#datepickerMotivoInicio").datepicker({dateFormat: 'yy-mm-dd'}).val();
+        $("#datepickerMotivoFin").datepicker({dateFormat: 'yy-mm-dd'}).val();
+
+        $("#fechaInicioCreate").datepicker();
+
     });
 });
 
@@ -191,4 +200,8 @@ $(document).ready(function () {
     $('.selectColaboradorCertificado').selectize({
         sortField: 'text'
     });
+});
+// Material Select Initialization
+$(document).ready(function() {
+    $('.select2').select2();
 });
