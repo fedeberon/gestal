@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public interface CertificadoService {
 
@@ -60,6 +61,8 @@ public interface CertificadoService {
     Integer findByAusentismoFechaActual();
 
     Integer findByAusentismoAnioActual();
+
+    Map<String, Integer> getCantidadDeCertificadosPorMes();
 
     List<Certificado> buscarEstadisticasPorFecha(LocalDate fechaInicio, LocalDate fechaFin);
 

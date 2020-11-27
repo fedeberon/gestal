@@ -68,6 +68,4 @@ public interface CertificadoDao extends JpaRepository<Certificado, Long> {
     Integer findByAusentismoColaboradorPorAnio();
 
 
-
-
 }

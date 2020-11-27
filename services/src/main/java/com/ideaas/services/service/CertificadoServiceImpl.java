@@ -22,12 +22,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.time.Month;
+import java.time.Period;
+import java.time.YearMonth;
+import java.time.format.TextStyle;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 import java.util.stream.Collectors;
-
+import static java.time.temporal.ChronoUnit.DAYS;
 @Service
 public class CertificadoServiceImpl implements CertificadoService {
 
@@ -211,6 +213,69 @@ public class CertificadoServiceImpl implements CertificadoService {
     @Override
     public Integer findByAusentismoAnioActual() {
         return dao.findByAusentismoAnioActual();
+    }
+
+    @Override
+    public Map<String, Integer> getCantidadDeCertificadosPorMes(){
+        List<Certificado> certificados = dao.findAll();
+        Map map = new HashMap<String, Long>();
+        certificados.forEach(unCertificado -> asigarCantidadDeDiasAlMes(map, unCertificado));
+
+        return map;
+    }
+
+
+    private void asigarCantidadDeDiasAlMes(Map<String, Long> map, Certificado certificado){
+        LocalDate inicio = certificado.getFechaInicio();
+        String key = inicio.getMonth().getDisplayName(TextStyle.FULL, Locale.US) + "-" + inicio.getYear();
+        LocalDate fin = certificado.getFechaFinalizacion();
+        Month mesInicio = inicio.getMonth();
+        Month mesFin = inicio.getMonth();
+        long dias = 0;
+
+        if(esUnCertificadoDelMismoMes(mesInicio, mesFin)){
+            dias = DAYS.between(inicio, fin);
+        }
+
+        else {
+            /**
+             * Cuenta los dias del primer mes
+             */
+            dias = DAYS.between(inicio, inicio.withDayOfMonth(inicio.lengthOfMonth()));
+
+            /**
+             * Cuentas los dias de los meses intermedios
+             */
+            do {
+                key = fin.getMonth().name() + "-" + fin.getYear();
+                YearMonth yearMonthObject = YearMonth.of(fin.getYear() , fin.getMonth().getValue());
+                dias += yearMonthObject.lengthOfMonth();
+                fin.plusMonths(1);
+            }
+            while (esUnCertificadoDelMismoMes(mesInicio, mesFin));
+
+
+            /**
+             * Cuenta los dias del ultimo mes
+             */
+            dias += DAYS.between(fin.withDayOfMonth(1), certificado.getFechaFinalizacion());
+
+        }
+        agregarDiasAlMes(map, key, dias);
+    }
+
+    private boolean esUnCertificadoDelMismoMes(Month mesInicio, Month mesFin) {
+        return mesInicio.equals(mesFin);
+    }
+
+    private void agregarDiasAlMes(Map<String, Long> map, String key, long dias) {
+        if (map.containsKey(key)) {
+            Long previusValue = map.get(key);
+            Long total = previusValue + dias + 1;
+            map.put(key, total);
+        } else {
+            map.put(key, dias + 1);
+        }
     }
 
     @Override

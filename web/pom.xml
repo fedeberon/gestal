@@ -83,6 +83,7 @@
 			<version>1.7.25</version>
 		</dependency>
 
+
 	</dependencies>
 
 
@@ -93,6 +94,8 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>com.ideaas.web.ServletInitializer</mainClass>
+					<fork>true</fork>
+					<skip>false</skip>
 				</configuration>
 				<executions>
 					<execution>
@@ -103,6 +106,24 @@
 				</executions>
 			</plugin>
 		</plugins>
+
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/webapp</directory>
+				<includes>
+					<include>**/**</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>**/**</include>
+				</includes>
+			</resource>
+		</resources>
+
+
 	</build>
+
 
 </project>

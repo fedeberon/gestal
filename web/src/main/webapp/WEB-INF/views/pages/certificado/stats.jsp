@@ -101,7 +101,7 @@
                                 <th class="text-center">Diciembre</th>
                             </thead>
                             <tbody>
-                            <c:set var = "certificados" scope = "session" value = "${certificados}"/>
+                            <%--<c:set var = "certificados" scope = "session" value = "${certificados}"/>
                             <c:choose>
                                 <c:when test="${empty colaboradores}">
                                     <tr>
@@ -126,7 +126,14 @@
                                             <td class="text-center">${findByAusentismoDiciembre}</td>
                                         </tr>
                                 </c:otherwise>
-                            </c:choose>
+                            </c:choose>--%>
+                            <tr>
+                                <c:forEach items="${data}" var="bo">
+                                        <td> ${bo.key} </td>
+                                        <td> ${bo.value} </td>
+                                </c:forEach>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>

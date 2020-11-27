@@ -1,8 +1,6 @@
 package com.ideaas.web.controller;
 
 import com.ideaas.services.domain.Colaborador;
-import com.ideaas.services.domain.Rol;
-import com.ideaas.services.domain.User;
 import com.ideaas.services.domain.certificado.Certificado;
 import com.ideaas.services.domain.certificado.CertificadoTipo;
 import com.ideaas.services.service.FileServiceImpl;
@@ -15,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.*;
@@ -122,6 +119,8 @@ public class CertificadoController {
     @RequestMapping("/search")
     public String findColaboradorByName(@RequestParam(defaultValue = "") String value, Model model) {
         model.addAttribute("certificados", certificadoService.findCertificadoByColaborador(value));
+        model.addAttribute("data", certificadoService.getCantidadDeCertificadosPorMes());
+
         return "certificado/list";
     }
 
@@ -145,6 +144,9 @@ public class CertificadoController {
         model.addAttribute("findByAusentismoDiciembre", certificadoService.findByAusentismoDiciembre());
         model.addAttribute("findByAusentismoFechaActual", certificadoService.findByAusentismoFechaActual());
         model.addAttribute("findByAusentismoAnioActual", certificadoService.findByAusentismoAnioActual());
+        model.addAttribute("data", certificadoService.getCantidadDeCertificadosPorMes());
+
+
         return "certificado/stats";
     }
 
@@ -213,7 +215,7 @@ public class CertificadoController {
         model.addAttribute("findByAusentismoFechaActual", certificadoService.findByAusentismoFechaActual());
         model.addAttribute("findByAusentismoAnioActual", certificadoService.findByAusentismoAnioActual());
         model.addAttribute("findByAusentismoPrueba",certificados.stream().collect(Collectors.groupingBy(object -> object.getFechaInicio().getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")),Collectors.summingInt(Certificado::getAusentismo))));
-
+        model.addAttribute("data", certificadoService.getCantidadDeCertificadosPorMes());
         model.addAttribute("findByAusentismoSucursal", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy( object -> object.getColaborador().getSucursal(), Collectors.summingInt(Certificado::getAusentismo))));
         model.addAttribute("findByAusentismoMotivo", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy(object -> object.getTipoCertificado(), Collectors.summingInt(Certificado::getAusentismo))));
         return "certificado/stats";
