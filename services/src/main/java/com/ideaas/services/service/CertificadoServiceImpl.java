@@ -17,14 +17,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import sun.util.resources.LocaleData;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Period;
-import java.time.YearMonth;
+import java.time.*;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -228,9 +226,12 @@ public class CertificadoServiceImpl implements CertificadoService {
     private void asigarCantidadDeDiasAlMes(Map<String, Long> map, Certificado certificado){
         LocalDate inicio = certificado.getFechaInicio();
         String key = inicio.getMonth().getDisplayName(TextStyle.FULL, Locale.US) + "-" + inicio.getYear();
+        if (certificado.getColaborador().getId() == 0){
+            System.out.println("En noviembre");
+        }
         LocalDate fin = certificado.getFechaFinalizacion();
         Month mesInicio = inicio.getMonth();
-        Month mesFin = inicio.getMonth();
+        Month mesFin = fin.getMonth();
         long dias = 0;
 
         if(esUnCertificadoDelMismoMes(mesInicio, mesFin)){
@@ -246,13 +247,14 @@ public class CertificadoServiceImpl implements CertificadoService {
             /**
              * Cuentas los dias de los meses intermedios
              */
+            LocalDate next = inicio;
             do {
-                key = fin.getMonth().name() + "-" + fin.getYear();
-                YearMonth yearMonthObject = YearMonth.of(fin.getYear() , fin.getMonth().getValue());
+                next = next.plusMonths(1);
+                key = next.getMonth().name() + "-" + next.getYear();
+                YearMonth yearMonthObject = YearMonth.of(next.getYear() , next.getMonth().getValue());
                 dias += yearMonthObject.lengthOfMonth();
-                fin.plusMonths(1);
             }
-            while (esUnCertificadoDelMismoMes(mesInicio, mesFin));
+            while (!esUnCertificadoDelMismoMes(fin.getMonth(), next.getMonth()));
 
 
             /**
@@ -262,6 +264,24 @@ public class CertificadoServiceImpl implements CertificadoService {
 
         }
         agregarDiasAlMes(map, key, dias);
+    }
+
+    public LocalDate add(LocalDate date, int workdays) {
+        if (workdays < 1) {
+            return date;
+        }
+
+        LocalDate result = date;
+        int addedDays = 0;
+        while (addedDays < workdays) {
+            result = result.plusDays(1);
+            if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY ||
+                    result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
+                ++addedDays;
+            }
+        }
+
+        return result;
     }
 
     private boolean esUnCertificadoDelMismoMes(Month mesInicio, Month mesFin) {

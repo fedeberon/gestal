@@ -75,7 +75,9 @@ public class DataBaseConfiguration {
     private Map<String, Object> jpaProperties() {
         Map<String, Object> props = new HashMap();
         props.put("hibernate.dialect", this.dialect);
+/*
         props.put("hibernate.hbm2ddl.auto", "update");
+*/
 
         return props;
     }
