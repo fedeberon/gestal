@@ -291,7 +291,7 @@ public class CertificadoServiceImpl implements CertificadoService {
     private void agregarDiasAlMes(Map<String, Long> map, String key, long dias) {
         if (map.containsKey(key)) {
             Long previusValue = map.get(key);
-            Long total = previusValue + dias + 1;
+            Long total = previusValue + dias;
             map.put(key, total);
         } else {
             map.put(key, dias + 1);
