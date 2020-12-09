@@ -250,6 +250,11 @@ public class CertificadoServiceImpl implements CertificadoService {
             LocalDate next = inicio;
             do {
                 next = next.plusMonths(1);
+
+                if (next.getMonth().equals(fin.getMonth())){
+                    break;
+                }
+
                 key = next.getMonth().name() + "-" + next.getYear();
                 YearMonth yearMonthObject = YearMonth.of(next.getYear() , next.getMonth().getValue());
                 dias += yearMonthObject.lengthOfMonth();
