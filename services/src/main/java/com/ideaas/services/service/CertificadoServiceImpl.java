@@ -3,9 +3,6 @@ package com.ideaas.services.service;
 import com.ideaas.services.dao.certificado.CertificadoDao;
 import com.ideaas.services.dao.certificado.CertificadoDaoPagination;
 import com.ideaas.services.dao.colaborador.ColaboradorDao;
-import com.ideaas.services.domain.Colaborador;
-import com.ideaas.services.domain.Rol;
-import com.ideaas.services.domain.User;
 import com.ideaas.services.domain.certificado.Certificado;
 import com.ideaas.services.domain.certificado.Imagen;
 import com.ideaas.services.service.interfaces.CertificadoService;
@@ -17,16 +14,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import sun.util.resources.LocaleData;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.*;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.YearMonth;
 import java.time.format.TextStyle;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
-import java.util.stream.Collectors;
+
 import static java.time.temporal.ChronoUnit.DAYS;
 @Service
 public class CertificadoServiceImpl implements CertificadoService {
@@ -296,7 +294,7 @@ public class CertificadoServiceImpl implements CertificadoService {
     private void agregarDiasAlMes(Map<String, Long> map, String key, long dias) {
         if (map.containsKey(key)) {
             Long previusValue = map.get(key);
-            Long total = previusValue + dias;
+            Long total = previusValue + dias + 1;
             map.put(key, total);
         } else {
             map.put(key, dias + 1);
