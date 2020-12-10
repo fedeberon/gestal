@@ -234,6 +234,7 @@ public class CertificadoServiceImpl implements CertificadoService {
 
         if(esUnCertificadoDelMismoMes(mesInicio, mesFin)){
             dias = DAYS.between(inicio, fin);
+            agregarDiasAlMes(map, key, dias);
         }
 
         else {
@@ -241,6 +242,7 @@ public class CertificadoServiceImpl implements CertificadoService {
              * Cuenta los dias del primer mes
              */
             dias = DAYS.between(inicio, inicio.withDayOfMonth(inicio.lengthOfMonth()));
+            agregarDiasAlMes(map, key, dias);
 
             /**
              * Cuentas los dias de los meses intermedios
@@ -255,7 +257,9 @@ public class CertificadoServiceImpl implements CertificadoService {
 
                 key = next.getMonth().name() + "-" + next.getYear();
                 YearMonth yearMonthObject = YearMonth.of(next.getYear() , next.getMonth().getValue());
-                dias += yearMonthObject.lengthOfMonth();
+                dias = yearMonthObject.lengthOfMonth();
+                agregarDiasAlMes(map, key, dias);
+
             }
             while (!esUnCertificadoDelMismoMes(fin.getMonth(), next.getMonth()));
 
@@ -263,28 +267,10 @@ public class CertificadoServiceImpl implements CertificadoService {
             /**
              * Cuenta los dias del ultimo mes
              */
-            dias += DAYS.between(fin.withDayOfMonth(1), certificado.getFechaFinalizacion());
-
+            dias = DAYS.between(fin.withDayOfMonth(1), certificado.getFechaFinalizacion());
+            key = fin.getMonth().name() + "-" + fin.getYear();
+            agregarDiasAlMes(map, key, dias);
         }
-        agregarDiasAlMes(map, key, dias);
-    }
-
-    public LocalDate add(LocalDate date, int workdays) {
-        if (workdays < 1) {
-            return date;
-        }
-
-        LocalDate result = date;
-        int addedDays = 0;
-        while (addedDays < workdays) {
-            result = result.plusDays(1);
-            if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY ||
-                    result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
-                ++addedDays;
-            }
-        }
-
-        return result;
     }
 
     private boolean esUnCertificadoDelMismoMes(Month mesInicio, Month mesFin) {
@@ -294,10 +280,10 @@ public class CertificadoServiceImpl implements CertificadoService {
     private void agregarDiasAlMes(Map<String, Long> map, String key, long dias) {
         if (map.containsKey(key)) {
             Long previusValue = map.get(key);
-            Long total = previusValue + dias + 1;
+            Long total = previusValue + dias;
             map.put(key, total);
         } else {
-            map.put(key, dias + 1);
+            map.put(key, dias);
         }
     }
 
