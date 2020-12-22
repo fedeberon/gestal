@@ -87,18 +87,18 @@
                     <div class="table-responsive-md">
                         <table class="table">
                             <thead class=" text-primary">
-                                <th class="text-center">Enero</th>
-                                <th class="text-center">Febrero</th>
-                                <th class="text-center">Marzo</th>
-                                <th class="text-center">Abril</th>
-                                <th class="text-center">Mayo</th>
-                                <th class="text-center">Junio</th>
-                                <th class="text-center">Julio</th>
-                                <th class="text-center">Agosto</th>
-                                <th class="text-center">Septiembre</th>
-                                <th class="text-center">Octubre</th>
-                                <th class="text-center">Noviembre</th>
-                                <th class="text-center">Diciembre</th>
+<%--                                <th class="text-center">Enero</th>--%>
+<%--                                <th class="text-center">Febrero</th>--%>
+<%--                                <th class="text-center">Marzo</th>--%>
+<%--                                <th class="text-center">Abril</th>--%>
+<%--                                <th class="text-center">Mayo</th>--%>
+<%--                                <th class="text-center">Junio</th>--%>
+<%--                                <th class="text-center">Julio</th>--%>
+<%--                                <th class="text-center">Agosto</th>--%>
+<%--                                <th class="text-center">Septiembre</th>--%>
+<%--                                <th class="text-center">Octubre</th>--%>
+<%--                                <th class="text-center">Noviembre</th>--%>
+<%--                                <th class="text-center">Diciembre</th>--%>
                             </thead>
                             <tbody>
                             <%--<c:set var = "certificados" scope = "session" value = "${certificados}"/>
@@ -129,8 +129,10 @@
                             </c:choose>--%>
                             <tr>
                                 <c:forEach items="${data}" var="bo">
-                                        <td> ${bo.key} </td>
-                                        <td> ${bo.value} </td>
+                                <tr>
+                                    <th>${bo.key}</th>
+                                    <td>${bo.value}</td>
+                                </tr>
                                 </c:forEach>
                             </tr>
 

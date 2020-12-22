@@ -223,7 +223,7 @@ public class CertificadoServiceImpl implements CertificadoService {
 
     private void asigarCantidadDeDiasAlMes(Map<String, Long> map, Certificado certificado){
         LocalDate inicio = certificado.getFechaInicio();
-        String key = inicio.getMonth().getDisplayName(TextStyle.FULL, Locale.US) + "-" + inicio.getYear();
+        String key = inicio.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + inicio.getYear();
         if (certificado.getColaborador().getId() == 0){
             System.out.println("En noviembre");
         }
@@ -255,7 +255,7 @@ public class CertificadoServiceImpl implements CertificadoService {
                     break;
                 }
 
-                key = next.getMonth().name() + "-" + next.getYear();
+                key = next.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + next.getYear();
                 YearMonth yearMonthObject = YearMonth.of(next.getYear() , next.getMonth().getValue());
                 dias = yearMonthObject.lengthOfMonth();
                 agregarDiasAlMes(map, key, dias);
@@ -268,7 +268,7 @@ public class CertificadoServiceImpl implements CertificadoService {
              * Cuenta los dias del ultimo mes
              */
             dias = DAYS.between(fin.withDayOfMonth(1), certificado.getFechaFinalizacion());
-            key = fin.getMonth().name() + "-" + fin.getYear();
+            key = fin.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + fin.getYear();
             agregarDiasAlMes(map, key, dias);
         }
     }

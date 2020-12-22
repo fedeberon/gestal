@@ -32,13 +32,13 @@
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label">Seleccionar fecha de inicio de la licencia</label>
-                                <form:input path="fechaInicio" size="50" autocomplete="off" cssClass="form-control" id="fechaInicio"/>
+                                <form:input path="fechaInicio" size="50" autocomplete="off" cssClass="form-control" id="fechaInicioCreate"/>
                             </div>
 
-                            <div class="form-group mt-4">
-                                <label class="form-control-label">Seleccionar fecha de finalizaci&oacute;n de la licencia</label>
-                                <form:input path="fechaFinalizacion" size="50" autocomplete="off" cssClass="form-control" id="fechaFin"/>
-                            </div>
+<%--                            <div class="form-group mt-4">--%>
+<%--                                <label class="form-control-label">Seleccionar fecha de finalizaci&oacute;n de la licencia</label>--%>
+<%--                                <form:input path="fechaFinalizacion" size="50" autocomplete="off" cssClass="form-control" id="fechaFin"/>--%>
+<%--                            </div>--%>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label">D&iacute;as de ausentismo</label>
