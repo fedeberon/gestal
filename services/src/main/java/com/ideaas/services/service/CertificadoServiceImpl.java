@@ -24,6 +24,7 @@ import java.time.Month;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 @Service
@@ -221,12 +222,13 @@ public class CertificadoServiceImpl implements CertificadoService {
     }
 
 
-    private void asigarCantidadDeDiasAlMes(Map<String, Long> map, Certificado certificado){
+    private void asigarCantidadDeDiasAlMes(Map<YearMonth, Long> map, Certificado certificado){
         LocalDate inicio = certificado.getFechaInicio();
-        String key = inicio.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + inicio.getYear();
-        if (certificado.getColaborador().getId() == 0){
-            System.out.println("En noviembre");
-        }
+        //String key = inicio.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + inicio.getYear();
+
+        YearMonth key = YearMonth.from(certificado.getFechaInicio());
+        System.out.println("[myYearMonth]: " + key);
+
         LocalDate fin = certificado.getFechaFinalizacion();
         Month mesInicio = inicio.getMonth();
         Month mesFin = fin.getMonth();
@@ -255,7 +257,9 @@ public class CertificadoServiceImpl implements CertificadoService {
                     break;
                 }
 
-                key = next.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + next.getYear();
+                key = YearMonth.from(next);
+                //key = next.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + next.getYear();
+
                 YearMonth yearMonthObject = YearMonth.of(next.getYear() , next.getMonth().getValue());
                 dias = yearMonthObject.lengthOfMonth();
                 agregarDiasAlMes(map, key, dias);
@@ -268,7 +272,9 @@ public class CertificadoServiceImpl implements CertificadoService {
              * Cuenta los dias del ultimo mes
              */
             dias = DAYS.between(fin.withDayOfMonth(1), certificado.getFechaFinalizacion());
-            key = fin.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + fin.getYear();
+            //key = fin.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + fin.getYear();
+            key = YearMonth.from(fin);
+
             agregarDiasAlMes(map, key, dias);
         }
     }
@@ -277,7 +283,7 @@ public class CertificadoServiceImpl implements CertificadoService {
         return mesInicio.equals(mesFin);
     }
 
-    private void agregarDiasAlMes(Map<String, Long> map, String key, long dias) {
+    private void agregarDiasAlMes(Map<YearMonth, Long> map, YearMonth key, long dias) {
         if (map.containsKey(key)) {
             Long previusValue = map.get(key);
             Long total = previusValue + dias;
