@@ -66,4 +66,7 @@ public interface CertificadoService {
 
     List<Certificado> buscarEstadisticasPorFecha(LocalDate fechaInicio, LocalDate fechaFin);
 
+    List<Certificado> obtenerAusenciasMesActual();
+
+    List<Certificado> obtenerAusenciasAnoActual();
 }

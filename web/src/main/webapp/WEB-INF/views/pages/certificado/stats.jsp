@@ -38,38 +38,158 @@
 </style>
 <div class="content">
     <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-md-6 col-sm-6">
             <div class="card card-stats">
                 <div class="card-body ">
                     <div class="row">
-                        <div class="col-5 col-md-4">
+                        <div class="col-5 col-md-3">
                             <div class="icon-big text-center icon-warning">
                                 <i class="nc-icon nc-single-copy-04 text-warning"></i>
                             </div>
                         </div>
-                        <div class="col-7 col-md-8">
+                        <div class="col-3 col-md-9">
                             <div class="numbers">
-                                <p class="card-category">Cantidad de Ausencias en el mes</p>
-                                <p class="card-title">${findByAusentismoFechaActual}<p>
+                                <p class="card-category text-left mt-3">Cantidad de Ausencias en el mes</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Colaborador</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Finalizaci&oacute;n</th>
+                                            <th>Detalles</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${obtenerRegistrosMesActual}" var="bo">
+                                        <tr>
+                                            <td>${bo.colaborador.name}</td>
+                                            <td>${bo.fechaInicio}</td>
+                                            <td>${bo.fechaFinalizacion}</td>
+                                            <td>
+
+                                                <!-- Large modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".datosColaboradorDelMes-${bo.id}">Detalles</button>
+
+                                                <div class="modal fade datosColaboradorDelMes-${bo.id}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content" style="width: 150% !important; padding: 4%">
+                                                            <table class="table">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th class="text-center">ID</th>
+                                                                    <th class="text-center">Colaborador</th>
+                                                                    <th class="text-center">Motivo</th>
+                                                                    <th class="text-center">Sucursal</th>
+                                                                    <th class="text-center">Puesto</th>
+                                                                    <th class="text-center">Fecha Inicio</th>
+                                                                    <th class="text-center">Fecha Finalizaci&oacute;n</th>
+                                                                    <th class="text-center">Cantidad de dias de ausentismo</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr class="text-center">
+                                                                    <th>${bo.id}</th>
+                                                                    <td>${bo.colaborador.name}</td>
+                                                                    <td>${bo.tipoCertificado.displayName}</td>
+                                                                    <td>${bo.colaborador.sucursal.name}</td>
+                                                                    <td>${bo.colaborador.puesto.name}</td>
+                                                                    <td>${bo.fechaInicio}</td>
+                                                                    <td>${bo.fechaFinalizacion}</td>
+                                                                    <td>${bo.ausentismo}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-md-6 col-sm-6">
             <div class="card card-stats">
                 <div class="card-body ">
                     <div class="row">
-                        <div class="col-5 col-md-4">
+                        <div class="col-5 col-md-3">
                             <div class="icon-big text-center icon-warning">
                                 <i class="nc-icon nc-money-coins text-success"></i>
                             </div>
                         </div>
-                        <div class="col-7 col-md-8">
+                        <div class="col-3 col-md-9">
                             <div class="numbers">
-                                <p class="card-category">Cantidad de ausencias en el a&ntilde;o</p>
-                                <p class="card-title">${findByAusentismoAnioActual}<p>
+                                <p class="card-category text-left mt-3">Cantidad de ausencias en el a&ntilde;o</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Colaborador</th>
+                                        <th>Fecha Inicio</th>
+                                        <th>Fecha Finalizaci&oacute;n</th>
+                                        <th>Detalles</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${obtenerRegistrosAnoActual}" var="bo">
+                                        <tr>
+                                            <td>${bo.colaborador.name}</td>
+                                            <td>${bo.fechaInicio}</td>
+                                            <td>${bo.fechaFinalizacion}</td>
+                                            <td>
+
+                                                <!-- Large modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".datosColaboradorDelAno-${bo.id}">Detalles</button>
+
+                                                <div class="modal fade datosColaboradorDelAno-${bo.id}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content" style="width: 150% !important; padding: 4%">
+                                                            <table class="table">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th class="text-center">ID</th>
+                                                                    <th class="text-center">Colaborador</th>
+                                                                    <th class="text-center">Motivo</th>
+                                                                    <th class="text-center">Sucursal</th>
+                                                                    <th class="text-center">Puesto</th>
+                                                                    <th class="text-center">Fecha Inicio</th>
+                                                                    <th class="text-center">Fecha Finalizaci&oacute;n</th>
+                                                                    <th class="text-center">Cantidad de dias de ausentismo</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr class="text-center">
+                                                                    <th>${bo.id}</th>
+                                                                    <td>${bo.colaborador.name}</td>
+                                                                    <td>${bo.tipoCertificado.displayName}</td>
+                                                                    <td>${bo.colaborador.sucursal.name}</td>
+                                                                    <td>${bo.colaborador.puesto.name}</td>
+                                                                    <td>${bo.fechaInicio}</td>
+                                                                    <td>${bo.fechaFinalizacion}</td>
+                                                                    <td>${bo.ausentismo}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -77,7 +197,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">

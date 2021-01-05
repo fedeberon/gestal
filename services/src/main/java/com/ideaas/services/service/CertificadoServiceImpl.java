@@ -227,8 +227,8 @@ public class CertificadoServiceImpl implements CertificadoService {
         //String key = inicio.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + inicio.getYear();
 
         YearMonth key = YearMonth.from(certificado.getFechaInicio());
-        System.out.println("[myYearMonth]: " + key);
-
+//        System.out.println("[myYearMonth]: " + key);
+        Map<YearMonth, Long> sortedMap = new TreeMap<YearMonth, Long>(map);
         LocalDate fin = certificado.getFechaFinalizacion();
         Month mesInicio = inicio.getMonth();
         Month mesFin = fin.getMonth();
@@ -236,7 +236,7 @@ public class CertificadoServiceImpl implements CertificadoService {
 
         if(esUnCertificadoDelMismoMes(mesInicio, mesFin)){
             dias = DAYS.between(inicio, fin);
-            agregarDiasAlMes(map, key, dias);
+            agregarDiasAlMes(sortedMap, key, dias);
         }
 
         else {
@@ -262,7 +262,7 @@ public class CertificadoServiceImpl implements CertificadoService {
 
                 YearMonth yearMonthObject = YearMonth.of(next.getYear() , next.getMonth().getValue());
                 dias = yearMonthObject.lengthOfMonth();
-                agregarDiasAlMes(map, key, dias);
+                agregarDiasAlMes(sortedMap, key, dias);
 
             }
             while (!esUnCertificadoDelMismoMes(fin.getMonth(), next.getMonth()));
@@ -275,7 +275,7 @@ public class CertificadoServiceImpl implements CertificadoService {
             //key = fin.getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")) + "-" + fin.getYear();
             key = YearMonth.from(fin);
 
-            agregarDiasAlMes(map, key, dias);
+            agregarDiasAlMes(sortedMap, key, dias);
         }
     }
 
@@ -296,5 +296,15 @@ public class CertificadoServiceImpl implements CertificadoService {
     @Override
     public List<Certificado> buscarEstadisticasPorFecha(LocalDate fechaInicio, LocalDate fechaFin) {
         return dao.findAllByFechaInicioLessThanEqualAndFechaFinalizacionGreaterThanEqual(fechaInicio, fechaFin);
+    }
+
+    @Override
+    public List<Certificado> obtenerAusenciasMesActual(){
+        return dao.obtenerAusenciasMesActual();
+    }
+
+    @Override
+    public List<Certificado> obtenerAusenciasAnoActual(){
+        return dao.obtenerAusenciasAnoActual();
     }
 }

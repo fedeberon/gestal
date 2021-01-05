@@ -15,9 +15,14 @@ public interface CertificadoDao extends JpaRepository<Certificado, Long> {
             + "OR c.colaborador.sucursal.name LIKE %?1%"
     )
     List<Certificado> findCertificadoByColaborador(String value);
-
     List<Certificado> findByColaborador(Colaborador colaborador);
     List<Certificado> findAllByFechaInicioLessThanEqualAndFechaFinalizacionGreaterThanEqual(LocalDate fechaInicio, LocalDate fechaFin);
+
+    @Query( value = "SELECT * FROM CERTIFICADOS WHERE CER_FECHA_INICIO >= (CURDATE() - INTERVAL (DAY(CURDATE())-1) DAY) AND CER_FECHA_INICIO < LAST_DAY(CURDATE()) + INTERVAL 1 DAY;", nativeQuery = true)
+    List<Certificado> obtenerAusenciasMesActual();
+
+    @Query(value = "SELECT * FROM CERTIFICADOS WHERE YEAR(CER_FECHA_INICIO) = YEAR(CURDATE());", nativeQuery = true)
+    List<Certificado> obtenerAusenciasAnoActual();
 
     @Query( value = "SELECT SUM( CER_AUSENTISMO) AS CANTIDAD_AUSENCIA FROM CERTIFICADOS WHERE MONTH(CER_FECHA_INICIO)=1 AND YEAR(CER_FECHA_INICIO) = YEAR(CURDATE());", nativeQuery = true)
     Integer findByAusentismoEnero();
@@ -66,6 +71,4 @@ public interface CertificadoDao extends JpaRepository<Certificado, Long> {
 
     @Query( value = "SELECT SUM(CERTIFICADOS.CER_AUSENTISMO) AS AUSENCIAS FROM CERTIFICADOS JOIN COLABORADORES ON CERTIFICADOS.CER_COL_ID = COLABORADORES.COL_ID JOIN SUCURSALES ON COLABORADORES.COL_SUC_ID = SUCURSALES.SUC_ID WHERE MONTH(CER_FECHA_INICIO) AND YEAR (CER_FECHA_INICIO) = YEAR(CURDATE()) GROUP BY COL_ID;", nativeQuery = true)
     Integer findByAusentismoColaboradorPorAnio();
-
-
 }

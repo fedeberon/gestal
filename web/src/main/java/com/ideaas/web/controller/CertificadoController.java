@@ -215,12 +215,11 @@ public class CertificadoController {
         model.addAttribute("findByAusentismoFechaActual", certificadoService.findByAusentismoFechaActual());
         model.addAttribute("findByAusentismoAnioActual", certificadoService.findByAusentismoAnioActual());
         model.addAttribute("findByAusentismoPrueba",certificados.stream().collect(Collectors.groupingBy(object -> object.getFechaInicio().getMonth().getDisplayName(TextStyle.FULL, new Locale("es", "AR")),Collectors.summingInt(Certificado::getAusentismo))));
-
-        model.addAttribute("data",
-                certificadoService.getCantidadDeCertificadosPorMes());
-
+        model.addAttribute("data",certificadoService.getCantidadDeCertificadosPorMes());
         model.addAttribute("findByAusentismoSucursal", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy( object -> object.getColaborador().getSucursal(), Collectors.summingInt(Certificado::getAusentismo))));
         model.addAttribute("findByAusentismoMotivo", certificados.stream().sorted(Comparator.comparing(Certificado::getAusentismo)).collect( Collectors.groupingBy(object -> object.getTipoCertificado(), Collectors.summingInt(Certificado::getAusentismo))));
+        model.addAttribute("obtenerRegistrosMesActual", certificadoService.obtenerAusenciasMesActual());
+        model.addAttribute("obtenerRegistrosAnoActual", certificadoService.obtenerAusenciasAnoActual());
         return "certificado/stats";
     }
 }
