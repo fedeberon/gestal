@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -54,9 +55,13 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
     @Override
     public EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador) {
         evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
-            itemEvaluado.getConsideracionItemEvaluados().forEach(consideracionItemEvaluado -> consideracionItemEvaluado.setItemEvaluado(itemEvaluado));
+            if (Objects.nonNull(itemEvaluado.getConsideracionItemEvaluados())) {
+                itemEvaluado.getConsideracionItemEvaluados().forEach(consideracionItemEvaluado
+                        -> consideracionItemEvaluado.setItemEvaluado(itemEvaluado));
+            }
         });
-        evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> itemEvaluado.setEvaluacionDelColaborador(evaluacionDelColaborador));
+        evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado
+                -> itemEvaluado.setEvaluacionDelColaborador(evaluacionDelColaborador));
         evaluacionDelColaborador.setFechaDeCarga(new Date());
         evaluacionDelColaborador.setResultado(this.calcularRatingPorConsideracion(evaluacionDelColaborador));
         return dao.save(evaluacionDelColaborador);
@@ -67,38 +72,40 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
 
         AtomicReference<Float> resultado = new AtomicReference<>(Float.valueOf(0));
             evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
-//                Long cantConsideracionesEnchecked = itemEvaluado.getConsideracionItemEvaluados().stream().mapToLong(consideracionItemEvaluado -> consideracionItemEvaluado.isCheckeado() ? 1 : 0).sum();
-//
-//                itemEvaluado.setValorConsideracionItemEvaluados(cantConsideracionesEnchecked);
                 Integer ratingTotal = 5;
+                Integer estrellasCalculadas = null;
+                if (Objects.nonNull(itemEvaluado.getConsideracionItemEvaluados())) {
+                    Integer totalConsideraciones = itemEvaluado.getConsideracionItemEvaluados().size();
+                    Long consideracionesChequeadas =
+                            itemEvaluado.getConsideracionItemEvaluados().stream().filter(line -> line.isCheckeado()).count();
 
-                Integer totalConsideraciones = itemEvaluado.getConsideracionItemEvaluados().size();
-                Long consideracionesChequeadas = itemEvaluado.getConsideracionItemEvaluados().stream().filter(line -> line.isCheckeado()).count();
-
-                Long porcentajeDeConsideracionesChequeadas = (consideracionesChequeadas * 100) / totalConsideraciones;
-                Integer porcentajeDeConsideracionesChequeadasConValorRedondeado = Math.round(porcentajeDeConsideracionesChequeadas);
+                    Long porcentajeDeConsideracionesChequeadas = (consideracionesChequeadas * 100) / totalConsideraciones;
+                    Integer porcentajeDeConsideracionesChequeadasConValorRedondeado = Math.round(porcentajeDeConsideracionesChequeadas);
 
 
-                Integer estrellasCalculadas = (porcentajeDeConsideracionesChequeadasConValorRedondeado * ratingTotal) / 100;
+                    estrellasCalculadas = (porcentajeDeConsideracionesChequeadasConValorRedondeado * ratingTotal) / 100;
+                } else {
+                    estrellasCalculadas = 0;
+                }
+
                 itemEvaluado.setValorConsideracionItemEvaluados(Math.round(estrellasCalculadas));
-
             });
         AtomicBoolean evaluacionInvalidada = new AtomicBoolean(false);
         evaluacionInvalidada.set(false);
         evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
             //Si el checkbox que invalida la evaluacion o el rating del item es 0, el score de la evaluacion es 0
-            if(itemEvaluado.getItem().isInvalidaEvaluacion() == true && itemEvaluado.getItem().getScore() == 0) {
+            if (itemEvaluado.getItem().isInvalidaEvaluacion() == true && itemEvaluado.getItem().getScore() == 0) {
                 evaluacionInvalidada.set(true);
                 evaluacionDelColaborador.setResultado(Float.valueOf(0));
-            }else {
-                Float resultadoPorItem = (Float.valueOf(itemEvaluado.getValorConsideracionItemEvaluados()) * Float.valueOf(itemEvaluado.getItem().getScore()));
+            } else {
+                Float resultadoPorItem =
+                        (Float.valueOf(itemEvaluado.getValorConsideracionItemEvaluados()) * Float.valueOf(itemEvaluado.getItem().getScore()));
                 resultado.set(resultado.get() + resultadoPorItem);
             }
             });
-        if (evaluacionInvalidada.get() == true){
+        if (evaluacionInvalidada.get() == true) {
             evaluacionDelColaborador.setResultado(Float.valueOf(0));
-
-        }else {
+        } else {
             evaluacionDelColaborador.setResultado(resultado.get());
         }
         return resultado.get();

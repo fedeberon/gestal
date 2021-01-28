@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by federicoberon on 04/02/2020.
@@ -86,9 +87,10 @@ public class ItemEvaluado implements Serializable{
         this.valorConsideracionItemEvaluados = valorConsideracionItemEvaluados;
     }
 
-    public Integer calculateRating(){
-        Integer ratingTotal = 5;
+    public Integer calculateRating() {
+        if (Objects.isNull(this.consideracionItemEvaluados)) return 0;
 
+        Integer ratingTotal = 5;
         Integer totalConsideraciones = this.consideracionItemEvaluados.size();
         Long consideracionesChequeadas = this.consideracionItemEvaluados.stream().filter(line -> line.isCheckeado()).count();
 

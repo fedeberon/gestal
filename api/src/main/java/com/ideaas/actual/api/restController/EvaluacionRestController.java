@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 /**
  * Created by federicoberon on 04/02/2020.
  */
@@ -32,6 +34,9 @@ public class EvaluacionRestController {
     public ResponseEntity<Evaluacion> getByPuesto(@RequestBody Puesto puesto){
         Evaluacion evaluacion = evaluacionService.getByPuesto(puesto);
 
+        if(Objects.isNull(evaluacion)) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity(evaluacion, HttpStatus.OK);
     }
 
