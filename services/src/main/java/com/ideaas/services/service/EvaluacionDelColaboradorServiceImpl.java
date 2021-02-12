@@ -94,12 +94,15 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         evaluacionInvalidada.set(false);
         evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
             //Si el checkbox que invalida la evaluacion o el rating del item es 0, el score de la evaluacion es 0
-            if (itemEvaluado.getItem().isInvalidaEvaluacion() == true && itemEvaluado.getItem().getScore() == 0) {
+            Float score = Objects.isNull(itemEvaluado.getItem().getScore()) ? 0 : itemEvaluado.getItem().getScore();
+
+            if (itemEvaluado.getItem().isInvalidaEvaluacion()
+                    && score == 0) {
                 evaluacionInvalidada.set(true);
                 evaluacionDelColaborador.setResultado(Float.valueOf(0));
             } else {
                 Float resultadoPorItem =
-                        (Float.valueOf(itemEvaluado.getValorConsideracionItemEvaluados()) * Float.valueOf(itemEvaluado.getItem().getScore()));
+                        (Float.valueOf(itemEvaluado.getValorConsideracionItemEvaluados()) * Float.valueOf(score));
                 resultado.set(resultado.get() + resultadoPorItem);
             }
             });
