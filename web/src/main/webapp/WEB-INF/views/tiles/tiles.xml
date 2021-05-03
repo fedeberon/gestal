@@ -38,6 +38,18 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/colaborador/update.jsp" />
     </definition>
 
+    <definition name="colaborador/updateUsername" extends="template-def">
+        <put-attribute name="title" value="Editar colaborador" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/colaborador/updateUsername.jsp" />
+    </definition>
+
+    <definition name="colaborador/updateEmail" extends="template-def">
+        <put-attribute name="title" value="Editar colaborador" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/colaborador/updateEmail.jsp" />
+    </definition>
+
+
+
     <!--Usuario -->
 
     <definition name="usuario/list" extends="template-def">
@@ -159,6 +171,18 @@
     <!--Login -->
     <definition name="login" template="/WEB-INF/views/pages/login.jsp">
         <put-attribute name="title" value="Login" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="" />
+    </definition>
+
+    <definition name="forgotPassword" template="/WEB-INF/views/pages/forgotPassword.jsp">
+        <put-attribute name="title" value="Forgot Password" />
+        <put-attribute name="header" value="" />
+        <put-attribute name="body" value="" />
+    </definition>
+
+    <definition name="resetPassword" template="/WEB-INF/views/pages/resetPassword.jsp">
+        <put-attribute name="title" value="Forgot Password" />
         <put-attribute name="header" value="" />
         <put-attribute name="body" value="" />
     </definition>

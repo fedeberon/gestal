@@ -19,22 +19,24 @@
                             <a href="<c:url value='/colaborador/updateEmail?id=${colaborador.id}'/>" class="nav-link">Editar mail</a>
                         </li>
                     </ul>
-
-                    <c:url var="actionUrl" value="/colaborador/saveAndUpdate" />
+                    <c:url var="actionUrl" value="/colaborador/saveAndUpdateUsername" />
                     <form:form modelAttribute="colaborador" action="${actionUrl}" method="POST">
                         <form:hidden path="id" value='${colaborador.id}'/>
                         <div class="form-style-8">
 
-                            <div class="form-group mt-4 d-none">
-                                <form:input path="password" size="50" cssClass="form-control d-none" id="inputSuccess2" />
-                            </div>
-
-                            <div class="form-group mt-4 d-none">
+                            <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
                                 <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
+                                <c:if test="${errorUsername != null}">
+                                    <p class="text-danger mt-2">${errorUsername}</p>
+                                </c:if>
                             </div>
 
-                            <div class="form-group mt-4">
+                            <div class="form-group mt-4 d-none">
+                                <form:input path="password" size="50" cssClass="form-control" id="inputSuccess2" />
+                            </div>
+
+                            <div class="form-group mt-4 d-none">
                                 <label class="form-control-label">Rol del colaborador:</label>
                                 <select name="roles" class="custom-select">
                                     <c:forEach items="${roles}" var="bo" varStatus="status">
@@ -43,7 +45,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group mt-4">
+                            <div class="form-group mt-4 d-none">
                                 <label class="form-control-label" for="inputSuccess1">Nombre Completo</label>
                                 <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                                 <form:errors path="name" cssClass="error" size="50"/>
@@ -55,14 +57,14 @@
                                 <form:errors path="email" cssClass="error" size="50"/>
                             </div>
 
-                            <div class="form-group mt-4">
+                            <div class="form-group mt-4 d-none">
                                 <label class="form-control-label" for="inputSuccess3">Seleccionar puesto</label>
                                 <form:select  path="puesto.id" cssClass="form-control">
                                     <form:options items="${puestos}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
                                 </form:select>
                             </div>
 
-                            <div class="form-group mt-4">
+                            <div class="form-group mt-4 d-none">
                                 <label class="form-control-label" for="inputSuccess6">Seleccionar sucursal</label>
                                 <form:select path="sucursal.id" cssClass="form-control">
                                     <form:options items="${sucursales}" itemValue="id" itemLabel="name" id="inputSuccess6"/>

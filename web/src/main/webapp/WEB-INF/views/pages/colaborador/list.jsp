@@ -33,7 +33,6 @@
                                 <th class="text-center">Evaluar</th>
                                 <th class="text-center">Estado</th>
                                 <th class="text-center">Dar de alta/baja</th>
-
                             </thead>
                             <tbody>
                                 <c:set var = "colaborador" scope = "session" value = "${colaboradores}"/>

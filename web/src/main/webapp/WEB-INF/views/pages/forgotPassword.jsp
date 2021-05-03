@@ -100,24 +100,23 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">
-                <form class="form-signin" name='f' action="login" style="text-align: center" method='POST'>
-                <div class="input-group mb-3">
+                <form name='f' action="forgotPassword" style="text-align: center" method='POST'>
+                    <div>
+                        <c:if test="${error != null}">
+                            <p class="text-danger">${error}</p>
+                        </c:if>
+                    </div>
+                    <div>
+                        <p>Enviaremos un enlace para restablecer la contrase&ntilde;a a su correo electr&oacute;nico.</p>
+                    </div>
+                    <div class="input-group mb-3">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text"  name="username" class="form-control input_user" value="" placeholder="Nombre de usuario">
-                    </div>
-                    <div class="input-group mb-2">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <input type="password"name="password" class="form-control input_pass" value="" placeholder="constrase&ntilde;a">
-                    </div>
-                    <div class="input-group">
-                        <a href="<c:url value='/forgotPassword'/>">Olvidaste tu contrase&ntilde;a?</a>
+                        <input type="email"  name="email" class="form-control" placeholder="Ingrese su email" required autofocus>
                     </div>
                     <div class="d-flex justify-content-center mt-3 login_container">
-                        <button type="submit" name="button" class="btn login_btn">Iniciar sesi&oacute;n</button>
+                        <button type="submit" name="button" class="btn login_btn">Enviar</button>
                     </div>
                 </form>
             </div>

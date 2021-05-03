@@ -16,6 +16,9 @@
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
                                 <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
+                                <c:if test="${errorUsername != null}">
+                                    <p class="text-danger mt-2">${errorUsername}</p>
+                                </c:if>
                             </div>
 
                             <div class="form-group mt-4">
@@ -38,8 +41,12 @@
                             </div>
 
                             <div class="form-group mt-4">
+
                                 <label class="form-control-label" for="inputSuccess4">Correo electr&oacute;nico</label>
                                 <form:input path="email" size="50" cssClass="form-control" id="inputSuccess4" required="true"/>
+                                <c:if test="${errorEmail != null}">
+                                    <p class="text-danger mt-2">${errorEmail}</p>
+                                </c:if>
                             </div>
 
                             <div class="form-group mt-4">

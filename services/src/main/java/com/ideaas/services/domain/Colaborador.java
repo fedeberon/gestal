@@ -35,7 +35,7 @@ public class Colaborador implements Serializable {
     @Column(name = "COL_USERNAME")
     private String username;
 
-    @Column(name = "COL_EMAIL")
+    @Column(name = "COL_EMAIL", unique = true)
     private String email;
 
     @Column(name = "COL_PASSWORD")
@@ -60,6 +60,9 @@ public class Colaborador implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private State state;
+
+    @Column(name = "RESET_PASSWORD_TOKEN")
+    private String resetPasswordToken;
 
     public Long getId() {
         return id;
@@ -139,5 +142,13 @@ public class Colaborador implements Serializable {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
     }
 }

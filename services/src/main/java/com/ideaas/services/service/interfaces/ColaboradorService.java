@@ -2,6 +2,7 @@ package com.ideaas.services.service.interfaces;
 
 
 import com.ideaas.services.domain.Colaborador;
+import com.ideaas.services.service.ColaboradorNotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,4 +20,16 @@ public interface ColaboradorService extends UserDetailsService {
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
     List<Colaborador> findColaboradorByName(String value);
+
+    void updateResetPassword(String token, String email) throws ColaboradorNotFoundException;
+
+    Colaborador get(String resetPasswordToken);
+
+    void updatePassword(Colaborador colaborador, String newPassword);
+
+    Colaborador validateEmail(String email);
+
+    Colaborador validateUsername(String username);
+
+    Colaborador getUsername(String username);
 }

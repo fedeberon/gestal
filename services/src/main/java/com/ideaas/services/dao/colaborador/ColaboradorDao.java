@@ -22,7 +22,12 @@ public interface ColaboradorDao extends JpaRepository<Colaborador, Long> {
             + "OR c.email LIKE %?1%"
     )
     List<Colaborador> findColaboradorByName(String value);
-
     Colaborador findByUsername(String username);
+    public Colaborador findByResetPasswordToken(String token);
+    @Query("SELECT c FROM Colaborador c WHERE c.email = ?1")
+    public Colaborador findByEmail(String email);
+
+    Colaborador findByEmailIgnoreCase(String email);
+    Colaborador findByUsernameIgnoreCase(String username);
 
 }

@@ -4,6 +4,7 @@ import com.ideaas.services.dao.colaborador.ColaboradorDaoPagination;
 import com.ideaas.services.dao.user.UserDao;
 import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.dao.colaborador.ColaboradorDao;
+import com.ideaas.services.domain.User;
 import com.ideaas.services.service.interfaces.ColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -84,5 +86,44 @@ public class ColaboradorServiceImpl implements ColaboradorService {
         return dao.findColaboradorByName(value);
     }
 
+    @Override
+    public void updateResetPassword(String token, String email) throws ColaboradorNotFoundException {
+        Colaborador colaborador = dao.findByEmail(email);
+        if (colaborador != null){
+            colaborador.setResetPasswordToken(token);
+            dao.save(colaborador);
+        }else {
+            throw new ColaboradorNotFoundException("No se pudo encontrar ningun colaborador con el email " + email);
+        }
+    }
 
+    @Override
+    public Colaborador get(String resetPasswordToken){
+        return dao.findByResetPasswordToken(resetPasswordToken);
+    }
+
+    @Override
+    public void updatePassword(Colaborador colaborador, String newPassword){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        colaborador.setPassword(encodedPassword);
+        colaborador.setResetPasswordToken(null);
+
+        dao.save(colaborador);
+    }
+
+    @Override
+    public Colaborador validateEmail(String email){
+        return dao.findByEmailIgnoreCase(email);
+    }
+
+    @Override
+    public Colaborador validateUsername(String username){
+        return dao.findByUsernameIgnoreCase(username);
+    }
+
+    @Override
+    public Colaborador getUsername(String username) {
+        return dao.findByUsername(username);
+    }
 }

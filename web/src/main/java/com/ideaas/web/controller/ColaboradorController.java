@@ -8,11 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -41,23 +40,81 @@ public class ColaboradorController {
     }
 
     @RequestMapping(value = "save")
-    public String save(@ModelAttribute("colaborador") Colaborador colaborador) {
+    public String save(@ModelAttribute("colaborador") Colaborador colaborador, Model model) {
+        Colaborador existingEmail = colaboradorService.validateEmail(colaborador.getEmail());
+        Colaborador existingUsername = colaboradorService.validateUsername(colaborador.getUsername());
 
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String pass = bCryptPasswordEncoder.encode(colaborador.getPassword());
-        colaborador.setPassword(pass);
-        colaborador.setState(State.ACTIVE);
-        colaboradorService.save(colaborador);
-
+        if (existingUsername != null){
+            model.addAttribute("errorUsername", "Este nombre de usuario ya existe");
+            return "colaborador/create";
+        }
+        if (existingEmail != null) {
+            model.addAttribute("errorEmail", "Este email ya existe");
+            return "colaborador/create";
+        }
+        else
+        {
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            String pass = bCryptPasswordEncoder.encode(colaborador.getPassword());
+            colaborador.setPassword(pass);
+            colaborador.setState(State.ACTIVE);
+            colaboradorService.save(colaborador);
+        }
         return "redirect:list";
         }
+
+    @RequestMapping("updateUsername")
+    public String updateUsername(@RequestParam Long id, Model model) {
+        Colaborador colaborador = colaboradorService.get(id);
+        model.addAttribute("colaborador", colaborador);
+        return "colaborador/updateUsername";
+    }
+    @RequestMapping("saveAndUpdateUsername")
+    public String saveAndUpdateUsername(@ModelAttribute("colaborador") Colaborador colaborador, Model model){
+        Colaborador existingUsername = colaboradorService.validateUsername(colaborador.getUsername());
+
+        if (existingUsername != null){
+            model.addAttribute("errorUsername", "Este nombre de usuario ya existe");
+            return "colaborador/updateUsername";
+        }else {
+            colaborador.setState(State.ACTIVE);
+            colaboradorService.save(colaborador);
+            return "redirect:list";
+        }
+    }
+
+    @RequestMapping("updateEmail")
+    public String updateEmail(@RequestParam Long id, Model model) {
+        Colaborador colaborador = colaboradorService.get(id);
+        model.addAttribute("colaborador", colaborador);
+        return "colaborador/updateEmail";
+    }
+    @RequestMapping("saveAndUpdateEmail")
+    public String saveAndUpdateEmail(@ModelAttribute("colaborador") Colaborador colaborador, Model model){
+        Colaborador existingEmail = colaboradorService.validateEmail(colaborador.getEmail());
+
+        if (existingEmail != null){
+            model.addAttribute("errorEmail", "Este email ya existe");
+            return "colaborador/updateEmail";
+        }else {
+            colaborador.setState(State.ACTIVE);
+            colaboradorService.save(colaborador);
+            return "redirect:list";
+        }
+    }
 
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
         model.addAttribute("colaborador", colaborador);
-
         return "colaborador/update";
+    }
+
+    @RequestMapping("saveAndUpdate")
+    public String saveAndUpdate(@ModelAttribute("colaborador") Colaborador colaborador, Model model) {
+        colaborador.setState(State.ACTIVE);
+        colaboradorService.save(colaborador);
+        return "redirect:list";
     }
 
     @RequestMapping("baja")
