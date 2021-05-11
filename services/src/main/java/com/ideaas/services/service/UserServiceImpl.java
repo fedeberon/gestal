@@ -58,7 +58,6 @@ public class UserServiceImpl implements UsuarioService {
         return usuarios.getContent();
     }
 
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = dao.findByUsername(username);
         if (user == null) {

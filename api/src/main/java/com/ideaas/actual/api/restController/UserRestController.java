@@ -1,6 +1,8 @@
 package com.ideaas.actual.api.restController;
 
+import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.User;
+import com.ideaas.services.service.interfaces.ColaboradorService;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +20,15 @@ public class UserRestController {
 
     private UsuarioService usuarioService;
 
+    private ColaboradorService colaboradorService;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UserRestController(UsuarioService usuarioService) {
+    public UserRestController(UsuarioService usuarioService, ColaboradorService colaboradorService) {
         this.usuarioService = usuarioService;
+        this.colaboradorService = colaboradorService;
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -61,11 +66,11 @@ public class UserRestController {
 
 
     @GetMapping("me")
-    public ResponseEntity<User> me() {
+    public ResponseEntity<Colaborador> me() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        User user = usuarioService.get(currentPrincipalName);
+        Colaborador colaborador = colaboradorService.getUsername(currentPrincipalName);
 
-        return new ResponseEntity(user, HttpStatus.OK);
+        return new ResponseEntity(colaborador, HttpStatus.OK);
     }
 }
