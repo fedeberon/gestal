@@ -82,6 +82,20 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     }
 
     @Override
+    public UserDetails loadUserByUsernameApi(String username) throws UsernameNotFoundException {
+        Colaborador colaborador = dao.findByUsername(username);
+        String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
+        if (rol.equals("COLABORADOR")) {
+            throw new UsernameNotFoundException("User not found with role: " + rol);
+        }
+
+        if (colaborador == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+        return new org.springframework.security.core.userdetails.User(colaborador.getUsername(), colaborador.getPassword(), new ArrayList<>());
+    }
+
+    @Override
     public List<Colaborador> findColaboradorByName(String value) {
         return dao.findColaboradorByName(value);
     }
