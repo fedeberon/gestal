@@ -15,6 +15,8 @@ public interface EvaluacionDelColaboradorService {
 
     EvaluacionDelColaborador getById(Long id);
 
+    List<EvaluacionDelColaborador> findByColaborador(Long id);
+
     EvaluacionDelColaborador get(Long id);
     EvaluacionDelColaborador save(EvaluacionDelColaborador evaluacionDelColaborador);
     Float calcularRatingPorConsideracion(EvaluacionDelColaborador evaluacionDelColaborador);

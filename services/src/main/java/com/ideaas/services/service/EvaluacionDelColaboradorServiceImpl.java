@@ -48,6 +48,11 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
     }
 
     @Override
+    public List<EvaluacionDelColaborador> findByColaborador(Long id){
+        return dao.findEvaluacionDelColaboradorByColaborador_Id(id);
+    }
+
+    @Override
     public EvaluacionDelColaborador get(Long id) {
         return dao.findById(id).get();
     }
@@ -143,7 +148,6 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
     public List<EvaluacionDelColaborador> findAllPageable(int pageSize, Integer pageNo, String id) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(id).descending());
         Page<EvaluacionDelColaborador> evaluacionDelColaborador = daoPageable.findAll(paging);
-
         return evaluacionDelColaborador.getContent();
     }
 
