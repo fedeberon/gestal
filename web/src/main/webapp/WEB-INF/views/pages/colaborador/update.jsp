@@ -18,6 +18,9 @@
                         <li class="nav-item">
                             <a href="<c:url value='/colaborador/updateEmail?id=${colaborador.id}'/>" class="nav-link">Editar mail</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<c:url value='/colaborador/updatePassword?id=${colaborador.id}'/>" class="nav-link">Editar contrase&ntilde;a</a>
+                        </li>
                     </ul>
 
                     <c:url var="actionUrl" value="/colaborador/saveAndUpdate" />
@@ -38,7 +41,14 @@
                                 <label class="form-control-label">Rol del colaborador:</label>
                                 <select name="roles" class="custom-select">
                                     <c:forEach items="${roles}" var="bo" varStatus="status">
-                                        <option value="${status.count}">${bo.name}</option>
+                                        <c:choose>
+                                            <c:when test="${rolDelColaborador eq 'COLABORADOR'}">
+                                                <option value="${bo.id}" selected="true">${bo.name}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="${bo.id}">${bo.name}</option>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -49,9 +59,9 @@
                                 <form:errors path="name" cssClass="error" size="50"/>
                             </div>
 
-                            <div class="form-group mt-4 d-none">
+                            <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess2">Correo electr&oacute;nico</label>
-                                <form:input path="email" size="50" cssClass="form-control" id="inputSuccess2" required="true"/>
+                                <form:input path="email" size="50" cssClass="form-control" id="inputSuccess2"/>
                                 <form:errors path="email" cssClass="error" size="50"/>
                             </div>
 

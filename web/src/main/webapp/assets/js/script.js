@@ -186,3 +186,11 @@ $(function(){
         $("#fechaFin").datepicker();
     });
 });
+
+function checkPasswordMatch(fieldConfirmPassword){
+    if (fieldConfirmPassword.value != $("#password").val()){
+        fieldConfirmPassword.setCustomValidity("Las contrasenas no coinciden");
+    }else{
+        fieldConfirmPassword.setCustomValidity("");
+    }
+}

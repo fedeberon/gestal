@@ -22,21 +22,27 @@
                             <a href="<c:url value='/colaborador/updatePassword?id=${colaborador.id}'/>" class="nav-link">Editar contrase&ntilde;a</a>
                         </li>
                     </ul>
-                    <c:url var="actionUrl" value="/colaborador/saveAndUpdateUsername" />
+                    <c:url var="actionUrl" value="/colaborador/saveAndUpdatePassword" />
                     <form:form modelAttribute="colaborador" action="${actionUrl}" method="POST">
                         <form:hidden path="id" value='${colaborador.id}'/>
                         <div class="form-style-8">
-
-                            <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
-                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
-                                <c:if test="${errorUsername != null}">
-                                    <p class="text-danger mt-2">${errorUsername}</p>
+                            <div class="form-group mt-4 mb-3">
+                                <input type="password"  name="password" id="password" class="form-control" placeholder="Ingrese su nueva contrase&ntilde;a" required autofocus>
+                            </div>
+                            <div class="form-group mt-4 mb-3">
+                                <input type="password"  oninput="checkPasswordMatch(this);" name="confirmPassword" class="form-control" placeholder="Ingrese su nueva contrase&ntilde;a" required autofocus>
+                            </div>
+                            <div class="form-group mt-4 d-none">
+                                <label class="form-control-label" for="inputSuccess2">Correo electr&oacute;nico</label>
+                                <form:input type="email" path="email" size="50" cssClass="form-control" id="inputSuccess2"/>
+                                <c:if test="${errorEmail != null}">
+                                    <p class="text-danger mt-2">${errorEmail}</p>
                                 </c:if>
                             </div>
 
                             <div class="form-group mt-4 d-none">
-                                <form:input path="password" size="50" cssClass="form-control" id="inputSuccess2" />
+                                <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
+                                <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                             </div>
 
                             <div class="form-group mt-4 d-none">
@@ -62,12 +68,6 @@
                             </div>
 
                             <div class="form-group mt-4 d-none">
-                                <label class="form-control-label" for="inputSuccess2">Correo electr&oacute;nico</label>
-                                <form:input path="email" size="50" cssClass="form-control" id="inputSuccess2"/>
-                                <form:errors path="email" cssClass="error" size="50"/>
-                            </div>
-
-                            <div class="form-group mt-4 d-none">
                                 <label class="form-control-label" for="inputSuccess3">Seleccionar puesto</label>
                                 <form:select  path="puesto.id" cssClass="form-control">
                                     <form:options items="${puestos}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
@@ -84,7 +84,6 @@
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-secondary" id="btnSubmit">Guardar</button>
                             </div>
-
                         </div>
                     </form:form>
                 </div>
