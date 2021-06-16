@@ -2,11 +2,8 @@ package com.ideaas.services.service;
 
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorPaginationDao;
-import com.ideaas.services.domain.Colaborador;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
-import com.ideaas.services.domain.Sucursal;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
-import com.ideaas.services.service.interfaces.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -72,6 +70,16 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         return dao.save(evaluacionDelColaborador);
     }
 
+//    public Float calcularRating(EvaluacionDelColaborador evaluacionDelColaborador){
+//        AtomicReference<Float> resultado = new AtomicReference<>(0f);
+//        evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+//            float cantidadDeItemsEnTrue = itemEvaluado.getConsideracionItemEvaluados().stream().filter(consideracionItemEvaluado -> consideracionItemEvaluado.isCheckeado()).count();
+//            float cantidadDeItems = itemEvaluado.getConsideracionItemEvaluados().size();
+//            resultado.set(cantidadDeItemsEnTrue / cantidadDeItems * 100);
+//        });
+//        return resultado.get();
+//    }
+
     @Override
     public Float calcularRatingPorConsideracion(EvaluacionDelColaborador evaluacionDelColaborador){
 
@@ -106,9 +114,9 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
                 evaluacionInvalidada.set(true);
                 evaluacionDelColaborador.setResultado(Float.valueOf(0));
             } else {
-                Float resultadoPorItem =
-                        (Float.valueOf(itemEvaluado.getValorConsideracionItemEvaluados()) * Float.valueOf(score));
-                resultado.set(resultado.get() + resultadoPorItem);
+                float cantidadDeItemsEnTrue = itemEvaluado.getConsideracionItemEvaluados().stream().filter(consideracionItemEvaluado -> consideracionItemEvaluado.isCheckeado()).count();
+                float cantidadDeItems = itemEvaluado.getConsideracionItemEvaluados().size();
+                resultado.set(cantidadDeItemsEnTrue / cantidadDeItems * 100);
             }
             });
         if (evaluacionInvalidada.get() == true) {

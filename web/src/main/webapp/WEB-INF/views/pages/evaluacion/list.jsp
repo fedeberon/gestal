@@ -71,7 +71,7 @@
                                                                 <thead class="thead-light">
                                                                     <tr>
                                                                         <th scope="col text-center">Nombre</th>
-                                                                        <th scope="col text-center">Score</th>
+                                                                        <th scope="col text-center">Peso del indicador</th>
                                                                         <th scope="col text-center">Invalida evaluaci&oacute;n</th>
                                                                         <th colspan="3" scope="col">Categor&iacute;a de indicador</th>
                                                                     </tr>
