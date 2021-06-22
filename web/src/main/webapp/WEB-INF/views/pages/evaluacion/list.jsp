@@ -32,6 +32,8 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${evaluaciones}" var="bo">
+                                        <c:choose>
+                                        <c:when test="${bo.state =='ACTIVE'}">
                                         <tr>
                                             <td class="text-center">${bo.id}</td>
                                             <td class="text-center">${bo.puesto.name}</td>
@@ -124,6 +126,8 @@
                                                 <!--Fin de modal-->
                                             </td>
                                         </tr>
+                                        </c:when>
+                                        </c:choose>
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
