@@ -1,5 +1,6 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.bean.State;
 import com.ideaas.services.service.ConsideracionItemEvaluadoService;
 import com.ideaas.services.service.interfaces.*;
 import com.ideaas.services.domain.Colaborador;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -123,6 +125,7 @@ public class EvaluacionDelColaboradorController {
             return "colaborador/create";
 
         } else {
+            evaluacionDelColaborador.setState(State.ACTIVE);
             evaluacionDelColaboradorService.save(evaluacionDelColaborador);
             return "redirect:list";
         }
@@ -132,5 +135,15 @@ public class EvaluacionDelColaboradorController {
     public String findColaboradorByName(@RequestParam(defaultValue = "") String value, Model model) {
         model.addAttribute("evaluaciones", evaluacionDelColaboradorService.findColaboradorByName(value));
         return "evaluacionDelColaborador/list";
+    }
+
+    @RequestMapping("desactivar")
+    public String desactivarEvaluacion(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+        EvaluacionDelColaborador evaluacionDelColaborador= evaluacionDelColaboradorService.getById(id);
+        evaluacionDelColaborador.setState(State.INACTIVE);
+        redirectAttributes.addAttribute("id", evaluacionDelColaborador.getId());
+        evaluacionDelColaboradorService.save(evaluacionDelColaborador);
+
+        return "redirect:list";
     }
 }

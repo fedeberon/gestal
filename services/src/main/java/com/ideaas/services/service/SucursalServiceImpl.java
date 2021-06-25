@@ -48,6 +48,11 @@ public class SucursalServiceImpl implements SucursalService {
     }
 
     @Override
+    public Sucursal getById(Long id) {
+        return dao.findById(id).get();
+    }
+
+    @Override
     public Sucursal get(Long id) {
         return dao.findById(id).get();
     }

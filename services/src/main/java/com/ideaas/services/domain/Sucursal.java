@@ -1,4 +1,6 @@
 package com.ideaas.services.domain;
+import com.ideaas.services.bean.State;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -30,6 +32,9 @@ public class Sucursal implements Serializable {
     @Column (name ="SUC_MAIL")
     private String mail;
 
+    @Enumerated(EnumType.STRING)
+    private State state;
+
     public Long getId() {
         return id;
     }
@@ -58,4 +63,11 @@ public class Sucursal implements Serializable {
 
     public void setMail(String mail) { this.mail = mail; }
 
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
 }

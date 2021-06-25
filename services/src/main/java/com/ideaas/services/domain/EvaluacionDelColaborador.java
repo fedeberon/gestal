@@ -1,5 +1,7 @@
 package com.ideaas.services.domain;
 
+import com.ideaas.services.bean.State;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -40,6 +42,9 @@ public class EvaluacionDelColaborador implements Serializable{
     private List<ItemEvaluado> itemEvaluados;
 
     private Float resultado;
+
+    @Enumerated(EnumType.STRING)
+    private State state;
 
     public Long getId() {
         return id;
@@ -85,5 +90,13 @@ public class EvaluacionDelColaborador implements Serializable{
 
     public void setResultado(Float resultado) {
         this.resultado = resultado;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

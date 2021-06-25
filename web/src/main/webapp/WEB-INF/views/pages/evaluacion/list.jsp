@@ -51,11 +51,11 @@
                                             <td class="text-center">
                                                 <div class="row">
                                                     <div class="col-md-6 col-3">
-                                                        <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon float-right" href="<c:url value='/evaluacion/activar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-add"></i></a>
+                                                        <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon float-right" href="<c:url value='/evaluacion/activar?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-add"></i></a>
                                                     </div>
 
                                                     <div class="col-md-6 col-3">
-                                                        <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/evaluacion/desactivar?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-delete"></i></a>
+                                                        <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/evaluacion/desactivar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-delete"></i></a>
                                                     </div>
                                                 </div>
                                             </td>

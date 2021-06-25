@@ -62,6 +62,7 @@ public class EvaluacionController {
                 item.setEvaluacion(evaluacion);
 
             });
+            evaluacion.setState(State.ACTIVE);
             evaluacionService.save(evaluacion);
             return "redirect:list";
         }

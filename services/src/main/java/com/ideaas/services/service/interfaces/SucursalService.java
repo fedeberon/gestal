@@ -15,5 +15,6 @@ public interface SucursalService {
     Sucursal get(Long id);
     Sucursal save(Sucursal sucursal);
 
+    Sucursal getById(Long id);
 }
 
