@@ -1,7 +1,6 @@
 package com.ideaas.services.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ideaas.services.bean.State;
+import com.ideaas.services.enumeradores.State;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 

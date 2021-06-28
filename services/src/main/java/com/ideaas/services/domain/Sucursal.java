@@ -1,10 +1,7 @@
 package com.ideaas.services.domain;
-import com.ideaas.services.bean.State;
+import com.ideaas.services.enumeradores.State;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**

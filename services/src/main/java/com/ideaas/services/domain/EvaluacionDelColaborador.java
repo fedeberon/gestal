@@ -1,6 +1,7 @@
 package com.ideaas.services.domain;
 
-import com.ideaas.services.bean.State;
+import com.ideaas.services.enumeradores.EstadoEvaluacion;
+import com.ideaas.services.enumeradores.State;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -45,6 +46,9 @@ public class EvaluacionDelColaborador implements Serializable{
 
     @Enumerated(EnumType.STRING)
     private State state;
+
+    @Enumerated(EnumType.STRING)
+    private EstadoEvaluacion estadoEvaluacion;
 
     public Long getId() {
         return id;
@@ -98,5 +102,13 @@ public class EvaluacionDelColaborador implements Serializable{
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public EstadoEvaluacion getEstadoEvaluacion() {
+        return estadoEvaluacion;
+    }
+
+    public void setEstadoEvaluacion(EstadoEvaluacion estadoEvaluacion) {
+        this.estadoEvaluacion = estadoEvaluacion;
     }
 }

@@ -1,6 +1,6 @@
 package com.ideaas.services.domain;
 
-import com.ideaas.services.bean.State;
+import com.ideaas.services.enumeradores.State;
 
 import javax.persistence.*;
 import java.util.List;

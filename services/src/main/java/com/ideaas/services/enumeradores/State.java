@@ -1,4 +1,4 @@
-package com.ideaas.services.bean;
+package com.ideaas.services.enumeradores;
 
 /**
  * Created by federicoberon on 04/02/2020.

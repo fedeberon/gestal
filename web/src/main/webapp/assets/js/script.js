@@ -194,3 +194,14 @@ function checkPasswordMatch(fieldConfirmPassword){
         fieldConfirmPassword.setCustomValidity("");
     }
 }
+
+$(document).ready(function() {
+    var str = location.href.toLowerCase();
+    $("#list-filter-all, #list-filter-pending, #list-filter-finish").each(function() {
+        if (str.indexOf(this.href.toLowerCase()) > -1) {
+            $("ul li a").removeClass("active");
+            $(this).addClass("active");
+            $(this).addClass("active");
+        }
+    });
+})

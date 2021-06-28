@@ -1,6 +1,6 @@
 package com.ideaas.services.service;
 
-import com.ideaas.services.bean.State;
+import com.ideaas.services.enumeradores.State;
 import com.ideaas.services.dao.evaluacion.EvaluacionDao;
 import com.ideaas.services.dao.evaluacion.EvaluacionDaoPagination;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;

@@ -29,7 +29,20 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-md">
-                        <table class="table">
+                        <div class="card jumbotron mt-5">
+                            <div class="card-body table-responsive p-0">
+                                <ul class="nav nav-pills p-1">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="list-filter-all" href="<c:url value='/evaluacionDelColaborador/list'/>">Todos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="list-filter-pending" href="<c:url value='/evaluacionDelColaborador/pendiente'/>">Evaluaciones pendientes</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="list-filter-finish" href="<c:url value='/evaluacionDelColaborador/finalizada'/>">Evaluaciones finalizadas</a>
+                                    </li>
+                                </ul>
+                                <table class="table">
                             <thead class=" text-primary">
                                 <th>ID</th>
                                 <th>Nombre completo</th>
@@ -38,6 +51,8 @@
                                 <th class="text-center">Sucursal</th>
                                 <th>Items</th>
                                 <th>Dar de baja</th>
+                                <th>Estado</th>
+                                <th>Evaluar</th>
                             </thead>
                             <tbody>
                             <c:set var = "evaluaciones" scope = "session" value = "${evaluaciones}"/>
@@ -120,25 +135,6 @@
                                                                                                 <td class="text-center">
                                                                                                     ${itemEvaluado.item.value}
                                                                                                 </td>
-                                                                                                <%--<td class="text-center">--%>
-                                                                                                    <%--<div class="rating-star">--%>
-                                                                                                        <%--<ul class="list-inline">--%>
-                                                                                                            <%--<li class="list-inline-item">--%>
-                                                                                                                <%--<c:set var = "score" scope = "session" value = "${itemEvaluado.rating}"/>--%>
-                                                                                                                <%--<c:set var = "resto" scope = "session" value = "${5-score}"/>--%>
-                                                                                                                <%--<c:forEach begin="1" end="${score}" varStatus="count">--%>
-                                                                                                                    <%--<span id="score" class="fa fa-star checked"></span>--%>
-                                                                                                                <%--</c:forEach>--%>
-                                                                                                                <%--<c:forEach begin="1" end="${resto}" varStatus="count">--%>
-                                                                                                                    <%--<span id="score" class="fa fa-star"></span>--%>
-                                                                                                                <%--</c:forEach>--%>
-
-
-                                                                                                            <%--</li>--%>
-                                                                                                        <%--</ul>--%>
-                                                                                                    <%--</div>--%>
-                                                                                                <%--</td>--%>
-                                                                                                <%--<td class="text-center">--%>
                                                                                                 <td class="text-center">
                                                                                                     <!-- Collapse buttons -->
                                                                                                     <div>
@@ -209,16 +205,7 @@
                                                                                     <div class="col-md-6"></div>
                                                                                     <div class="col-md-6">
                                                                                         <span class="badge badge-secondary text-center text-uppercase float-right">
-                                                                                            <%--<c:forEach items="${bo.itemEvaluados}" var="itemEvaluadoo">--%>
-                                                                                                <%--<c:if test="${itemEvaluadoo.item.invalidaEvaluacion eq true}">--%>
-                                                                                                <%--<continue>--%>
-                                                                                                <%--Score: ${bo.resultado * 0}--%>
-                                                                                                <%--</c:if>--%>
-                                                                                                <%--Score: ${bo.resultado}--%>
-                                                                                            <%--</c:forEach>--%>
                                                                                             Score: ${bo.resultado}
-
-
                                                                                         </span>
                                                                                     </div>
                                                                                 </div>
@@ -235,6 +222,22 @@
                                             <td class="text-center">
                                                 <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/evaluacionDelColaborador/desactivar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-delete"></i></a>
                                             </td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${bo.estadoEvaluacion == 'FINALIZADA'}">
+                                                        <span class="badge badge-success">${bo.estadoEvaluacion}</span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="badge badge-warning">${bo.estadoEvaluacion}</span>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <c:choose>
+                                                <c:when test="${bo.estadoEvaluacion == 'PENDIENTE'}">
+                                                    <td>
+                                                        <a href="<c:url value='/evaluacionDelColaborador/update?id=${bo.colaborador.id}'/>" title="Continuar evaluaci&oacute;n" class="btn btn-success">Continuar Evaluaci&oacute;n</a>
+                                                </c:when>
+                                            </c:choose>
                                         </tr>
                                         </c:when>
                                         </c:choose>
@@ -243,6 +246,8 @@
                             </c:choose>
                             </tbody>
                         </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

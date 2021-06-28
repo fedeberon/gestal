@@ -70,16 +70,6 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
         return dao.save(evaluacionDelColaborador);
     }
 
-//    public Float calcularRating(EvaluacionDelColaborador evaluacionDelColaborador){
-//        AtomicReference<Float> resultado = new AtomicReference<>(0f);
-//        evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
-//            float cantidadDeItemsEnTrue = itemEvaluado.getConsideracionItemEvaluados().stream().filter(consideracionItemEvaluado -> consideracionItemEvaluado.isCheckeado()).count();
-//            float cantidadDeItems = itemEvaluado.getConsideracionItemEvaluados().size();
-//            resultado.set(cantidadDeItemsEnTrue / cantidadDeItems * 100);
-//        });
-//        return resultado.get();
-//    }
-
     @Override
     public Float calcularRatingPorConsideracion(EvaluacionDelColaborador evaluacionDelColaborador){
 
@@ -162,5 +152,10 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
     @Override
     public List<EvaluacionDelColaborador> findColaboradorByName(String name) {
         return dao.findEvaluacionDelColaboradorByName(name);
+    }
+
+    @Override
+    public EvaluacionDelColaborador update(EvaluacionDelColaborador evaluacionDelColaborador){
+        return dao.save(evaluacionDelColaborador);
     }
 }

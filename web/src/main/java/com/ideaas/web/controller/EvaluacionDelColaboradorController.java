@@ -1,6 +1,8 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.bean.State;
+import com.ideaas.services.domain.Puesto;
+import com.ideaas.services.enumeradores.EstadoEvaluacion;
+import com.ideaas.services.enumeradores.State;
 import com.ideaas.services.service.ConsideracionItemEvaluadoService;
 import com.ideaas.services.service.interfaces.*;
 import com.ideaas.services.domain.Colaborador;
@@ -11,11 +13,8 @@ import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import com.ideaas.services.service.interfaces.PuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -25,12 +24,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.security.Principal;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Created by Enzo on 17/2/2020.
@@ -101,6 +101,107 @@ public class EvaluacionDelColaboradorController {
         return "evaluacionDelColaborador/list";
     }
 
+    @RequestMapping("/pendiente")
+    public String pendientes(@RequestParam(defaultValue = "10") Integer size,
+                                  @RequestParam(defaultValue = "0") Integer page, Model model) {
+
+        String authentication = SecurityContextHolder.getContext().getAuthentication().getName();
+        Colaborador colaborador = colaboradorService.getUsername(authentication);
+        String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
+
+        List<EvaluacionDelColaborador> evaluacionesDelAdmin = StreamSupport
+        .stream(evaluacionDelColaboradorService.findAllPageable(10, page, "id").spliterator(), false)
+        .filter(evaluacionDelColaborador -> evaluacionDelColaborador.getEstadoEvaluacion() == EstadoEvaluacion.PENDIENTE)
+        .collect(Collectors.toList());
+
+        List<EvaluacionDelColaborador> evaluacionesDelColaborador = StreamSupport
+                .stream(evaluacionDelColaboradorService.findByColaborador(colaborador.getId()).spliterator(), false)
+                .filter(evaluacionDelColaborador -> evaluacionDelColaborador.getEstadoEvaluacion() == EstadoEvaluacion.PENDIENTE)
+                .collect(Collectors.toList());
+
+        switch (rol){
+            case "COLABORADOR":
+                evaluacionesDelColaborador.forEach(evaluacionDelColaborador -> {
+                    evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+                        if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
+                            Float scoreEnCero = 0f;
+                            model.addAttribute("score0", scoreEnCero);
+                            evaluacionDelColaborador.setResultado(0f);
+                        }
+                    });
+                });
+                model.addAttribute("evaluaciones", evaluacionesDelColaborador);
+                break;
+            case "ADMIN":
+                evaluacionesDelAdmin.forEach(evaluacionDelColaborador -> {
+                    evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+                        if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
+                            Float scoreEnCero = 0f;
+                            model.addAttribute("score0", scoreEnCero);
+                            evaluacionDelColaborador.setResultado(0f);
+                        }
+                    });
+                });
+                model.addAttribute("evaluaciones", evaluacionesDelAdmin);
+                break;
+        }
+        model.addAttribute("page", page);
+        model.addAttribute("consideracionItemEvaluado", consideracionItemEvaluadoService.findAll());
+
+        return "evaluacionDelColaborador/list";
+    }
+
+    @RequestMapping("/finalizada")
+    public String finalizadas(@RequestParam(defaultValue = "10") Integer size,
+                                  @RequestParam(defaultValue = "0") Integer page, Model model) {
+
+        String authentication = SecurityContextHolder.getContext().getAuthentication().getName();
+        Colaborador colaborador = colaboradorService.getUsername(authentication);
+        String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
+
+        List<EvaluacionDelColaborador> evaluacionesDelAdmin = StreamSupport
+                .stream(evaluacionDelColaboradorService.findAllPageable(10, page, "id").spliterator(), false)
+                .filter(evaluacionDelColaborador -> evaluacionDelColaborador.getEstadoEvaluacion() == EstadoEvaluacion.FINALIZADA)
+                .collect(Collectors.toList());
+
+        List<EvaluacionDelColaborador> evaluacionesDelColaborador = StreamSupport
+        .stream(evaluacionDelColaboradorService.findByColaborador(colaborador.getId()).spliterator(), false)
+        .filter(evaluacionDelColaborador -> evaluacionDelColaborador.getEstadoEvaluacion() == EstadoEvaluacion.FINALIZADA)
+        .collect(Collectors.toList());
+
+        switch (rol){
+            case "COLABORADOR":
+                evaluacionesDelColaborador.forEach(evaluacionDelColaborador -> {
+                    evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+                        if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
+                            Float scoreEnCero = 0f;
+                            model.addAttribute("score0", scoreEnCero);
+                            evaluacionDelColaborador.setResultado(0f);
+                        }
+                    });
+                });
+                model.addAttribute("evaluaciones", evaluacionesDelColaborador);
+                break;
+            case "ADMIN":
+                evaluacionesDelAdmin.forEach(evaluacionDelColaborador -> {
+                    evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+                        if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
+                            Float scoreEnCero = 0f;
+                            model.addAttribute("score0", scoreEnCero);
+                            evaluacionDelColaborador.setResultado(0f);
+                        }
+                    });
+                });
+                model.addAttribute("evaluaciones", evaluacionesDelAdmin);
+                break;
+        }
+        model.addAttribute("page", page);
+        model.addAttribute("consideracionItemEvaluado", consideracionItemEvaluadoService.findAll());
+
+        return "evaluacionDelColaborador/list";
+    }
+
+
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
@@ -120,12 +221,13 @@ public class EvaluacionDelColaboradorController {
     }
 
     @RequestMapping(value = "save")
-    public String save(@Valid @ModelAttribute("evaluacionDelColaborador") EvaluacionDelColaborador evaluacionDelColaborador, Errors result, Model map) {
+    public String save(@Valid @ModelAttribute("evaluacionDelColaborador") EvaluacionDelColaborador evaluacionDelColaborador, Errors result){
         if (result.hasErrors()) {
             return "colaborador/create";
 
         } else {
             evaluacionDelColaborador.setState(State.ACTIVE);
+            evaluacionDelColaborador.setEstadoEvaluacion(EstadoEvaluacion.PENDIENTE);
             evaluacionDelColaboradorService.save(evaluacionDelColaborador);
             return "redirect:list";
         }
@@ -144,6 +246,27 @@ public class EvaluacionDelColaboradorController {
         redirectAttributes.addAttribute("id", evaluacionDelColaborador.getId());
         evaluacionDelColaboradorService.save(evaluacionDelColaborador);
 
+        return "redirect:list";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        Colaborador colaborador = colaboradorService.get(id);
+        Evaluacion evaluacion = evaluacionService.getByPuesto(colaborador.getPuesto());
+        List <Evaluacion> evaluaciones = evaluacionService.findAll();
+
+        model.addAttribute("colaborador", colaborador);
+        model.addAttribute("evaluacion", evaluacion);
+        model.addAttribute("evaluaciones", evaluaciones);
+
+        return "evaluacionDelColaborador/update";
+    }
+
+    @RequestMapping(value = "saveAndUpdate", method = RequestMethod.POST)
+    public String saveAndUpdate(@ModelAttribute("evaluacionDelColaborador") EvaluacionDelColaborador evaluacionDelColaborador) {
+        evaluacionDelColaborador.setEstadoEvaluacion(EstadoEvaluacion.FINALIZADA);
+        evaluacionDelColaborador.setState(State.ACTIVE);
+        evaluacionDelColaboradorService.update(evaluacionDelColaborador);
         return "redirect:list";
     }
 }

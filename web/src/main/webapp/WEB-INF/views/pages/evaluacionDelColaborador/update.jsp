@@ -99,7 +99,7 @@
         <div class="col-md-12">
             <div class="card m-auto">
                 <div class="card-body">
-                    <c:url var="actionUrl" value="/evaluacionDelColaborador/save" />
+                    <c:url var="actionUrl" value="/evaluacionDelColaborador/saveAndUpdate" />
                     <form:form modelAttribute="evaluacionDelColaborador" action="${actionUrl}" method="POST">
                         <div class="form-style-8">
                             <input type="hidden" name="evaluacionDelColaborador.id" value="${evaluacionDelColaborador.id}"/>
@@ -143,8 +143,7 @@
                                                                             <div class="p-4 check-input">
 
                                                                                 <label class="switch col-1 mt-2">
-                                                                                    <form:checkbox path="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" cssClass="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" onclick="getChecked(${bo.id}"/>
-<%--                                                                                    <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">--%>
+                                                                                    <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
                                                                                     <span class="slider round slider-check"></span>
                                                                                 </label>
                                                                             </div>
@@ -163,7 +162,7 @@
                             </c:choose>
                             <div class="form-group mt-4">
                                 <c:if test="${!empty item}">
-                                    <button type="submit" class="btn btn-default" id="btnSubmit">Guardar</button>
+                                    <button type="submit" class="btn btn-default" id="btnSubmit">Finalizar Evaluaci&oacute;n</button>
                                 </c:if>
                             </div>
                         </div>

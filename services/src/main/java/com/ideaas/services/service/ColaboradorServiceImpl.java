@@ -61,7 +61,7 @@ public class ColaboradorServiceImpl implements ColaboradorService {
 
     @Override
     public Colaborador get(Long id) {
-        return dao.findById(id).get();
+        return dao.findById(id).orElse(null);
     }
 
     @Override

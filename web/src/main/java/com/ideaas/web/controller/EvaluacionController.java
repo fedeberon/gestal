@@ -1,6 +1,6 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.bean.State;
+import com.ideaas.services.enumeradores.State;
 import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.Puesto;
 import com.ideaas.services.service.interfaces.EvaluacionService;

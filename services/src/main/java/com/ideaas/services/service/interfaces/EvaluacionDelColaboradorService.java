@@ -28,4 +28,6 @@ public interface EvaluacionDelColaboradorService {
     List<EvaluacionDelColaborador> findAllPageable(int i, Integer page, String id);
 
     List<EvaluacionDelColaborador> findColaboradorByName(String name);
+
+    EvaluacionDelColaborador update(EvaluacionDelColaborador evaluacionDelColaborador);
 }
