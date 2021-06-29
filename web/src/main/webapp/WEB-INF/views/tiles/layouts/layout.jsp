@@ -29,9 +29,9 @@
     </head>
 
     <body>
-    <div class="wrapper ">
-        <div class="main-panel">
             <tiles:insertAttribute name="menu" />
+            <div class="wrapper ">
+
             <div class="main-panel">
             <tiles:insertAttribute name="body" />
             </div>
