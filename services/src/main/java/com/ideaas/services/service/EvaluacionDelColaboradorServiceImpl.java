@@ -2,6 +2,7 @@ package com.ideaas.services.service;
 
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorPaginationDao;
+import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;

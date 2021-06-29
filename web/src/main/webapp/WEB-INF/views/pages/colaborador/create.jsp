@@ -59,9 +59,7 @@
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess6">Seleccionar sucursal</label>
                                 <form:select path="sucursal.id" cssClass="form-control">
-                                    <c:choose>
-                                        <form:options items="${sucursales}" itemValue="id" itemLabel="name" id="inputSuccess6"/>
-                                    </c:choose>
+                                    <form:options items="${sucursales}" itemValue="id" itemLabel="name" id="inputSuccess6"/>
                                 </form:select>
                             </div>
 

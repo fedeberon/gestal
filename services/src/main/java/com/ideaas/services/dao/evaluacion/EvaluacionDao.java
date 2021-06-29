@@ -18,4 +18,5 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Long> {
     @Query("FROM Evaluacion WHERE puesto = ?1 and state = 'ACTIVE'")
     Evaluacion getActiveByPuesto(Puesto puesto);
 
+
 }

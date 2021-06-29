@@ -94,81 +94,82 @@
 
 
 </style>
-<div class="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card m-auto">
-                <div class="card-body">
-                    <c:url var="actionUrl" value="/evaluacionDelColaborador/saveAndUpdate" />
-                    <form:form modelAttribute="evaluacionDelColaborador" action="${actionUrl}" method="POST">
-                        <div class="form-style-8">
-                            <input type="hidden" name="evaluacionDelColaborador.id" value="${evaluacionDelColaborador.id}"/>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card m-auto">
+                    <div class="card-body">
+                        <c:url var="actionUrl" value="/evaluacionDelColaborador/saveAndUpdate" />
+                        <form:form modelAttribute="evaluacionDelColaborador" action="${actionUrl}" method="POST">
+                            <form:hidden path="id" value='${evaluacionDelColaboradorId.id}'/>
+                            <div class="form-style-8">
+                                <input type="hidden" name="evaluacionDelColaborador.id" value="${evaluacionDelColaborador.id}"/>
 
-                            <div class="form-group mt-4">
-                                <h4 class="form-control-label" for="inputSuccess1">${colaborador.name}</h4>
-                                <input name="colaborador.id" type="hidden" value="${colaborador.id}">
-                                <input name="rolEvaluado.id" type="hidden" value="${colaborador.puesto.id}">
-                            </div>
+                                <div class="form-group mt-4">
+                                    <h4 class="form-control-label" for="inputSuccess1">${colaborador.name}</h4>
+                                    <input name="colaborador.id" type="hidden" value="${colaborador.id}">
+                                    <input name="rolEvaluado.id" type="hidden" value="${colaborador.puesto.id}">
+                                </div>
 
-                            <c:set var = "item" scope = "session" value = "${evaluacion.items}"/>
-                            <c:choose>
-                                <c:when test="${empty item}">
-                                    <p>No hay items para mostrar en el puesto ${colaborador.puesto.name}</p>
-                                </c:when>
-                                <c:otherwise>
-                                    <div class="form-group mt-4">
+                                <c:set var = "item" scope = "session" value = "${evaluacion.items}"/>
+                                <c:choose>
+                                    <c:when test="${empty item}">
+                                        <p>No hay items para mostrar en el puesto ${colaborador.puesto.name}</p>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="form-group mt-4">
 
-                                        <c:forEach items="${evaluacion.items}" var="bo" varStatus="status">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="card border-dark mt-5">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">
-                                                                <span class="field-label-header">Item a evaluar "<strong>${bo.value}</strong>"</span><br>
-                                                                <input type="hidden" name="itemEvaluados[${status.index}].item.id" value="${bo.id}"/>
-                                                                <input type="hidden" name="itemEvaluados[${status.index}].item.score" value="${bo.score}"/>
-                                                            </h5>
-                                                            <div class="form-group" id="rating-ability-wrapper">
-                                                                <c:forEach items="${bo.consideraciones}" var="consideracion" varStatus="statusConsideracion">
-                                                                    <input type="hidden" name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].id"/>
-                                                                    <input type="hidden" name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].consideracion.id" value="${consideracion.id}"/>
+                                            <c:forEach items="${evaluacion.items}" var="bo" varStatus="status">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="card border-dark mt-5">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">
+                                                                    <span class="field-label-header">Item a evaluar "<strong>${bo.value}</strong>"</span><br>
+                                                                    <input type="hidden" name="itemEvaluados[${status.index}].item.id" value="${bo.id}"/>
+                                                                    <input type="hidden" name="itemEvaluados[${status.index}].item.score" value="${bo.score}"/>
+                                                                </h5>
+                                                                <div class="form-group" id="rating-ability-wrapper">
+                                                                    <c:forEach items="${bo.consideraciones}" var="consideracion" varStatus="statusConsideracion">
+                                                                        <input type="hidden" name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].id"/>
+                                                                        <input type="hidden" name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].consideracion.id" value="${consideracion.id}"/>
 
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <label class="control-label my-4" for="rating" style="font-size: 16px">
-                                                                                <span class="field-label-header">Consideracion a evaluar "<strong>${consideracion.value}</strong>"</span><br>
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="p-4 check-input">
-
-                                                                                <label class="switch col-1 mt-2">
-                                                                                    <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
-                                                                                    <span class="slider round slider-check"></span>
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <label class="control-label my-4" for="rating" style="font-size: 16px">
+                                                                                    <span class="field-label-header">Consideracion a evaluar "<strong>${consideracion.value}</strong>"</span><br>
                                                                                 </label>
                                                                             </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="p-4 check-input">
+
+                                                                                    <label class="switch col-1 mt-2">
+                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
+                                                                                        <span class="slider round slider-check"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                </c:forEach>
+                                                                    </c:forEach>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </c:forEach>
-                                    </div>
-                                </c:otherwise>
-                            </c:choose>
-                            <div class="form-group mt-4">
-                                <c:if test="${!empty item}">
-                                    <button type="submit" class="btn btn-default" id="btnSubmit">Finalizar Evaluaci&oacute;n</button>
-                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+                                <div class="form-group mt-4">
+                                    <c:if test="${!empty item}">
+                                        <button type="submit" class="btn btn-default" id="btnSubmit">Finalizar Evaluaci&oacute;n</button>
+                                    </c:if>
+                                </div>
                             </div>
-                        </div>
-                    </form:form>
+                        </form:form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

@@ -259,44 +259,6 @@
             </div>
         </div>
     </div>
-    <%--<div class="row">--%>
-        <%--<div class="col-md-12">--%>
-            <%--<div class="card">--%>
-                <%--<div class="card-header">--%>
-                    <%--<h4 class="card-title"> Cantidad de ausencias por meses (d&iacute;as)</h4>--%>
-                <%--</div>--%>
-                <%--<div class="card-body">--%>
-                    <%--<div class="table-responsive-md">--%>
-                        <%--<table class="table">--%>
-                            <%--<thead class=" text-primary">--%>
-                            <%--<c:forEach items="${findByAusentismoPrueba}" var="bo">--%>
-                                <%--<th width="50%">${bo.key}</th>--%>
-                            <%--</c:forEach>--%>
-                            <%--</thead>--%>
-                            <%--<tbody>--%>
-                            <%--<c:set var = "certificados" scope = "session" value = "${certificados}"/>--%>
-                            <%--<c:choose>--%>
-                                <%--<c:when test="${empty colaboradores}">--%>
-                                    <%--<tr>--%>
-                                        <%--<td colspan="5" class="text-center">--%>
-                                            <%--<p class="mt-5">No hay certificados para mostrar</p>--%>
-                                        <%--</td>--%>
-                                    <%--</tr>--%>
-                                <%--</c:when>--%>
-                                <%--<c:otherwise>--%>
-                                    <%--<tr>--%>
-                                    <%--<c:forEach items="${findByAusentismoPrueba}" var="bo">--%>
-                                        <%--<td>${bo.value}</td>--%>
-                                    <%--</c:forEach>--%>
-                                    <%--</tr>--%>
-                                <%--</c:otherwise>--%>
-                            <%--</c:choose>--%>
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+</div>
 </div>
 

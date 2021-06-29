@@ -29,20 +29,15 @@
     </head>
 
     <body>
-    <div class="wrapper">
+    <div class="wrapper ">
         <div class="main-panel">
-            <tiles:insertAttribute name="header" />
-
             <tiles:insertAttribute name="menu" />
+            <div class="main-panel">
             <tiles:insertAttribute name="body" />
-            <div class="wrapper">
-                <div class="container-fluid">
-                    <tiles:insertAttribute name="footer" />
-                </div>
             </div>
+            <tiles:insertAttribute name="footer" />
         </div>
     </div>
-
         <!--   Core JS Files   -->
         <script type="text/javascript" src='<c:url value="/assets/plugins/jquery/jquery-3.2.1.min.js"/>'></script>
 
@@ -73,6 +68,7 @@
         <%--Graficos Plugin--%>
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/canvasjs.min.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/assets/plugins/canvasjs/jquery.canvasjs.min.js"/>'></script>
+        <script type="text/javascript" src='<c:url value="/assets/js/plugins/perfect-scrollbar.jquery.min.js"/>'></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </body>
