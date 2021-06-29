@@ -251,8 +251,11 @@ public class EvaluacionDelColaboradorController {
 
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
-        List<EvaluacionDelColaborador> evaluacionDelColaborador = evaluacionDelColaboradorService.findByColaborador(id);
-        evaluacionDelColaborador.forEach(evaluacionDelColaboradorId -> model.addAttribute("evaluacionDelColaborador", evaluacionDelColaboradorId));
+        List<EvaluacionDelColaborador> evaluacionesPorColaboradores = evaluacionDelColaboradorService.findByColaborador(id);
+        evaluacionesPorColaboradores.forEach(evaluacionDelColaborador -> {
+            model.addAttribute("evaluacionDelColaborador", evaluacionDelColaborador);
+            evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> itemEvaluado.getConsideracionItemEvaluados());
+        });
         Colaborador colaborador = colaboradorService.get(id);
         Evaluacion evaluacion = evaluacionService.getByPuesto(colaborador.getPuesto());
         List <Evaluacion> evaluaciones = evaluacionService.findAll();

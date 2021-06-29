@@ -138,15 +138,34 @@
                                                                             <div class="col-md-6">
                                                                                 <label class="control-label my-4" for="rating" style="font-size: 16px">
                                                                                     <span class="field-label-header">Consideracion a evaluar "<strong>${consideracion.value}</strong>"</span><br>
+                                                                                    <p>${consideracion.id}</p>
                                                                                 </label>
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="p-4 check-input">
+<%--                                                                                    <label class="switch col-1 mt-2">--%>
+                                                                                    <c:forEach items="${evaluacionDelColaborador.itemEvaluados}" var="itemEvaluado" varStatus="statusConsideracion">
+                                                                                        <c:forEach items="${itemEvaluado.consideracionItemEvaluados}" var="consideracionItemEvaluado" varStatus="statusConsideracion">
+                                                                                            <p>itemEvaluado.item.id=  ${itemEvaluado.item.id}</p>
+                                                                                            <p>bo.id= ${bo.id}</p>
+                                                                                            <c:if test="${itemEvaluado.item.id == bo.id}">
+                                                                                                <c:choose>
+                                                                                                    <c:when test="${consideracionItemEvaluado.checkeado == 'true'}">
+                                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" type="checkbox" checked>
+<%--                                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});" checked>--%>
+<%--                                                                                                        <span class="slider round slider-check"></span>--%>
+                                                                                                    </c:when>
+                                                                                                    <c:otherwise>
+                                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" type="checkbox">
 
-                                                                                    <label class="switch col-1 mt-2">
-                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
-                                                                                        <span class="slider round slider-check"></span>
-                                                                                    </label>
+                                                                                                        <%--                                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">--%>
+<%--                                                                                                        <span class="slider round slider-check"></span>--%>
+                                                                                                    </c:otherwise>
+                                                                                                </c:choose>
+                                                                                            </c:if>
+                                                                                        </c:forEach>
+                                                                                    </c:forEach>
+<%--                                                                                    </label>--%>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
