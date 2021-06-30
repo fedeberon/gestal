@@ -3,3 +3,8 @@
         margin-top: 50px !important;
     }
 }
+@media screen and (max-width: 991px){
+    .margin-button {
+        margin-top: 1rem!important;
+    }
+}

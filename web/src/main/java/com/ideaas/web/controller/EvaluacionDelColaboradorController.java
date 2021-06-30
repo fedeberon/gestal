@@ -28,6 +28,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -254,7 +255,6 @@ public class EvaluacionDelColaboradorController {
         EvaluacionDelColaborador evaluacionDelColaborador = evaluacionDelColaboradorService.get(id);
         model.addAttribute("evaluacionDelColaborador", evaluacionDelColaborador);
         model.addAttribute("evaluacion", evaluacionDelColaborador.getItemEvaluados().get(0).getItem().getEvaluacion());
-
 
         return "evaluacionDelColaborador/update";
     }

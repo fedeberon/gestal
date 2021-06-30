@@ -113,14 +113,9 @@
                                                             </td>
                                                             </td>
                                                             <td class="text-center">
-                                                                <div class="row">
-                                                                    <div class="col-md-6 col-3">
-                                                                        <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon float-right" href="<c:url value='/colaborador/alta?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-add"></i></a>
-                                                                    </div>
-
-                                                                    <div class="col-md-6 col-3">
-                                                                        <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/colaborador/baja?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-delete"></i></a>
-                                                                    </div>
+                                                                <div class="btn-group" role="group">
+                                                                    <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon mr-3" href="<c:url value='/colaborador/alta?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-add"></i></a>
+                                                                    <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon ml-3" href="<c:url value='/colaborador/baja?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-delete"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -145,16 +140,16 @@
                                 </form>
                             </div>
                             <div class="col-md-3">
-                                <a class="btn btn-success mt-2" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar colaborador</a>
+                                <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar colaborador</a>
                             </div>
                             <div class="col-md-3">
-                                <a class="btn btn-success mt-2" href="<c:url value='/colaborador/list'/>" title="Agregar sucursal">Lista completa</a>
+                                <a class="btn btn-success margin-button" href="<c:url value='/colaborador/list'/>" title="Agregar sucursal">Lista completa</a>
                             </div>
 
                             <div class="col-md-3">
                                 <%--<a class="btn btn-primary" href="<c:url value='/colaborador/list'/>" title="Agregar sucursal">Colaboradores inactivos</a>--%>
                                 <!-- Large modal -->
-                                <button type="button" class="btn btn-primary mt-2" data-toggle="modal" data-target=".bd-example-modal-lg">Colaboradores inactivos</button>
+                                <button type="button" class="btn btn-primary margin-button" data-toggle="modal" data-target=".bd-example-modal-lg">Colaboradores inactivos</button>
 
                                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
@@ -197,11 +192,7 @@
                                                                         </td>
                                                                         </td>
                                                                         <td class="text-center">
-                                                                            <div class="row">
-                                                                                <div class="col-md-6 col-3">
-                                                                                    <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon float-right" href="<c:url value='/colaborador/alta?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-add"></i></a>
-                                                                                </div>
-                                                                            </div>
+                                                                            <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon" href="<c:url value='/colaborador/alta?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-add"></i></a>
                                                                         </td>
                                                                     </tr>
                                                                 </c:when>

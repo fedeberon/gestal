@@ -74,7 +74,7 @@
                                 <a class="btn btn-success" href="<c:url value='/sucursal/create'/>" title="Agregar sucursal">Agregar Sucursal</a>
                             </div>
                             <div class="col-md-4">
-                                <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar
+                                <a class="btn btn-success margin-button" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar
                                     colaborador</a>
                             </div>
                         </div>

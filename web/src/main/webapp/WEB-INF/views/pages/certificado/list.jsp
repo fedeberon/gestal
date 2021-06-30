@@ -85,10 +85,10 @@
                                 certificado</a>
                         </div>
                         <div class="col-md-3">
-                            <a class="btn btn-success" href="<c:url value='/certificado/list'/>" title="Agregar sucursal">Lista completa</a>
+                            <a class="btn btn-success margin-button" href="<c:url value='/certificado/list'/>" title="Agregar sucursal">Lista completa</a>
                         </div>
                         <div class="col-md-3">
-                            <a href="<c:url value='/certificado/stats'/>" class="btn btn-secondary">Estad&iacute;sticas</a>
+                            <a href="<c:url value='/certificado/stats'/>" class="btn btn-secondary margin-button">Estad&iacute;sticas</a>
                         </div>
                     </div>
                 </div>

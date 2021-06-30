@@ -34,9 +34,7 @@
 
     <div class="wrapper ">
         <div class="main-panel">
-            <div class="main-panel">
             <tiles:insertAttribute name="body" />
-            </div>
             <tiles:insertAttribute name="footer" />
         </div>
     </div>

@@ -18,7 +18,7 @@
                                                 <input type="text" id="0" name="items[0].value" placeholder="Nombre del indicador" class="form-control indicador" required>
                                             </div>
                                             <div class="col-md-2">
-                                                <select name="items[0].score" id="select_1" class="form-control">
+                                                <select name="items[0].score" id="select_1" class="form-control margin-button">
                                                     <option hidden selected value> Peso del indicador</option>
                                                     <c:forEach var="i" begin="0" end="10">
                                                         <option value="${i}">${i}</option>
