@@ -235,7 +235,7 @@
                                                 <c:choose>
                                                     <c:when test="${bo.estadoEvaluacion == 'PENDIENTE'}">
                                                         <td>
-                                                            <a href="<c:url value='/evaluacionDelColaborador/update?id=${bo.colaborador.id}'/>" title="Continuar evaluaci&oacute;n" class="btn btn-success">Continuar Evaluaci&oacute;n</a>
+                                                            <a href="<c:url value='/evaluacionDelColaborador/update?id=${bo.id}'/>" title="Continuar evaluaci&oacute;n" class="btn btn-success">Continuar Evaluaci&oacute;n</a>
                                                     </c:when>
                                                 </c:choose>
                                             </tr>

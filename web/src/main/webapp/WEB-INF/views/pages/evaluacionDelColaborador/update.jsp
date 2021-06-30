@@ -111,7 +111,7 @@
                                     <input name="rolEvaluado.id" type="hidden" value="${colaborador.puesto.id}">
                                 </div>
 
-                                <c:set var = "item" scope = "session" value = "${evaluacion.items}"/>
+                                <c:set var = "item" scope = "session" value = "${evaluacionDelColaborador.itemEvaluados}"/>
                                 <c:choose>
                                     <c:when test="${empty item}">
                                         <p>No hay items para mostrar en el puesto ${colaborador.puesto.name}</p>
@@ -130,46 +130,28 @@
                                                                     <input type="hidden" name="itemEvaluados[${status.index}].item.score" value="${bo.score}"/>
                                                                 </h5>
                                                                 <div class="form-group" id="rating-ability-wrapper">
+                                                                    <div class="row">
                                                                     <c:forEach items="${bo.consideraciones}" var="consideracion" varStatus="statusConsideracion">
                                                                         <input type="hidden" name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].id"/>
                                                                         <input type="hidden" name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].consideracion.id" value="${consideracion.id}"/>
-
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <label class="control-label my-4" for="rating" style="font-size: 16px">
-                                                                                    <span class="field-label-header">Consideracion a evaluar "<strong>${consideracion.value}</strong>"</span><br>
-                                                                                    <p>${consideracion.id}</p>
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="col-md-6">
-                                                                                <div class="p-4 check-input">
-<%--                                                                                    <label class="switch col-1 mt-2">--%>
-                                                                                    <c:forEach items="${evaluacionDelColaborador.itemEvaluados}" var="itemEvaluado" varStatus="statusConsideracion">
-                                                                                        <c:forEach items="${itemEvaluado.consideracionItemEvaluados}" var="consideracionItemEvaluado" varStatus="statusConsideracion">
-                                                                                            <p>itemEvaluado.item.id=  ${itemEvaluado.item.id}</p>
-                                                                                            <p>bo.id= ${bo.id}</p>
-                                                                                            <c:if test="${itemEvaluado.item.id == bo.id}">
-                                                                                                <c:choose>
-                                                                                                    <c:when test="${consideracionItemEvaluado.checkeado == 'true'}">
-                                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" type="checkbox" checked>
-<%--                                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});" checked>--%>
-<%--                                                                                                        <span class="slider round slider-check"></span>--%>
-                                                                                                    </c:when>
-                                                                                                    <c:otherwise>
-                                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" type="checkbox">
-
-                                                                                                        <%--                                                                                                        <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">--%>
-<%--                                                                                                        <span class="slider round slider-check"></span>--%>
-                                                                                                    </c:otherwise>
-                                                                                                </c:choose>
-                                                                                            </c:if>
-                                                                                        </c:forEach>
-                                                                                    </c:forEach>
-<%--                                                                                    </label>--%>
-                                                                                </div>
-                                                                            </div>
+                                                                        <div class="col-md-6">
+                                                                            <label class="control-label my-4" for="rating" style="font-size: 16px">
+                                                                                <span class="field-label-header">#${consideracion.id} - "<strong>${consideracion.value}</strong>"</span><br>
+                                                                            </label>
                                                                         </div>
                                                                     </c:forEach>
+                                                                    <div class="col-md-6">
+                                                                        <div class="p-4 check-input">
+                                                                            <c:forEach items="${evaluacionDelColaborador.itemEvaluados}" var="item">
+                                                                                <c:forEach items="${item.consideracionItemEvaluados}" var="consideracionEvaluada">
+                                                                                    <c:if test="${consideracionEvaluada.consideracion.id == consideracion.id}">
+                                                                                        <input type="checkbox" checked/> SI
+                                                                                    </c:if>
+                                                                                </c:forEach>
+                                                                            </c:forEach>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
