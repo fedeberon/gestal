@@ -1,19 +1,15 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.domain.Puesto;
+import com.ideaas.services.domain.*;
 import com.ideaas.services.enumeradores.EstadoEvaluacion;
 import com.ideaas.services.enumeradores.State;
 import com.ideaas.services.service.ConsideracionItemEvaluadoService;
 import com.ideaas.services.service.interfaces.*;
-import com.ideaas.services.domain.Colaborador;
-import com.ideaas.services.domain.Evaluacion;
-import com.ideaas.services.domain.EvaluacionDelColaborador;
 import com.ideaas.services.service.interfaces.ColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import com.ideaas.services.service.interfaces.PuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,10 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,15 +41,17 @@ public class EvaluacionDelColaboradorController {
     private ColaboradorService colaboradorService;
     private ItemService itemService;
     private ConsideracionItemEvaluadoService consideracionItemEvaluadoService;
+    private ItemEvaluadoService itemEvaluadoService;
 
     @Autowired
-    public EvaluacionDelColaboradorController(PuestoService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService, EvaluacionService evaluacionService, ColaboradorService colaboradorService, ItemService itemService, ConsideracionItemEvaluadoService consideracionItemEvaluadoService) {
+    public EvaluacionDelColaboradorController(PuestoService rolService, EvaluacionDelColaboradorService evaluacionDelColaboradorService, EvaluacionService evaluacionService, ColaboradorService colaboradorService, ItemService itemService, ConsideracionItemEvaluadoService consideracionItemEvaluadoService, ItemEvaluadoService itemEvaluadoService) {
         this.rolService = rolService;
         this.evaluacionDelColaboradorService = evaluacionDelColaboradorService;
         this.evaluacionService = evaluacionService;
         this.colaboradorService = colaboradorService;
         this.itemService = itemService;
         this.consideracionItemEvaluadoService = consideracionItemEvaluadoService;
+        this.itemEvaluadoService = itemEvaluadoService;
     }
 
     @RequestMapping("/list")
@@ -252,18 +247,28 @@ public class EvaluacionDelColaboradorController {
 
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
+        List<List<ConsideracionItemEvaluado>> consideracionesEvaluadas = new ArrayList<>();
+
         EvaluacionDelColaborador evaluacionDelColaborador = evaluacionDelColaboradorService.get(id);
+        List<ItemEvaluado> itemEvaluados = itemEvaluadoService.findByEvaluacionDelColaboradorId(evaluacionDelColaborador.getId()).stream().collect(Collectors.toList());
         model.addAttribute("evaluacionDelColaborador", evaluacionDelColaborador);
         model.addAttribute("evaluacion", evaluacionDelColaborador.getItemEvaluados().get(0).getItem().getEvaluacion());
+        model.addAttribute("consideracionesEvaluadas", consideracionesEvaluadas);
+
+        itemEvaluados.forEach(itemEvaluado -> {
+            List<ConsideracionItemEvaluado> consideracionItemEvaluados = consideracionItemEvaluadoService.findByItemEvaluadoId(itemEvaluado.getId());
+            consideracionesEvaluadas.add(consideracionItemEvaluados);
+        });
 
         return "evaluacionDelColaborador/update";
     }
 
     @RequestMapping(value = "saveAndUpdate", method = RequestMethod.POST)
     public String saveAndUpdate(@ModelAttribute("evaluacionDelColaborador") EvaluacionDelColaborador evaluacionDelColaborador) {
+        evaluacionDelColaborador.getItemEvaluados().removeAll(evaluacionDelColaborador.getItemEvaluados());
         evaluacionDelColaborador.setEstadoEvaluacion(EstadoEvaluacion.FINALIZADA);
         evaluacionDelColaborador.setState(State.ACTIVE);
-        evaluacionDelColaboradorService.update(evaluacionDelColaborador);
+        evaluacionDelColaboradorService.save(evaluacionDelColaborador);
         return "redirect:list";
     }
 }

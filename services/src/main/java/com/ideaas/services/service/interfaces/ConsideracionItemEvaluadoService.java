@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface ConsideracionItemEvaluadoService {
     List<ConsideracionItemEvaluado> findAll();
+    List<ConsideracionItemEvaluado> findByItemEvaluadoId(Long id);
 }

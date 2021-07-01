@@ -141,7 +141,6 @@
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="p-4 check-input">
-
                                                                                     <label class="switch col-1 mt-2">
                                                                                         <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
                                                                                         <span class="slider round slider-check"></span>

@@ -10,4 +10,6 @@ public interface ItemEvaluadoService {
     List<ItemEvaluado> findAll();
 
     ItemEvaluado get(Long id);
+
+    List<ItemEvaluado> findByEvaluacionDelColaboradorId(Long id);
 }

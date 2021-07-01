@@ -11,7 +11,7 @@ import java.util.List;
  * Created by enzo on 17/4/2020.
  */
 @Service
-public class ConsideracionItemEvaluadoServiceImpl implements ConsideracionItemEvaluadoService{
+public class ConsideracionItemEvaluadoServiceImpl implements com.ideaas.services.service.ConsideracionItemEvaluadoService {
 
     private ConsideracionItemEvaluadoDao dao;
 
@@ -23,5 +23,10 @@ public class ConsideracionItemEvaluadoServiceImpl implements ConsideracionItemEv
     @Override
     public List<ConsideracionItemEvaluado> findAll(){
         return dao.findAll();
+    }
+
+    @Override
+    public List<ConsideracionItemEvaluado> findByItemEvaluadoId(Long id){
+        return dao.findByItemEvaluado_Id(id);
     }
 }

@@ -36,4 +36,9 @@ public class ItemEvaluadoServiceImpl implements ItemEvaluadoService {
         return dao.getOne(id);
     }
 
+    @Override
+    public List<ItemEvaluado> findByEvaluacionDelColaboradorId(Long id){
+        return dao.findByEvaluacionDelColaborador_Id(id);
+    }
+
 }
