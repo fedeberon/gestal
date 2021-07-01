@@ -134,7 +134,6 @@
                                                                 </h5>
                                                                 <div class="form-group" id="rating-ability-wrapper">
                                                                     <c:forEach items="${consideracionesEvaluadas}" var="consideracionEvaluada" varStatus="statusConsideracion">
-                                                                        <c:forEach items="${consideracionesEvaluadas.[statusConsideracion.index]}" var="consideracion" begin="0" end="${consideracionEvaluada.size()}">
 
                                                                         <form:hidden path="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].id"/>
                                                                         <form:hidden path="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].consideracion.id"/>
@@ -168,7 +167,6 @@
                                                                                 </c:choose>
                                                                             </div>
                                                                         </div>
-                                                                        </c:forEach>
                                                                     </c:forEach>
                                                                 </div>
                                                             </div>
