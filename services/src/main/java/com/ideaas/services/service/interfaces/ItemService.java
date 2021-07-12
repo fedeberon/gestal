@@ -1,7 +1,9 @@
 package com.ideaas.services.service.interfaces;
 
 import com.ideaas.services.domain.Item;
+import com.ideaas.services.domain.ItemEvaluado;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -9,7 +11,8 @@ import java.util.List;
  */
 public interface ItemService {
     List<Item> findAll();
+    List<Item> findByEvaluacionId(Long id);
     Item save(Item item);
-
     Item getById(Long id);
+    void deleteAll(List<Item> indicadores);
 }

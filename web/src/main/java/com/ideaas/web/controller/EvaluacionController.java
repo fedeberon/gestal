@@ -1,8 +1,8 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.domain.*;
 import com.ideaas.services.enumeradores.State;
-import com.ideaas.services.domain.Evaluacion;
-import com.ideaas.services.domain.Puesto;
+import com.ideaas.services.service.interfaces.ConsideracionService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import com.ideaas.services.service.interfaces.ItemService;
 import com.ideaas.services.service.interfaces.PuestoService;
@@ -29,12 +29,14 @@ public class EvaluacionController {
     private PuestoService puestoService;
     private ItemService itemService;
     private EvaluacionService evaluacionService;
+    private ConsideracionService consideracionService;
 
     @Autowired
-    public EvaluacionController(PuestoService puestoService, EvaluacionService evaluacionService, ItemService itemService) {
+    public EvaluacionController(PuestoService puestoService, EvaluacionService evaluacionService, ItemService itemService, ConsideracionService consideracionService) {
         this.puestoService = puestoService;
         this.evaluacionService = evaluacionService;
         this.itemService = itemService;
+        this.consideracionService = consideracionService;
     }
 
     @RequestMapping("create")
@@ -51,7 +53,6 @@ public class EvaluacionController {
             return "evaluacion/create";
         } else {
             evaluacion.getItems().removeIf(item -> item.getValue() == null);
-
             evaluacion.getItems().forEach(item -> {
                 item.getConsideraciones().removeIf(consideracion -> consideracion.getValue() == null);
                 if (item.isInvalidaEvaluacion() == true){
@@ -61,6 +62,28 @@ public class EvaluacionController {
                 }
                 item.setEvaluacion(evaluacion);
 
+            });
+            evaluacion.setState(State.ACTIVE);
+            evaluacionService.save(evaluacion);
+            return "redirect:list";
+        }
+    }
+
+    @RequestMapping(value = "saveAndUpdate", method = RequestMethod.POST)
+    public String saveAndUpdate(@Valid @ModelAttribute Evaluacion evaluacion, Errors result, Model map){
+        if (result.hasErrors()) {
+
+            return "evaluacion/create";
+        } else {
+            evaluacion.getItems().removeIf(item -> item.getValue() == null);
+            evaluacion.getItems().forEach(item -> {
+                item.getConsideraciones().removeIf(consideracion -> consideracion.getValue() == null);
+                if (item.isInvalidaEvaluacion() == true){
+                    evaluacion.getItems().forEach(allItems -> {
+                        allItems.setScore(0f);
+                    });
+                }
+                item.setEvaluacion(evaluacion);
             });
             evaluacion.setState(State.ACTIVE);
             evaluacionService.save(evaluacion);
@@ -92,9 +115,8 @@ public class EvaluacionController {
     @RequestMapping("desactivar")
     public String desactivarEvaluacion(@RequestParam Long id, RedirectAttributes redirectAttributes) {
         Evaluacion evaluacion= evaluacionService.getById(id);
-        evaluacion.setState(State.INACTIVE);
         redirectAttributes.addAttribute("id", evaluacion.getId());
-        evaluacionService.save(evaluacion);
+        evaluacionService.desactivarEvaluacion(evaluacion);
 
         return "redirect:list";
     }
@@ -102,6 +124,7 @@ public class EvaluacionController {
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         Evaluacion evaluacion= evaluacionService.getById(id);
+        String sizeItems = evaluacion.getItems().toString();
         model.addAttribute("evaluacion", evaluacion);
 
         return "evaluacion/update";

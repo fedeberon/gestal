@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import springfox.documentation.schema.Entry;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -74,6 +77,8 @@ public class EvaluacionDelColaboradorController {
                         model.addAttribute("score0", scoreEnCero);
                         evaluacionDelColaborador.setResultado(0f);
                     }
+                    itemEvaluado.getConsideracionItemEvaluados().sort(
+                            Comparator.comparing((ConsideracionItemEvaluado consideracionItemEvaluado) -> consideracionItemEvaluado.getConsideracion().getId()));
                 });
                 });
                 model.addAttribute("evaluaciones", evaluacionesDelColaborador);
@@ -86,12 +91,14 @@ public class EvaluacionDelColaboradorController {
                             model.addAttribute("score0", scoreEnCero);
                             evaluacionDelColaborador.setResultado(0f);
                         }
+                        itemEvaluado.getConsideracionItemEvaluados().sort(
+                                Comparator.comparing((ConsideracionItemEvaluado consideracionItemEvaluado) -> consideracionItemEvaluado.getConsideracion().getId()));
                     });
                 });
                 model.addAttribute("evaluaciones", evaluacionesDelAdmin);
                 break;
         }
-        model.addAttribute("page", page);
+
         model.addAttribute("consideracionItemEvaluado", consideracionItemEvaluadoService.findAll());
 
         return "evaluacionDelColaborador/list";
@@ -245,27 +252,33 @@ public class EvaluacionDelColaboradorController {
         return "redirect:list";
     }
 
+    @RequestMapping("activar")
+    public String activarEvaluacion(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+        EvaluacionDelColaborador evaluacionDelColaborador= evaluacionDelColaboradorService.getById(id);
+        evaluacionDelColaborador.setState(State.ACTIVE);
+        redirectAttributes.addAttribute("id", evaluacionDelColaborador.getId());
+        evaluacionDelColaboradorService.save(evaluacionDelColaborador);
+
+        return "redirect:list";
+    }
+
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
-        List<List<ConsideracionItemEvaluado>> consideracionesEvaluadas = new ArrayList<>();
-
         EvaluacionDelColaborador evaluacionDelColaborador = evaluacionDelColaboradorService.get(id);
         List<ItemEvaluado> itemEvaluados = itemEvaluadoService.findByEvaluacionDelColaboradorId(evaluacionDelColaborador.getId()).stream().collect(Collectors.toList());
+        itemEvaluados.forEach(itemEvaluado -> itemEvaluado.getConsideracionItemEvaluados().sort(
+                (ConsideracionItemEvaluado consideracionItemEvaluado1, ConsideracionItemEvaluado consideracionItemEvaluado2) -> consideracionItemEvaluado1.getConsideracion().getId().compareTo(consideracionItemEvaluado2.getConsideracion().getId())));
         model.addAttribute("evaluacionDelColaborador", evaluacionDelColaborador);
         model.addAttribute("evaluacion", evaluacionDelColaborador.getItemEvaluados().get(0).getItem().getEvaluacion());
-        model.addAttribute("consideracionesEvaluadas", consideracionesEvaluadas);
-
-        itemEvaluados.forEach(itemEvaluado -> {
-            List<ConsideracionItemEvaluado> consideracionItemEvaluados = consideracionItemEvaluadoService.findByItemEvaluadoId(itemEvaluado.getId());
-            consideracionesEvaluadas.add(consideracionItemEvaluados);
-        });
+        model.addAttribute("itemEvaluados", itemEvaluados);
 
         return "evaluacionDelColaborador/update";
     }
 
     @RequestMapping(value = "saveAndUpdate", method = RequestMethod.POST)
     public String saveAndUpdate(@ModelAttribute("evaluacionDelColaborador") EvaluacionDelColaborador evaluacionDelColaborador) {
-        evaluacionDelColaborador.getItemEvaluados().removeAll(evaluacionDelColaborador.getItemEvaluados());
+        List<ItemEvaluado> itemEvaluados = itemEvaluadoService.findByEvaluacionDelColaboradorId(evaluacionDelColaborador.getId()).stream().collect(Collectors.toList());
+        itemEvaluadoService.deleteAll(itemEvaluados);
         evaluacionDelColaborador.setEstadoEvaluacion(EstadoEvaluacion.FINALIZADA);
         evaluacionDelColaborador.setState(State.ACTIVE);
         evaluacionDelColaboradorService.save(evaluacionDelColaborador);

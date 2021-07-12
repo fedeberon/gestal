@@ -31,4 +31,14 @@ public class ItemServiceImpl implements ItemService{
     public Item getById(Long id) {
         return dao.findById(id).get();
     }
+
+    @Override
+    public void deleteAll(List<Item> indicadores) {
+        dao.deleteAll(indicadores);
+    }
+
+    @Override
+    public List<Item> findByEvaluacionId(Long id) {
+        return dao.findByEvaluacion_Id(id);
+    }
 }

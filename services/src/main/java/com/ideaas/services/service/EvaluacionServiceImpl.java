@@ -42,19 +42,32 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     @Override
     public Evaluacion save(Evaluacion evaluacion){
         List<Evaluacion> evaluaciones = dao.findAll();
-        evaluaciones.forEach(evaluacionPuesto ->{
-            if (evaluacion.getPuesto().getId().equals(evaluacionPuesto.getPuesto().getId()) ){
-                evaluacionPuesto.setState(State.INACTIVE);
+        evaluaciones.forEach(evaluacionGuardada -> {
+            if (evaluacionGuardada.getPuesto().getId().equals(evaluacion.getPuesto().getId())){
+                evaluacionGuardada.setState(State.INACTIVE);
+                evaluacion.setState(State.ACTIVE);
             }
         });
-
         return dao.save(evaluacion);
     }
-
+    @Override
+    public Evaluacion desactivarEvaluacion(Evaluacion evaluacion){
+        evaluacion.setState(State.INACTIVE);
+        return dao.save(evaluacion);
+    }
+    @Override
+    public Evaluacion activarEvaluacion(Evaluacion evaluacion){
+        return dao.save(evaluacion);
+    }
 
     @Override
     public EvaluacionDelColaborador get(Long id) {
         return evaluacionDelColaboradorDao.findById(id).get();
+    }
+
+    @Override
+    public void delete(Evaluacion byId) {
+        dao.delete(byId);
     }
 
     @Override

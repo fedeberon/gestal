@@ -10,15 +10,14 @@ import java.util.List;
  * Created by federicoberon on 04/02/2020.
  */
 public interface EvaluacionService {
-    Evaluacion getByPuesto(Puesto puesto);
-
-    Evaluacion save(Evaluacion evaluacion);
-
     List<Evaluacion> findAllPageable(Integer pageSize, Integer pageNo, String sortBy);
-
     List<Evaluacion> findAll();
-
+    Evaluacion getByPuesto(Puesto puesto);
+    Evaluacion save(Evaluacion evaluacion);
     Evaluacion getById(Long id);
-
+    Evaluacion desactivarEvaluacion(Evaluacion evaluacion);
+    Evaluacion activarEvaluacion(Evaluacion evaluacion);
     EvaluacionDelColaborador get(Long id);
+
+    void delete(Evaluacion byId);
 }

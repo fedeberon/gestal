@@ -2,7 +2,6 @@ package com.ideaas.services.service;
 
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorPaginationDao;
-import com.ideaas.services.domain.Evaluacion;
 import com.ideaas.services.domain.EvaluacionDelColaborador;
 import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -68,7 +66,7 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
                 -> itemEvaluado.setEvaluacionDelColaborador(evaluacionDelColaborador));
         evaluacionDelColaborador.setFechaDeCarga(new Date());
         evaluacionDelColaborador.setResultado(this.calcularRatingPorConsideracion(evaluacionDelColaborador));
-        return dao.save(evaluacionDelColaborador);
+         return dao.save(evaluacionDelColaborador);
     }
 
     @Override
@@ -96,6 +94,7 @@ public class EvaluacionDelColaboradorServiceImpl implements EvaluacionDelColabor
             });
         AtomicBoolean evaluacionInvalidada = new AtomicBoolean(false);
         evaluacionInvalidada.set(false);
+
         evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
             //Si el checkbox que invalida la evaluacion o el rating del item es 0, el score de la evaluacion es 0
             Float score = Objects.isNull(itemEvaluado.getItem().getScore()) ? 0 : itemEvaluado.getItem().getScore();

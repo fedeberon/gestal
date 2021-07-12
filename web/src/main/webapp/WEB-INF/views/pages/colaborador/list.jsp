@@ -154,56 +154,58 @@
                                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content p-3">
-                                            <table class="table">
-                                                <thead class=" text-primary">
-                                                    <th class="text-center">Nombre completo</th>
-                                                    <th class="text-center">Puesto</th>
-                                                    <th class="text-center">Sucursal</th>
-                                                    <th class="text-center">Estado</th>
-                                                    <th class="text-center">Dar de alta</th>
-                                                </thead>
-                                                <tbody>
-                                                <c:set var = "colaborador" scope = "session" value = "${colaboradores}"/>
-                                                <c:choose>
-                                                    <c:when test="${empty colaborador}">
-                                                        <tr>
-                                                            <td colspan="7" class="text-center">
-                                                                <p class="mt-5">No hay colaboradores para mostrar</p>
-                                                            </td>
-                                                        </tr>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <c:forEach items="${colaboradores}" var="bo">
-                                                            <c:choose>
-                                                                <c:when test="${bo.state =='INACTIVE'}">
-                                                                    <tr>
-                                                                        <td class="text-center">${bo.name}</td>
-                                                                        <td class="text-center">${bo.puesto.name}</td>
-                                                                        <td class="text-center">${bo.sucursal.name}</td>
-                                                                        <td class="text-center">
-                                                                            <c:choose>
-                                                                                <c:when test="${bo.state =='ACTIVE'}">
-                                                                                    <span class="badge badge-success">${bo.state.displayName}</span>
-                                                                                </c:when>
-                                                                                <c:otherwise>
-                                                                                    <span class="badge badge-danger">${bo.state.displayName}</span>
-                                                                                </c:otherwise>
-                                                                            </c:choose>
-                                                                        </td>
-                                                                        </td>
-                                                                        <td class="text-center">
-                                                                            <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon" href="<c:url value='/colaborador/alta?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-add"></i></a>
-                                                                        </td>
-                                                                    </tr>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </c:forEach>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                                </tbody>
-                                            </table>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead class=" text-primary">
+                                                        <th class="text-center">Nombre completo</th>
+                                                        <th class="text-center">Puesto</th>
+                                                        <th class="text-center">Sucursal</th>
+                                                        <th class="text-center">Estado</th>
+                                                        <th class="text-center">Dar de alta</th>
+                                                    </thead>
+                                                    <tbody>
+                                                    <c:set var = "colaborador" scope = "session" value = "${colaboradores}"/>
+                                                    <c:choose>
+                                                        <c:when test="${empty colaborador}">
+                                                            <tr>
+                                                                <td colspan="7" class="text-center">
+                                                                    <p class="mt-5">No hay colaboradores para mostrar</p>
+                                                                </td>
+                                                            </tr>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <c:forEach items="${colaboradores}" var="bo">
+                                                                <c:choose>
+                                                                    <c:when test="${bo.state =='INACTIVE'}">
+                                                                        <tr>
+                                                                            <td class="text-center">${bo.name}</td>
+                                                                            <td class="text-center">${bo.puesto.name}</td>
+                                                                            <td class="text-center">${bo.sucursal.name}</td>
+                                                                            <td class="text-center">
+                                                                                <c:choose>
+                                                                                    <c:when test="${bo.state =='ACTIVE'}">
+                                                                                        <span class="badge badge-success">${bo.state.displayName}</span>
+                                                                                    </c:when>
+                                                                                    <c:otherwise>
+                                                                                        <span class="badge badge-danger">${bo.state.displayName}</span>
+                                                                                    </c:otherwise>
+                                                                                </c:choose>
+                                                                            </td>
+                                                                            </td>
+                                                                            <td class="text-center">
+                                                                                <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon" href="<c:url value='/colaborador/alta?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-add"></i></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:forEach>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

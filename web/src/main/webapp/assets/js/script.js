@@ -205,3 +205,73 @@ $(document).ready(function() {
         }
     });
 })
+
+$(document).ready(function () {
+    $(this).on('click', '#borrar-indicador', function(){
+        $(this).parent().parent().parent().remove()
+    });
+})
+
+$(document).ready(function () {
+    $(this).on('click', '#borrar-categoria-indicador', function(){
+        $(this).parent().parent().remove();
+    });
+})
+
+$(document).ready(function () {
+    posicion_indicador = 0;
+    $('.posicion-indicador').each(function(){
+        posicion_indicador += parseFloat($(this).val());
+    });
+    $(this).on('click', '#agregar-indicador', function(){
+        posicion_indicador = posicion_indicador + 1;
+        posicion_categoria_indicador = 0;
+        var html =
+            '           <h6 class="mt-5">Indicador</h6>' +
+            '           <div class="row">' +
+            '               <div class="col">' +
+            '                   <input type="text" name="items['+posicion_indicador+'].value" class="form-control mt-3" required placeholder="Ingrese nombre del indicador">' +
+            '               </div>' +
+            '               <div class="col">' +
+            '                   <button class="btn btn-outline-danger" id="borrar-indicador" type="button">Borrar</button>' +
+            '                   <button class="btn btn-outline-success" id="agregar-indicador" type="button">Agregar</button>' +
+            '               </div>' +
+            '           </div>' +
+            '           <h6 class="mt-5">Categor&iacute;as del indicador</h6>' +
+            '           <input type="hidden" id="${statusConsideracion.index}" class="posicion-categoriaIndicador"> ' +
+            '           <input type="hidden" id="${status.index}" class="posicion-indicador">' +
+            '           <div class="row">' +
+            '               <div class="col">' +
+'                               <input type="text" name="items['+posicion_indicador+'].consideraciones['+posicion_categoria_indicador+'].value" size="30" class="form-control mt-2" required placeholder="Ingrese nombre de la categoria del indicador">\n' +
+            '               </div>' +
+            '               <div class="col">' +
+            '                   <button class="btn btn-outline-danger" id="borrar-categoria-indicador" type="button">Borrar</button>' +
+            '                   <button class="btn btn-outline-success" id="agregar-categoria-indicador" type="button">Agregar</button>' +
+            '               </div>' +
+            '           </div>';
+        $('.contenedor-indicador').append(html);
+    });
+})
+
+$(document).ready(function () {
+    posicion_categoria_indicador = 0;
+
+    $('.categoria-indicador').each(function(){
+        posicion_categoria_indicador += parseFloat($(this).val());
+    });
+    $(this).on('click', '#agregar-categoria-indicador', function(){
+        posicion_categoria_indicador = posicion_categoria_indicador + 1;
+        var html = '<div class="item-consideraciones">' +
+            '           <div class="row">' +
+            '               <div class="col">' +
+            '                   <input type="text" name="items['+posicion_indicador+'].consideraciones['+posicion_categoria_indicador+'].value" size="30" class="form-control mt-2" required placeholder="Ingrese nombre de la categoria del indicador">\n' +
+            '               </div>' +
+            '               <div class="col">' +
+            '                   <button class="btn btn-outline-danger" id="borrar-categoria-indicador" type="button">Borrar</button>' +
+            '                   <button class="btn btn-outline-success" id="agregar-categoria-indicador" type="button">Agregar</button>' +
+            '               </div>' +
+            '           </div>'+
+        '           </div>';
+        $(this).parent().parent().parent().append(html);
+    });
+})

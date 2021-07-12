@@ -50,9 +50,10 @@
                                     <th>Fecha de carga</th>
                                     <th class="text-center">Sucursal</th>
                                     <th>Items</th>
-                                    <th>Dar de baja</th>
                                     <th>Estado</th>
-                                    <th>Evaluar</th>
+                                    <th>Dar de baja</th>
+                                    <th></th>
+                                    <th></th>
                                 </thead>
                                 <tbody>
                                 <c:set var = "evaluaciones" scope = "session" value = "${evaluaciones}"/>
@@ -219,9 +220,6 @@
                                                     </div>
                                                     <!--Fin de modal-->
                                                 </td>
-                                                <td class="text-center">
-                                                    <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/evaluacionDelColaborador/desactivar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-delete"></i></a>
-                                                </td>
                                                 <td>
                                                     <c:choose>
                                                         <c:when test="${bo.estadoEvaluacion == 'FINALIZADA'}">
@@ -232,11 +230,20 @@
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </td>
+                                                <td>
+                                                    <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/evaluacionDelColaborador/desactivar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-delete"></i></a>
+                                                </td>
                                                 <c:choose>
                                                     <c:when test="${bo.estadoEvaluacion == 'PENDIENTE'}">
                                                         <td>
                                                             <a href="<c:url value='/evaluacionDelColaborador/update?id=${bo.id}'/>" title="Continuar evaluaci&oacute;n" class="btn btn-success">Continuar Evaluaci&oacute;n</a>
+                                                        </td>
                                                     </c:when>
+                                                    <c:otherwise>
+                                                        <td>
+                                                            <a href="<c:url value='/evaluacionDelColaborador/update?id=${bo.id}'/>">Editar</a>
+                                                        </td>
+                                                    </c:otherwise>
                                                 </c:choose>
                                             </tr>
                                             </c:when>
@@ -253,14 +260,183 @@
                     <div class="card-footer">
                         <hr>
                         <div class="row mt-4">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <form name="evaluacionDelColaborador" action="list" method="get">
                                     <input type="hidden" name="page" value="${page}"/>
                                     <tags:paginador page="${page}" formName="search"/>
                                 </form>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <a class="btn btn-success" href="<c:url value='/evaluacionDelColaborador/list'/>" title="Agregar sucursal">Lista completa</a>
+                            </div>
+                            <div class="col-md-4">
+                                <!-- Large modal -->
+                                <button type="button" class="btn btn-primary margin-button" data-toggle="modal" data-target=".evaluacion-inactiva-${bo.id}">Evaluaciones inactivas</button>
+
+                                <div class="modal fade evaluacion-inactiva-${bo.id}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" style="max-width: 80%; height: 90%;" >
+                                        <div class="modal-content p-3" style="height: 100%;">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">NOMBRE COMPLETO</th>
+                                                        <th scope="col">PUESTO</th>
+                                                        <th scope="col">FECHA DE CARGA</th>
+                                                        <th scope="col">SUCURSAL</th>
+                                                        <th scope="col">ITEMS</th>
+                                                        <th scope="col">ESTADO</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:forEach items="${evaluaciones}" var="bo">
+                                                            <c:choose>
+                                                                <c:when test="${bo.state =='INACTIVE'}">
+                                                                    <tr>
+                                                                        <td>${bo.colaborador.name}</td>
+                                                                        <td>${bo.rolEvaluado.name}</td>
+                                                                        <td>${bo.colaborador.sucursal.name}</td>
+                                                                        <td><fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${bo.fechaDeCarga}" /></td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".item-${bo.id}">Items </button>
+
+                                                                            <!--Comienzo de modal-->
+                                                                            <div class="modal fade item-${bo.id}">
+                                                                                <div class="modal-dialog" style="max-width: 80%; height: 90%">
+                                                                                    <div class="modal-content" style="height: 100%">
+                                                                                        <div class="content">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                    <div class="card">
+                                                                                                        <div class="card-header">
+                                                                                                            <h4 class="card-title">Evaluaci&oacute;n del colaborador</h4>
+                                                                                                        </div>
+                                                                                                        <div class="card-body">
+                                                                                                            <div class="table-responsive-md">
+                                                                                                                <table class="table">
+                                                                                                                    <thead class="text-primary">
+                                                                                                                    <tr>
+                                                                                                                        <th class="text-center" width="10%">Items</th>
+                                                                                                                            <%--<th width="15%" class="text-center">Rating Estrellas</th>--%>
+                                                                                                                        <th class="text-center" width="70%">Consideraciones</th>
+                                                                                                                        <th class="text-center" width="20%">Rating</th>
+                                                                                                                    </tr>
+                                                                                                                    </thead>
+                                                                                                                    <tbody>
+                                                                                                                    <c:forEach items="${bo.itemEvaluados}" var="itemEvaluado">
+
+                                                                                                                        <tr>
+                                                                                                                            <td class="text-center">
+                                                                                                                                    ${itemEvaluado.item.value}
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">
+                                                                                                                                <!-- Collapse buttons -->
+                                                                                                                                <div>
+                                                                                                                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#consideracion-${itemEvaluado.id}"
+                                                                                                                                            aria-expanded="false" aria-controls="collapseExample">
+                                                                                                                                        Consideraciones
+                                                                                                                                    </button>
+                                                                                                                                </div>
+                                                                                                                                <!-- / Collapse buttons -->
+
+                                                                                                                                <!-- Collapsible element -->
+                                                                                                                                <div class="collapse" id="consideracion-${itemEvaluado.id}">
+                                                                                                                                    <div class="mt-3">
+                                                                                                                                        <table class="table table-striped">
+                                                                                                                                            <thead>
+                                                                                                                                            <tr>
+                                                                                                                                                <th scope="col">Descripci&oacute;n de la consideraci&oacute;n</th>
+                                                                                                                                                <th scope="col">Checkeado</th>
+                                                                                                                                            </tr>
+                                                                                                                                            </thead>
+                                                                                                                                            <tbody>
+
+                                                                                                                                            <c:forEach items="${itemEvaluado.consideracionItemEvaluados}" var="consideracionItemEvaluado">
+                                                                                                                                                <tr class="table-info">
+                                                                                                                                                    <td class="p-3">${consideracionItemEvaluado.consideracion.value}</td>
+                                                                                                                                                    <td class="p-3">
+                                                                                                                                                        <c:choose>
+                                                                                                                                                            <c:when test = "${consideracionItemEvaluado.checkeado == true}">
+                                                                                                                                                                <span class="badge badge-success">${consideracionItemEvaluado.checkeado = 'Si'}</span>
+                                                                                                                                                            </c:when>
+
+                                                                                                                                                            <c:otherwise>
+                                                                                                                                                                <span class="badge badge-danger">${consideracionItemEvaluado.checkeado = 'No'}</span>
+                                                                                                                                                            </c:otherwise>
+                                                                                                                                                        </c:choose>
+                                                                                                                                                    </td>
+                                                                                                                                                </tr>
+                                                                                                                                            </c:forEach>
+                                                                                                                                            </tbody>
+                                                                                                                                        </table>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </td>
+                                                                                                                            <td class="text-center">
+                                                                                                                                <div class="rating-star">
+                                                                                                                                    <ul class="list-inline">
+                                                                                                                                        <li class="list-inline-item">
+                                                                                                                                            <c:set var = "score" scope = "session" value = "${itemEvaluado.valorConsideracionItemEvaluados}"/>
+                                                                                                                                            <c:set var = "resto" scope = "session" value = "${5-score}"/>
+                                                                                                                                            <c:forEach begin="1" end="${score}" varStatus="count">
+                                                                                                                                                <span id="score" class="fa fa-star checked"></span>
+                                                                                                                                            </c:forEach>
+                                                                                                                                            <c:forEach begin="1" end="${resto}" varStatus="count">
+                                                                                                                                                <span id="score" class="fa fa-star"></span>
+                                                                                                                                            </c:forEach>
+                                                                                                                                        </li>
+                                                                                                                                    </ul>
+                                                                                                                                </div>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </c:forEach>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="card-footer">
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-6"></div>
+                                                                                                                <div class="col-md-6">
+                                                                                                                    <span class="badge badge-secondary text-center text-uppercase float-right">
+                                                                                                                        Score: ${bo.resultado}
+                                                                                                                    </span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--Fin de modal-->
+                                                                        </td>
+                                                                        <td>
+                                                                            <c:choose>
+                                                                                <c:when test="${bo.state =='ACTIVE'}">
+                                                                                    <span class="badge badge-success">${bo.state.displayName}</span>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <span class="badge badge-danger">${bo.state.displayName}</span>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon mr-3" href="<c:url value='/evaluacion/activar?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-add"></i></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:when>
+                                                            </c:choose>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

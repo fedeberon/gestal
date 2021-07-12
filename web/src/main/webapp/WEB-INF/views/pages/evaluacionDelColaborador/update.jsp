@@ -133,40 +133,42 @@
                                                                     <span class="field-label-header">Item a evaluar "<strong>${bo.value}</strong>"</span><br>
                                                                 </h5>
                                                                 <div class="form-group" id="rating-ability-wrapper">
-                                                                    <c:forEach items="${consideracionesEvaluadas}" var="consideracionEvaluada" varStatus="statusConsideracion">
+                                                                    <c:forEach items="${itemEvaluados}" var="itemEvaluado">
+                                                                        <c:forEach items="${itemEvaluado.consideracionItemEvaluados}" var="consideracionEvaluada" varStatus="statusConsideracion">
+                                                                        <c:if test="${consideracionEvaluada.itemEvaluado.item.id == bo.id}">
+                                                                            <form:hidden path="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].id"/>
+                                                                            <form:hidden path="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].consideracion.id" value="${consideracionEvaluada.consideracion.id}"/>
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <label class="control-label my-4" for="rating" style="font-size: 16px">
+                                                                                        <span class="field-label-header">Consideracion a evaluar "<strong>${consideracionEvaluada.consideracion.value}</strong>"</span><br>
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <c:choose>
+                                                                                        <c:when test="${consideracionEvaluada.checkeado == 'true'}">
+                                                                                            <div class="p-4 check-input">
 
-                                                                        <form:hidden path="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].id"/>
-                                                                        <form:hidden path="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].consideracion.id"/>
+                                                                                                <label class="switch col-1 mt-2">
+                                                                                                    <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});" checked>
+                                                                                                    <span class="slider round slider-check"></span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </c:when>
+                                                                                        <c:otherwise>
+                                                                                            <div class="p-4 check-input">
 
-                                                                        <div class="row">
-                                                                            <div class="col-md-6">
-                                                                                <label class="control-label my-4" for="rating" style="font-size: 16px">
-                                                                                    <span class="field-label-header">Consideracion a evaluar "<strong>${consideracion.value}</strong>"</span><br>
-                                                                                </label>
+                                                                                                <label class="switch col-1 mt-2">
+                                                                                                    <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
+                                                                                                    <span class="slider round slider-check"></span>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </c:otherwise>
+                                                                                    </c:choose>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="col-md-6">
-                                                                                <c:choose>
-                                                                                    <c:when test="${consideracion.checkeado == 'true'}">
-                                                                                        <div class="p-4 check-input">
-
-                                                                                            <label class="switch col-1 mt-2">
-                                                                                                <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});" checked>
-                                                                                                <span class="slider round slider-check"></span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </c:when>
-                                                                                    <c:otherwise>
-                                                                                        <div class="p-4 check-input">
-
-                                                                                            <label class="switch col-1 mt-2">
-                                                                                                <input name="itemEvaluados[${status.index}].consideracionItemEvaluados[${statusConsideracion.index}].checkeado" class="selected-rating-consideracion${bo.id}" id="getClass${bo.id}" type="checkbox" onclick="getChecked(${bo.id});">
-                                                                                                <span class="slider round slider-check"></span>
-                                                                                            </label>
-                                                                                        </div>
-                                                                                    </c:otherwise>
-                                                                                </c:choose>
-                                                                            </div>
-                                                                        </div>
+                                                                        </c:if>
+                                                                        </c:forEach>
                                                                     </c:forEach>
                                                                 </div>
                                                             </div>
