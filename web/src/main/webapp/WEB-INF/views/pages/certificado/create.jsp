@@ -24,13 +24,12 @@
 
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess5">Seleccionar colaborador</label>
-                                <form:select path="colaborador.id" cssClass="form-control">
+                                <p style="font-size: 0.8571em;margin-bottom: 5px;color: #9A9A9A;">Seleccionar colaborador</p>
+                                <form:select path="colaborador.id" cssClass="form-control js-example-basic-single">
                                     <form:options items="${colaboradores}" itemValue="id" itemLabel="name"
                                                   id="inputSuccess5"/>
                                 </form:select>
                             </div>
-
                             <div class="form-group mt-4">
                                 <label class="form-control-label">Seleccionar fecha de inicio de la licencia</label>
                                 <form:input path="fechaInicio" size="50" autocomplete="off" cssClass="form-control" id="fechaInicio"/>

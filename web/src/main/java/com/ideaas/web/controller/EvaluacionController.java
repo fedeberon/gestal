@@ -71,6 +71,8 @@ public class EvaluacionController {
 
     @RequestMapping(value = "saveAndUpdate", method = RequestMethod.POST)
     public String saveAndUpdate(@Valid @ModelAttribute Evaluacion evaluacion, Errors result, Model map){
+//        evaluacionService.delete(evaluacion);
+//        evaluacion.setId(null);
         if (result.hasErrors()) {
 
             return "evaluacion/create";
@@ -124,10 +126,17 @@ public class EvaluacionController {
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         Evaluacion evaluacion= evaluacionService.getById(id);
-        String sizeItems = evaluacion.getItems().toString();
         model.addAttribute("evaluacion", evaluacion);
 
         return "evaluacion/update";
+    }
+
+    @RequestMapping("clonar")
+    public String clonarEvaluacion(@RequestParam Long id, Model model) {
+        Evaluacion evaluacion= evaluacionService.getById(id);
+        model.addAttribute("evaluacion", evaluacion);
+
+        return "evaluacion/clonar";
     }
 
     @RequestMapping("/list")

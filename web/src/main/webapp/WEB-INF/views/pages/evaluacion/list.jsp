@@ -13,11 +13,12 @@
                         <div class="table-responsive-md">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th width="10%" class="text-center">ID</th>
-                                    <th width="20%" class="text-center">Puesto</th>
-                                    <th width="10%" class="text-center">Estado</th>
-                                    <th width="20%" class="text-center">Dar de alta/baja</th>
-                                    <th width="20%" class="text-center">Items</th>
+                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Puesto</th>
+                                    <th class="text-center">Estado</th>
+                                    <th class="text-center">Dar de alta/baja</th>
+                                    <th class="text-center">Items</th>
+                                    <th class="text-center">Copiar evaluaci&oacute;n</th>
                                 </thead>
                                 <tbody>
                                 <c:set var = "evaluaciones" scope = "session" value = "${evaluaciones}"/>
@@ -118,6 +119,9 @@
                                                         </div>
                                                     </div>
                                                     <!--Fin de modal-->
+                                                </td>
+                                                <td class="text-center align-center">
+                                                    <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon mr-3" href="<c:url value='/evaluacion/clonar?id=${bo.id}'/>"><i class="nc-icon nc-single-copy-04"></i></a>
                                                 </td>
                                             </tr>
                                             </c:when>

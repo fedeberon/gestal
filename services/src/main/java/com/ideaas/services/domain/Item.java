@@ -30,7 +30,7 @@ public class Item implements Serializable{
     private Float score;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinColumn(name = "ITEM_EVA_ID", nullable = false)
     private Evaluacion evaluacion;
 

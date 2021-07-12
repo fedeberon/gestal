@@ -18,6 +18,5 @@ public interface EvaluacionService {
     Evaluacion desactivarEvaluacion(Evaluacion evaluacion);
     Evaluacion activarEvaluacion(Evaluacion evaluacion);
     EvaluacionDelColaborador get(Long id);
-
-    void delete(Evaluacion byId);
+    void delete(Evaluacion evaluacion);
 }

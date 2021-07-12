@@ -226,7 +226,7 @@ $(document).ready(function () {
     $(this).on('click', '#agregar-indicador', function(){
         posicion_indicador = posicion_indicador + 1;
         posicion_categoria_indicador = 0;
-        var html =
+        var html =' <div class="contenedor-indicador">'+
             '           <h6 class="mt-5">Indicador</h6>' +
             '           <div class="row">' +
             '               <div class="col">' +
@@ -248,8 +248,9 @@ $(document).ready(function () {
             '                   <button class="btn btn-outline-danger" id="borrar-categoria-indicador" type="button">Borrar</button>' +
             '                   <button class="btn btn-outline-success" id="agregar-categoria-indicador" type="button">Agregar</button>' +
             '               </div>' +
-            '           </div>';
-        $('.contenedor-indicador').append(html);
+            '           </div>' +
+            '       </div>';
+        $('.contenedor-items').append(html);
     });
 })
 
@@ -275,3 +276,7 @@ $(document).ready(function () {
         $(this).parent().parent().parent().append(html);
     });
 })
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});

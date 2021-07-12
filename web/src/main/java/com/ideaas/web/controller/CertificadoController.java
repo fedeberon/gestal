@@ -5,6 +5,7 @@ import com.ideaas.services.domain.Rol;
 import com.ideaas.services.domain.User;
 import com.ideaas.services.domain.certificado.Certificado;
 import com.ideaas.services.domain.certificado.CertificadoTipo;
+import com.ideaas.services.enumeradores.State;
 import com.ideaas.services.service.FileServiceImpl;
 import com.ideaas.services.service.interfaces.CertificadoService;
 import com.ideaas.services.service.interfaces.ColaboradorService;
@@ -19,6 +20,7 @@ import java.security.Principal;
 import java.time.format.TextStyle;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 @RequestMapping("certificado")
@@ -48,6 +50,12 @@ public class CertificadoController {
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         Certificado certificado = certificadoService.getById(id);
+        List<Colaborador> colaboradores = StreamSupport
+                .stream(colaboradorService.findAll().spliterator(), false)
+                .filter(colaborador -> colaborador.getState().equals(State.ACTIVE))
+                .collect(Collectors.toList());
+
+        model.addAttribute("colaboradores", colaboradores);
         model.addAttribute("certificado", certificado);
         model.addAttribute("idCertificado", certificado);
 
@@ -56,6 +64,12 @@ public class CertificadoController {
 
     @RequestMapping("create")
     public String create(@ModelAttribute("certificado") Certificado certificado, Model model) {
+        List<Colaborador> colaboradores = StreamSupport
+                .stream(colaboradorService.findAll().spliterator(), false)
+                .filter(colaborador -> colaborador.getState().equals(State.ACTIVE))
+                .collect(Collectors.toList());
+
+        model.addAttribute("colaboradores", colaboradores);
         return "certificado/create";
     }
 
@@ -66,11 +80,11 @@ public class CertificadoController {
         return CertificadoTipo.values();
     }
 
-    @ModelAttribute("colaboradores")
-    public List<Colaborador> getColaboradores() {
-
-        return colaboradorService.findAll();
-    }
+//    @ModelAttribute("colaboradores")
+//    public List<Colaborador> getColaboradores() {
+//
+//        return colaboradorService.findAll();
+//    }
 
     @RequestMapping("/list")
     public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,

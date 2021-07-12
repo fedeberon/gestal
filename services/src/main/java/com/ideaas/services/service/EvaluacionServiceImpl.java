@@ -66,8 +66,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
 
     @Override
-    public void delete(Evaluacion byId) {
-        dao.delete(byId);
+    public void delete(Evaluacion evaluacion) {
+        dao.delete(evaluacion);
     }
 
     @Override

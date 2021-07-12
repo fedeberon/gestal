@@ -98,6 +98,10 @@
         <put-attribute name="title" value="Editar evaluacion" />
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/update.jsp" />
     </definition>
+    <definition name="evaluacion/clonar" extends="template-def">
+        <put-attribute name="title" value="Copia de evaluacion" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/clonar.jsp" />
+    </definition>
 
     <!--Evaluacion del colaborador -->
     <definition name="evaluacionDelColaborador/list" extends="template-def">
