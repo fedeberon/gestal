@@ -5,6 +5,7 @@ import com.ideaas.services.dao.evaluacion.EvaluacionDao;
 import com.ideaas.services.dao.evaluacion.EvaluacionDaoPagination;
 import com.ideaas.services.dao.evaluacionDelColaborador.EvaluacionDelColaboradorDao;
 import com.ideaas.services.domain.*;
+import com.ideaas.services.service.interfaces.EvaluacionDelColaboradorService;
 import com.ideaas.services.service.interfaces.EvaluacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,12 +27,14 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     private EvaluacionDao dao;
     private EvaluacionDaoPagination daoPageable;
     private EvaluacionDelColaboradorDao evaluacionDelColaboradorDao;
+    private EvaluacionDelColaboradorService evaluacionDelColaboradorService;
 
     @Autowired
-    public EvaluacionServiceImpl(EvaluacionDao dao, EvaluacionDelColaboradorDao evaluacionDelColaboradorDao, EvaluacionDaoPagination evaluacionDaoPagination) {
+    public EvaluacionServiceImpl(EvaluacionDao dao, EvaluacionDelColaboradorDao evaluacionDelColaboradorDao, EvaluacionDaoPagination evaluacionDaoPagination, EvaluacionDelColaboradorService evaluacionDelColaboradorService) {
         this.daoPageable = evaluacionDaoPagination;
         this.dao = dao;
         this.evaluacionDelColaboradorDao = evaluacionDelColaboradorDao;
+        this.evaluacionDelColaboradorService = evaluacionDelColaboradorService;
     }
 
     @Override
@@ -89,8 +92,6 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
     @Override
     public Evaluacion getById(Long id) {
-
         return dao.findById(id).get();
     }
-
 }

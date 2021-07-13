@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ItemEvaluadoDao extends JpaRepository<ItemEvaluado, Long> {
     List<ItemEvaluado> findByEvaluacionDelColaborador_Id(Long id);
+    List<ItemEvaluado> findByItem_Evaluacion_Id(Long id);
 }

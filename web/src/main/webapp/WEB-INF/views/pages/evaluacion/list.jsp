@@ -8,6 +8,16 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title"> Evaluaciones</h4>
+                        <c:choose>
+                            <c:when test="${mensaje != null}">
+                                <div class="alert alert-warning alert-dismissible fade show">
+                                    <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="nc-icon nc-simple-remove"></i>
+                                    </button>
+                                    <span><b> Advertencia - </b> No se puede editar una evaluaci&oacute;n si ya fue utilizada para evaluar a un colaborador</span>
+                                </div>
+                            </c:when>
+                        </c:choose>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive-md">

@@ -2,10 +2,7 @@ package com.ideaas.web.controller;
 
 import com.ideaas.services.domain.*;
 import com.ideaas.services.enumeradores.State;
-import com.ideaas.services.service.interfaces.ConsideracionService;
-import com.ideaas.services.service.interfaces.EvaluacionService;
-import com.ideaas.services.service.interfaces.ItemService;
-import com.ideaas.services.service.interfaces.PuestoService;
+import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,13 +27,15 @@ public class EvaluacionController {
     private ItemService itemService;
     private EvaluacionService evaluacionService;
     private ConsideracionService consideracionService;
+    private ItemEvaluadoService itemEvaluadoService;
 
     @Autowired
-    public EvaluacionController(PuestoService puestoService, EvaluacionService evaluacionService, ItemService itemService, ConsideracionService consideracionService) {
+    public EvaluacionController(PuestoService puestoService, EvaluacionService evaluacionService, ItemService itemService, ConsideracionService consideracionService, ItemEvaluadoService itemEvaluadoService) {
         this.puestoService = puestoService;
         this.evaluacionService = evaluacionService;
         this.itemService = itemService;
         this.consideracionService = consideracionService;
+        this.itemEvaluadoService = itemEvaluadoService;
     }
 
     @RequestMapping("create")
@@ -71,8 +70,8 @@ public class EvaluacionController {
 
     @RequestMapping(value = "saveAndUpdate", method = RequestMethod.POST)
     public String saveAndUpdate(@Valid @ModelAttribute Evaluacion evaluacion, Errors result, Model map){
-//        evaluacionService.delete(evaluacion);
-//        evaluacion.setId(null);
+        evaluacionService.delete(evaluacion);
+        evaluacion.setId(null);
         if (result.hasErrors()) {
 
             return "evaluacion/create";
@@ -124,10 +123,15 @@ public class EvaluacionController {
     }
 
     @RequestMapping("update")
-    public String update(@RequestParam Long id, Model model) {
+    public String update(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes) {
         Evaluacion evaluacion= evaluacionService.getById(id);
-        model.addAttribute("evaluacion", evaluacion);
-
+        List<ItemEvaluado> itemEvaluados = itemEvaluadoService.findByEvaluacionId(evaluacion.getId());
+        if (itemEvaluados.isEmpty()){
+            model.addAttribute("evaluacion", evaluacion);
+        }else {
+            redirectAttributes.addFlashAttribute("mensaje", "asd");
+            return "redirect:list";
+        }
         return "evaluacion/update";
     }
 

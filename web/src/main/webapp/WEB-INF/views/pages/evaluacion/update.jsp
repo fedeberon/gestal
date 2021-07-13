@@ -37,7 +37,13 @@
                                                     <form:input path="items[${status.index}].consideraciones[${statusConsideracion.index}].value" size="30" cssClass="form-control mt-2 consideracion" required="true"/>
                                                 </div>
                                                 <div class="col">
-                                                    <button class="btn btn-outline-danger disabled" id="borrar-categoria-indicador" type="button">Borrar</button>
+
+                                                    <c:if test="${statusConsideracion.first}">
+                                                        <button class="btn btn-outline-danger" id="borrar-categoria-indicador" type="button" disabled>Borrar</button>
+                                                    </c:if>
+                                                    <c:if test="${!statusConsideracion.first}">
+                                                        <button class="btn btn-outline-danger" id="borrar-categoria-indicador" type="button">Borrar</button>
+                                                    </c:if>
                                                     <button class="btn btn-outline-success" id="agregar-categoria-indicador" type="button">Agregar</button>
                                                 </div>
                                             </div>

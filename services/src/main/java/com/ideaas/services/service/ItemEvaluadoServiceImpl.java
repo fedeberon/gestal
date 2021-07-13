@@ -46,4 +46,9 @@ public class ItemEvaluadoServiceImpl implements ItemEvaluadoService {
         dao.deleteAll(itemEvaluados);
     }
 
+    @Override
+    public List<ItemEvaluado> findByEvaluacionId(Long id){
+        return dao.findByItem_Evaluacion_Id(id);
+    }
+
 }

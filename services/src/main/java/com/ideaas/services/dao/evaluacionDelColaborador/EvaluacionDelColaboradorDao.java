@@ -37,5 +37,4 @@ public interface EvaluacionDelColaboradorDao extends JpaRepository<EvaluacionDel
     )
     List<EvaluacionDelColaborador> findEvaluacionDelColaboradorByName(String name);
     List<EvaluacionDelColaborador> findEvaluacionDelColaboradorByColaborador_Id(Long id);
-
 }

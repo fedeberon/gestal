@@ -14,4 +14,6 @@ public interface ItemEvaluadoService {
     List<ItemEvaluado> findByEvaluacionDelColaboradorId(Long id);
 
     void deleteAll(List<ItemEvaluado> itemEvaluados);
+
+    List<ItemEvaluado> findByEvaluacionId(Long id);
 }
