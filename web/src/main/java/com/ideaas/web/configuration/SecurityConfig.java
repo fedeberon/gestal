@@ -50,24 +50,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-
-        auth.inMemoryAuthentication()
-                .withUser("fede")
-                .password("{noop}fede")
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password("{noop}admin")
-                .credentialsExpired(true)
-                .accountExpired(true)
-                .accountLocked(true)
-                .authorities("WRITE_PRIVILEGES", "READ_PRIVILEGES")
-                .roles("MANAGER");
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
             .antMatchers("/colaborador/**").hasAnyAuthority("ADMIN")
@@ -90,8 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .logout().permitAll()
             .and()
-            .exceptionHandling().accessDeniedPage("/403")
-        ;
+            .exceptionHandling().accessDeniedPage("/403");
 
 
     }

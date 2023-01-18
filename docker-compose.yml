@@ -28,7 +28,7 @@ services:
             - gestal_db
 
     gestal_db:
-        image: mysql:5.6
+        image: mysql/mysql-server:8.0.23
         volumes:
             - "./.mysql-data/db:/var/lib/mysql"
         restart: always
