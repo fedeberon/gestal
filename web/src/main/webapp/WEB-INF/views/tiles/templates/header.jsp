@@ -21,13 +21,13 @@
          </div>
          <div class="row">
             <div class="col-md-2">
-               <a type="button" class="btn btn-secondary navbar-brand" data-toggle="tooltip" data-placement="top" title="Atras" onclick="history.go(-1);" >
+               <a type="button" style="background-color: transparent" class="btn btn-secondary navbar-brand" data-toggle="tooltip" data-placement="top" title="Atras" onclick="history.go(-1);" >
                   <i class="nc-icon nc-minimal-left"></i>
                </a>
             </div>
             <div class="col-md-1">
                <a class="navbar-brand mt-2 ml-5">
-                  Gestal
+                  Auditoria de Establecimentos
                </a>
             </div>
             <%--<div class="col-xs-12">--%>

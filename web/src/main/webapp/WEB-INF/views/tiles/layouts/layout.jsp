@@ -7,11 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
         <title><tiles:getAsString name="title" /></title>
         <link href="<c:url value='/static/css/app.css' />" rel="stylesheet">
-
         <meta charset="utf-8" />
-        <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/logo-login.png">
-        <link rel="icon" type="image/png" href="/assets/img/logo-login.png">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title>
             <tiles:getAsString name="title" />
         </title>

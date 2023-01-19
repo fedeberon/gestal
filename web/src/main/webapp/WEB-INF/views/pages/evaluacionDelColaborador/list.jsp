@@ -17,7 +17,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="card-title"> Evaluaciones de los colaboradores</h4>
+                            <h4 class="card-title"> Evaluaciones de Corrales</h4>
                         </div>
                         <div class="col-md-6">
                             <form class="form-inline" action="<c:url value="/evaluacionDelColaborador/search"/> ">
@@ -32,10 +32,10 @@
                         <table class="table">
                             <thead class=" text-primary">
                                 <th>ID</th>
-                                <th>Nombre completo</th>
-                                <th>Puesto</th>
+                                <th>Colaborador</th>
+                                <th>Establecimento</th>
                                 <th>Fecha de carga</th>
-                                <th class="text-center">Sucursal</th>
+                                <th class="text-center">Empresa</th>
                                 <th>Items</th>
                                 <th>Dar de baja</th>
                             </thead>

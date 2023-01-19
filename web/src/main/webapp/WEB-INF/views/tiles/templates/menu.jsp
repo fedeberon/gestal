@@ -16,12 +16,7 @@
 <div>
     <div class="sidebar" data-color="white" data-active-color="danger">
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                <div class="logo-image-small">
-                    <img src="/assets/img/logo-login.png">
-                </div>
-            </a>
-            <a href="<c:url value='home'/>" class="simple-text logo-normal">Actual - Gestal</a>
+            <a href="<c:url value='home'/>" class="simple-text logo-normal"></a>
         </div>
         <div class="sidebar-wrapper">
         <ul class="nav">
@@ -36,8 +31,8 @@
 
                 <li>
                     <a href="<c:url value='/colaborador/list'/>">
-                        <img class="nc-icon colaborators" src="/assets/img/svg/1x/colaborators.png"/>
-                        <p>Colaboradores</p>
+                        <i class="nc-icon nc-layout-11"></i>
+                        <p>Corrales</p>
                     </a>
                 </li>
 
@@ -60,7 +55,7 @@
                     <a href="<c:url value='/evaluacionDelColaborador/list'/>">
                         <i class="nc-icon nc-single-copy-04"></i>
 
-                        <p>Evaluaci&oacute;nes de colaboradores</p>
+                        <p>Mediciones de Establicimentos</p>
                     </a>
                 </li>
             <sec:authorize access="hasAnyAuthority('ADMIN')">
@@ -69,7 +64,7 @@
                     <a href="<c:url value='/puesto/list'/>">
                         <i class="nc-icon nc-key-25"></i>
 
-                        <p>Puestos</p>
+                        <p>Establecimento</p>
                     </a>
                 </li>
 
@@ -77,14 +72,14 @@
                     <a href="<c:url value='/sucursal/list'/>">
                         <i class="nc-icon nc-shop"></i>
 
-                        <p>Sucursales</p>
+                        <p>Empresa</p>
                     </a>
                 </li>
                 <li>
                     <a href="<c:url value='/certificado/list'/>">
                         <i class="nc-icon nc-credit-card"></i>
 
-                        <p>Certificados m&eacute;dicos</p>
+                        <p>Documentos</p>
                     </a>
                 </li>
             </sec:authorize>

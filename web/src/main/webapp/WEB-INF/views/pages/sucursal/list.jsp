@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Sucursales</h4>
+                    <h4 class="card-title"> Empresas</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-md">
@@ -72,11 +72,11 @@
                             </form>
                         </div>
                         <div class="col-md-4">
-                            <a class="btn btn-success" href="<c:url value='/sucursal/create'/>" title="Agregar sucursal">Agregar Sucursal</a>
+                            <a class="btn btn-success" href="<c:url value='/sucursal/create'/>" title="Agregar sucursal">Agregar Empresa</a>
                         </div>
                         <div class="col-md-4">
                             <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar
-                                colaborador</a>
+                                Corral</a>
                         </div>
                     </div>
                 </div>

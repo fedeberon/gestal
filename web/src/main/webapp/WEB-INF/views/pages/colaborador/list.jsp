@@ -10,7 +10,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <h4 class="card-title"> Colaboradores</h4>
+                            <h4 class="card-title"> Corrales</h4>
                         </div>
                         <div class="col-md-6">
                             <form class="form-inline" action="<c:url value="/colaborador/search"/> ">
@@ -25,8 +25,7 @@
                         <table class="table">
                             <thead class=" text-primary">
 
-                                <th class="text-center">Nombre completo</th>
-                                <th class="text-center">Mail</th>
+                                <th class="text-center">Nombre</th>
                                 <th class="text-center">Puesto</th>
                                 <th class="text-center">Sucursal</th>
                                 <th class="text-center">Editar</th>
@@ -50,7 +49,6 @@
                                                 <c:when test="${bo.state =='ACTIVE'}">
                                                     <tr>
                                                         <td class="text-center">${bo.name}</td>
-                                                        <td class="text-center">${bo.email}</td>
                                                         <td class="text-center">${bo.puesto.name}</td>
                                                         <td class="text-center">
 
@@ -139,6 +137,8 @@
                 <div class="card-footer mt-4">
                     <hr>
                     <div class="row">
+
+
                         <div class="col-md-3">
                             <form name="colaborador" action="list" method="get">
                                 <input type="hidden" name="page" value="${page}"/>
@@ -146,16 +146,18 @@
                             </form>
                         </div>
                         <div class="col-md-3">
-                            <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar colaborador</a>
+                            <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar Corral</a>
                         </div>
                         <div class="col-md-3">
-                            <a class="btn btn-success" href="<c:url value='/colaborador/list'/>" title="Agregar sucursal">Lista completa</a>
+                            <a class="btn btn-success" href="<c:url value='/colaborador/list'/>" title="Agregar sucursal">Mostrar Todos</a>
                         </div>
+
+
 
                         <div class="col-md-3">
                             <%--<a class="btn btn-primary" href="<c:url value='/colaborador/list'/>" title="Agregar sucursal">Colaboradores inactivos</a>--%>
                             <!-- Large modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Colaboradores inactivos</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Corrales inactivos</button>
 
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">

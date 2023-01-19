@@ -129,8 +129,10 @@ public class ColaboradorController {
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
-        String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
-        model.addAttribute("rolDelColaborador", rol);
+        if (!colaborador.getRoles().isEmpty()) {
+            String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
+            model.addAttribute("rolDelColaborador", rol);
+        }
         model.addAttribute("colaborador", colaborador);
         return "colaborador/update";
     }

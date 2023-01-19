@@ -5,10 +5,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Editar datos del Colaborador</h4>
+                    <h4 class="card-title"> Editar datos del Corral ${colaborador.name}</h4>
                 </div>
                 <div class="card-body m-auto">
-                    <ul class="nav justify-content-center">
+          <%--          <ul class="nav justify-content-center">
                         <li class="nav-item">
                             <a href="<c:url value='/colaborador/update?id=${colaborador.id}'/>" class="nav-link">Editar</a>
                         </li>
@@ -21,7 +21,7 @@
                         <li class="nav-item">
                             <a href="<c:url value='/colaborador/updatePassword?id=${colaborador.id}'/>" class="nav-link">Editar contrase&ntilde;a</a>
                         </li>
-                    </ul>
+                    </ul>--%>
 
                     <c:url var="actionUrl" value="/colaborador/saveAndUpdate" />
                     <form:form modelAttribute="colaborador" action="${actionUrl}" method="POST">
@@ -33,11 +33,11 @@
                             </div>
 
                             <div class="form-group mt-4 d-none">
-                                <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
+                                <label class="form-control-label" for="inputSuccess1">Nombre</label>
                                 <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                             </div>
 
-                            <div class="form-group mt-4">
+                    <%--        <div class="form-group mt-4">
                                 <label class="form-control-label">Rol del colaborador:</label>
                                 <select name="roles" class="custom-select">
                                     <c:forEach items="${roles}" var="bo" varStatus="status">
@@ -51,10 +51,10 @@
                                         </c:choose>
                                     </c:forEach>
                                 </select>
-                            </div>
+                            </div>--%>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess1">Nombre Completo</label>
+                                <label class="form-control-label" for="inputSuccess1">Nombre</label>
                                 <form:input path="name" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                                 <form:errors path="name" cssClass="error" size="50"/>
                             </div>
@@ -66,14 +66,14 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess3">Seleccionar puesto</label>
+                                <label class="form-control-label" for="inputSuccess3">Tipo</label>
                                 <form:select  path="puesto.id" cssClass="form-control">
                                     <form:options items="${puestos}" itemValue="id" itemLabel="name" id="inputSuccess3"/>
                                 </form:select>
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess6">Seleccionar sucursal</label>
+                                <label class="form-control-label" for="inputSuccess6">Empresa</label>
                                 <form:select path="sucursal.id" cssClass="form-control">
                                     <form:options items="${sucursales}" itemValue="id" itemLabel="name" id="inputSuccess6"/>
                                 </form:select>

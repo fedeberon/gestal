@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Crear un nuevo colaborador</h4>
+                    <h4 class="card-title"> Crear un nuevo corral</h4>
                 </div>
                 <div class="card-body m-auto">
                     <c:url var="actionUrl" value="/colaborador/save"/>
@@ -14,7 +14,7 @@
                             <input type="hidden" name="colaborador.id" value="${colaborador.id}"/>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess1">Nombre de usuario</label>
+                                <label class="form-control-label" for="inputSuccess1">Nombre</label>
                                 <form:input path="username" size="50" cssClass="form-control" id="inputSuccess1" required="true"/>
                                 <c:if test="${errorUsername != null}">
                                     <p class="text-danger mt-2">${errorUsername}</p>
@@ -27,17 +27,8 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label">Rol del colaborador:</label>
-                                <select name="roles" class="custom-select">
-                                    <c:forEach items="${roles}" var="bo" varStatus="status">
-                                        <option value="${status.count}">${bo.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-
-                            <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess3">Nombre completo</label>
-                                <form:input path="name" size="50" cssClass="form-control" id="inputSuccess3" required="true"/>
+                                <label class="form-control-label" for="inputSuccess3">Ubicacion</label>
+                                <form:input path="name" size="50" cssClass="form-control" id="inputSuccess3"/>
                             </div>
 
                             <div class="form-group mt-4">
@@ -50,18 +41,16 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess5">Seleccionar puesto</label>
+                                <label class="form-control-label" for="inputSuccess5">Tipor</label>
                                 <form:select path="puesto.id" cssClass="form-control">
                                             <form:options items="${puestos}" itemValue="id" itemLabel="name" id="inputSuccess5"/>
                                 </form:select>
                             </div>
 
                             <div class="form-group mt-4">
-                                <label class="form-control-label" for="inputSuccess6">Seleccionar sucursal</label>
+                                <label class="form-control-label" for="inputSuccess6">Seleccionar Empresa</label>
                                 <form:select path="sucursal.id" cssClass="form-control">
-                                    <c:choose>
                                         <form:options items="${sucursales}" itemValue="id" itemLabel="name" id="inputSuccess6"/>
-                                    </c:choose>
                                 </form:select>
                             </div>
 

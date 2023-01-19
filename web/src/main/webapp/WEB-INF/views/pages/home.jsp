@@ -47,8 +47,8 @@
                             </div>
                         </div>
                         <div class="col-7 col-md-8">
-                            <div class="numbers">
-                                <p class="card-category">Cantidad de evaluaciones en el mes</p>
+                            <div class="numbers" style="height: 130px">
+                                <p class="card-category">Cantidad de mediciones mes corriente</p>
                                 <p class="card-title">${cantidadEvaluacionesMes}<p>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6 col-sm-6"  style="height: 130px">
             <div class="card card-stats">
                 <div class="card-body ">
                     <div class="row">
@@ -65,9 +65,9 @@
                                 <i class="nc-icon nc-money-coins text-success"></i>
                             </div>
                         </div>
-                        <div class="col-7 col-md-8">
+                        <div class="col-7 col-md-8" style="height: 130px">
                             <div class="numbers">
-                                <p class="card-category">Colaboradores evaluados</p>
+                                <p class="card-category">Corrales medidos</p>
                                 <p class="card-title"><c:out value="${fn:length(cantColaboradoresEvaluados)}" /><p>
                             </div>
                         </div>
@@ -77,16 +77,16 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
             <div class="card card-stats">
-                <div class="card-body ">
+                <div class="card-body" style="height: 130px">
                     <div class="row">
                         <div class="col-5 col-md-4">
                             <div class="icon-big text-center icon-warning">
                                 <i class="nc-icon nc-bullet-list-67 text-danger"></i>
                             </div>
                         </div>
-                        <div class="col-7 col-md-8">
+                        <div class="col-7 col-md-8" style="height: 130px">
                             <div class="numbers">
-                                <p class="card-category">Cantidad de evaluaciones</p>
+                                <p class="card-category">Cantidad de Mediciones</p>
                                 <p class="card-title"><c:out value="${fn:length(evaluaciones)}" /><p>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                 <i class="nc-icon nc-shop text-primary"></i>
                             </div>
                         </div>
-                        <div class="col-7 col-md-8">
+                        <div class="col-7 col-md-8" style="height: 130px">
                             <div class="numbers">
                                 <p class="card-category">Sucursales</p>
                                 <p class="card-title"><c:out value="${fn:length(sucursales)}" /><p>
@@ -116,7 +116,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card ">
+            <div class="card">
                 <div class="card-header ">
                     <h5 class="card-title">Desempe&ntilde;o promedio mensual general </h5>
                 </div>
@@ -157,7 +157,7 @@
         <div class="col-md-8">
             <div class="card card-chart">
                 <div class="card-header">
-                    <h5 class="card-title">Desempe&ntilde;o promedio mensual por sucursal</h5>
+                    <h5 class="card-title">Desempe&ntilde;o promedio mensual por Empresa</h5>
                 </div>
                 <div class="card-body">
                     <div id="graficoSucursal" style="height: 370px; width: 100%;"></div>

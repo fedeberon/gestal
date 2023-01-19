@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Editar sucursal</h4>
+                    <h4 class="card-title"> Editar Empresa</h4>
                 </div>
                 <div class="card-body m-auto">
                     <c:url var="actionUrl" value="/sucursal/save" />
