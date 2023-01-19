@@ -1,5 +1,6 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.bean.State;
 import com.ideaas.services.service.ConsideracionItemEvaluadoService;
 import com.ideaas.services.service.interfaces.*;
 import com.ideaas.services.domain.Colaborador;
@@ -12,6 +13,9 @@ import com.ideaas.services.service.interfaces.PuestoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,10 +23,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Enzo on 17/2/2020.
@@ -54,17 +62,39 @@ public class EvaluacionDelColaboradorController {
     public String findAllPageable(@RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "0") Integer page, Model model) {
 
-        List<EvaluacionDelColaborador> evaluaciones = evaluacionDelColaboradorService.findAllPageable(size,page,"id");
-        evaluaciones.forEach(evaluacionDelColaborador -> {
-            evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
-                if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
-                    Float scoreEnCero = 0f;
-                    model.addAttribute("score0", scoreEnCero);
-                    evaluacionDelColaborador.setResultado(0f);
-                }
-            });
-        });
-        model.addAttribute("evaluaciones", evaluaciones);
+        String authentication = SecurityContextHolder.getContext().getAuthentication().getName();
+        Colaborador colaborador = colaboradorService.getUsername(authentication);
+        String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
+
+        List<EvaluacionDelColaborador> evaluacionesDelAdmin = evaluacionDelColaboradorService.findAllPageable(10, page, "id");
+        List<EvaluacionDelColaborador> evaluacionesDelColaborador = evaluacionDelColaboradorService.findByColaborador(colaborador.getId());
+
+        switch (rol){
+            case "COLABORADOR":
+                evaluacionesDelColaborador.forEach(evaluacionDelColaborador -> {
+                evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+                    if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
+                        Float scoreEnCero = 0f;
+                        model.addAttribute("score0", scoreEnCero);
+                        evaluacionDelColaborador.setResultado(0f);
+                    }
+                });
+                });
+                model.addAttribute("evaluaciones", evaluacionesDelColaborador);
+                break;
+            case "ADMIN":
+                evaluacionesDelAdmin.forEach(evaluacionDelColaborador -> {
+                    evaluacionDelColaborador.getItemEvaluados().forEach(itemEvaluado -> {
+                        if (itemEvaluado.getItem().isInvalidaEvaluacion() == true){
+                            Float scoreEnCero = 0f;
+                            model.addAttribute("score0", scoreEnCero);
+                            evaluacionDelColaborador.setResultado(0f);
+                        }
+                    });
+                });
+                model.addAttribute("evaluaciones", evaluacionesDelAdmin);
+                break;
+        }
         model.addAttribute("page", page);
         model.addAttribute("consideracionItemEvaluado", consideracionItemEvaluadoService.findAll());
 
@@ -95,6 +125,7 @@ public class EvaluacionDelColaboradorController {
             return "colaborador/create";
 
         } else {
+            evaluacionDelColaborador.setState(State.ACTIVE);
             evaluacionDelColaboradorService.save(evaluacionDelColaborador);
             return "redirect:list";
         }
@@ -104,5 +135,15 @@ public class EvaluacionDelColaboradorController {
     public String findColaboradorByName(@RequestParam(defaultValue = "") String value, Model model) {
         model.addAttribute("evaluaciones", evaluacionDelColaboradorService.findColaboradorByName(value));
         return "evaluacionDelColaborador/list";
+    }
+
+    @RequestMapping("desactivar")
+    public String desactivarEvaluacion(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+        EvaluacionDelColaborador evaluacionDelColaborador= evaluacionDelColaboradorService.getById(id);
+        evaluacionDelColaborador.setState(State.INACTIVE);
+        redirectAttributes.addAttribute("id", evaluacionDelColaborador.getId());
+        evaluacionDelColaboradorService.save(evaluacionDelColaborador);
+
+        return "redirect:list";
     }
 }

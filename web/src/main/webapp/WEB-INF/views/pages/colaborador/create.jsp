@@ -43,7 +43,7 @@
                             <div class="form-group mt-4">
 
                                 <label class="form-control-label" for="inputSuccess4">Correo electr&oacute;nico</label>
-                                <form:input path="email" size="50" cssClass="form-control" id="inputSuccess4" required="true"/>
+                                <form:input path="email" size="50" cssClass="form-control" id="inputSuccess4"/>
                                 <c:if test="${errorEmail != null}">
                                     <p class="text-danger mt-2">${errorEmail}</p>
                                 </c:if>
@@ -52,14 +52,16 @@
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess5">Seleccionar puesto</label>
                                 <form:select path="puesto.id" cssClass="form-control">
-                                    <form:options items="${puestos}" itemValue="id" itemLabel="name" id="inputSuccess5"/>
+                                            <form:options items="${puestos}" itemValue="id" itemLabel="name" id="inputSuccess5"/>
                                 </form:select>
                             </div>
 
                             <div class="form-group mt-4">
                                 <label class="form-control-label" for="inputSuccess6">Seleccionar sucursal</label>
                                 <form:select path="sucursal.id" cssClass="form-control">
-                                    <form:options items="${sucursales}" itemValue="id" itemLabel="name" id="inputSuccess6"/>
+                                    <c:choose>
+                                        <form:options items="${sucursales}" itemValue="id" itemLabel="name" id="inputSuccess6"/>
+                                    </c:choose>
                                 </form:select>
                             </div>
 

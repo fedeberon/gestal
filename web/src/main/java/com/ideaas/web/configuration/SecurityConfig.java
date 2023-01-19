@@ -52,28 +52,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-            .antMatchers("/colaborador/**").hasAnyAuthority("ADMIN")
-            .antMatchers("/evaluacion/**").hasAnyAuthority("ADMIN")
-            .antMatchers("/evaluacionDelColaborador/**").hasAnyAuthority("ADMIN","COLABORADOR")
-            .antMatchers("/puesto/**").hasAnyAuthority("ADMIN")
-            .antMatchers("/sucursal/**").hasAnyAuthority("ADMIN")
-            .antMatchers("/usuario/**").hasAnyAuthority("ADMIN")
-            .antMatchers("/certificado/**").hasAnyAuthority("ADMIN", "COLABORADOR")
             .antMatchers("/assets/**").permitAll()
             .antMatchers("/forgotPassword").permitAll()
             .antMatchers("/resetPassword").permitAll()
             .antMatchers("/api/authenticate").permitAll()
-            .anyRequest().authenticated()
+            .anyRequest().permitAll()
             .and()
             .formLogin()
             .defaultSuccessUrl("/home")
             .loginPage("/login")
             .successHandler(authenticationSuccessHandler).permitAll()
             .and()
-            .logout().permitAll()
-            .and()
-            .exceptionHandling().accessDeniedPage("/403");
-
-
+            .logout().permitAll();
     }
+
 }

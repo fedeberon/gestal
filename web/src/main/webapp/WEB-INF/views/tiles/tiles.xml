@@ -48,6 +48,11 @@
         <put-attribute name="body" value="/WEB-INF/views/pages/colaborador/updateEmail.jsp" />
     </definition>
 
+    <definition name="colaborador/updatePassword" extends="template-def">
+        <put-attribute name="title" value="Editar colaborador" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/colaborador/updatePassword.jsp" />
+    </definition>
+
 
 
     <!--Usuario -->

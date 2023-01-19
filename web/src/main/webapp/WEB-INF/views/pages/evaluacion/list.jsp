@@ -32,6 +32,8 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${evaluaciones}" var="bo">
+                                        <c:choose>
+                                        <c:when test="${bo.state =='ACTIVE'}">
                                         <tr>
                                             <td class="text-center">${bo.id}</td>
                                             <td class="text-center">${bo.puesto.name}</td>
@@ -49,11 +51,11 @@
                                             <td class="text-center">
                                                 <div class="row">
                                                     <div class="col-md-6 col-3">
-                                                        <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon float-right" href="<c:url value='/evaluacion/activar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-add"></i></a>
+                                                        <a type="button" class="btn btn-sm btn-outline-success btn-round btn-icon float-right" href="<c:url value='/evaluacion/activar?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-add"></i></a>
                                                     </div>
 
                                                     <div class="col-md-6 col-3">
-                                                        <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/evaluacion/desactivar?id=${bo.id}'/>" title="Dar de alta"><i class="nc-icon nc-simple-delete"></i></a>
+                                                        <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/evaluacion/desactivar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-delete"></i></a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -71,7 +73,7 @@
                                                                 <thead class="thead-light">
                                                                     <tr>
                                                                         <th scope="col text-center">Nombre</th>
-                                                                        <th scope="col text-center">Score</th>
+                                                                        <th scope="col text-center">Peso del indicador</th>
                                                                         <th scope="col text-center">Invalida evaluaci&oacute;n</th>
                                                                         <th colspan="3" scope="col">Categor&iacute;a de indicador</th>
                                                                     </tr>
@@ -124,6 +126,8 @@
                                                 <!--Fin de modal-->
                                             </td>
                                         </tr>
+                                        </c:when>
+                                        </c:choose>
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>

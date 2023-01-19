@@ -25,6 +25,7 @@
                             <th>Telefono</th>
                             <th>Mail</th>
                             <th>Editar</th>
+                            <th>Dar de baja</th>
                             </thead>
                             <tbody>
                             <c:set var = "sucursales" scope = "session" value = "${sucursales}"/>
@@ -38,15 +39,22 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${sucursales}" var="bo">
-                                        <tr>
-                                            <td>${bo.name}</td>
-                                            <td>${bo.direction}</td>
-                                            <td>${bo.telephone}</td>
-                                            <td>${bo.mail}</td>
-                                            <td>
-                                                <a href="<c:url value='/sucursal/update?id=${bo.id}'/>" class="btn btn-secondary">Editar</a>
-                                            </td>
-                                        </tr>
+                                        <c:choose>
+                                        <c:when test="${bo.state =='ACTIVE'}">
+                                            <tr>
+                                                <td>${bo.name}</td>
+                                                <td>${bo.direction}</td>
+                                                <td>${bo.telephone}</td>
+                                                <td>${bo.mail}</td>
+                                                <td>
+                                                    <a href="<c:url value='/sucursal/update?id=${bo.id}'/>" class="btn btn-secondary">Editar</a>
+                                                </td>
+                                                <td>
+                                                    <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/sucursal/desactivar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-delete"></i></a>
+                                                </td>
+                                            </tr>
+                                        </c:when>
+                                        </c:choose>
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>

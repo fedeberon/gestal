@@ -47,7 +47,6 @@ public class EvaluacionServiceImpl implements EvaluacionService {
                 evaluacionPuesto.setState(State.INACTIVE);
             }
         });
-        evaluacion.setState(State.ACTIVE);
 
         return dao.save(evaluacion);
     }

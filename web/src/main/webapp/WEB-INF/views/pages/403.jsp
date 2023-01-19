@@ -22,7 +22,7 @@
         <div class="col-md-10">
             <h3>OPPSSS!!!!</h3>
             <p>Lo sentimos, su acceso es rechazado debido a razones de seguridad de nuestro servidor y tambi&eacute;n de nuestros datos confidenciales.<br/>Regrese a la p&aacute;gina anterior para continuar navegando.</p>
-            <a class="btn btn-danger" href="javascript:history.back()">Volver atras</a>
+            <a class="btn btn-danger" href="javascript:history.back()">Volver atras     ...</a>
         </div>
     </div>
 </div>

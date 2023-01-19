@@ -36,5 +36,6 @@ public interface EvaluacionDelColaboradorDao extends JpaRepository<EvaluacionDel
             + "OR c.rolEvaluado.name LIKE %?1%"
     )
     List<EvaluacionDelColaborador> findEvaluacionDelColaboradorByName(String name);
+    List<EvaluacionDelColaborador> findEvaluacionDelColaboradorByColaborador_Id(Long id);
 
 }

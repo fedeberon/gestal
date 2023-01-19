@@ -37,6 +37,7 @@
                                 <th>Fecha de carga</th>
                                 <th class="text-center">Sucursal</th>
                                 <th>Items</th>
+                                <th>Dar de baja</th>
                             </thead>
                             <tbody>
                             <c:set var = "evaluaciones" scope = "session" value = "${evaluaciones}"/>
@@ -50,6 +51,8 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${evaluaciones}" var="bo">
+                                        <c:choose>
+                                        <c:when test="${bo.state =='ACTIVE'}">
                                         <tr>
                                             <td>${bo.id}</td>
                                             <td>${bo.colaborador.name}</td>
@@ -85,7 +88,6 @@
                                                     </div>
                                                 </div>
                                             </td>
-
                                             <td>
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".evaluacionDelColaborador-${bo.id}">Items </button>
 
@@ -230,12 +232,16 @@
                                                 </div>
                                                 <!--Fin de modal-->
                                             </td>
+                                            <td class="text-center">
+                                                <a type="button" class="btn btn-sm btn-outline-danger btn-round btn-icon float-left" href="<c:url value='/evaluacionDelColaborador/desactivar?id=${bo.id}'/>" title="Dar de baja"><i class="nc-icon nc-simple-delete"></i></a>
+                                            </td>
                                         </tr>
+                                        </c:when>
+                                        </c:choose>
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
                             </tbody>
-
                         </table>
                     </div>
                 </div>

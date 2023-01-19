@@ -4,6 +4,7 @@ import com.ideaas.services.bean.State;
 import com.ideaas.services.domain.*;
 import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,6 +67,8 @@ public class ColaboradorController {
     @RequestMapping("updateUsername")
     public String updateUsername(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
+        String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
+        model.addAttribute("rolDelColaborador", rol);
         model.addAttribute("colaborador", colaborador);
         return "colaborador/updateUsername";
     }
@@ -86,6 +89,8 @@ public class ColaboradorController {
     @RequestMapping("updateEmail")
     public String updateEmail(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
+        String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
+        model.addAttribute("rolDelColaborador", rol);
         model.addAttribute("colaborador", colaborador);
         return "colaborador/updateEmail";
     }
@@ -103,9 +108,29 @@ public class ColaboradorController {
         }
     }
 
+    @RequestMapping("updatePassword")
+    public String updatePassword(@RequestParam Long id, Model model) {
+        Colaborador colaborador = colaboradorService.get(id);
+        String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
+        model.addAttribute("rolDelColaborador", rol);
+        model.addAttribute("colaborador", colaborador);
+        return "colaborador/updatePassword";
+    }
+    @RequestMapping("saveAndUpdatePassword")
+    public String saveAndUpdatePassword(@ModelAttribute("colaborador") Colaborador colaborador, Model model){
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String pass = bCryptPasswordEncoder.encode(colaborador.getPassword());
+        colaborador.setState(State.ACTIVE);
+        colaborador.setPassword(pass);
+        colaboradorService.save(colaborador);
+        return "redirect:list";
+    }
+
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         Colaborador colaborador = colaboradorService.get(id);
+        String rol = String.valueOf(colaborador.getRoles().stream().findFirst().get().getName());
+        model.addAttribute("rolDelColaborador", rol);
         model.addAttribute("colaborador", colaborador);
         return "colaborador/update";
     }
@@ -145,13 +170,11 @@ public class ColaboradorController {
 
     @ModelAttribute("puestos")
     public List<Puesto> getPuestos() {
-
         return puestoService.findAll();
     }
 
     @ModelAttribute("sucursales")
     public List<Sucursal> getSucursales() {
-
         return sucursalService.findAll();
     }
 
