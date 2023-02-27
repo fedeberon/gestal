@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-7 col-md-8">
                             <div class="numbers" style="height: 130px">
-                                <p class="card-category">Cantidad de mediciones mes corriente</p>
+                                <p class="card-category">Mediciones mes corriente</p>
                                 <p class="card-title">${cantidadEvaluacionesMes}<p>
                             </div>
                         </div>

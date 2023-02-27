@@ -96,7 +96,7 @@
         <div class="user_card">
             <div class="d-flex justify-content-center">
                 <div class="brand_logo_container bg-light">
-                    <img src="/assets/img/logo-login.png" class="brand_logo" alt="Logo">
+                    <%--<img src="/assets/img/logo-login.png" class="brand_logo" alt="Logo">--%>
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">

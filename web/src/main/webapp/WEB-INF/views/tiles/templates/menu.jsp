@@ -64,7 +64,7 @@
                     <a href="<c:url value='/puesto/list'/>">
                         <i class="nc-icon nc-key-25"></i>
 
-                        <p>Establecimento</p>
+                        <p>Tipos de Establecimentos</p>
                     </a>
                 </li>
 

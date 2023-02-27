@@ -85,7 +85,7 @@
 
     <!--Evaluacion -->
     <definition name="evaluacion/create" extends="template-def">
-        <put-attribute name="title" value="Agregar evaluacion" />
+        <put-attribute name="title" value="Agregar Monitoreo" />
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/create.jsp" />
     </definition>
 
@@ -95,23 +95,23 @@
     </definition>
 
     <definition name="evaluacion/update" extends="template-def">
-        <put-attribute name="title" value="Editar evaluacion" />
+        <put-attribute name="title" value="Editar monitoreo" />
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacion/update.jsp" />
     </definition>
 
     <!--Evaluacion del colaborador -->
     <definition name="evaluacionDelColaborador/list" extends="template-def">
-        <put-attribute name="title" value="Lista de evaluaciones del colaborador" />
+        <put-attribute name="title" value="Lista de Monitoreos" />
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacionDelColaborador/list.jsp" />
     </definition>
 
     <definition name="evaluacionDelColaborador/create" extends="template-def">
-        <put-attribute name="title" value="Crear evaluacion" />
+        <put-attribute name="title" value="Crear Monitoreo" />
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacionDelColaborador/create.jsp" />
     </definition>
 
     <definition name="evaluacionDelColaborador/createEvaluacion" extends="template-def">
-        <put-attribute name="title" value="Crear evaluacion" />
+        <put-attribute name="title" value="Crear monitoreo" />
         <put-attribute name="body" value="/WEB-INF/views/pages/evaluacionDelColaborador/createEvaluacion.jsp" />
     </definition>
 
@@ -122,7 +122,7 @@
     </definition>
 
     <definition name="puesto/list" extends="template-def">
-        <put-attribute name="title" value="Lista de Puestos" />
+        <put-attribute name="title" value="Lista de Estableciemntos" />
         <put-attribute name="body" value="/WEB-INF/views/pages/puesto/list.jsp" />
     </definition>
 

@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Puestos</h4>
+                    <h4 class="card-title"> Tipo de Establecimiento</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-md">
@@ -22,7 +22,7 @@
                                 <c:when test="${empty puestos}">
                                     <tr>
                                         <td colspan="5" class="text-center">
-                                            <p class="mt-5">No hay puestos para mostrar</p>
+                                            <p class="mt-5">No hay establecimentos para mostrar</p>
                                         </td>
                                     </tr>
                                 </c:when>
@@ -54,11 +54,11 @@
                         </div>
                         <div class="col-md-4">
                             <a class="btn btn-success" href="<c:url value='/puesto/create'/>" title="Agregar puesto">Agregar
-                                puesto</a>
+                                Nuevo Tipo</a>
                         </div>
                         <div class="col-md-4">
                             <a class="btn btn-success" href="<c:url value='/colaborador/create'/>" title="Agregar colaborador">Agregar
-                                colaborador</a>
+                                Corral</a>
                         </div>
                     </div>
                 </div>

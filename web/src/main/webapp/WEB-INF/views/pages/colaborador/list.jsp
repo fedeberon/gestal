@@ -27,7 +27,7 @@
 
                                 <th class="text-center">Nombre</th>
                                 <th class="text-center">Puesto</th>
-                                <th class="text-center">Sucursal</th>
+                                <th class="text-center">Establecimiento</th>
                                 <th class="text-center">Editar</th>
                                 <th class="text-center">Evaluar</th>
                                 <th class="text-center">Estado</th>
@@ -53,7 +53,7 @@
                                                         <td class="text-center">
 
                                                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                                    data-target=".modal-${bo.id}">SUCURSAL
+                                                                    data-target=".modal-${bo.id}">mas ..
                                                             </button>
 
                                                             <!--Comienzo de modal-->
@@ -98,7 +98,7 @@
                                                         <td class="text-center">
                                                             <a class="btn btn-success"
                                                                href="<c:url value='../evaluacionDelColaborador/create?id=${bo.id}'/>"
-                                                               title="Agregar evaluaci&oacute;n">Evaluar</a>
+                                                               title="Agregar evaluaci&oacute;n">Monitorear</a>
                                                         </td>
                                                         <td class="text-center">
                                                             <c:choose>
@@ -166,7 +166,7 @@
                                             <thead class=" text-primary">
                                                 <th class="text-center">Nombre completo</th>
                                                 <th class="text-center">Puesto</th>
-                                                <th class="text-center">Sucursal</th>
+                                                <th class="text-center">Establecimiento</th>
                                                 <th class="text-center">Estado</th>
                                                 <th class="text-center">Dar de alta</th>
                                             </thead>
